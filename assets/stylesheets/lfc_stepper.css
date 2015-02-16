@@ -10,6 +10,7 @@
 	width: 12px;
 	height: 12px;
 	font-size: 10px;
+	cursor: pointer;
 	display: inline-block;
 }
 .lairfragment-controls .count {

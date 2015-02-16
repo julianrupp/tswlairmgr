@@ -1,11 +1,11 @@
 * {
-	font-family: 'Futura', 'Verdana', 'Arial', sans-serif;
+	font-family: 'Century Gothic', 'Arial', sans-serif;
 }
 body {
 	margin: 0;
 	background-color: #808080;
 	color: #ffffff;
-	font-size: 9pt;
+	font-size: 12px;
 }
 
 #content {
