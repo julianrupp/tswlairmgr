@@ -1,0 +1,50 @@
+.item.lairfragment {
+	background-image: url(../images/items/item_lairfragment_background.png);
+}
+.item.lairboss {
+	background-image: url(../images/items/item_lairboss_background.png);
+}
+
+.item.lairfragment .icon {
+	background-size: 300%;
+}
+.item.lairboss .icon {
+	background-size: 100%;
+}
+
+.item .icon.km01 { background-image: url(../images/lairbosses/km01.png); }
+.item .icon.km02 { background-image: url(../images/lairbosses/km02.png); }
+.item .icon.km03 { background-image: url(../images/lairbosses/km03.png); }
+.item .icon.sc01 { background-image: url(../images/lairbosses/sc01.png); }
+.item .icon.sc02 { background-image: url(../images/lairbosses/sc02.png); }
+.item .icon.sc03 { background-image: url(../images/lairbosses/sc03.png); }
+.item .icon.bm01 { background-image: url(../images/lairbosses/bm01.png); }
+.item .icon.bm02 { background-image: url(../images/lairbosses/bm02.png); }
+.item .icon.bm03 { background-image: url(../images/lairbosses/bm03.png); }
+
+.item .icon.sd01 { background-image: url(../images/lairbosses/sd01.png); }
+.item .icon.sd02 { background-image: url(../images/lairbosses/sd02.png); }
+.item .icon.sd03 { background-image: url(../images/lairbosses/sd03.png); }
+.item .icon.cs01 { background-image: url(../images/lairbosses/cs01.png); }
+.item .icon.cs02 { background-image: url(../images/lairbosses/cs02.png); }
+.item .icon.cs03 { background-image: url(../images/lairbosses/cs03.png); }
+
+.item .icon.bf01 { background-image: url(../images/lairbosses/bf01.png); }
+.item .icon.bf02 { background-image: url(../images/lairbosses/bf02.png); }
+.item .icon.bf03 { background-image: url(../images/lairbosses/bf03.png); }
+.item .icon.sf01 { background-image: url(../images/lairbosses/sf01.png); }
+.item .icon.sf02 { background-image: url(../images/lairbosses/sf02.png); }
+.item .icon.sf03 { background-image: url(../images/lairbosses/sf03.png); }
+.item .icon.cf01 { background-image: url(../images/lairbosses/cf01.png); }
+.item .icon.cf02 { background-image: url(../images/lairbosses/cf02.png); }
+.item .icon.cf03 { background-image: url(../images/lairbosses/cf03.png); }
+
+.item.lairfragment .icon.nw { background-position: top left; }
+.item.lairfragment .icon.n { background-position: top center; }
+.item.lairfragment .icon.ne { background-position: top right; }
+.item.lairfragment .icon.w { background-position: center left; }
+.item.lairfragment .icon.o { background-position: center center; }
+.item.lairfragment .icon.e { background-position: center right; }
+.item.lairfragment .icon.sw { background-position: bottom left; }
+.item.lairfragment .icon.s { background-position: bottom center; }
+.item.lairfragment .icon.se { background-position: bottom right; }

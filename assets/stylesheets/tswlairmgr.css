@@ -1,0 +1,13 @@
+* {
+	font-family: 'Futura', 'Verdana', 'Arial', sans-serif;
+}
+body {
+	margin: 0;
+	background-color: #808080;
+	color: #ffffff;
+	font-size: 9pt;
+}
+
+#content {
+	margin: 5px;
+}

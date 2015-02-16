@@ -1,0 +1,28 @@
+.lairfragment-controls {
+	text-align: center;
+	font-size: 11px;
+}
+.lairfragment-controls .button {
+	text-decoration: none;
+	color: #464646;
+	background-color: #c0c0c0;
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;
+	font-size: 10px;
+	display: inline-block;
+}
+.lairfragment-controls .count {
+
+}
+.lairfragment-controls .count-after {
+	color: #ff0000;
+}
+.lairfragment-controls .count-after:before {
+	color: #ff0000;
+	content: '(';
+}
+.lairfragment-controls .count-after:after {
+	color: #ff0000;
+	content: ')';
+}

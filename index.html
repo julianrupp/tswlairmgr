@@ -1,0 +1,424 @@
+<html>
+<head>
+	<title>TSW Lair Manager</title>
+	
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr.css" />
+	<link rel="stylesheet" href="assets/stylesheets/items.css" />
+	<link rel="stylesheet" href="assets/stylesheets/items_lair.css" />
+	<link rel="stylesheet" href="assets/stylesheets/lfc_stepper.css" />
+	
+	<script type="text/javascript" src="assets/javascripts/lfc_stepper.js"></script>
+	<script type="text/javascript" src="assets/javascripts/data/english.js"></script>
+	
+	<script type="text/javascript">
+		function test_num_spawns()
+		{
+			var controls_array = lfc_stepper_get_controls(
+				document.getElementById('bosses').
+					getElementsByClassName('boss')[0].
+					getElementsByClassName('boss-fragments')[0]
+			);
+
+			var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+			var count;
+			for(var i=0; i<controls_array.length; i++)
+			{
+				count = lfc_stepper_get_count(controls_array[i]);
+				
+				counts[i] = count;
+			}
+			var spawns = array_lowest(counts);
+			
+			document.getElementById('bosses').
+				getElementsByClassName('boss')[0].
+				getElementsByClassName('boss-counts')[0].
+				getElementsByClassName('count-format')[0].
+				getElementsByClassName('count')[0].
+				innerHTML = spawns;
+			document.getElementById('bosses').
+				getElementsByClassName('boss')[0].
+				getElementsByClassName('boss-counts')[0].
+				getElementsByClassName('count-format')[0].
+				getElementsByClassName('subject')[0].
+				innerHTML = (spawns == 1) ? 'Boss' : 'Bosses';
+		}
+		function test_num_remaining()
+		{
+			var controls_array = lfc_stepper_get_controls(
+				document.getElementById('bosses').
+					getElementsByClassName('boss')[0].
+					getElementsByClassName('boss-fragments')[0]
+			);
+			
+			var counts = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+			var count;
+			for(var i=0; i<controls_array.length; i++)
+			{
+				count = lfc_stepper_get_count(controls_array[i]);
+				
+				counts[i] = count;
+			}
+			var lowest = array_lowest(counts);
+			var remaining = 0;
+			
+			do {
+				counts = array_lowest_add(counts);
+				remaining++;
+			}
+			while(array_lowest(counts) == lowest);
+			
+			document.getElementById('bosses').
+				getElementsByClassName('boss')[0].
+				getElementsByClassName('boss-counts')[0].
+				getElementsByClassName('leftnext-format')[0].
+				getElementsByClassName('count')[0].
+				innerHTML = remaining;
+			document.getElementById('bosses').
+				getElementsByClassName('boss')[0].
+				getElementsByClassName('boss-counts')[0].
+				getElementsByClassName('leftnext-format')[0].
+				getElementsByClassName('subject')[0].
+				innerHTML = (remaining == 1) ? 'piece' : 'pieces';
+		}
+		
+		function array_lowest(arg)
+		{
+			var lowest = null;
+			for(var i=0; i<arg.length; i++)
+			{
+				if(lowest === null || arg[i] < lowest)
+				{
+					lowest = arg[i];
+				}
+			}
+			
+			return(lowest);
+		}
+		function array_lowest_add(arg)
+		{
+			var lowest = null;
+			var lowest_idx = null;
+			for(var i=0; i<arg.length; i++)
+			{
+				if(lowest === null || arg[i] < lowest)
+				{
+					lowest = arg[i];
+					lowest_idx = i;
+				}
+			}
+			arg[lowest_idx]++;
+			
+			return(arg);
+		}
+	</script>
+	
+	<script type="text/javascript">	
+		var unhandled_changes = true; // Calculate initial output after page load
+		function check_changes()
+		{
+			if(unhandled_changes == true)
+			{
+				// Calculations here
+				test_num_spawns();
+				test_num_remaining();
+				
+				unhandled_changes = false;
+			}
+			setTimeout(check_changes, 50);
+		}
+		setTimeout(check_changes, 50);
+	</script>
+	
+	<style type="text/css">
+		/* ===== TESTS ===== */
+		body {
+			background-image: url(assets/images/lairs/bm-TEST.jpg);
+			background-attachment: fixed;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+		
+		#topbar {
+			height: 48px;
+			background-color: rgba(0, 0, 0, 0.66);
+			border-bottom-left-radius: 16px;
+			border-bottom-right-radius: 16px;
+			color: #ffffff;
+			padding-top: 10px;
+			padding-left: 15px;
+			padding-right: 15px;
+			padding-bottom: 0;
+			margin: 0;
+			margin-bottom: 10px;
+		}
+		#topbar:after {
+			clear: both;
+		}
+		
+		#topbar #title {
+			float: left;
+		}
+		#topbar #title #app-name {
+			font-size: 26px;
+			padding-right: 5px;
+		}
+		#topbar #title #side {
+			font-size: 12px;
+			color: rgba(255, 255, 255, 0.75);
+		}
+		
+		#topbar #lair-selector {
+			float: right;
+		}
+		
+		.uibox {
+			color: #ffffff;
+			background-color: rgba(0, 0, 0, 0.5);
+			margin: 2px;
+			padding: 10px;
+			border-radius: 16px;
+			font-size: 14px;
+		}
+		.center {
+			text-align: center;
+		}
+		
+		.boss-title .name {
+			color: rgba(255, 255, 255, 1);
+			font-size: 20px;
+		}
+		.boss-title .mission {
+			font-size: 12px;
+			color: rgba(255, 255, 255, 0.75);
+		}
+		
+		.boss-counts .count-format {
+			font-size: 20px;
+		}
+		.boss-counts .count-format .count {
+			color: rgba(255, 255, 255, 1);
+			font-weight: bold;
+		}
+		.boss-counts .leftnext-format {
+			font-size: 12px;
+			color: rgba(255, 255, 255, 0.75);
+		}
+		.boss-counts .leftnext-format .count {
+			
+		}
+	</style>
+</head>
+<body>
+	<div id="topbar">
+		<div id="title">
+			<span id="app-name">TSW Lair Manager</span> <span id="side">by Cobin</span>
+		</div>
+		
+		<div id="lair-selector">
+			<select style="border: 2px solid rgba(255, 255, 255, 1); border-radius: 5px; background: rgba(0, 0, 0, 0.5); color: #ffffff;">
+				<optgroup label="Transylvania">
+					<option>Besieged Farmlands: The Dread Retreat</option>
+				</optgroup>
+			</select>
+		</div>
+	</div>
+	
+	<div id="content">
+		<table border="0" style="margin: 0 auto;" id="bosses">
+			<tr>
+				<td class="boss">
+					<div class="uibox boss-title center">
+						<div class="name">
+							The Plague
+						</div>
+						<div class="mission">
+							Blessed Are The Makers
+						</div>
+					</div>
+					
+					<table border="0" class="uibox boss-fragments">
+						<tr>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 nw">
+										<div class="name">
+											Lambda 04
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 n">
+										<div class="name">
+											Xi 07
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 ne">
+										<div class="name">
+											Alpha 04
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 w">
+										<div class="name">
+											Psi 01
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 o">
+										<div class="name">
+											Epsilon 02
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 e">
+										<div class="name">
+											Theta 02
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 sw">
+										<div class="name">
+											Theta 01
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 s">
+										<div class="name">
+											Eta 03
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+							<td>
+								<div class="item rare lairfragment">
+									<div class="icon bf02 se">
+										<div class="name">
+											Mu 09
+										</div>
+									</div>
+								</div>
+								<div class="lairfragment-controls">
+									<a class="button" href="#" onclick="lfc_stepper_down(this.parentNode)">&minus;</a>
+									<span class="count">0</span> <span class="count-after">0</span>
+									<a class="button" href="#" onclick="lfc_stepper_up(this.parentNode)">&plus;</a>
+								</div>
+							</td>
+						</tr>
+					</table>
+					
+					<div class="uibox boss-counts center">
+						<div class="count-format">
+							<span class="count">2</span> <span class="subject">Bosses</span>
+						</div>
+						<div class="leftnext-format">
+							(<span class="count">X</span> more <span class="subject">pieces</span> for another)
+						</div>
+					</div>
+				</td>
+				<td class="boss">
+					<table class="uibox boss-fragments">
+						<tr>
+							<td>
+								...
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td class="boss">
+					<table class="uibox boss-fragments">
+						<tr>
+							<td>
+								...
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	
+		<div class="uibox center">
+			<div class="item rare lairboss">
+				<div class="icon bf01">
+				
+				</div>
+			</div>
+			<div class="item rare lairboss">
+				<div class="icon bf02">
+				
+				</div>
+			</div>
+			<div class="item rare lairboss">
+				<div class="icon bf03">
+				
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
