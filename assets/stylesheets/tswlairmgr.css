@@ -8,6 +8,81 @@ body {
 	font-size: 12px;
 }
 
+a {
+	color: #ffffff;
+}
+
+a:active, a:focus {
+	color: #c0c0c0;
+}
+
+a:visited {
+	color: #a0a0a0;
+}
+
+a:hover {
+	color: #808080;
+}
+
+#js-required-warning {
+	display: block;
+	text-align: center;
+}
+
+#js-required-warning h1 {
+	margin-top: 0;
+}
+
+#webapp {
+	display: none;
+}
+
 #content {
 	margin: 5px;
+}
+
+#topbar {
+	height: 48px;
+	background-color: rgba(0, 0, 0, 0.66);
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+	color: #ffffff;
+	padding-top: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 0;
+	margin: 0;
+	margin-bottom: 10px;
+}
+#topbar:after {
+	clear: both;
+}
+
+#topbar #title {
+	float: left;
+}
+#topbar #title #app-name {
+	font-size: 26px;
+	font-weight: bold;
+	padding-right: 5px;
+}
+#topbar #title #side {
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#topbar #lair-selector {
+	float: right;
+}
+
+.uibox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.5);
+	margin: 2px;
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+}
+.center {
+	text-align: center;
 }
