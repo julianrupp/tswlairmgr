@@ -1,8 +1,6 @@
 var tswlairmgr = tswlairmgr || {};
 tswlairmgr.bossfragments = tswlairmgr.bossfragments || {};
 
-tswlairmgr.debug = true;
-
 tswlairmgr.bossfragments.Bosses = function Bosses(node, lair) {
 	this.lair = lair;
 	this.bosses = [];

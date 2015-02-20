@@ -19,49 +19,17 @@
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items-lair.css" />
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-lairselector.css" />
 	
 	<script type="text/javascript" src="assets/javascripts/data/english.js"></script>
+	<script type="text/javascript" src="assets/javascripts/tswlairmgr.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-bossfragments.js"></script>
-	
-	<script type="text/javascript">
-		window.onload = function() {
-			document.getElementById('js-required-warning').style.display = 'none';
-			document.getElementById('webapp').style.display = 'block';
-			
-			var lair = tswlairmgr.data.lair[0]; // TODO: LairSelector
-			
-			tswlairmgr.bossfragmentsInstance = new tswlairmgr.bossfragments.Bosses(document.getElementById('boss-fragments'), lair);
-			
-			console.log('bossfragments: initialization done.');
-			
-			demoSetRandomFragmentCounts();
-		};
-		
-		function demoSetRandomFragmentCounts()
-		{
-			for(var i=0; i<tswlairmgr.bossfragmentsInstance.bosses.length; i++)
-			{
-				var boss = tswlairmgr.bossfragmentsInstance.bosses[i];
-				
-				for(var j=0; j<boss.fragments.length; j++)
-				{
-					var fragment = boss.fragments[j];
-					
-					var randomFragmentCount = Math.floor(Math.random() * 10);
-					fragment.controls.setCount( randomFragmentCount );
-				}
-			}
-		}
-	</script>
+	<script type="text/javascript" src="assets/javascripts/tswlairmgr-lairselector.js"></script>
 	
 	<style type="text/css">
 		/* ===== TESTS ===== */
 		body {
 			background-image: url(assets/images/lairs/km-TEST.jpg);
-			background-attachment: fixed;
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: cover;
 		}
 	</style>
 </head>
@@ -80,10 +48,7 @@
 			</div>
 		
 			<div id="lair-selector">
-				<select style="border: 2px solid rgba(255, 255, 255, 1); border-radius: 5px; background: rgba(0, 0, 0, 0.5); color: #ffffff; height: 32px;">
-					<optgroup label="Solomon Island">
-						<option>Kingsmouth: Duma Beach</option>
-					</optgroup>
+				<select>
 				</select>
 			</div>
 		</div>

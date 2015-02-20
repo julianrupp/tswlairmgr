@@ -6,6 +6,11 @@ body {
 	background-color: #808080;
 	color: #ffffff;
 	font-size: 12px;
+	
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 a {
