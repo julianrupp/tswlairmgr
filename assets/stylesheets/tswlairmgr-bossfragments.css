@@ -1,3 +1,9 @@
+#boss-fragments {
+	width: 844px;
+	border: 0;
+	margin: 0 auto;
+}
+
 /* ====================
  * Title block */
 .boss-title .name {
@@ -14,10 +20,12 @@
 .bossfragment-controls {
 	text-align: center;
 	font-size: 11px;
+	text-shadow: 1px 1px 1px #000000;
 }
 .bossfragment-controls .button {
 	text-decoration: none;
 	color: #464646;
+	text-shadow: none;
 	background-color: #c0c0c0;
 	border-radius: 2px;
 	width: 12px;
@@ -31,14 +39,14 @@
 
 }
 .bossfragment-controls .count-all {
-	color: #808080;
+	color: #c0c0c0;
 }
 .bossfragment-controls .count-all:before {
-	color: #808080;
+	color: #c0c0c0;
 	content: '(';
 }
 .bossfragment-controls .count-all:after {
-	color: #808080;
+	color: #c0c0c0;
 	content: ')';
 }
 

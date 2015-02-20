@@ -8,6 +8,16 @@
 	display: inline-block;
 }
 
+.item.small {
+	width: 32px;
+	height: 32px;
+	padding: 2px 2px;
+	border-radius: 5px;
+	margin: 1px;
+	background-size: 100%;
+	display: inline-block;
+}
+
 .item.common {
 	border: 3px solid #ffffff;
 }
@@ -24,6 +34,10 @@
 	border: 3px solid #ffd001;
 }
 
+.item.small {
+	border-width: 2px;
+}
+
 .item .icon {
 	width: 100%;
 	height: 100%;
@@ -35,7 +49,13 @@
 	font-size: 11px;
 	letter-spacing: -0.5px;
 	color: #ffffff;
-	text-shadow: 1px 1px 1px #000000;
+	text-shadow: 0px 0px 3px #000000;
 	text-align: center;
 	padding-top: 78%;
+}
+
+.item.small .name {
+	font-size: 7px;
+	text-shadow: 0px 0px 3px #000000, 0px 0px 5px #000000;
+	padding-top: 72%;
 }
