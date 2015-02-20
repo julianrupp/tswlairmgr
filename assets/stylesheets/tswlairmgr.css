@@ -40,6 +40,7 @@ a:hover {
 
 #webapp {
 	display: none;
+	min-width: 850px;
 }
 
 #content {
