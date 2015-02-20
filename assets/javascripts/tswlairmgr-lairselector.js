@@ -54,5 +54,10 @@ tswlairmgr.lairselector.LairSelectorDropdown = function LairSelectorDropdown(nod
 		this.update();
 	};
 	
+	if(tswlairmgr.settings.debug)
+	{
+		console.log('<tswlairmgr.lairselector.LairSelectorDropdown> instance created');
+	}
+	
 	this.init();
 };

@@ -11,12 +11,22 @@ tswlairmgr.bossfragments.Bosses = function Bosses(node, lair) {
 	};
 	
 	this.setLair = function(data) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.Bosses> setLair called: ['+data['area']+']');
+		}
+		
 		this.lair = data;
 		
 		this.redraw();
 	};
 	
 	this.redraw = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.Bosses> redraw called');
+		}
+		
 		for(var i=0; i<this.bosses.length; i++)
 		{
 			boss = this.bosses[i];
@@ -34,7 +44,7 @@ tswlairmgr.bossfragments.Bosses = function Bosses(node, lair) {
 		}
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.Bosses> instance created');
 	}
 	
@@ -56,6 +66,11 @@ tswlairmgr.bossfragments.Boss = function Boss(node, collectionObject, index) {
 	};
 	
 	this.reset = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.Boss> reset called');
+		}
+		
 		this.resetIcons();
 		this.resetControls();
 		this.counts.reset();
@@ -71,6 +86,7 @@ tswlairmgr.bossfragments.Boss = function Boss(node, collectionObject, index) {
 	};
 	
 	this.resetControls = function() {
+		
 		for(var i=0; i<this.fragments.length; i++)
 		{
 			fragment = this.fragments[i];
@@ -80,6 +96,11 @@ tswlairmgr.bossfragments.Boss = function Boss(node, collectionObject, index) {
 	};
 	
 	this.redraw = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.Boss> redraw called');
+		}
+		
 		this.el['name'].innerHTML = this.collection.lair['bosses'][this.index]['name'];
 		this.el['mission'].innerHTML = this.collection.lair['bosses'][this.index]['mission_name'];
 		
@@ -106,7 +127,7 @@ tswlairmgr.bossfragments.Boss = function Boss(node, collectionObject, index) {
 		this.counts.recalculate();
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.Boss> instance created: (index='+this.index+')');
 	}
 	
@@ -126,6 +147,11 @@ tswlairmgr.bossfragments.BossFragment = function BossFragment(node, bossObject, 
 	};
 	
 	this.reset = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragment> reset called');
+		}
+		
 		this.resetIcon();
 		this.resetControls();
 	};
@@ -144,6 +170,11 @@ tswlairmgr.bossfragments.BossFragment = function BossFragment(node, bossObject, 
 	};
 	
 	this.redraw = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragment> redraw called');
+		}
+		
 		this.icon.redraw();
 	};
 	
@@ -152,7 +183,7 @@ tswlairmgr.bossfragments.BossFragment = function BossFragment(node, bossObject, 
 		this.controls = new tswlairmgr.bossfragments.BossFragmentControls(this.el['controls'], this);
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.BossFragment> instance created: [index='+this.boss.index+'] (position='+this.getPositionName()+')');
 	}
 	
@@ -169,6 +200,11 @@ tswlairmgr.bossfragments.BossFragmentIcon = function BossFragmentIcon(node, frag
 	};
 	
 	this.redraw = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentIcon> redraw called');
+		}
+		
 		var bossIndex = this.fragment.boss.index;
 		var lairId = this.fragment.boss.collection.lair['area'];
 		var bossId = this.fragment.boss.collection.lair['bosses'][bossIndex]['id'];
@@ -189,7 +225,7 @@ tswlairmgr.bossfragments.BossFragmentIcon = function BossFragmentIcon(node, frag
 		this.redraw();
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.BossFragmentIcon> instance created [index='+this.fragment.boss.index+' position='+this.fragment.getPositionName()+']');
 	}
 	
@@ -219,6 +255,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 		return(parseInt(this.el['counts']['current'].innerHTML));
 	};
 	this.setCount = function(arg, dontRecalculate) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentControls> setCount called: ['+arg+', '+dontRecalculate+']');
+		}
+		
 		this.el['counts']['current'].innerHTML = parseInt(arg);
 		if(!dontRecalculate)
 		{
@@ -230,6 +271,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 		return(parseInt(this.el['counts']['all'].innerHTML));
 	};
 	this.setCountAll = function(arg, dontRecalculate) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentControls> setCountAll called: ['+arg+', '+dontRecalculate+']');
+		}
+		
 		this.el['counts']['all'].innerHTML = parseInt(arg);
 		if(!dontRecalculate)
 		{
@@ -238,6 +284,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 	};
 	
 	this.increment = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentControls> increment called');
+		}
+		
 		var val = self.getCount();
 		if(val < self.max)
 		{
@@ -245,6 +296,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 		}
 	};
 	this.decrement = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentControls> decrement called');
+		}
+		
 		var val = self.getCount();
 		if(val > self.min)
 		{
@@ -253,6 +309,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 	};
 	
 	this.reset = function(dontRecalculate) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossFragmentControls> reset called');
+		}
+		
 		this.setCount(0, dontRecalculate);
 		this.setCountAll(0, dontRecalculate);
 	};
@@ -264,7 +325,7 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 		this.reset(true);
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.BossFragmentControls> instance created [index='+this.fragment.boss.index+' position='+this.fragment.getPositionName()+']');
 	}
 	
@@ -290,6 +351,11 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		return(parseInt(this.el['countSpawns']['count'].innerHTML));
 	};
 	this.setCountSpawns = function(arg) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossCounts> setCountSpawns called: ['+arg+']');
+		}
+		
 		argInt = parseInt(arg);
 		this.el['countSpawns']['count'].innerHTML = argInt;
 		this.el['countSpawns']['subject'].innerHTML = (argInt == 1) ? 'Summoning Ritual' : 'Summoning Rituals';
@@ -299,6 +365,11 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		return(parseInt(this.el['countMissing']['count'].innerHTML));
 	};
 	this.setCountMissing = function(arg) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossCounts> setCountMissing called: ['+arg+']');
+		}
+		
 		argInt = parseInt(arg);
 		this.el['countMissing']['count'].innerHTML = argInt;
 		this.el['countMissing']['subject'].innerHTML = (argInt == 1) ? 'fragment' : 'fragments';
@@ -355,6 +426,11 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 	};
 	
 	this.recalculate = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossCounts> recalculate called');
+		}
+		
 		var numFragmentsAll = 0;
 		var numFragments = [];
 		for(var i=0; i<this.boss.fragments.length; i++)
@@ -378,7 +454,7 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		this.setCountMissing(0);
 	};
 	
-	if(tswlairmgr.debug) {
+	if(tswlairmgr.settings.debug) {
 		console.log('<tswlairmgr.bossfragments.BossCounts> instance created [index='+this.boss.index+']');
 	}
 	
