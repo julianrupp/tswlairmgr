@@ -1,7 +1,7 @@
 var tswlairmgr = tswlairmgr || {};
 tswlairmgr.lairselector = tswlairmgr.lairselector || {};
 
-tswlairmgr.lairselector.LairSelectorDropdown = function LairSelectorDropdown(node, bossfragmentsObject, defaultRegionId, defaultLairId) {
+tswlairmgr.lairselector.LairSelectorDropdown = function LairSelectorDropdown(node, backgroundNode, bossfragmentsObject, defaultRegionId, defaultLairId) {
 	this.bossfragments = bossfragmentsObject;
 	this.selectIndexMap = [];
 	
@@ -9,13 +9,15 @@ tswlairmgr.lairselector.LairSelectorDropdown = function LairSelectorDropdown(nod
 	
 	this.el = {
 		root: node,
-		select: node.getElementsByTagName('select')[0]
+		select: node.getElementsByTagName('select')[0],
+		background: backgroundNode
 	};
 	
-	this.switchLair = function() {
+	this.update = function() {
 		var selected = self.selectIndexMap[self.el['select'].selectedIndex];
 		
 		tswlairmgr.bossfragmentsInstance.setLair(tswlairmgr.data.lairdata[selected['regionId']].lairs[selected['lairId']]);
+		self.el['background'].style.backgroundImage = 'url(assets/images/lairs/'+tswlairmgr.data.lairdata[selected['regionId']].lairs[selected['lairId']].area+'.jpg)';
 	}
 	
 	this.init = function() {
@@ -47,7 +49,9 @@ tswlairmgr.lairselector.LairSelectorDropdown = function LairSelectorDropdown(nod
 			this.el['select'].appendChild(regionNode);
 		}
 		
-		this.el['select'].onchange = this.switchLair;
+		this.el['select'].onchange = this.update;
+		
+		this.update();
 	};
 	
 	this.init();

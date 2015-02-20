@@ -16,7 +16,7 @@ window.onload = function() {
 	tswlairmgr.bossfragmentsInstance = new tswlairmgr.bossfragments.Bosses(document.getElementById('boss-fragments'), lair);
 	//demoSetRandomFragmentCounts();
 	
-	tswlairmgr.lairselectorInstance = new tswlairmgr.lairselector.LairSelectorDropdown(document.getElementById('lair-selector'), tswlairmgr.bossfragmentsInstance, tswlairmgr.settings['lair_default']['region_id'], tswlairmgr.settings['lair_default']['lair_id']);
+	tswlairmgr.lairselectorInstance = new tswlairmgr.lairselector.LairSelectorDropdown(document.getElementById('lair-selector'), document.getElementsByTagName('body')[0], tswlairmgr.bossfragmentsInstance, tswlairmgr.settings['lair_default']['region_id'], tswlairmgr.settings['lair_default']['lair_id']);
 	
 	document.getElementById('webapp').style.display = 'block';
 };
