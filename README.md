@@ -3,12 +3,17 @@ TSW Lair Manager
 
 **This webapp is in early development and currently still (nearly) non-functional.**
 
-TSW Lair Manager is a fan-made lair fragment organizer for [The Secret World](http://thesecretworld.com) (TSW), a MMORPG by Funcom. It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons. Unlike the abandoned / broken / English client only [MissionHelper addon](http://www.curse.com/tsw-mods/tsw/missionhelper), this webapp can be used with an arbitrary number of group members, and lets you see everything at a glance, with nice graphics.
+TSW Lair Manager is a fan-made lair fragment organizer for [The Secret World](http://thesecretworld.com) (TSW), a MMORPG by Funcom.
+
+It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons.
+
+Unlike the limited [MissionHelper addon](http://www.curse.com/tsw-mods/tsw/missionhelper), this webapp can be used with an arbitrary number of group members and lets you see everything at a glance, still with nice graphics. Additionally it just works in any modern browser.
 
 Features:
 
-* Lair bosses from all 8 classic lairs (Solomon Island, Egypt, Transylvania)
+* Lair bosses from all 8 classic lairs
 * Support for arbitrary group sizes
+* Easy and fast to use
 * On-the-fly TSW chat script generation
 
 TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
@@ -36,7 +41,9 @@ Upload `index.html` and the `assets` folder to a web server.
 Contributing
 ------------
 Code - not at this time yet.
+
 I'll be open for code contributions once I reach the first fully functional version.
+
 (There sure will be a lot to do to prettify and refactor as I'm not really into web development this much and never bothered about learning some JavaScript helper library like jQuery and the likes.)
 
 However, you can already send me feature requests or other constructive feedback.
@@ -45,12 +52,14 @@ However, you can already send me feature requests or other constructive feedback
 Credits
 -------
 - Lair boss images have been taken from [dancingstar93's Flickr album](https://www.flickr.com/photos/79764031@N03/sets/72157638380829154/).
+  
   I derived "x-ray"-esque versions from them using Adobe Photoshop CS6 Extended. You can find the PSD files in the resource repository.
 
 - Lair area screenshots have been taken by myself.
+  
   Graphics settings: 2560x1440, DX11, FXAA-HQ, no motion blur, full tesselation, high quality SSAO, brightness=1.0/contrast=1.0/gamma=1.0, all advanced sliders on 4.
 
-- Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [Pandion Knights' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
+- Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
 - My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn makes the fragment holder take ages to assemble a list of who-takes-what.
 
