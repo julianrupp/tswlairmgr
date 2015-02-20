@@ -124,7 +124,7 @@ tswlairmgr.data.lairdata = [
 							n:  {letter: greek["sigma"], number: "02"},
 							ne: {letter: greek["zeta"], number: "06"},
 							w:  {letter: greek["alpha"], number: "06"},
-							o:  {letter: greek["Iota"], number: "03"},
+							o:  {letter: greek["iota"], number: "03"},
 							e:  {letter: greek["theta"], number: "06"},
 							sw: {letter: greek["lambda"], number: "02"},
 							s:  {letter: greek["psi"], number: "05"},
