@@ -1,0 +1,104 @@
+#turn-in {
+	width: 844px;
+	margin: 10px auto;
+	border: 0;
+}
+
+#turn-in > tbody > tr {
+	vertical-align: top;
+}
+
+#turn-in > tbody > tr > td:nth-child(1n) {
+	width: 50%;
+}
+
+#turn-in > tbody > tr > td:nth-child(2n) {
+	width: 4px;
+}
+
+#participants, #pick-table {
+	margin: 0;
+}
+
+#participants .center {
+	display: block;
+	text-align: center;
+}
+
+#participants-list-count, #pick-table-count {
+	margin-top: -5px;
+	margin-bottom: 10px;
+	width: 390px;
+	text-align: right;
+}
+
+#participants-add input[type="text"] {
+	width: 225px;
+}
+
+#participants-list-count .count, #pick-table-count .count-received, #pick-table-count .count-outstanding {
+	font-weight: bold;
+}
+
+#pick-table-count {
+	margin: 0;
+	border: 0;
+}
+
+#pick-table-count > tbody > tr {
+	vertical-align: bottom;
+}
+
+#pick-table-count > tbody > tr > td:first-child {
+	text-align: left;
+}
+
+#pick-table-count > tbody > tr > td:last-child {
+	text-align: right;
+}
+
+.table tr th.name {
+	width: 55%;
+	text-align: left;
+}
+
+.table tr td.mission-checkbox {
+	width: 25px;
+	height: 25px;
+	text-align: center;
+}
+
+.table tr td.fragment-checkbox {
+	width: 54px;
+	height: 54px;
+	text-align: center;
+}
+
+.table tr td.fragment-checkbox .item {
+	opacity: 1.00;
+}
+
+.table tr td.fragment-checkbox.checked .item {
+	opacity: 0.50;
+}
+
+.table tr td.fragment-checkbox.disabled .item {
+	opacity: 0.05;
+}
+
+.table tr td.mission-checkbox, .table tr td.actions {
+	 text-align: center;
+}
+
+.table.names tr:nth-child(12n+1) td:first-child.name	{ color: #fabca4; }
+.table.names tr:nth-child(12n+2) td:first-child.name	{ color: #fad2a4; }
+.table.names tr:nth-child(12n+3) td:first-child.name	{ color: #fae4a4; }
+.table.names tr:nth-child(12n+4) td:first-child.name	{ color: #faf5a4; }
+.table.names tr:nth-child(12n+5) td:first-child.name	{ color: #e7f4a0; }
+.table.names tr:nth-child(12n+6) td:first-child.name	{ color: #acec9a; }
+.table.names tr:nth-child(12n+7) td:first-child.name	{ color: #98e9dc; }
+.table.names tr:nth-child(12n+8) td:first-child.name	{ color: #98c2e9; }
+.table.names tr:nth-child(12n+9) td:first-child.name	{ color: #9899e9; }
+.table.names tr:nth-child(12n+10) td:first-child.name	{ color: #c298e9; }
+.table.names tr:nth-child(12n+11) td:first-child.name	{ color: #eb9ada; }
+.table.names tr:nth-child(12n+12) td:first-child.name	{ color: #f5a0a9; }

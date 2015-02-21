@@ -13,13 +13,14 @@
 	<link rel="icon" type="image/png" href="assets/images/favicon.png" />
 	
 	<!-- <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css"> -->
-	<link href="assets/stylesheets/fonts/Lato.css" rel="stylesheet" type="text/css">
+	<link href="assets/stylesheets/fonts/Lato/Lato.css" rel="stylesheet" type="text/css">
 	
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items-lair.css" />
 	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-lairselector.css" />
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-turnin.css" />
 	
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-settings.js"></script>
@@ -32,99 +33,6 @@
 	
 	<style type="text/css">
 		/* ===== TESTS ===== */
-		input {
-			font-size: 13px;
-		}
-		
-		input[type="text"] {
-			border: 1px solid rgba(255, 255, 255, 0.25);
-			background-color: rgba(0, 0, 0, 0.25);
-			padding: 3px;
-			color: #ffffff;
-		}
-		
-		#participants-list-count, #pick-table-count {
-			margin-top: -5px;
-			margin-bottom: 10px;
-			width: 390px;
-			text-align: right;
-		}
-		
-		#participants-list-count .count, #pick-table-count .count-received, #pick-table-count .count-outstanding {
-			font-weight: bold;
-		}
-		
-		.table {
-			width: 390px;
-			margin: 10px auto 10px auto;
-			border: 0;
-			border-collapse: collapse;
-		}
-		
-		.table input[type="button"] {
-			font-size: 11px;
-		}
-		
-		.table tr {
-			border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-			min-height: 25px;
-		}
-		
-		.table tr th, .table tr td {
-			padding: 5px;
-			border-left: 1px solid rgba(255, 255, 255, 0.25);
-			border-right: 1px solid rgba(255, 255, 255, 0.25);
-		}
-		
-		.table tr td {
-			background-color: rgba(255, 255, 255, 0.07);
-		}
-		
-		.table tr th.name {
-			width: 55%;
-			text-align: left;
-		}
-		
-		.table tr td.mission-checkbox {
-			width: 25px;
-			height: 25px;
-			text-align: center;
-		}
-		
-		.table tr td.fragment-checkbox {
-			width: 54px;
-			height: 54px;
-			text-align: center;
-		}
-		
-		.table tr td.fragment-checkbox .item {
-			opacity: 0.50;
-		}
-		
-		.table tr td.fragment-checkbox.checked .item {
-			opacity: 1.00;
-		}
-		
-		.table tr td.fragment-checkbox.disabled .item {
-			opacity: 0.05;
-		}
-		
-		.table tr td.mission-checkbox, .table tr td.actions {
-			 text-align: center;
-		}
-		
-		.table tr:nth-child(12n+1) td.name	{ color: #fabca4; }
-		.table tr:nth-child(12n+2) td.name	{ color: #fad2a4; }
-		.table tr:nth-child(12n+3) td.name	{ color: #fae4a4; }
-		.table tr:nth-child(12n+4) td.name	{ color: #faf5a4; }
-		.table tr:nth-child(12n+5) td.name	{ color: #e7f4a0; }
-		.table tr:nth-child(12n+6) td.name	{ color: #acec9a; }
-		.table tr:nth-child(12n+7) td.name	{ color: #98e9dc; }
-		.table tr:nth-child(12n+8) td.name	{ color: #98c2e9; }
-		.table tr:nth-child(12n+9) td.name	{ color: #9899e9; }
-		.table tr:nth-child(12n+10) td.name	{ color: #c298e9; }
-		.table tr:nth-child(12n+11) td.name	{ color: #eb9ada; }
-		.table tr:nth-child(12n+12) td.name	{ color: #f5a0a9; }
 	</style>
 </head>
 <body>
@@ -149,775 +57,795 @@
 		
 		<div id="content">
 			<table id="boss-fragments">
-				<tr>
-					<td class="boss">
-						<div class="uibox boss-title center">
-							<div class="name">
+				<tbody>
+					<tr>
+						<td class="boss">
+							<div class="uibox boss-title center">
+								<div class="name">
 							
-							</div>
-							<div class="mission">
+								</div>
+								<div class="mission">
 								
+								</div>
 							</div>
-						</div>
 					
-						<table border="0" class="uibox boss-fragments">
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+							<table border="0" class="uibox boss-fragments">
+								<tbody>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-						</table>
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 					
-						<div class="uibox boss-counts center">
-							<div class="count-format">
-								<span class="count"></span> <span class="subject"></span>
+							<div class="uibox boss-counts center">
+								<div class="count-format">
+									<span class="count"></span> <span class="subject"></span>
+								</div>
+								<div class="missing-format">
+									(<span class="count"></span> more <span class="subject"></span> for another)
+								</div>
 							</div>
-							<div class="missing-format">
-								(<span class="count"></span> more <span class="subject"></span> for another)
-							</div>
-						</div>
-					</td>
-					<td class="boss">
-						<div class="uibox boss-title center">
-							<div class="name">
+						</td>
+						<td class="boss">
+							<div class="uibox boss-title center">
+								<div class="name">
 							
-							</div>
-							<div class="mission">
+								</div>
+								<div class="mission">
 							
+								</div>
 							</div>
-						</div>
 					
-						<table border="0" class="uibox boss-fragments">
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+							<table border="0" class="uibox boss-fragments">
+								<tbody>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-						</table>
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 					
-						<div class="uibox boss-counts center">
-							<div class="count-format">
-								<span class="count"></span> <span class="subject"></span>
+							<div class="uibox boss-counts center">
+								<div class="count-format">
+									<span class="count"></span> <span class="subject"></span>
+								</div>
+								<div class="missing-format">
+									(<span class="count"></span> more <span class="subject"></span> for another)
+								</div>
 							</div>
-							<div class="missing-format">
-								(<span class="count"></span> more <span class="subject"></span> for another)
-							</div>
-						</div>
-					</td>
-					<td class="boss">
-						<div class="uibox boss-title center">
-							<div class="name">
+						</td>
+						<td class="boss">
+							<div class="uibox boss-title center">
+								<div class="name">
 							
-							</div>
-							<div class="mission">
+								</div>
+								<div class="mission">
 							
+								</div>
 							</div>
-						</div>
 					
-						<table border="0" class="uibox boss-fragments">
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+							<table border="0" class="uibox boss-fragments">
+								<tbody>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-								<td class="boss-fragment">
-									<div class="item">
-										<div class="icon">
-											<div class="name">
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+										<td class="boss-fragment">
+											<div class="item">
+												<div class="icon">
+													<div class="name">
 											
+													</div>
+												</div>
 											</div>
-										</div>
-									</div>
-									<div class="bossfragment-controls">
-										<a class="button minus">&minus;</a>
-										<span class="count"></span> <span class="count-all"></span>
-										<a class="button plus">&plus;</a>
-									</div>
-								</td>
-							</tr>
-						</table>
+											<div class="bossfragment-controls">
+												<a class="button minus">&minus;</a>
+												<span class="count"></span> <span class="count-all"></span>
+												<a class="button plus">&plus;</a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 					
-						<div class="uibox boss-counts center">
-							<div class="count-format">
-								<span class="count"></span> <span class="subject"></span>
+							<div class="uibox boss-counts center">
+								<div class="count-format">
+									<span class="count"></span> <span class="subject"></span>
+								</div>
+								<div class="missing-format">
+									(<span class="count"></span> more <span class="subject"></span> for another)
+								</div>
 							</div>
-							<div class="missing-format">
-								(<span class="count"></span> more <span class="subject"></span> for another)
-							</div>
-						</div>
-					</td>
-				</tr>
+						</td>
+					</tr>
+				</tbody>
 			</table>
 			
-			<table id="missions" style="width: 844px; margin: 10px auto; border: 0;">
-				<tr style="vertical-align: top;">
-					<td style="width: 50%;">
-						<div id="participants" class="uibox" style="margin: 0;">
-							<h3 style="margin-top: 0; text-align: center;">Participants</h3>
+			<table id="turn-in">
+				<tbody>
+					<tr>
+						<td>
+							<div id="participants" class="uibox">
+								<h3>Participants</h3>
 							
-							<span style="display: block; text-align: center;">
-								<form id="participants-add">
-									<input type="text" name="name" value="" style="width: 225px;"> <input type="submit" value="Add">
-								</form>
-							</span>
+								<span class="center">
+									<form id="participants-add">
+										<input type="text" name="name" value=""> <input type="submit" value="Add">
+									</form>
+								</span>
 							
-							<table id="participants-list" class="table">
-								<tr>
-									<th class="name">Name</th>
-									<th class="mission-checkbox"></th>
-									<th class="mission-checkbox"></th>
-									<th class="mission-checkbox"></th>
-									<th>Actions</th>
-								</tr>
-								<tr>
-									<td class="name">Feidelm</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Cobin</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Dott</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Paschendale</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Taltala</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Jermaine</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Martlet</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Wakko</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Onee-san</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">dirtyLilFreak</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Samiira</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-								<tr>
-									<td class="name">Sugar-Daddy</td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="mission-checkbox"><input type="checkbox" checked></td>
-									<td class="actions"><input type="button" value="Remove"></td>
-								</tr>
-							</table>
+								<table id="participants-list" class="table names">
+									<thead>
+										<tr>
+											<th class="name">Name</th>
+											<th class="mission-checkbox"></th>
+											<th class="mission-checkbox"></th>
+											<th class="mission-checkbox"></th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="name">Feidelm</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Cobin</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Dott</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Paschendale</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Taltala</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Jermaine</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Martlet</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Wakko</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Onee-san</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">dirtyLilFreak</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Samiira</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+										<tr>
+											<td class="name">Sugar-Daddy</td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="mission-checkbox"><input type="checkbox" checked></td>
+											<td class="actions"><input type="button" value="Remove"></td>
+										</tr>
+									</tbody>
+								</table>
 							
-							<div id="participants-list-count">
-								<span class="count">12</span> <span class="subject">participants</span>
+								<div id="participants-list-count">
+									<span class="count">12</span> <span class="subject">participants</span>
+								</div>
 							</div>
-						</div>
-					</td>
-					<td style="width: 4px;">
+						</td>
+						<td>
 						
-					</td>
-					<td style="width: 50%;">
-						<div id="pick-table" class="uibox" style="margin: 0;">
-							<h3 style="margin-top: 0; text-align: center;">Pick Table</h3>
+						</td>
+						<td>
+							<div id="pick-table" class="uibox">
+								<h3>Pick Table</h3>
 							
-							<table id="pick-table" class="table">
-								<tr>
-									<th class="name">Name</th>
-									<th class="fragment-checkbox"></th>
-									<th class="fragment-checkbox"></th>
-									<th class="fragment-checkbox"></th>
-								</tr>
-								<tr>
-									<td class="name">Feidelm</td>
-									<td class="fragment-checkbox">
-										<div class="item rare lairfragment small">
-											<div class="icon km01 nw">
-												<div class="name">
-													Theta 04
+								<table id="pick-table" class="table names">
+									<thead>
+										<tr>
+											<th class="name">Name</th>
+											<th class="fragment-checkbox"></th>
+											<th class="fragment-checkbox"></th>
+											<th class="fragment-checkbox"></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="name">Feidelm</td>
+											<td class="fragment-checkbox">
+												<div class="item rare lairfragment small">
+													<div class="icon km01 nw">
+														<div class="name">
+															Theta 04
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-									</td>
-									<td class="fragment-checkbox checked">
-										<div class="item rare lairfragment small">
-											<div class="icon km02 n">
-												<div class="name">
-													Lambda 03
+											</td>
+											<td class="fragment-checkbox checked">
+												<div class="item rare lairfragment small">
+													<div class="icon km02 n">
+														<div class="name">
+															Lambda 03
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-									</td>
-									<td class="fragment-checkbox disabled">
-										<div class="item rare lairfragment small">
-											<div class="icon">
-												<div class="name">
+											</td>
+											<td class="fragment-checkbox disabled">
+												<div class="item rare lairfragment small">
+													<div class="icon">
+														<div class="name">
 													
+														</div>
+													</div>
 												</div>
-											</div>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Cobin</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Cobin</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Dott</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Dott</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Paschendale</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Paschendale</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Taltala</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Taltala</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Jermaine</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Jermaine</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Martlet</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Martlet</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Wakko</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Wakko</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Onee-san</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Onee-san</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">dirtyLilFreak</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">dirtyLilFreak</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Samiira</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Samiira</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-								<tr>
-									<td class="name">Sugar-Daddy</td>
-									<td class="fragment-checkbox">
+											</td>
+										</tr>
+										<tr>
+											<td class="name">Sugar-Daddy</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-									<td class="fragment-checkbox">
+											</td>
+											<td class="fragment-checkbox">
 										
-									</td>
-								</tr>
-							</table>
+											</td>
+										</tr>
+									</tbody>
+								</table>
 							
-							<table style="border: 0; margin: 0;" id="pick-table-count">
-								<tr style="vertical-align: bottom;">
-									<td style="text-align: left;">
-										<input type="button" value="Download TSW chat script">
-									</td>
-									<td style="text-align: right;">
-										<span class="count-received">1</span> received<br />
-										<span class="count-outstanding">1</span> outstanding
-									</td>
-								</tr>
-							</table>
-						</div>
-					</td>
-				</tr>
+								<table id="pick-table-count">
+									<tbody>
+										<tr>
+											<td>
+												<input type="button" value="Download TSW chat script">
+											</td>
+											<td>
+												<span class="count-received">1</span> received<br />
+												<span class="count-outstanding">1</span> outstanding
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</td>
+					</tr>
+				</tbody>
 			</table>
 	
 			<div class="uibox center">
