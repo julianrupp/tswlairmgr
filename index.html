@@ -28,6 +28,7 @@
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-preloader.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-bossfragments.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-lairselector.js"></script>
+	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-participants.js"></script>
 	
 	<script type="text/javascript" src="assets/javascripts/data/english.js"></script>
 	
@@ -540,7 +541,7 @@
 							
 								<span class="center">
 									<form id="participants-add">
-										<input type="text" name="name" value=""> <input type="submit" value="Add">
+										<input type="text" id="participants-add-name" value=""> <input type="button" id="participants-add-submit" value="Add">
 									</form>
 								</span>
 							
@@ -555,95 +556,18 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td class="name">Feidelm</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Cobin</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Dott</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Paschendale</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Taltala</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Jermaine</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Martlet</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Wakko</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Onee-san</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">dirtyLilFreak</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Samiira</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
-										</tr>
-										<tr>
-											<td class="name">Sugar-Daddy</td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="mission-checkbox"><input type="checkbox" checked></td>
-											<td class="actions"><input type="button" value="Remove"></td>
+										<tr class="prototype">
+											<td class="name"></td>
+											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
+											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
+											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
+											<td class="actions"><input type="button" class="button-remove" value="Remove"></td>
 										</tr>
 									</tbody>
 								</table>
 							
 								<div id="participants-list-count">
-									<span class="count">12</span> <span class="subject">participants</span>
+									<span class="count"></span> <span class="subject"></span>
 								</div>
 							</div>
 						</td>

@@ -19,7 +19,11 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 			document.getElementById('boss-fragments'),
 			this.defaultLair
 		);
-		//this._demoSetRandomFragmentCounts();
+		
+		if(tswlairmgr.settings.demo)
+		{
+			this._demoSetRandomFragmentCounts();
+		}
 		
 		if(tswlairmgr.settings.debug)
 		{
@@ -42,6 +46,20 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 		}
 	};
 	
+	this._bootstrapTurninParticipants = function() {
+		tswlairmgr.turninparticipantsInstance = new tswlairmgr.turnin.Participants(document.getElementById("participants"));
+		
+		if(tswlairmgr.settings.demo)
+		{
+			this._demoInsertRandomNames();
+		}
+		
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bootstrapper> Turn-in: Participant list initialized.');
+		}
+	}
+	
 	this._demoSetRandomFragmentCounts = function() {
 		for(var i=0; i<tswlairmgr.bossfragmentsInstance.bosses.length; i++)
 		{
@@ -57,6 +75,35 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 		}
 	};
 	
+	this._demoInsertRandomNames = function() {
+		var names = [ /* Hi guys! */
+			'Cobin',
+			'dirtyLilFreak',
+			'Dott',
+			'Feidelm',
+			'Jermaine',
+			'Martlet',
+			'Onee-san',
+			'Paschendale',
+			'Samiira',
+			'Sugar-Daddy',
+			'Taltala',
+			'Wakko'
+		];
+		
+		//+ Jonas Raoni Soares Silva
+		//@ http://jsfromhell.com/array/shuffle [v1.0]
+		names = (function shuffle(o){ //v1.0
+		    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+		    return o;
+		})(names);
+		
+		for(var i=0; i<names.length; i++)
+		{
+			tswlairmgr.turninparticipantsInstance.addParticipant(names[i]);
+		}
+	}
+	
 	this.init = function() {
 		if(tswlairmgr.settings.debug)
 		{
@@ -69,6 +116,7 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 		this._bootstrapPreloader();
 		this._bootstrapBossFragmentsDisplay();
 		this._bootstrapLairSelectorDropdown();
+		this._bootstrapTurninParticipants();
 		
 		if(tswlairmgr.settings.debug)
 		{
