@@ -89,16 +89,3 @@
 .table tr td.mission-checkbox, .table tr td.actions {
 	 text-align: center;
 }
-
-.table.names tr:nth-child(12n+1) td:first-child.name	{ color: #fabca4; }
-.table.names tr:nth-child(12n+2) td:first-child.name	{ color: #fad2a4; }
-.table.names tr:nth-child(12n+3) td:first-child.name	{ color: #fae4a4; }
-.table.names tr:nth-child(12n+4) td:first-child.name	{ color: #faf5a4; }
-.table.names tr:nth-child(12n+5) td:first-child.name	{ color: #e7f4a0; }
-.table.names tr:nth-child(12n+6) td:first-child.name	{ color: #acec9a; }
-.table.names tr:nth-child(12n+7) td:first-child.name	{ color: #98e9dc; }
-.table.names tr:nth-child(12n+8) td:first-child.name	{ color: #98c2e9; }
-.table.names tr:nth-child(12n+9) td:first-child.name	{ color: #9899e9; }
-.table.names tr:nth-child(12n+10) td:first-child.name	{ color: #c298e9; }
-.table.names tr:nth-child(12n+11) td:first-child.name	{ color: #eb9ada; }
-.table.names tr:nth-child(12n+12) td:first-child.name	{ color: #f5a0a9; }

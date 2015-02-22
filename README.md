@@ -60,11 +60,11 @@ Credits
 
 -	Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
--	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts under the SIL Open Font License.
+-	The font used is called [*Lato*](https://www.google.com/fonts/specimen/Lato), available at Google Fonts under the SIL Open Font License.
 
 -	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn makes the fragment holder take ages to assemble a list of who-takes-what.
 
--	Joakim Bjørnstad ([@joakibj](http://github.com/joakibj)) has inspired me with his [tswcalc](http://github.com/joakibj/tswcalc) webapp in the technical design of this one.
+-	Joakim Bjørnstad ([@joakibj](http://github.com/joakibj)) has inspired me with his [*tswcalc*](http://github.com/joakibj/tswcalc) webapp in the technical design of this one.
 
 
 License
@@ -74,3 +74,5 @@ MIT License for the source code and fully self-created assets. Please see the `L
 The external artwork (lair boss images and their x-ray derivatives, lair area screenshots) should be considered property of Funcom GmbH unless otherwise noted and is redistributed under fair use.
 
 The Lato font files keep their own license and are merely redistributed by this project; see the `assets/stylesheets/fonts/Lato/OFL.txt` file for their license.
+
+This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by [Eli Grey](https://github.com/eligrey) and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries`.

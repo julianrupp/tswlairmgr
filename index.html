@@ -29,12 +29,13 @@
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-bossfragments.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-lairselector.js"></script>
 	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-participants.js"></script>
+	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-picktable.js"></script>
+	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-namecolorizer.js"></script>
 	
 	<script type="text/javascript" src="assets/javascripts/data/english.js"></script>
 	
-	<style type="text/css">
-		/* ===== TESTS ===== */
-	</style>
+	<script type="text/javascript" src="assets/javascripts/libraries/Blob/Blob.js"></script>
+	<script type="text/javascript" src="assets/javascripts/libraries/FileSaver/FileSaver.min.js"></script>
 </head>
 <body>
 	<div id="javascript-disabled-notice">
@@ -578,7 +579,7 @@
 							<div id="pick-table" class="uibox">
 								<h3>Pick Table</h3>
 							
-								<table id="pick-table" class="table names">
+								<table id="picks" class="table names">
 									<thead>
 										<tr>
 											<th class="name">Name</th>
@@ -588,166 +589,16 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td class="name">Feidelm</td>
+										<tr class="prototype">
+											<td class="name"></td>
 											<td class="fragment-checkbox">
-												<div class="item rare lairfragment small">
-													<div class="icon km01 nw">
-														<div class="name">
-															Theta 04
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="fragment-checkbox checked">
-												<div class="item rare lairfragment small">
-													<div class="icon km02 n">
-														<div class="name">
-															Lambda 03
-														</div>
-													</div>
-												</div>
-											</td>
-											<td class="fragment-checkbox disabled">
-												<div class="item rare lairfragment small">
-													<div class="icon">
-														<div class="name">
-													
-														</div>
-													</div>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Cobin</td>
-											<td class="fragment-checkbox">
-										
+												
 											</td>
 											<td class="fragment-checkbox">
-										
+												
 											</td>
 											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Dott</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Paschendale</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Taltala</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Jermaine</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Martlet</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Wakko</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Onee-san</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">dirtyLilFreak</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Samiira</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-										</tr>
-										<tr>
-											<td class="name">Sugar-Daddy</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
-											</td>
-											<td class="fragment-checkbox">
-										
+												
 											</td>
 										</tr>
 									</tbody>
@@ -757,7 +608,7 @@
 									<tbody>
 										<tr>
 											<td>
-												<input type="button" value="Download TSW chat script">
+												<input type="button" id="download-button" value="Download TSW chat script">
 											</td>
 											<td>
 												<span class="count-received">1</span> received<br />
@@ -771,13 +622,16 @@
 					</tr>
 				</tbody>
 			</table>
-	
-			<div class="uibox center">
-				<div style="margin-bottom: 10px;">
-					<h2 style="color: #ff0000;">This is work in progress.</h2>
-					<p>It is still (nearly) non-functional and not intended for anything else but demonstration purposes.</p>
-					<p>Keep updated on the development at <a href="http://github.com/julianrupp/tswlairmgr" target="_blank">http://github.com/julianrupp/tswlairmgr</a>!</p>
-				</div>
+		</div>
+		
+		<div id="bottombar">
+			<div class="info">
+				<span class="version">
+					Version <span class="emphasis">1.0.0 beta</span>
+				</span><br />
+				<span class="link">
+					<a href="http://github.com/julianrupp/tswlairmgr" target="_blank">http://github.com/julianrupp/tswlairmgr</a>
+				</span>
 			</div>
 		</div>
 	</div>

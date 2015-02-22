@@ -145,3 +145,30 @@ input[type="text"] {
 .prototype {
 	display: none;
 }
+
+#bottombar {
+	background-color: rgba(0, 0, 0, 0.66);
+	border-radius: 16px;
+	color: #ffffff;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin: 10px auto;
+	width: 210px;
+}
+
+#bottombar .info {
+	text-align: center;
+}
+
+#bottombar .info .emphasis {
+	font-weight: bold;
+}
+
+#bottombar .info .version {
+	color: #ffffff;
+	font-size: 11px;
+}
+#bottombar .info .link, #bottombar .info .link a {
+	color: #c0c0c0;
+	font-size: 9px;
+}

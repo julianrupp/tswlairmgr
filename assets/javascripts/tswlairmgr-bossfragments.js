@@ -265,6 +265,11 @@ tswlairmgr.bossfragments.BossFragmentControls = function BossFragmentControls(no
 		{
 			self.fragment.boss.counts.recalculate();
 		}
+		
+		if(tswlairmgr.turninpicktableInstance)
+		{
+			tswlairmgr.turninpicktableInstance.update();
+		}
 	};
 	
 	this.getCountAll = function() {
@@ -414,7 +419,7 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		
 		var lowestFragmentCount = this._array_lowest(countsArray);
 		var remaining = 0;
-		var iterationLimit = /*countsArray.length*/32;
+		var iterationLimit = countsArray.length;
 		do {
 			countsArray = this._array_lowest_increment(countsArray);
 			remaining++;
@@ -424,6 +429,62 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		
 		return(remaining);
 	};
+	
+	this.markLowestFragments = function() {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.bossfragments.BossCounts> markLowestFragments called');
+		}
+		
+		/* Find lowest fragment count */
+		var lowestFragmentCount = null;
+		var lowestFragmentCountIndex = null;
+		for(var i=0; i<this.boss.fragments.length; i++)
+		{
+			var controls = this.boss.fragments[i].controls;
+			var count = controls.getCount();
+			
+			if(lowestFragmentCount === null || count < lowestFragmentCount)
+			{
+				lowestFragmentCount = count;
+				lowestFragmentCountIndex = i;
+			}
+		}
+		
+		/* Find all fragments with lowest count */
+		var fragmentsToMark = [];
+		for(var i=0; i<this.boss.fragments.length; i++)
+		{
+			var controls = this.boss.fragments[i].controls;
+			var count = controls.getCount();
+			
+			if(count == lowestFragmentCount)
+			{
+				fragmentsToMark[fragmentsToMark.length] = i;
+			}
+		}
+		
+		/* Mark/unmark fragments */
+		for(var i=0; i<this.boss.fragments.length; i++)
+		{
+			var controlsNode = this.boss.fragments[i].el['root'];
+			
+			/* Unmark first */
+			var controlsNodeClasses = controlsNode.className.split(" ");
+			var lowmarkClassIndex = controlsNodeClasses.indexOf("low-mark");
+			if(lowmarkClassIndex >= 0)
+			{
+				controlsNodeClasses.splice(lowmarkClassIndex, 1);
+			}
+			controlsNode.className = controlsNodeClasses.join(" ");
+			
+			if(fragmentsToMark.indexOf(i) >= 0)
+			{
+				/* Mark it again */
+				controlsNode.className += ' low-mark';
+			}
+		}
+	}
 	
 	this.recalculate = function() {
 		if(tswlairmgr.settings.debug)
@@ -436,10 +497,10 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		for(var i=0; i<this.boss.fragments.length; i++)
 		{
 			var controls = this.boss.fragments[i].controls;
-			var count = controls.getCount();
+			var countAll = controls.getCountAll();
 			
-			numFragmentsAll += count;
-			numFragments[i] = count;
+			numFragmentsAll += countAll;
+			numFragments[i] = countAll;
 		}
 		
 		var numSpawns = this._calculateNumSpawns(numFragments);
@@ -447,6 +508,8 @@ tswlairmgr.bossfragments.BossCounts = function BossCounts(node, bossObject) {
 		
 		this.setCountSpawns(numSpawns);
 		this.setCountMissing(numMissing);
+		
+		this.markLowestFragments();
 	};
 	
 	this.init = function() {

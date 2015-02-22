@@ -24,8 +24,20 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 		}
 	};
 	
+	this.update = function() {
+		if(tswlairmgr.turninpicktableInstance)
+		{
+			tswlairmgr.turninpicktableInstance.update();
+		}
+		
+		this.redraw();
+	}
+	
 	this.redraw = function() {
-		console.log('<tswlairmgr.turnin.Participants> redraw called');
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.turnin.Participants> redraw called');
+		}
 		
 		/* Clear table */
 		while(this.el['table']['content'].firstChild)
@@ -84,6 +96,15 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 		return(matched);
 	};
 	
+	this.getParticipants = function() {
+		var newList = [];
+		for(var i=0; i<this.list.length; i++)
+		{
+			newList[i] = {name: this.list[i].name};
+		}
+		return(newList);
+	};
+	
 	this.listContainsParticipant = function(name) {
 		for(var i=0; i<this.list.length; i++)
 		{
@@ -120,7 +141,10 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 	};
 	
 	this.addParticipant = function(name) {
-		console.log('<tswlairmgr.turnin.Participants> addParticipant called: ['+name+']');
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.turnin.Participants> addParticipant called: ['+name+']');
+		}
 		
 		if(!this.validateParticipantName(name))
 		{
@@ -136,30 +160,36 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 			]
 		}
 		
-		this.redraw();
+		this.update();
 		
 		return(true);
 	};
 	
 	this.removeParticipant = function(participantId) {
-		console.log('<tswlairmgr.turnin.Participants> removeParticipant called: ['+participantId+' <'+this.list[participantId]['name']+'>]');
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.turnin.Participants> removeParticipant called: ['+participantId+' <'+this.list[participantId]['name']+'>]');
+		}
 		
 		this.list.splice(participantId, 1);
 		
-		this.redraw();
+		this.update();
 	};
 	
-	this.toggleParticipantMissionAvailability = function(participantId, missionId, redraw) {
-		console.log('<tswlairmgr.turnin.Participants> toggleMissionAvailability called: ['+participantId+' <'+this.list[participantId]['name']+'>, '+missionId+']');
+	this.toggleParticipantMissionAvailability = function(participantId, missionId) {
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.turnin.Participants> toggleMissionAvailability called: ['+participantId+' <'+this.list[participantId]['name']+'>, '+missionId+']');
+		}
 		
 		var status = this.getParticipantMissionAvailability(participantId, missionId);
 		if(status == true)
 		{
-			this.setParticipantMissionAvailability(participantId, missionId, false, redraw);
+			this.setParticipantMissionAvailability(participantId, missionId, false);
 		}
 		else
 		{
-			this.setParticipantMissionAvailability(participantId, missionId, true, redraw);
+			this.setParticipantMissionAvailability(participantId, missionId, true);
 		}
 	};
 	
@@ -167,17 +197,37 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 		return(this.list[participantId].missionAvailability[missionId]);
 	};
 	
-	this.setParticipantMissionAvailability = function(participantId, missionId, status, redraw) {
+	this.getParticipantMissionAvailabilityByName = function(name, missionId) {
+		for(var i=0; i<this.list.length; i++)
+		{
+			if(this.list[i].name == name)
+			{
+				return(this.getParticipantMissionAvailability(i, missionId));
+			}
+		}
+	};
+	
+	this.setParticipantMissionAvailability = function(participantId, missionId, status) {
 		this.list[participantId].missionAvailability[missionId] = status;
 		
-		if(redraw)
+		this.update();
+	};
+	
+	this.setParticipantMissionAvailabilityByName = function(name, missionId, status) {
+		for(var i=0; i<this.list.length; i++)
 		{
-			this.redraw();
+			if(this.list[i].name == name)
+			{
+				return(this.setParticipantMissionAvailability(i, missionId, status));
+			}
 		}
 	};
 	
 	this.addFormHandler = function() {
-		console.log('<tswlairmgr.turnin.Participants> addFormHandler called');
+		if(tswlairmgr.settings.debug)
+		{
+			console.log('<tswlairmgr.turnin.Participants> addFormHandler called');
+		}
 		
 		if(!self.addParticipant(self.el['addForm']['nameField'].value))
 		{
@@ -198,6 +248,7 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 		var rowPrototypeNode = this.el['table']['content'].getElementsByClassName("prototype")[0];
 		this.rowPrototype = rowPrototypeNode.cloneNode(true); /* Deep copy */
 		
+		/* Remove prototype class */
 		var rowPrototypeClasses = this.rowPrototype.className.split(" ");
 		var prototypeClassIndex = rowPrototypeClasses.indexOf("prototype");
 		if(prototypeClassIndex > -1) /* should always be true, but check for sanity */
@@ -221,7 +272,7 @@ tswlairmgr.turnin.Participants = function Participants(node) {
 		}
 		this.el['addForm']['addButton'].onclick = this.addFormHandler;
 		
-		this.redraw();
+		this.update();
 	};
 	
 	if(tswlairmgr.settings.debug)
