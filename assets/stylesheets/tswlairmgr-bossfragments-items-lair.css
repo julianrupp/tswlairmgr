@@ -1,7 +1,9 @@
 .item.lairfragment {
+	background-color: #0b404e;
 	background-image: url(../images/items/item_lairfragment_background.png);
 }
 .item.lairboss {
+	background-color: #11730e;
 	background-image: url(../images/items/item_lairboss_background.png);
 }
 
