@@ -51,10 +51,37 @@ tswlairmgr.preloader.Preloader = function Preloader() {
 		}
 	};
 	
+	this.preloadHelpImages = function() {
+		var helpImages = ['01-lair-select.png',
+			'02-fragment-counting.png',
+			'03-fragment-count-marks.png',
+			'04-summons-and-missing.png',
+			'05-adding-team-members.png',
+			'06-mission-availability.png',
+			'07-received-and-outstanding.png',
+			'08-download-chat-script.png',
+			'09-2-savedialog2.png',
+			'09-3-entering-command.png',
+			'09-4-output.png'
+		];
+		for(var i=0; i<helpImages.length; i++)
+		{
+			var helpImageUrl = 'assets/images/howto/' + helpImages[i];
+			
+			this.preload(helpImageUrl);
+		}
+	};
+	
 	this.init = function() {
 		this.preloadLairBossImages();
 		this.preloadLairBackgrounds();
+		this.preloadHelpImages();
 	};
+	
+	if(tswlairmgr.settings.debug)
+	{
+		console.log('<tswlairmgr.preloader.Preloader> instance created');
+	}
 	
 	this.init();
 };
