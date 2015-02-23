@@ -224,25 +224,28 @@ tswlairmgr.turnin.PickTable = function PickTable(node) {
 			var newRowNode = this.rowPrototype.cloneNode(true); /* Deep copy */
 			
 			newRowNode.getElementsByClassName("name")[0].innerHTML = participant.name;
-			for(var j=0; j<participant.picks.length; j++)
+			if(participant.picks)
 			{
-				if(participant.picks[j])
+				for(var j=0; j<participant.picks.length; j++)
 				{
-					var itemNode = participant.picks[j].icon.el['root'].cloneNode(true); /* Deep copy */
+					if(participant.picks[j])
+					{
+						var itemNode = participant.picks[j].icon.el['root'].cloneNode(true); /* Deep copy */
 				
-					itemNode.className += ' small';
+						itemNode.className += ' small';
 				
-					newRowNode.getElementsByClassName("fragment-checkbox")[j].appendChild(itemNode);
+						newRowNode.getElementsByClassName("fragment-checkbox")[j].appendChild(itemNode);
 					
-					this.countOutstanding++;
+						this.countOutstanding++;
+					}
+					else
+					{
+						// TODO: Insert disabled empty boss fragment icon here
+					}
 				}
-				else
-				{
-					// TODO: Insert disabled empty boss fragment icon here
-				}
-			}
 			
-			this.el['table']['content'].appendChild(newRowNode);
+				this.el['table']['content'].appendChild(newRowNode);
+			}
 		}
 		
 		this.el['counter']['received'].innerHTML = this.countReceived;
