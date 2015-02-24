@@ -244,7 +244,6 @@ input[type="text"] {
 }
 
 #help-container table td.text {
-	vertical-align: middle;
 	padding: 3px;
 	padding-left: 10px;
 }
@@ -299,12 +298,12 @@ input[type="text"] {
 }
 
 #help-container table td.text .technical {
-	color: #323232;
+	color: #f0f0f0;
 	font-family: 'Monaco', 'Courier New', monospace;
 	font-size: 12px;
 	line-height: inherit;
 	height: 14px;
-	background-color: #e0e0e0;
+	background-color: #646464;
 	border-radius: 4px;
 	padding: 1px;
 	padding-left: 3px;
