@@ -234,7 +234,7 @@ input[type="text"] {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 #help-container table tr:last-child td {
-	border-bottom: none;
+	border-bottom: none !important;
 }
 
 #help-container table td {
