@@ -16,12 +16,12 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 		}
 	};
 	
-	this._bootstrapHelpOverlay = function() {
-		tswlairmgr.helpoverlayInstance = new tswlairmgr.helpoverlay.HelpOverlay();
+	this._bootstrapHelpDisplay = function() {
+		tswlairmgr.helpdisplayInstance = new tswlairmgr.help.HelpDisplay();
 		
 		if(tswlairmgr.settings.debug)
 		{
-			console.log('<tswlairmgr.bootstrapper> Help overlay initialized.');
+			console.log('<tswlairmgr.bootstrapper> Help display initialized.');
 		}
 	};
 	
@@ -170,7 +170,7 @@ tswlairmgr.bootstrapper = function bootstrapper() {
 		}
 		
 		this._bootstrapPreloader();
-		this._bootstrapHelpOverlay();
+		this._bootstrapHelpDisplay();
 		this._bootstrapBossFragmentsDisplay();
 		this._bootstrapLairSelectorDropdown();
 		this._bootstrapTurninParticipants();

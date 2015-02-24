@@ -19,6 +19,11 @@ tswlairmgr.bossfragments.Bosses = function Bosses(node, lair) {
 		this.lair = data;
 		
 		this.redraw();
+		
+		if(tswlairmgr.turninpicktableInstance)
+		{
+			tswlairmgr.turninpicktableInstance.update();
+		}
 	};
 	
 	this.redraw = function() {
