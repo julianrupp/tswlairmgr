@@ -74,6 +74,11 @@
 	text-align: center;
 }
 
+.table tr td.fragment-checkbox .item, .table tr td.fragment-checkbox .item .name {
+	cursor: pointer !important;
+	
+}
+
 .table tr td.fragment-checkbox .item {
 	opacity: 1.00;
 }
