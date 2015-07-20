@@ -1,0 +1,133 @@
+#javascriptDisabledNotice .uibox {
+	display: block;
+	text-align: center;
+}
+#javascriptDisabledNotice .uibox h1 {
+	margin-top: 0;
+}
+
+/* -------------------- */
+
+#webapp {
+	display: none;
+	min-width: 850px;
+}
+
+/* -------------------- */
+
+#topbar {
+	height: 48px;
+	background-color: rgba(0, 0, 0, 0.66);
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
+	color: #ffffff;
+	padding: 10px 15px 0px 15px;
+	margin: 0 0 10px 0;
+}
+
+#topbarContent {
+	position: relative;
+	height: 100%;
+}
+
+#topbar #topbarContent .title {
+	display: inline-block;
+	height: 100%;
+}
+#topbar #topbarContent .title .app-name {
+	font-size: 26px;
+	font-weight: bold;
+	padding-right: 5px;
+}
+#topbar #topbarContent .title .side {
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#topbar #topbarContent #tabs {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	
+	text-align: right;
+}
+
+#topbar #topbarContent #tabs #language {
+	display: inline-block;
+	
+	margin-right: 15px;
+	background-color: #00ff00; /* TEMP */
+}
+
+#topbar #topbarContent #tabs .tab {
+	display: inline-block;
+	
+	height: 24px;
+	font-size: 16px;
+	color: #c0c0c0;
+	background: rgba(255, 255, 255, 0.1);
+	border-top: 3px solid #808080;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	
+	margin-left: 3px;
+	
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+#topbar #topbarContent #tabs .tabContent {
+	padding: 1px 5px 1px 5px;
+}
+
+#topbar #topbarContent #tabs .tab.active {
+	color: #ffffff;
+	background: rgba(255, 255, 255, 0.3);
+	
+	border-top: 3px solid #d0d0d0;
+}
+
+#topbar:after {
+	clear: both;
+}
+
+/* -------------------- */
+
+#moduleContainer {
+	margin: 5px auto;
+	width: 838px;
+	border: 1px solid #00ff00; /* TEMP */
+}
+
+/* -------------------- */
+
+#bottombar {
+	background-color: rgba(0, 0, 0, 0.66);
+	border-radius: 16px;
+	color: #ffffff;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin: 10px auto;
+	width: 210px;
+}
+
+#bottombar .info {
+	text-align: center;
+}
+
+#bottombar .info .emphasis {
+	font-weight: bold;
+}
+
+#bottombar .info .version {
+	color: #ffffff;
+	font-size: 11px;
+}
+#bottombar .info .link, #bottombar .info .link a {
+	color: #c0c0c0;
+	font-size: 9px;
+}

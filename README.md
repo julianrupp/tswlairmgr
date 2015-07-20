@@ -7,12 +7,17 @@ It can be used by the leaders or fragment holders of lair groups to easily deter
 
 Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
 
+With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, basic localization support and fragment lookup. It now makes use of [jQuery](http://jquery.com).
+
 Features:
 
 * Lair bosses from all 8 classic lairs
+* Regional bosses from all 3 classic regions
+* Fragment lookup utility
 * Support for arbitrary group sizes
 * Easy and fast to use
 * On-the-fly TSW chat script generation
+* Localized in English and German (data only for now; interface planned)
 
 An instance of TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
@@ -23,7 +28,7 @@ An instance of TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](h
 
 Requirements
 ------------
-Just a basic web server. All functionality is implemented in client-side JavaScript.
+Just a normal modern web browser. All functionality is implemented in client-side JavaScript.
 
 
 Retrieving
@@ -35,7 +40,7 @@ Open `index.html` to view.
 
 Using
 -----
-Click the **?** button in the upper right corner of the app to display an usage guide. Click the button again to get back to the app itself.
+Click the **Help** tab in the upper right corner of the app to display an usage guide.
 
 
 Distributing
@@ -45,7 +50,7 @@ Upload `index.html` and the `assets` folder to a web server.
 
 Contributing
 ------------
-There sure is a lot to do to prettify and refactor as I'm not really into web development this much anymore and never bothered about learning some JavaScript helper library like jQuery and the likes. Also, I focused more on getting an initial version out quickly rather than on strict encapsulation, so some parts are tightly interwoven. I figured that the webapp wouldn't become so big in size in the initial release so that it'd still be viable to refactor everything later on when the need for it gets more pressing.
+There sure is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery. 
 
 Other than pull requests, you can also send me feature requests or other constructive feedback.
 
@@ -77,3 +82,5 @@ The external artwork (lair boss images and their x-ray derivatives, lair area sc
 The Lato font files keep their own license and are merely redistributed by this project; please see `assets/stylesheets/fonts/Lato/OFL.txt` for their license.
 
 This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey ([@eligrey](https://github.com/eligrey)) and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
+
+This software makes use of [jQuery](https://github.com/jquery/jquery) by the jQuery foundation and other contributors and redistributes it. Please see the `MIT-LICENSE.txt` file in `assets/javascripts/libraries/jQuery` for its license.
