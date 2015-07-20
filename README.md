@@ -7,7 +7,7 @@ It can be used by the leaders or fragment holders of lair groups to easily deter
 
 Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
 
-With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, basic localization support and fragment lookup. It now makes use of [jQuery](http://jquery.com).
+With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, basic localization support and fragment lookup. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
 
 Features:
 
@@ -84,3 +84,5 @@ The Lato font files keep their own license and are merely redistributed by this 
 This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey ([@eligrey](https://github.com/eligrey)) and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
 
 This software makes use of [jQuery](https://github.com/jquery/jquery) by the jQuery foundation and other contributors and redistributes it. Please see the `MIT-LICENSE.txt` file in `assets/javascripts/libraries/jQuery` for its license.
+
+This software makes use of [mustache.js](https://github.com/janl/mustache.js) by Chris Wanstrath, Jan Lehnardt and the mustache.js community and redistributes it. Please see the `LICENSE` file in `assets/javascripts/libraries/mustache.js` for its license.

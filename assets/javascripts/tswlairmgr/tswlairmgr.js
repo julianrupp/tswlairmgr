@@ -11,13 +11,12 @@ $(document).ready(function() {
 	log("init: setting initial data localization");
 	tswlairmgr.core.data.setLocalizationById("enUS");
 	
-	// Init modules (create node in #moduleContainer + hand node + register new topbar tab)
+	// Set initial interface language
 	// TODO
+	
+	tswlairmgr.modules._loadRegisteredModules();
 	
 	// Init language selector (hand topbar sub-block node)
-	// TODO
-	
-	// Set initial interface language
 	// TODO
 	
 	log("init: complete.");
