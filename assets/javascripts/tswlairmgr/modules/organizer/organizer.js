@@ -2,13 +2,13 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
 
 tswlairmgr.modules.organizer = function() {
-	this.name = "Organizer";
-	this.displayName = "Organizer";
+	this.id = "Organizer";
+	this.displayName = "Organizer"; /* TODO: Localization */
 	
 	this._templates = {};
 	
-	this._templates.sample_inner =
-		"{{lib}} is {{usage}}.";
+	this._templates.sample =
+		"{{lib}} is {{usageStatus}}.";
 	
 	this.init = function(contentNode) {
 		this._el = {
@@ -16,9 +16,9 @@ tswlairmgr.modules.organizer = function() {
 		};
 		
 		$(this._el.self).append(
-			Mustache.render(this._templates.sample_inner, {
+			Mustache.render(this._templates.sample, {
 				lib: "mustache.js",
-				usage: "used"
+				usageStatus: "used"
 			})
 		);
 	};

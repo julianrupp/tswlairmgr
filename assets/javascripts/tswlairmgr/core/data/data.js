@@ -1453,12 +1453,8 @@ tswlairmgr.core.data._bootstrap = function()
 		}
 	];
 	
-	this._sortedLocalizations = [
-		"enUS",
-		"deDE"
-	];
-
 	this._localizations = {};
+	this._sortedLocalizations = [];
 	
 	this._log("bootstrap: completed");
 };
@@ -1471,6 +1467,7 @@ tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, d
 		id: id,
 		data: data
 	};
+	this._sortedLocalizations.push(id);
 };
 
 tswlairmgr.core.data.getLocalizationId = function()
