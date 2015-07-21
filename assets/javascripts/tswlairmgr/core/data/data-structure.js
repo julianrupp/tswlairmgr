@@ -4,63 +4,44 @@ tswlairmgr.core.data = tswlairmgr.core.data || {};
 
 tswlairmgr.core.data._bootstrap_alphabet_greek = function()
 {
-	this.struct.alphabetGreek = {
-		alpha: new tswlairmgr.core.data.AlphabetCharacter(),
-		beta: new tswlairmgr.core.data.AlphabetCharacter(),
-		gamma: new tswlairmgr.core.data.AlphabetCharacter(),
-		delta: new tswlairmgr.core.data.AlphabetCharacter(),
-		epsilon: new tswlairmgr.core.data.AlphabetCharacter(),
-		zeta: new tswlairmgr.core.data.AlphabetCharacter(),
-		eta: new tswlairmgr.core.data.AlphabetCharacter(),
-		theta: new tswlairmgr.core.data.AlphabetCharacter(),
-		iota: new tswlairmgr.core.data.AlphabetCharacter(),
-		kappa: new tswlairmgr.core.data.AlphabetCharacter(),
-		lambda: new tswlairmgr.core.data.AlphabetCharacter(),
-		mu: new tswlairmgr.core.data.AlphabetCharacter(),
-		nu: new tswlairmgr.core.data.AlphabetCharacter(),
-		xi: new tswlairmgr.core.data.AlphabetCharacter(),
-		omicron: new tswlairmgr.core.data.AlphabetCharacter(),
-		pi: new tswlairmgr.core.data.AlphabetCharacter(),
-		rho: new tswlairmgr.core.data.AlphabetCharacter(),
-		sigma: new tswlairmgr.core.data.AlphabetCharacter(),
-		tau: new tswlairmgr.core.data.AlphabetCharacter(),
-		upsilon: new tswlairmgr.core.data.AlphabetCharacter(),
-		phi: new tswlairmgr.core.data.AlphabetCharacter(),
-		chi: new tswlairmgr.core.data.AlphabetCharacter(),
-		psi: new tswlairmgr.core.data.AlphabetCharacter(),
-		omega: new tswlairmgr.core.data.AlphabetCharacter()
-	};
+	var characterIDs = [
+		"alpha", "beta", "gamma", "delta",
+		"epsilon", "zeta", "eta", "theta",
+		"iota", "kappa", "lambda", "mu",
+		"nu", "xi", "omicron", "pi",
+		"rho", "sigma", "tau", "upsilon",
+		"phi", "chi", "psi", "omega"
+	];
+	
+	var map = {};
+	
+	$.each(characterIDs, function(index, key) {
+		map[key] = new tswlairmgr.core.data.AlphabetCharacter();
+	});
+	
+	this.struct.alphabetGreek = map;
 	
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Greek>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
 {
-	this.struct.alphabetPhoenician = {
-		aleph: new tswlairmgr.core.data.AlphabetCharacter(),
-		beth: new tswlairmgr.core.data.AlphabetCharacter(),
-		gamal: new tswlairmgr.core.data.AlphabetCharacter(),
-		dalath: new tswlairmgr.core.data.AlphabetCharacter(),
-		he: new tswlairmgr.core.data.AlphabetCharacter(),
-		waw: new tswlairmgr.core.data.AlphabetCharacter(),
-		zain: new tswlairmgr.core.data.AlphabetCharacter(),
-		heth: new tswlairmgr.core.data.AlphabetCharacter(),
-		teth: new tswlairmgr.core.data.AlphabetCharacter(),
-		yudh: new tswlairmgr.core.data.AlphabetCharacter(),
-		kaph: new tswlairmgr.core.data.AlphabetCharacter(),
-		lamadh: new tswlairmgr.core.data.AlphabetCharacter(),
-		mim: new tswlairmgr.core.data.AlphabetCharacter(),
-		nun: new tswlairmgr.core.data.AlphabetCharacter(),
-		semkath: new tswlairmgr.core.data.AlphabetCharacter(),
-		//ayin: new tswlairmgr.core.data.AlphabetCharacter(), /* Unused so far */
-		pe: new tswlairmgr.core.data.AlphabetCharacter(),
-		sadhe: new tswlairmgr.core.data.AlphabetCharacter(),
-		qoph: new tswlairmgr.core.data.AlphabetCharacter(),
-		resh: new tswlairmgr.core.data.AlphabetCharacter(),
-		shin: new tswlairmgr.core.data.AlphabetCharacter(),
-		//taw: new tswlairmgr.core.data.AlphabetCharacter(), /* Unused so far */
-		e: new tswlairmgr.core.data.AlphabetCharacter()
-	};
+	var characterIDs = [
+		"aleph", "beth", "gamal", "dalath",
+		"he", "waw", "zain", "heth",
+		"teth", "yudh", "kaph", "lamadh",
+		"mim", "nun", "semkath", /* "ayin", (unused so far) */
+		"pe", "sadhe", "qoph", "resh",
+		"shin", /* "taw", (unused so far) */ "e"
+	];
+	
+	var map = {};
+	
+	$.each(characterIDs, function(index, key) {
+		map[key] = new tswlairmgr.core.data.AlphabetCharacter();
+	});
+	
+	this.struct.alphabetPhoenician = map;
 	
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Phoenician>: objects created");
 };
@@ -166,7 +147,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
 		this.struct.solSCLairBoss2,
 		this.struct.solSCLairBoss3
 	]);
-
+	
 	/* Zone */
 	this.struct.solSC = new tswlairmgr.core.data.Zone([
 		this.struct.solSCLair
@@ -221,7 +202,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
 		this.struct.solBMLairBoss2,
 		this.struct.solBMLairBoss3
 	]);
-
+	
 	/* Zone */
 	this.struct.solBM = new tswlairmgr.core.data.Zone([
 		this.struct.solBMLair
@@ -302,7 +283,7 @@ tswlairmgr.core.data._bootstrap_region_sol_regional = function()
 					this.struct.solKMLairBoss3
 				]
 			),
-			sse:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 7, [
+			sse:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 7, [
 					this.struct.solKMLairBoss2,
 					this.struct.solSCLairBoss1,
 					this.struct.solBMLairBoss2
@@ -729,7 +710,7 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 					this.struct.traCFLairBoss3
 				]
 			),
-			nne:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 4, [
+			nne:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 4, [
 					this.struct.traBFLairBoss2
 				]
 			),
@@ -737,7 +718,7 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 					this.struct.traBFLairBoss1
 				]
 			),
-			nww:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 1, [
+			nww:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 1, [
 					this.struct.traBFLairBoss1,
 					this.struct.traBFLairBoss2,
 					this.struct.traBFLairBoss3

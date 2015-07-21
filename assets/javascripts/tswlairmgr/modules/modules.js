@@ -9,7 +9,7 @@ tswlairmgr.modules._activeModule = null;
 tswlairmgr.modules.registerModule = function(module) {
 	var found = false;
 	$.each(this._registeredModules, function(index, currentModule) {
-		if(module.id == currentModule.id)
+		if(module.id === currentModule.id)
 		{
 			console.log("<tswlairmgr.modules>: registerModule: error: <"+module.id+"> already registered!");
 			found = true;
@@ -48,7 +48,6 @@ tswlairmgr.modules._loadModule = function(module)
 	var moduleContainerId = "#module-"+module.id;
 	var moduleTabId = "#tab-"+module.id;
 	
-	var tabNode = null;
 	var contentNode = $("<div />")
 		.attr("id", moduleContainerId)
 		.hide();
@@ -64,7 +63,7 @@ tswlairmgr.modules._loadModule = function(module)
 		)
 		.attr("id", moduleTabId)
 		.click(function(){
-			if(self.getActiveModuleId() != module.id)
+			if(self.getActiveModuleId() !== module.id)
 			{
 				self.setActiveModuleById(module.id);
 			}
@@ -84,7 +83,6 @@ tswlairmgr.modules._loadModule = function(module)
 };
 
 tswlairmgr.modules.getModule = function(id) {
-	var log = this._log;
 	if(!(id in this._loadedModules))
 	{
 		console.log("<tswlairmgr.modules>: getModule: error: <"+id+"> not found!");
@@ -102,7 +100,6 @@ tswlairmgr.modules.getActiveModuleId = function() {
 };
 
 tswlairmgr.modules.setActiveModuleById = function(id) {
-	var log = this._log;
 	if(!(id in this._loadedModules))
 	{
 		console.log("<tswlairmgr.modules>: setActiveModuleById: error: <"+id+"> not found!");

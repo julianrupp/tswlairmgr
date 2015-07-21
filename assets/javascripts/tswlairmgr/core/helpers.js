@@ -6,4 +6,3 @@ tswlairmgr.core.helpers = tswlairmgr.core.helpers || {};
 tswlairmgr.core.config = {
 	debug: true
 };
-
