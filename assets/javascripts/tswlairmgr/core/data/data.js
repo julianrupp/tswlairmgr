@@ -1461,6 +1461,12 @@ tswlairmgr.core.data._bootstrap = function()
 
 tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, data)
 {
+	if(id in this._localizations)
+	{
+		this._log("addLocalizationData: error: <"+id+"> already registered!");
+		return(false);
+	}
+	
 	this._localizations[id] = {
 		localName: localName,
 		globalName: globalName,
@@ -1479,7 +1485,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 {
 	this._log("setLocalizationById: starting");
 	
-	if(!$.inArray(id, this._localizations))
+	if(!(id in this._localizations))
 	{
 		this._log("setLocalizationById: error: <"+id+"> not found!");
 		return(false);
@@ -1563,5 +1569,11 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	
 	return(true);
 };
+
+tswlairmgr.core.data._init = function()
+{
+	this._log("init: loading first registered localization...");
+	tswlairmgr.core.data.setLocalizationById(this._sortedLocalizations[0]);
+}
 
 tswlairmgr.core.data._bootstrap();

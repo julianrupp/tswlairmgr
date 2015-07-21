@@ -5,9 +5,19 @@ tswlairmgr.modules._log = tswlairmgr.core.helpers.makePrefixedLogger("tswlairmgr
 
 tswlairmgr.modules._registeredModules = [];
 tswlairmgr.modules._loadedModules = {};
+tswlairmgr.modules._activeModule = null;
 
 tswlairmgr.modules.registerModule = function(module) {
 	var log = tswlairmgr.modules._log;
+	var found = false;
+	$.each(tswlairmgr.modules._registeredModules, function(index, currentModule) {
+		if(module.id == currentModule.id)
+		{
+			log("registerModule: error: <"+module.id+"> already registered!");
+			found = true;
+		}
+	});
+	if(found) { return false; }
 	log("registerModule: registering <"+module.id+">...");
 	
 	tswlairmgr.modules._registeredModules.push(module);
@@ -21,7 +31,8 @@ tswlairmgr.modules._loadRegisteredModules = function (){
 		tswlairmgr.modules._loadModule(module);
 	});
 	
-	tswlairmgr.modules.changeActiveModuleTo(
+	log("Setting first registered module active...");
+	tswlairmgr.modules.setActiveModuleById(
 		tswlairmgr.modules._registeredModules[0].id
 	);
 };
@@ -49,7 +60,7 @@ tswlairmgr.modules._loadModule = function(module)
 		)
 		.attr("id", moduleTabId)
 		.click(function(){
-			tswlairmgr.modules.changeActiveModuleTo(module.id);
+			tswlairmgr.modules.setActiveModuleById(module.id);
 		});
 	$("#tabs").append(tabNode);
 	
@@ -65,12 +76,28 @@ tswlairmgr.modules._loadModule = function(module)
 	log("loadModule: finished loading <"+module.id+">");
 };
 
-tswlairmgr.modules.getModule = function(name) {
-	return tswlairmgr.modules._loadedModules[name].instance;
+tswlairmgr.modules.getModule = function(id) {
+	var log = tswlairmgr.modules._log;
+	if(!(id in tswlairmgr.modules._loadedModules))
+	{
+		log("getModule: error: <"+id+"> not found!");
+		return false;
+	}
+	return tswlairmgr.modules._loadedModules[id].instance;
 };
 
-tswlairmgr.modules.changeActiveModuleTo = function(id) {
-	console.log(id);
+tswlairmgr.modules.getActiveModuleId = function(id) {
+	return this._activeModule;
+};
+
+tswlairmgr.modules.setActiveModuleById = function(id) {
+	var log = tswlairmgr.modules._log;
+	if(!(id in tswlairmgr.modules._loadedModules))
+	{
+		log("changeActiveModuleTo: error: <"+id+"> not found!");
+		return false;
+	}
+	log("changeActiveModuleTo: <"+id+">...");
 	
 	$.each(tswlairmgr.modules._loadedModules, function(id, compound) {
 		$(compound.nodes.tab).removeClass("active");
@@ -78,4 +105,6 @@ tswlairmgr.modules.changeActiveModuleTo = function(id) {
 	});
 	$(tswlairmgr.modules._loadedModules[id].nodes.tab).addClass("active");
 	$(tswlairmgr.modules._loadedModules[id].nodes.content).show();
+	
+	this._activeModule = id;
 };
