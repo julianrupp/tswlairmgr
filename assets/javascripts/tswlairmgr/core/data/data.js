@@ -1576,15 +1576,35 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	return(true);
 };
 
+tswlairmgr.core.data._localizationChangeObservers = [];
+
+tswlairmgr.core.data.registerLocalizationChangeObserver = function(callback) {
+	if($.inArray(callback, this._localizationChangeObservers))
+	{
+		this._log("registerLocalizationChangeObserver: error: callback already registered!");
+	}
+	
+	this._log("registerLocalizationChangeObserver: registering callback...");
+	
+	this._localizationChangeObservers.push(callback);
+};
+
+tswlairmgr.core.data.notifyLocalizationChangeObservers = function() {
+	this._log("notifyLocalizationChangeObservers: notifying...");
+	$.each(this._localizationChangeObservers, function(index, callback) {
+		callback.call();
+	});
+};
+
 tswlairmgr.core.data.getDefaultLocalizationId = function()
 {
 	return tswlairmgr.core.data._defaultLocalizationId;
-}
+};
 
 tswlairmgr.core.data._init = function()
 {
 	this._log("init: loading default localization...");
 	tswlairmgr.core.data.setLocalizationById(this.getDefaultLocalizationId());
-}
+};
 
 tswlairmgr.core.data._bootstrap();

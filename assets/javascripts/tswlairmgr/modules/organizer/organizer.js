@@ -1,14 +1,16 @@
 var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
 
-tswlairmgr.modules.organizer = function() {
+tswlairmgr.modules.organizer = new function() {
 	this.id = "organizer";
 	this.displayName = "Organizer"; /* TODO: Localization */
 	
 	this._templates = {};
 	
-	this._templates.sample =
-		"{{lib}} is {{usageStatus}}.";
+	this._templates = {
+		sample:
+			"{{lib}} is {{usageStatus}}."
+	};
 	
 	this.init = function(contentNode) {
 		this._el = {
@@ -25,5 +27,3 @@ tswlairmgr.modules.organizer = function() {
 	
 	tswlairmgr.modules.registerModule(this);
 };
-
-new tswlairmgr.modules.organizer();
