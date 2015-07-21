@@ -2,7 +2,7 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
 
 tswlairmgr.modules.organizer = function() {
-	this.id = "Organizer";
+	this.id = "organizer";
 	this.displayName = "Organizer"; /* TODO: Localization */
 	
 	this._templates = {};

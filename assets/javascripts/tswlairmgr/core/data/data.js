@@ -432,7 +432,7 @@ tswlairmgr.core.data._bootstrap_alphabet_greek = function()
 		omega: new tswlairmgr.core.data.AlphabetCharacter()
 	};
 	
-	this._log("Alphabet <Greek>: objects created");
+	this._log("bootstrap: Alphabet <Greek>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
@@ -463,7 +463,7 @@ tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
 		e: new tswlairmgr.core.data.AlphabetCharacter()
 	};
 	
-	this._log("Alphabet <Phoenician>: objects created");
+	this._log("bootstrap: Alphabet <Phoenician>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
@@ -518,7 +518,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
 		this.struct.solKMLair
 	]);
 	
-	this._log("Zone <Kingsmouth>: objects created");
+	this._log("bootstrap: Zone <Kingsmouth>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
@@ -573,7 +573,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
 		this.struct.solSCLair
 	]);
 	
-	this._log("Zone <Savage Coast>: objects created");
+	this._log("bootstrap: Zone <Savage Coast>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
@@ -628,7 +628,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
 		this.struct.solBMLair
 	]);
 	
-	this._log("Zone <Blue Mountain>: objects created");
+	this._log("bootstrap: Zone <Blue Mountain>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_regional = function()
@@ -716,12 +716,12 @@ tswlairmgr.core.data._bootstrap_region_sol_regional = function()
 		})
 	);
 	
-	this._log("Regional <Solomon Island>: object created");
+	this._log("bootstrap: Regional <Solomon Island>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol = function()
 {
-	this._log("Region <Solomon Island>: building up...");
+	this._log("bootstrap: Region <Solomon Island>: building up...");
 	
 	this._bootstrap_region_sol_zone_km();
 	this._bootstrap_region_sol_zone_sc();
@@ -738,7 +738,7 @@ tswlairmgr.core.data._bootstrap_region_sol = function()
 		this.struct.solRegional
 	);
 	
-	this._log("Region <Solomon Island>: objects created");
+	this._log("bootstrap: Region <Solomon Island>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
@@ -793,7 +793,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
 		this.struct.egySDLair
 	]);
 	
-	this._log("Zone <Scorched Desert>: objects created");
+	this._log("bootstrap: Zone <Scorched Desert>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
@@ -848,7 +848,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
 		this.struct.egyCSLair
 	]);
 	
-	this._log("Zone <City of the Sun God>: objects created");
+	this._log("bootstrap: Zone <City of the Sun God>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_regional = function()
@@ -930,12 +930,12 @@ tswlairmgr.core.data._bootstrap_region_egy_regional = function()
 		})
 	);
 	
-	this._log("Regional <Egypt>: object created");
+	this._log("bootstrap: Regional <Egypt>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy = function()
 {
-	this._log("Region <Egypt>: building up...");
+	this._log("bootstrap: Region <Egypt>: building up...");
 	
 	this._bootstrap_region_egy_zone_sd();
 	this._bootstrap_region_egy_zone_cs();
@@ -950,7 +950,7 @@ tswlairmgr.core.data._bootstrap_region_egy = function()
 		this.struct.egyRegional
 	);
 	
-	this._log("Region <Egypt>: objects created");
+	this._log("bootstrap: Region <Egypt>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_bf = function()
@@ -1005,7 +1005,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_bf = function()
 		this.struct.traBFLair
 	]);
 	
-	this._log("Zone <Besieged Farmlands>: objects created");
+	this._log("bootstrap: Zone <Besieged Farmlands>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_sf = function()
@@ -1060,7 +1060,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_sf = function()
 		this.struct.traSFLair
 	]);
 	
-	this._log("Zone <Shadowy Forest>: objects created");
+	this._log("bootstrap: Zone <Shadowy Forest>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
@@ -1115,7 +1115,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
 		this.struct.traCFLair
 	]);
 	
-	this._log("Zone <Carpathian Fangs>: objects created");
+	this._log("bootstrap: Zone <Carpathian Fangs>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_regional = function()
@@ -1207,12 +1207,12 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 		})
 	);
 	
-	this._log("Regional <Transylvania>: object created");
+	this._log("bootstrap: Regional <Transylvania>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra = function()
 {
-	this._log("Region <Transylvania>: building up...");
+	this._log("bootstrap: Region <Transylvania>: building up...");
 	
 	this._bootstrap_region_tra_zone_bf();
 	this._bootstrap_region_tra_zone_sf();
@@ -1229,7 +1229,7 @@ tswlairmgr.core.data._bootstrap_region_tra = function()
 		this.struct.traRegional
 	);
 	
-	this._log("Region <Transylvania>: objects created");
+	this._log("bootstrap: Region <Transylvania>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap = function()
@@ -1467,12 +1467,18 @@ tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, d
 		return(false);
 	}
 	
+	if(this._sortedLocalizations.length < 1)
+	{
+		tswlairmgr.core.data._defaultLocalizationId = id;
+	}
+	
 	this._localizations[id] = {
 		localName: localName,
 		globalName: globalName,
 		id: id,
 		data: data
 	};
+	
 	this._sortedLocalizations.push(id);
 };
 
@@ -1499,7 +1505,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 		$.each(currentAlphabet, function(characterId, currentCharacter) {
 			var t = localization.data.alphabets[alphabetId][characterId];
 			if(!t) {
-				log("setLocalizationById: Missing Translation: " +
+				log("setLocalizationById: warning: Missing Translation: " +
 					"alphabets["+alphabetId+"]["+characterId+"]");
 				t = "[Missing Translation]";
 			}
@@ -1510,7 +1516,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	$.each(this._struct.regions, function(regionId, currentRegion) {
 		var t = localization.data.regions[regionId].name;
 		if(!t) {
-			log("setLocalizationById: Missing Translation: " +
+			log("setLocalizationById: warning: Missing Translation: " +
 				"regions["+regionId+"].name");
 			t = "[Missing Translation]";
 		}
@@ -1518,7 +1524,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 		
 		var tr = localization.data.regions[regionId].regionalName;
 		if(!tr) {
-			log("setLocalizationById: Missing Translation: " +
+			log("setLocalizationById: warning: Missing Translation: " +
 				"regions["+regionId+"].regionalName");
 			tr = "[Missing Translation]";
 		}
@@ -1527,7 +1533,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 		$.each(currentRegion.zones, function(zoneId, currentZone) {
 			var t = localization.data.regions[regionId].zones[zoneId].name;
 			if(!t) {
-				log("setLocalizationById: Missing Translation: " +
+				log("setLocalizationById: warning: Missing Translation: " +
 					"regions["+regionId+"].zones["+zoneId+"].name");
 				t = "[Missing Translation]";
 			}
@@ -1536,7 +1542,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 			$.each(currentZone.lairs, function(lairIndex, currentLair) {
 				var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].name;
 				if(!t) {
-					log("setLocalizationById: Missing Translation: " +
+					log("setLocalizationById: warning: Missing Translation: " +
 						"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].name");
 					t = "[Missing Translation]";
 				}
@@ -1545,7 +1551,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 				$.each(currentLair.bosses, function(bossIndex, currentBoss) {
 					var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].name;
 					if(!t) {
-						log("setLocalizationById: Missing Translation: " +
+						log("setLocalizationById: warning: Missing Translation: " +
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].name");
 						t = "[Missing Translation]";
 					}
@@ -1553,7 +1559,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 					
 					var tm = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].missionName;
 					if(!tm) {
-						log("setLocalizationById: Missing Translation: " +
+						log("setLocalizationById: warning: Missing Translation: " +
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].missionName");
 						tm = "[Missing Translation]";
 					}
@@ -1570,10 +1576,15 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	return(true);
 };
 
+tswlairmgr.core.data.getDefaultLocalizationId = function()
+{
+	return tswlairmgr.core.data._defaultLocalizationId;
+}
+
 tswlairmgr.core.data._init = function()
 {
-	this._log("init: loading first registered localization...");
-	tswlairmgr.core.data.setLocalizationById(this._sortedLocalizations[0]);
+	this._log("init: loading default localization...");
+	tswlairmgr.core.data.setLocalizationById(this.getDefaultLocalizationId());
 }
 
 tswlairmgr.core.data._bootstrap();
