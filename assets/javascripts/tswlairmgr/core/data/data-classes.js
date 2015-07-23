@@ -20,8 +20,7 @@ tswlairmgr.core.data.rarities = {
 	}
 };
 
-tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter()
-{
+tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter() {
 	this._name = undefined;
 	
 	this.observables = {
@@ -49,8 +48,7 @@ tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter()
 	};
 };
 
-tswlairmgr.core.data.BossFragment = function BossFragment(character, number)
-{
+tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	this._character = character;
 	this._number = number;
 	this._rarity = tswlairmgr.core.data.rarities.rare;
@@ -94,8 +92,7 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number)
 	};
 };
 
-tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash)
-{
+tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash) {
 	this._fragments = {
 		nw: undefined,
 		n:  undefined,
@@ -148,8 +145,7 @@ tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash)
 	};
 };
 
-tswlairmgr.core.data.Boss = function Boss(id, fragmentSet)
-{
+tswlairmgr.core.data.Boss = function Boss(id, fragmentSet) {
 	this._id = id;
 	this._fragmentSet = fragmentSet;
 	this._regionalFragmentDrops = [];
@@ -218,8 +214,7 @@ tswlairmgr.core.data.Boss = function Boss(id, fragmentSet)
 	};
 };
 
-tswlairmgr.core.data.Lair = function Lair(id, bossesArray)
-{
+tswlairmgr.core.data.Lair = function Lair(id, bossesArray) {
 	this._id = id;
 	this._bosses = bossesArray;
 	
@@ -265,8 +260,7 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray)
 	};
 };
 
-tswlairmgr.core.data.Zone = function Zone(lairsArray)
-{
+tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 	this._lairs = lairsArray;
 	
 	var lairs = this._lairs;
@@ -311,8 +305,7 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray)
 	};
 };
 
-tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, number, droppedFromArray)
-{
+tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, number, droppedFromArray) {
 	this._character = character;
 	this._number = number;
 	this._droppedFrom = droppedFromArray;
@@ -373,8 +366,7 @@ tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, num
 	};
 };
 
-tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(fragmentsHash)
-{
+tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(fragmentsHash) {
 	this._fragments = {
 		nnww: undefined,
 		nnw:  undefined,
@@ -443,8 +435,7 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 	};
 };
 
-tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet)
-{
+tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 	this._id = id;
 	this._fragmentSet = fragmentSet;
 	
@@ -487,8 +478,7 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet)
 	};
 };
 
-tswlairmgr.core.data.Region = function Region(zonesArray)
-{
+tswlairmgr.core.data.Region = function Region(zonesArray) {
 	this._zones = zonesArray;
 	
 	$.each(this._zones, function(key, value) {

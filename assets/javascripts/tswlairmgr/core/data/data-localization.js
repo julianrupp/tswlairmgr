@@ -148,7 +148,8 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	return true;
 };
 
-tswlairmgr.core.data.executeWithDifferentLocalization = function(id, callback) {
+tswlairmgr.core.data.executeWithDifferentLocalization = function(id, callback)
+{
 	this._suppressNotifications = true;
 	
 	var previous = this.getLocalizationId();

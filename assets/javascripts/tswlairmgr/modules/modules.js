@@ -6,7 +6,8 @@ tswlairmgr.modules._loadedModules = {};
 tswlairmgr.modules._defaultModuleId = null;
 tswlairmgr.modules._activeModule = null;
 
-tswlairmgr.modules.registerModule = function(module) {
+tswlairmgr.modules.registerModule = function(module)
+{
 	var found = false;
 	$.each(this._registeredModules, function(index, currentModule) {
 		if(module.id === currentModule.id)
@@ -27,7 +28,8 @@ tswlairmgr.modules.registerModule = function(module) {
 	this._registeredModules.push(module);
 };
 
-tswlairmgr.modules._loadRegisteredModules = function (){
+tswlairmgr.modules._loadRegisteredModules = function ()
+{
 	console.log("<tswlairmgr.modules>: loadRegisteredModules: DOM ready, loading registered modules...");
 	
 	var self = this;
@@ -47,11 +49,11 @@ tswlairmgr.modules._loadModule = function(module)
 {
 	console.log("<tswlairmgr.modules>: loadModule: loading <"+module.id+">...");
 	
-	var moduleContainerId = module.id;
-	var moduleTabId = module.id;
+	var moduleContainerId = "module-"+module.id;
 	
 	var contentNode = $("<div />")
-		.data("moduleId", moduleContainerId)
+		.attr("id", moduleContainerId)
+		.data("moduleId", module.id)
 		.hide();
 	$("#moduleContainer").append(contentNode);
 	
@@ -63,14 +65,15 @@ tswlairmgr.modules._loadModule = function(module)
 		'	</div>' +
 		'</div>'
 		)
-		.data("moduleId", moduleTabId)
+		.data("moduleId", module.id)
 		.click(function(){
+			console.log("<tswlairmgr.modules>: tab <"+module.id+"> clicked");
 			if(self.getActiveModuleId() !== module.id)
 			{
 				self.setActiveModuleById(module.id);
 			}
 		});
-	$("#tabs").append(tabNode);
+	$("#moduleTabs", $("#topbar")).append(tabNode);
 	
 	this._loadedModules[module.id] = {
 		instance: module,
@@ -85,7 +88,8 @@ tswlairmgr.modules._loadModule = function(module)
 	console.log("<tswlairmgr.modules>: loadModule: finished loading <"+module.id+">");
 };
 
-tswlairmgr.modules.getModule = function(id) {
+tswlairmgr.modules.getModule = function(id)
+{
 	if(!(id in this._loadedModules))
 	{
 		console.log("<tswlairmgr.modules>: getModule: error: <"+id+"> not found!");
@@ -94,15 +98,18 @@ tswlairmgr.modules.getModule = function(id) {
 	return this._loadedModules[id].instance;
 };
 
-tswlairmgr.modules.getDefaultModuleId = function() {
+tswlairmgr.modules.getDefaultModuleId = function()
+{
 	return this._defaultModuleId;
 };
 
-tswlairmgr.modules.getActiveModuleId = function() {
+tswlairmgr.modules.getActiveModuleId = function()
+{
 	return this._activeModule;
 };
 
-tswlairmgr.modules.setActiveModuleById = function(id) {
+tswlairmgr.modules.setActiveModuleById = function(id)
+{
 	if(!(id in this._loadedModules))
 	{
 		console.log("<tswlairmgr.modules>: setActiveModuleById: error: <"+id+"> not found!");
@@ -134,10 +141,49 @@ tswlairmgr.modules.setActiveModuleById = function(id) {
 	this._activeModule = id;
 };
 
-tswlairmgr.modules._initLocalizationMenu = function() {
-	// TODO: Build HTML nodes for language menu
+tswlairmgr.modules._initLocalizationMenu = function()
+{
+	var menuNode = $("#localizationMenu" ,$("#topbar"));
 	
-	// TODO: have language menu redrawn when interface localization changes (register callback)
+	var self = this;
+	this.observables.interfaceLocalizationChanged.registerCallback(function(origin, context) {
+		self._redrawLocalizationMenu();
+	});
+	
+	this._redrawLocalizationMenu();
+};
+
+tswlairmgr.modules._redrawLocalizationMenu = function()
+{
+	var menu = $("#localizationMenu" ,$("#topbar"));
+	
+	$(menu).empty();
+	
+	var self = this;
+	$.each(this.getAllLocalizationIds(), function(index, id) {
+		var meta = self.getAllLocalizationsMeta()[id];
+		var isActive = (self.getLocalizationId() === id) ? true : false;
+		
+		var button = $(
+			'<div class="localizationContainer">' +
+			'	<img class="localizationImage" />' +
+			'</div>'
+		)
+		.click(function() {
+			console.log("<tswlairmgr.modules>: localization <"+id+"> clicked");
+			self.setLocalizationById(id);
+		});
+		
+		if(isActive)
+		{
+			$(button).addClass("active");
+		}
+		
+		$(".localizationImage", button)
+			.attr("src", "assets/images/localization/"+id+".png");
+		
+		$(menu).append(button);
+	});
 };
 
 tswlairmgr.modules._redrawTabs = function()
@@ -145,7 +191,7 @@ tswlairmgr.modules._redrawTabs = function()
 	console.log("<tswlairmgr.modules>: redrawTabs called");
 	
 	var self = this;
-	$(".tab", $("#tabs")).each(function(index) {
+	$(".tab", $("#moduleTabs", $("#topbar"))).each(function(index) {
 		var tab = this;
 		var moduleId = $(tab).data("moduleId");
 		

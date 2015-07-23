@@ -17,23 +17,28 @@ tswlairmgr.modules._allModuleLocalizationsMeta = {
 tswlairmgr.modules._defaultLocalizationId = tswlairmgr.modules._sortedModuleLocalizationIds[0];
 tswlairmgr.modules._currentLocalizationId = null;
 
-tswlairmgr.modules.getLocalizationId = function() {
+tswlairmgr.modules.getLocalizationId = function()
+{
 	return this._currentLocalizationId;
 };
 
-tswlairmgr.modules.getAllLocalizationIds = function() {
+tswlairmgr.modules.getAllLocalizationIds = function()
+{
 	return this._sortedModuleLocalizationIds;
 };
 
-tswlairmgr.modules.getAllLocalizationsMeta = function() {
+tswlairmgr.modules.getAllLocalizationsMeta = function()
+{
 	return this._allModuleLocalizationsMeta;
 };
 
-tswlairmgr.modules.getDefaultLocalizationId = function() {
+tswlairmgr.modules.getDefaultLocalizationId = function()
+{
 	return this._defaultLocalizationId;
 };
 
-tswlairmgr.modules.setLocalizationById = function(id) {
+tswlairmgr.modules.setLocalizationById = function(id)
+{
 	if(!(id in this._allModuleLocalizationsMeta))
 	{
 		console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: error: <"+id+"> not found!");
@@ -57,7 +62,8 @@ tswlairmgr.modules.setLocalizationById = function(id) {
 	return true;
 };
 
-tswlairmgr.modules._initLocalization = function() {
+tswlairmgr.modules._initLocalization = function()
+{
 	this.setLocalizationById(this.getDefaultLocalizationId());
 };
 

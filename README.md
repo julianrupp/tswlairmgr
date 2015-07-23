@@ -52,7 +52,7 @@ Contributing
 ------------
 I've recently completely rewritten the code, though there sure still is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
 
-What I'm particularly looking for is a French translation for the interface and data, so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself.
+What I'm particularly looking for is a French translation for the interface and data, so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
 
 Other than pull requests, you can also send me feature requests or other constructive feedback.
 
@@ -68,7 +68,7 @@ Credits
 
 -	Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
--	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* of the *In Vino Veritas* cabal.
+-	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* of the [*In Vino Veritas*](http://invinoveritas.corplaunch.com) cabal.
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
 

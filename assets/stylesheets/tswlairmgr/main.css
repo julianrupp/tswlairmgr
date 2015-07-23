@@ -30,21 +30,54 @@
 	height: 100%;
 }
 
-#topbar #topbarContent .title {
+#topbar .title {
 	display: inline-block;
 	height: 100%;
 }
-#topbar #topbarContent .title .app-name {
+#topbar .title .app-name {
 	font-size: 26px;
 	font-weight: bold;
 	padding-right: 5px;
 }
-#topbar #topbarContent .title .side {
+#topbar .title .side {
 	font-size: 14px;
 	color: rgba(255, 255, 255, 0.75);
 }
 
-#topbar #topbarContent #tabs {
+#topbar:after {
+	clear: both;
+}
+
+/* -------------------- */
+
+#topbar #localizationMenu {
+	/*display: inline-block;
+	
+	margin-right: 15px;*/
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#topbar #localizationMenu .localizationContainer {
+	display: inline-block;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#topbar #localizationMenu .localizationContainer.active {
+	opacity: 1.0;
+}
+
+#topbar #localizationMenu .localizationContainer .localizationImage {
+	display: inline-block;
+	margin: 2px;
+}
+
+/* -------------------- */
+
+#topbar #moduleTabs {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -52,14 +85,7 @@
 	text-align: right;
 }
 
-#topbar #topbarContent #tabs #language {
-	display: inline-block;
-	
-	margin-right: 15px;
-	background-color: #00ff00; /* TEMP */
-}
-
-#topbar #topbarContent #tabs .tab {
+#topbar #moduleTabs .tab {
 	display: inline-block;
 	
 	height: 24px;
@@ -80,19 +106,15 @@
 	-ms-user-select: none;
 	user-select: none;
 }
-#topbar #topbarContent #tabs .tabContent {
+#topbar #moduleTabs .tabContent {
 	padding: 1px 5px 1px 5px;
 }
 
-#topbar #topbarContent #tabs .tab.active {
+#topbar #moduleTabs .tab.active {
 	color: #ffffff;
 	background: rgba(255, 255, 255, 0.3);
 	
 	border-top: 3px solid #d0d0d0;
-}
-
-#topbar:after {
-	clear: both;
 }
 
 /* -------------------- */
