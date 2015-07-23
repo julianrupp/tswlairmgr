@@ -2,12 +2,42 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.data = tswlairmgr.core.data || {};
 
+tswlairmgr.core.data.rarities = {
+	common: {
+		color: "#ffffff"
+	},
+	uncommon: {
+		color: "#00ff16"
+	},
+	rare: {
+		color: "#02b6ff"
+	},
+	epic: {
+		color: "#d565f8"
+	},
+	heroic: {
+		color: "#ffd001"
+	}
+};
+
 tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter()
 {
 	this._name = undefined;
 	
-	this._setName = function(name) {
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {
@@ -23,6 +53,16 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number)
 {
 	this._character = character;
 	this._number = number;
+	this._rarity = tswlairmgr.core.data.rarities.rare;
+	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
+	var self = this;
+	this._character.observables.nameChanged.registerCallback(function(origin, context) {
+		self.observables.nameChanged.notify(context);
+	});
 	
 	this._setBackreferenceToSet = function(ref) {
 		this._backreferenceToSet = ref;
@@ -43,6 +83,10 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number)
 	
 	this.getName = function() {
 		return this._character.getName() + " " + this._formattedNumberString();
+	};
+	
+	this.getRarity = function() {
+		return this._rarity;
 	};
 	
 	this.toString = function() {
@@ -112,6 +156,11 @@ tswlairmgr.core.data.Boss = function Boss(id, fragmentSet)
 	
 	this._fragmentSet._setBackreferenceToBoss(this);
 	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this),
+		missionNameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this._setBackreferenceToLair = function(ref) {
 		this._backreferenceToLair = ref;
 	};
@@ -132,16 +181,32 @@ tswlairmgr.core.data.Boss = function Boss(id, fragmentSet)
 		return this._regionalFragmentDrops;
 	};
 	
-	this._setName = function(name) {
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {
 		return this._name;
 	};
 	
-	this._setMissionName = function(name) {
+	this.setMissionName = function(name) {
+		var previous = this._missionName;
+		
 		this._missionName = name;
+		
+		this.observables.missionNameChanged.notify(
+			{
+				previousMissionName: previous
+			}
+		);
 	};
 	
 	this.getMissionName = function() {
@@ -163,6 +228,10 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray)
 		value._setBackreferenceToLair(this);
 	});
 	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this._setBackreferenceToZone = function(ref) {
 		this._backreferenceToZone = ref;
 	};
@@ -175,8 +244,16 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray)
 		return this._bosses;
 	};
 	
-	this._setName = function(name) {
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {
@@ -197,6 +274,10 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray)
 		value._setBackreferenceToZone(this);
 	});
 	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this._setBackreferenceToRegion = function(ref) {
 		this._backreferenceToRegion = ref;
 	};
@@ -209,8 +290,16 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray)
 		return this._lairs;
 	};
 	
-	this._setName = function(name) {
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {
@@ -227,6 +316,16 @@ tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, num
 	this._character = character;
 	this._number = number;
 	this._droppedFrom = droppedFromArray;
+	this._rarity = tswlairmgr.core.data.rarities.epic;
+	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
+	var self = this;
+	this._character.observables.nameChanged.registerCallback(function(origin, context) {
+		self.observables.nameChanged.notify(context);
+	});
 	
 	this._setBackreferenceToSet = function(ref) {
 		this._backreferenceToSet = ref;
@@ -263,6 +362,10 @@ tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, num
 	
 	this.getDroppedFrom = function() {
 		return this._droppedFrom;
+	};
+	
+	this.getRarity = function() {
+		return this._rarity;
 	};
 	
 	this.toString = function() {
@@ -347,6 +450,10 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet)
 	
 	this._fragmentSet._setBackreferenceToBoss(this);
 	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this._setBackreferenceToRegion = function(ref) {
 		this._backreferenceToLair = ref;
 	};
@@ -359,8 +466,16 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet)
 		return this._fragmentSet;
 	};
 	
-	this._setName = function(name) {
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {
@@ -380,6 +495,10 @@ tswlairmgr.core.data.Region = function Region(zonesArray)
 		value._setBackreferenceToRegion(this);
 	});
 	
+	this.observables = {
+		nameChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this.getZones = function() {
 		return this._zones;
 	};
@@ -388,8 +507,16 @@ tswlairmgr.core.data.Region = function Region(zonesArray)
 		return this._zones.length;
 	};
 	
-	this._setName = function(name) {
+	this.setName = function(name) {
+		var previous = this._name;
+		
 		this._name = name;
+		
+		this.observables.nameChanged.notify(
+			{
+				previousName: previous
+			}
+		);
 	};
 	
 	this.getName = function() {

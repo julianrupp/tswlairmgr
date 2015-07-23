@@ -35,6 +35,8 @@ tswlairmgr.modules._loadRegisteredModules = function (){
 		self._loadModule(module);
 	});
 	
+	this._redrawTabs();
+	
 	console.log("<tswlairmgr.modules>: loadRegisteredModules: Setting default module active...");
 	this.setActiveModuleById(
 		this.getDefaultModuleId()
@@ -45,11 +47,11 @@ tswlairmgr.modules._loadModule = function(module)
 {
 	console.log("<tswlairmgr.modules>: loadModule: loading <"+module.id+">...");
 	
-	var moduleContainerId = "#module-"+module.id;
-	var moduleTabId = "#tab-"+module.id;
+	var moduleContainerId = module.id;
+	var moduleTabId = module.id;
 	
 	var contentNode = $("<div />")
-		.attr("id", moduleContainerId)
+		.data("moduleId", moduleContainerId)
 		.hide();
 	$("#moduleContainer").append(contentNode);
 	
@@ -57,11 +59,11 @@ tswlairmgr.modules._loadModule = function(module)
 	var tabNode = $(
 		'<div class="tab clickable">' +
 		'	<div class="tabContent">' +
-		'		'+module.displayName+''+
+		'		' +
 		'	</div>' +
 		'</div>'
 		)
-		.attr("id", moduleTabId)
+		.data("moduleId", moduleTabId)
 		.click(function(){
 			if(self.getActiveModuleId() !== module.id)
 			{
@@ -77,7 +79,8 @@ tswlairmgr.modules._loadModule = function(module)
 			tab: tabNode
 		}
 	};
-	module.init(contentNode);
+	
+	module.initWithRootNode(contentNode);
 	
 	console.log("<tswlairmgr.modules>: loadModule: finished loading <"+module.id+">");
 };
@@ -108,12 +111,46 @@ tswlairmgr.modules.setActiveModuleById = function(id) {
 	
 	console.log("<tswlairmgr.modules>: setActiveModuleById: <"+id+">...");
 	
+	var previous = this.getActiveModuleId();
+	
 	$.each(this._loadedModules, function(id, compound) {
-		$(compound.nodes.tab).removeClass("active");
-		$(compound.nodes.content).hide();
+		var module = compound.instance;
+		
+		if(id == previous)
+		{
+			$(compound.nodes.tab).removeClass("active");
+			$(compound.nodes.content).hide();
+			
+			module.becameInactive();
+		}
+		else
+		{
+			module.becameActive();
+		}
 	});
 	$(this._loadedModules[id].nodes.tab).addClass("active");
 	$(this._loadedModules[id].nodes.content).show();
 	
 	this._activeModule = id;
+};
+
+tswlairmgr.modules._initLocalizationMenu = function() {
+	// TODO: Build HTML nodes for language menu
+	
+	// TODO: have language menu redrawn when interface localization changes (register callback)
+};
+
+tswlairmgr.modules._redrawTabs = function()
+{
+	console.log("<tswlairmgr.modules>: redrawTabs called");
+	
+	var self = this;
+	$(".tab", $("#tabs")).each(function(index) {
+		var tab = this;
+		var moduleId = $(tab).data("moduleId");
+		
+		$(".tabContent", tab).text(
+			self.getModule(moduleId).getDisplayName()
+		);
+	});
 };

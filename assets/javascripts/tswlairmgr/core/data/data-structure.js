@@ -1033,9 +1033,6 @@ tswlairmgr.core.data._bootstrap = function()
 		}
 	];
 	
-	this._localizations = {};
-	this._sortedLocalizations = [];
-	
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: completed");
 };
 

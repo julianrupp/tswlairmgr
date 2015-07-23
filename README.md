@@ -7,7 +7,7 @@ It can be used by the leaders or fragment holders of lair groups to easily deter
 
 Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
 
-With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, basic localization support and fragment lookup. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
+With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, localization support, and fragment lookup. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
 
 Features:
 
@@ -17,7 +17,7 @@ Features:
 * Support for arbitrary group sizes
 * Easy and fast to use
 * On-the-fly TSW chat script generation
-* Localized in English and German (data only for now; interface planned)
+* Localized in English and German
 
 An instance of TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
@@ -50,7 +50,9 @@ Upload `index.html` and the `assets` folder to a web server.
 
 Contributing
 ------------
-There sure is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery. 
+I've recently completely rewritten the code, though there sure still is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
+
+What I'm particularly looking for is a French translation for the interface and data, so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself.
 
 Other than pull requests, you can also send me feature requests or other constructive feedback.
 
@@ -66,11 +68,17 @@ Credits
 
 -	Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
+-	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* of the *In Vino Veritas* cabal.
+
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
+
+-	The country flags have been taken from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/). The page states they are free to use and do not require attribution in any form.
 
 -	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn makes the fragment holder take ages to assemble a list of who-takes-what.
 
 -	Joakim Bjørnstad ([@joakibj](http://github.com/joakibj)) has inspired me with his [tswcalc](http://github.com/joakibj/tswcalc) webapp in the technical design of this one.
+
+-	Alex Netkachov's blog post [Model-View-Controller (MVC) with JavaScript](https://alexatnet.com/articles/model-view-controller-mvc-javascript) has helped me a lot figuring out how to tackle this design pattern in this very language.
 
 
 License

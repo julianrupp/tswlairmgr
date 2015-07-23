@@ -2,6 +2,17 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.data = tswlairmgr.core.data || {};
 
+tswlairmgr.core.data._localizations = {};
+tswlairmgr.core.data._sortedLocalizations = [];
+tswlairmgr.core.data._defaultLocalizationId = null;
+tswlairmgr.core.data._currentLocalizationId = null;
+
+tswlairmgr.core.data._suppressNotifications = false;
+
+tswlairmgr.core.data.observables = {
+	dataLocalizationChanged: new tswlairmgr.core.helpers.Observable(null)
+};
+
 tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, data)
 {
 	if(id in this._localizations)
@@ -14,7 +25,7 @@ tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, d
 	
 	if(this._sortedLocalizations.length < 1)
 	{
-		tswlairmgr.core.data._defaultLocalizationId = id;
+		this._defaultLocalizationId = id;
 	}
 	
 	this._localizations[id] = {
@@ -32,6 +43,11 @@ tswlairmgr.core.data.getLocalizationId = function()
 	return this._currentLocalizationId;
 };
 
+tswlairmgr.core.data.getDefaultLocalizationId = function()
+{
+	return this._defaultLocalizationId;
+};
+
 tswlairmgr.core.data.setLocalizationById = function(id)
 {
 	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: starting");
@@ -39,10 +55,12 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	if(!(id in this._localizations))
 	{
 		console.log("<tswlairmgr.core.data-localization>: setLocalizationById: error: <"+id+"> not found!");
-		return(false);
+		return false;
 	}
 	
 	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: to <"+id+">");
+	
+	var previous = this.getLocalizationId();
 	
 	var localization = this._localizations[id];
 	
@@ -54,7 +72,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 					"alphabets["+alphabetId+"]["+characterId+"]");
 				t = "[Missing Translation]";
 			}
-			currentCharacter._setName(t);
+			currentCharacter.setName(t);
 		});
 	});
 	
@@ -65,7 +83,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 				"regions["+regionId+"].name");
 			t = "[Missing Translation]";
 		}
-		currentRegion.region._setName(t);
+		currentRegion.region.setName(t);
 		
 		var tr = localization.data.regions[regionId].regionalName;
 		if(!tr) {
@@ -73,7 +91,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 				"regions["+regionId+"].regionalName");
 			tr = "[Missing Translation]";
 		}
-		currentRegion.regional._setName(tr);
+		currentRegion.regional.setName(tr);
 		
 		$.each(currentRegion.zones, function(zoneId, currentZone) {
 			var t = localization.data.regions[regionId].zones[zoneId].name;
@@ -82,7 +100,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 					"regions["+regionId+"].zones["+zoneId+"].name");
 				t = "[Missing Translation]";
 			}
-			currentZone.zone._setName(t);
+			currentZone.zone.setName(t);
 			
 			$.each(currentZone.lairs, function(lairIndex, currentLair) {
 				var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].name;
@@ -91,7 +109,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 						"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].name");
 					t = "[Missing Translation]";
 				}
-				currentLair.lair._setName(t);
+				currentLair.lair.setName(t);
 				
 				$.each(currentLair.bosses, function(bossIndex, currentBoss) {
 					var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].name;
@@ -100,7 +118,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].name");
 						t = "[Missing Translation]";
 					}
-					currentBoss.boss._setName(t);
+					currentBoss.boss.setName(t);
 					
 					var tm = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].missionName;
 					if(!tm) {
@@ -108,7 +126,7 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].missionName");
 						tm = "[Missing Translation]";
 					}
-					currentBoss.boss._setMissionName(tm);
+					currentBoss.boss.setMissionName(tm);
 				});
 			});
 		});
@@ -116,42 +134,36 @@ tswlairmgr.core.data.setLocalizationById = function(id)
 	
 	this._currentLocalizationId = id;
 	
-	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: completed");
-	
-	return(true);
-};
-
-tswlairmgr.core.data._localizationChangeObservers = [];
-
-tswlairmgr.core.data.registerLocalizationChangeObserver = function(callback) {
-	if($.inArray(callback, this._localizationChangeObservers))
+	if(!this._suppressNotifications)
 	{
-		console.log("<tswlairmgr.core.data-localization>: registerLocalizationChangeObserver: warning: callback already registered!");
+		this.observables.dataLocalizationChanged.notify(
+			{
+				previousLocalizationId: previous
+			}
+		);
 	}
 	
-	console.log("<tswlairmgr.core.data-localization>: registerLocalizationChangeObserver: registering callback...");
+	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: completed");
 	
-	this._localizationChangeObservers.push(callback);
+	return true;
 };
 
-tswlairmgr.core.data.notifyLocalizationChangeObservers = function() {
-	console.log("<tswlairmgr.core.data-localization>: notifyLocalizationChangeObservers: notifying...");
+tswlairmgr.core.data.executeWithDifferentLocalization = function(id, callback) {
+	this._suppressNotifications = true;
 	
-	$.each(this._localizationChangeObservers, function(index, callback) {
-		callback.call();
-	});
-};
-
-tswlairmgr.core.data.getDefaultLocalizationId = function()
-{
-	return tswlairmgr.core.data._defaultLocalizationId;
+	var previous = this.getLocalizationId();
+	
+	this.setLocalizationById(id);
+	callback.call();
+	
+	this.setLocalizationById(previous);
+	
+	this._suppressNotifications = false;
 };
 
 tswlairmgr.core.data._init = function()
 {
 	console.log("<tswlairmgr.core.data-localization>: init: loading default localization...");
 	
-	tswlairmgr.core.data.setLocalizationById(this.getDefaultLocalizationId());
+	this.setLocalizationById(this.getDefaultLocalizationId());
 };
-
-tswlairmgr.core.data._bootstrap();
