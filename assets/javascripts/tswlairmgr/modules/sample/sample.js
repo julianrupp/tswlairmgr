@@ -12,6 +12,9 @@ tswlairmgr.modules.sample = new function() {
 	
 	this._el = {
 		self: null,
+		demoFragmentContainer: null,
+		demoFragment1: null,
+		demoFragment2: null,
 		sampleText: null,
 		localizationSwitcher: {
 			rootNode: null,
@@ -23,6 +26,9 @@ tswlairmgr.modules.sample = new function() {
 			}
 		}
 	};
+	
+	this._demoFragmentControllerInstance1 = null;
+	this._demoFragmentControllerInstance2 = null;
 	
 	this._templates = {
 		sample:
@@ -53,9 +59,31 @@ tswlairmgr.modules.sample = new function() {
 		
 		this._localization.init();
 		
+		// Sample Text
 		this._el.sampleText = $("<div />")
 			.css("margin-bottom", "5px");
 		this._el.self.append(this._el.sampleText);
+		
+		// Demo Fragments
+		this._el.demoFragmentContainer = $("<div />");
+		
+		this._el.demoFragment1 = $("<div />")
+			.css("display", "inline-block");
+		this._demoFragmentControllerInstance1 = new tswlairmgr.core.components.FragmentHTML(
+			this._el.demoFragment1,
+			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getNFragment()
+		);
+		this._el.demoFragmentContainer.append(this._el.demoFragment1);
+		
+		this._el.demoFragment2 = $("<div />")
+			.css("display", "inline-block");
+		this._demoFragmentControllerInstance2 = new tswlairmgr.core.components.FragmentHTML(
+			this._el.demoFragment2,
+			tswlairmgr.core.data._struct.regions.tra.regional.getFragmentSet().getNNEFragment()
+		);
+		this._el.demoFragmentContainer.append(this._el.demoFragment2);
+		
+		this._el.self.append(this._el.demoFragmentContainer);
 		
 		this._el.localizationSwitcher.rootNode = $("<div />");
 		
@@ -85,6 +113,9 @@ tswlairmgr.modules.sample = new function() {
 		);
 		
 		var self = this;
+		
+		// Demo Fragments
+		// Will redraw themselves.
 		
 		// Interface localization switcher
 		$(this._el.localizationSwitcher.interface.rootNode).empty();

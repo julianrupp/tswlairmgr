@@ -2,24 +2,6 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.data = tswlairmgr.core.data || {};
 
-tswlairmgr.core.data.rarities = {
-	common: {
-		color: "#ffffff"
-	},
-	uncommon: {
-		color: "#00ff16"
-	},
-	rare: {
-		color: "#02b6ff"
-	},
-	epic: {
-		color: "#d565f8"
-	},
-	heroic: {
-		color: "#ffd001"
-	}
-};
-
 tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter() {
 	this._name = undefined;
 	
@@ -51,7 +33,6 @@ tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter() {
 tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	this._character = character;
 	this._number = number;
-	this._rarity = tswlairmgr.core.data.rarities.rare;
 	
 	this.observables = {
 		nameChanged: new tswlairmgr.core.helpers.Observable(this)
@@ -83,8 +64,12 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	
-	this.getRarity = function() {
-		return this._rarity;
+	this.getOrientationCode = function() {
+		return this.getSet().getOrientationOfFragment(this);
+	};
+	
+	this.getBossId = function() {
+		return this.getSet().getBoss().getId();
 	};
 	
 	this.toString = function() {
@@ -106,10 +91,11 @@ tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash) {
 	};
 	
 	var frags = this._fragments;
+	var self = this;
 	$.each(this._fragments, function(key, value) {
 		frags[key] = fragmentsHash[key] || undefined;
 		
-		frags[key]._setBackreferenceToSet(this);
+		frags[key]._setBackreferenceToSet(self);
 	});
 	
 	this._setBackreferenceToBoss = function(ref) {
@@ -122,6 +108,17 @@ tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash) {
 	
 	this.getFragments = function() {
 		return this._fragments;
+	};
+	
+	this.getOrientationOfFragment = function(fragmentInstance) {
+		var r = null;
+		$.each(this._fragments, function(key, fragment) {
+			if(fragmentInstance === fragment)
+			{
+				r = key;
+			}
+		});
+		return r;
 	};
 	
 	this.getNWFragment = function() { return this._fragments.nw; };
@@ -207,6 +204,10 @@ tswlairmgr.core.data.Boss = function Boss(id, fragmentSet) {
 	
 	this.getMissionName = function() {
 		return this._missionName;
+	};
+	
+	this.getId = function() {
+		return this._id;
 	};
 	
 	this.toString = function() {
@@ -305,11 +306,10 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 	};
 };
 
-tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, number, droppedFromArray) {
+tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(character, number, droppedFromArray) {
 	this._character = character;
 	this._number = number;
 	this._droppedFrom = droppedFromArray;
-	this._rarity = tswlairmgr.core.data.rarities.epic;
 	
 	this.observables = {
 		nameChanged: new tswlairmgr.core.helpers.Observable(this)
@@ -353,12 +353,16 @@ tswlairmgr.core.data.RegionalBossFragment = function BossFragment(character, num
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	
-	this.getDroppedFrom = function() {
-		return this._droppedFrom;
+	this.getOrientationCode = function() {
+		return this.getSet().getOrientationOfFragment(this);
 	};
 	
-	this.getRarity = function() {
-		return this._rarity;
+	this.getBossId = function() {
+		return this.getSet().getBoss().getId();
+	};
+	
+	this.getDroppedFrom = function() {
+		return this._droppedFrom;
 	};
 	
 	this.toString = function() {
@@ -387,10 +391,11 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 	};
 	
 	var frags = this._fragments;
+	var self = this;
 	$.each(this._fragments, function(key, value) {
 		frags[key] = fragmentsHash[key] || undefined;
 		
-		frags[key]._setBackreferenceToSetAndGenerateDropReferences(this);
+		frags[key]._setBackreferenceToSetAndGenerateDropReferences(self);
 	});
 	
 	this._setBackreferenceToBoss = function(ref) {
@@ -403,6 +408,17 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 	
 	this.getFragments = function() {
 		return this._fragments;
+	};
+	
+	this.getOrientationOfFragment = function(fragmentInstance) {
+		var r = null;
+		$.each(this._fragments, function(key, fragment) {
+			if(fragmentInstance === fragment)
+			{
+				r = key;
+			}
+		});
+		return r;
 	};
 	
 	this.getNNWWFragment = function() { return this._fragments.nnww; };
@@ -471,6 +487,10 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 	
 	this.getName = function() {
 		return this._name;
+	};
+	
+	this.getId = function() {
+		return this._id;
 	};
 	
 	this.toString = function() {

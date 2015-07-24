@@ -45,7 +45,26 @@ tswlairmgr.modules.setLocalizationById = function(id)
 		return false;
 	}
 	
+	console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: setting data localization to <"+id+">");
+	
+	tswlairmgr.core.data.setLocalizationById(id);
+	
 	console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: setting interface localization to <"+id+">");
+	
+	this.setInterfaceLocalizationById(id);
+	
+	return true;
+};
+
+tswlairmgr.modules.setInterfaceLocalizationById = function(id)
+{
+	if(!(id in this._allModuleLocalizationsMeta))
+	{
+		console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceLocalizationById: error: <"+id+"> not found!");
+		return false;
+	}
+	
+	console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceLocalizationById: setting interface localization to <"+id+">");
 	
 	var previous = this.getLocalizationId();
 	

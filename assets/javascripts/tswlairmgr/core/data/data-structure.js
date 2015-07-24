@@ -2,6 +2,29 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.data = tswlairmgr.core.data || {};
 
+tswlairmgr.core.data.rarities = {
+	common: {
+		code: "common",
+		color: "#ffffff"
+	},
+	uncommon: {
+		code: "uncommon",
+		color: "#00ff16"
+	},
+	rare: {
+		code: "rare",
+		color: "#02b6ff"
+	},
+	epic: {
+		code: "epic",
+		color: "#d565f8"
+	},
+	heroic: {
+		code: "heroic",
+		color: "#ffd001"
+	}
+};
+
 tswlairmgr.core.data._bootstrap_alphabet_greek = function()
 {
 	var characterIDs = [
