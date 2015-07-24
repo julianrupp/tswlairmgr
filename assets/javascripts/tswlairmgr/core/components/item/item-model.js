@@ -16,31 +16,11 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 	});
 	
 	this.getName = function() {
-		if(this.isLairFragment() || this.isRegionalFragment())
-		{
-			return this._dataInstance.getName();
-		}
-		if(this.isLairBoss() || this.isRegionalBoss())
-		{
-			return this._dataInstance.getSummonItemName();
-		}
-		
-		// Should never reach here
-		return "error";
+		return this._dataInstance.getItemName();
 	};
 	
 	this.getLabel = function() {
-		if(this.isLairFragment() || this.isRegionalFragment())
-		{
-			return this._dataInstance.getCode();
-		}
-		if(this.isLairBoss() || this.isRegionalBoss())
-		{
-			return "";
-		}
-		
-		// Should never reach here
-		return "error";
+		return this._dataInstance.getItemLabel();
 	};
 	
 	this.isLairFragment = function() {
@@ -51,12 +31,20 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 		return (this._dataInstance instanceof tswlairmgr.core.data.RegionalBossFragment);
 	};
 	
+	this.isFragment = function() {
+		return (this.isLairFragment() || this.isRegionalFragment());
+	};
+	
 	this.isLairBoss = function() {
 		return (this._dataInstance instanceof tswlairmgr.core.data.Boss);
 	};
 	
 	this.isRegionalBoss = function() {
 		return (this._dataInstance instanceof tswlairmgr.core.data.RegionalBoss);
+	};
+	
+	this.isBoss = function() {
+		return (this.isLairBoss() || this.isRegionalBoss());
 	};
 	
 	this.getItemCssClasses = function() {
@@ -70,20 +58,16 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 	};
 	
 	this.getIconCssClasses = function() {
-		if(this.isLairFragment()
-			|| this.isLairBoss()
-			|| this.isRegionalFragment()
-			|| this.isRegionalBoss()
-		)
+		if(this.isFragment() || this.isBoss())
 		{
-			if(this.isLairFragment() || this.isRegionalFragment())
+			if(this.isFragment())
 			{
 				return [
 					this._dataInstance.getBossId(),
 					this._dataInstance.getOrientationCode()
 				];
 			}
-			if(this.isLairBoss() || this.isRegionalBoss())
+			if(this.isBoss())
 			{
 				return [
 					this._dataInstance.getId()

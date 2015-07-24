@@ -104,6 +104,14 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	
+	this.getItemName = function() {
+		return this.getName();
+	};
+	
+	this.getItemLabel = function() {
+		return this.getCode();
+	};
+	
 	this.getOrientationCode = function() {
 		return this.getSet().getOrientationOfFragment(this);
 	};
@@ -233,12 +241,16 @@ tswlairmgr.core.data.Boss = function Boss(id, fragmentSet) {
 		return this._name;
 	};
 	
-	this.getSummonItemName = function() {
+	this.getItemName = function() {
 		return this._fullNamePattern.renderWithContext(
 			[
 				this.getName()
 			]
 		);
+	};
+	
+	this.getItemLabel = function() {
+		return "";
 	};
 	
 	this.setMissionName = function(name) {
@@ -417,6 +429,14 @@ tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(charac
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	
+	this.getItemName = function() {
+		return this.getName();
+	};
+	
+	this.getItemLabel = function() {
+		return this.getCode();
+	};
+	
 	this.getOrientationCode = function() {
 		return this.getSet().getOrientationOfFragment(this);
 	};
@@ -556,12 +576,16 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 		return this._name;
 	};
 	
-	this.getSummonItemName = function() {
+	this.getItemName = function() {
 		return this._fullNamePattern.renderWithContext(
 			[
 				this.getRegion().getName()
 			]
 		);
+	};
+	
+	this.getItemLabel = function() {
+		return "";
 	};
 	
 	this.getId = function() {
