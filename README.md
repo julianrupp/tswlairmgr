@@ -52,7 +52,7 @@ Contributing
 ------------
 I've recently completely rewritten the code, though there sure still is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
 
-What I'm particularly looking for is a French translation for the interface and data, so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
+What I'm particularly looking for is a French translation for the interface (data is already done) so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
 
 Other than pull requests, you can also send me feature requests or other constructive feedback.
 

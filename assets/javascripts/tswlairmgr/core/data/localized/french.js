@@ -1,6 +1,6 @@
 var tswlairmgr = tswlairmgr || {};
 
-tswlairmgr.core.data.addLocalizationData("French", "Français", "frFR", {
+tswlairmgr.core.data.addLocalizationData("Français", "French", "frFR", {
 	alphabets: {
 		greek: {
 			alpha: "Alpha",
