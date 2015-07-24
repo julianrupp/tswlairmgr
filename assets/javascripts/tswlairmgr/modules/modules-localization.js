@@ -45,6 +45,8 @@ tswlairmgr.modules.setInterfaceAndDataLocalizationById = function(id)
 		return false;
 	}
 	
+	this._currentLocalizationId = id;
+	
 	console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceAndDataLocalizationById: setting interface localization to <"+id+">");
 	
 	this.setLocalizationById(id);
@@ -68,8 +70,6 @@ tswlairmgr.modules.setLocalizationById = function(id)
 	
 	var previous = this.getLocalizationId();
 	
-	this._currentLocalizationId = id;
-	
 	this.observables.interfaceLocalizationChanged.notify(
 		{
 			previousLocalizationId: previous
@@ -83,7 +83,7 @@ tswlairmgr.modules.setLocalizationById = function(id)
 
 tswlairmgr.modules._initLocalization = function()
 {
-	this.setLocalizationById(this.getDefaultLocalizationId());
+	this.setInterfaceAndDataLocalizationById(this.getDefaultLocalizationId());
 };
 
 tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
