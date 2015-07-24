@@ -37,6 +37,25 @@ tswlairmgr.modules.getDefaultLocalizationId = function()
 	return this._defaultLocalizationId;
 };
 
+tswlairmgr.modules.setInterfaceAndDataLocalizationById = function(id)
+{
+	if(!(id in this._allModuleLocalizationsMeta))
+	{
+		console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceAndDataLocalizationById: error: <"+id+"> not found!");
+		return false;
+	}
+	
+	console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceAndDataLocalizationById: setting interface localization to <"+id+">");
+	
+	this.setLocalizationById(id);
+	
+	console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceAndDataLocalizationById: setting data localization to <"+id+">");
+	
+	tswlairmgr.core.data.setLocalizationById(id);
+	
+	return true;
+};
+
 tswlairmgr.modules.setLocalizationById = function(id)
 {
 	if(!(id in this._allModuleLocalizationsMeta))
@@ -45,26 +64,7 @@ tswlairmgr.modules.setLocalizationById = function(id)
 		return false;
 	}
 	
-	console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: setting data localization to <"+id+">");
-	
-	tswlairmgr.core.data.setLocalizationById(id);
-	
-	console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: setting interface localization to <"+id+">");
-	
-	this.setInterfaceLocalizationById(id);
-	
-	return true;
-};
-
-tswlairmgr.modules.setInterfaceLocalizationById = function(id)
-{
-	if(!(id in this._allModuleLocalizationsMeta))
-	{
-		console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceLocalizationById: error: <"+id+"> not found!");
-		return false;
-	}
-	
-	console.log("<tswlairmgr.modules-localization>: [interface] setInterfaceLocalizationById: setting interface localization to <"+id+">");
+	console.log("<tswlairmgr.modules-localization>: [interface] setLocalizationById: setting localization to <"+id+">");
 	
 	var previous = this.getLocalizationId();
 	
@@ -115,13 +115,13 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 			var defaultInterfaceLocalizationId = tswlairmgr.modules.getDefaultLocalizationId();
 			if($.inArray(defaultInterfaceLocalizationId, self._sortedLocalizations) !== -1)
 			{
-				console.log("<tswlairmgr.modules-localization>: module has a localization for default interface localization <"+newLocalizationId+">.");
+				console.log("<tswlairmgr.modules-localization>: module has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
 				
 				self.setLocalizationById(defaultInterfaceLocalizationId);
 			}
 			else
 			{
-				console.log("<tswlairmgr.modules-localization>: warning: module does not have a localization for default interface localization <"+newLocalizationId+">!");
+				console.log("<tswlairmgr.modules-localization>: warning: module does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
 				
 				var defaultModuleLocalizationId = self.getDefaultLocalizationId();
 				self.setLocalizationById(defaultModuleLocalizationId);

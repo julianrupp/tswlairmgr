@@ -5,10 +5,20 @@ tswlairmgr.modules.sample._localization.addLocalizationData("Deutsch", "German",
 		displayName: "Beispiel-Modul"
 	},
 	strings: {
-		sample_moduleContainerFor: "Modulcontainer für",
+		sampleText: {
+			moduleContainerFor: "Modulcontainer für"
+		},
 		
-		interface_setInterfaceLocalization: "Interface-Lokalisierung setzen",
-		
-		module_setModuleLocalization: "Modul-Lokalisierung für dieses Modul setzen"
+		localizationSwitcher: {
+			interface: {
+				setInterfaceLocalization: "Interface-Lokalisierung setzen (Modul-Lokalisierung für alle Module)"
+			},
+			module: {
+				setModuleLocalization: "Modul-Lokalisierung für dieses Modul setzen"
+			},
+			data: {
+				setDataLocalization: "Daten-Lokalisierung setzen"
+			}
+		}
 	}
 });

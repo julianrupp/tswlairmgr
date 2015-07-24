@@ -43,24 +43,64 @@ tswlairmgr.core.data.getLocalizationId = function()
 	return this._currentLocalizationId;
 };
 
+tswlairmgr.core.data.getAllLocalizationIds = function()
+{
+	return this._sortedLocalizations;
+};
+
+tswlairmgr.core.data.getAllLocalizationsMeta = function()
+{
+	var meta = {};
+	$.each(this._localizations, function(key, compound) {
+		meta[key] = {
+			localName: compound.localName,
+			globalName: compound.globalName,
+			id: compound.id
+		};
+	});
+	return meta;
+};
+
 tswlairmgr.core.data.getDefaultLocalizationId = function()
 {
 	return this._defaultLocalizationId;
 };
 
-tswlairmgr.core.data.setLocalizationById = function(id)
+tswlairmgr.core.data.setLocalizationById = function(newId)
 {
 	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: starting");
 	
-	if(!(id in this._localizations))
-	{
-		console.log("<tswlairmgr.core.data-localization>: setLocalizationById: error: <"+id+"> not found!");
-		return false;
-	}
-	
-	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: to <"+id+">");
+	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: trying <"+newId+">");
 	
 	var previous = this.getLocalizationId();
+	
+	var id = null;
+	
+	if(newId in this._localizations)
+	{
+		console.log("<tswlairmgr.data-localization>: data has localization for <"+newId+">.");
+		
+		id = newId;
+	}
+	else
+	{
+		console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for <"+newId+">!");
+		
+		var defaultInterfaceLocalizationId = tswlairmgr.modules.getDefaultLocalizationId();
+		if(defaultInterfaceLocalizationId in this._localizations)
+		{
+			console.log("<tswlairmgr.data-localization>: data has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
+			
+			id = defaultInterfaceLocalizationId;
+		}
+		else
+		{
+			console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
+			
+			var defaultDataLocalizationId = this.getDefaultLocalizationId();
+			self.setLocalizationById(defaultDataLocalizationId);
+		}
+	}
 	
 	var localization = this._localizations[id];
 	

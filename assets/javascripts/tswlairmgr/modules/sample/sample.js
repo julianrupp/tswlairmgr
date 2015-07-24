@@ -12,10 +12,15 @@ tswlairmgr.modules.sample = new function() {
 	
 	this._el = {
 		self: null,
-		demoFragmentContainer: null,
-		demoFragment1: null,
-		demoFragment2: null,
 		sampleText: null,
+		demoFragments: {
+			rootNode: null,
+			fragments: [
+				null,
+				null,
+				null
+			]
+		},
 		localizationSwitcher: {
 			rootNode: null,
 			interface: {
@@ -23,21 +28,31 @@ tswlairmgr.modules.sample = new function() {
 			},
 			module: {
 				rootNode: null
+			},
+			data: {
+				rootNode: null
 			}
 		}
 	};
 	
-	this._demoFragmentControllerInstance1 = null;
-	this._demoFragmentControllerInstance2 = null;
+	this._demoFragmentControllers = [
+		null,
+		null,
+		null
+	];
 	
 	this._templates = {
 		sample:
-			'{{localization.strings.sample_moduleContainerFor}} <b>{{context.name}}</b>',
+			'<span style="font-size: 20px;">' +
+			'	{{localization.strings.sampleText.moduleContainerFor}} <b>{{context.name}}</b>' +
+			'</span>',
 		
 		interface_switcher_title:
-			'<u>{{localization.strings.interface_setInterfaceLocalization}}:</u>',
+			'{{localization.strings.localizationSwitcher.interface.setInterfaceLocalization}}:',
 		module_switcher_title:
-			'<u>{{localization.strings.module_setModuleLocalization}}:</u>'
+			'{{localization.strings.localizationSwitcher.module.setModuleLocalization}}:',
+		data_switcher_title:
+			'{{localization.strings.localizationSwitcher.data.setDataLocalization}}:'
 	};
 	
 	this.getDisplayName = function() {
@@ -59,32 +74,49 @@ tswlairmgr.modules.sample = new function() {
 		
 		this._localization.init();
 		
+		$(this._el.self).addClass("uibox");
+		
 		// Sample Text
 		this._el.sampleText = $("<div />")
-			.css("margin-bottom", "5px");
+			.css("margin-bottom", "15px");
 		this._el.self.append(this._el.sampleText);
 		
 		// Demo Fragments
-		this._el.demoFragmentContainer = $("<div />");
 		
-		this._el.demoFragment1 = $("<div />")
+		// Big lair fragment Omicron 01
+		this._el.demoFragments.rootNode = $("<div />")
+			.css("margin-bottom", "15px");
+		
+		this._el.demoFragments.fragments[0] = $("<div />")
 			.css("display", "inline-block");
-		this._demoFragmentControllerInstance1 = new tswlairmgr.core.components.FragmentHTML(
-			this._el.demoFragment1,
-			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment()
+		this._demoFragmentControllers[0] = new tswlairmgr.core.components.FragmentHTML(
+			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
+			this._el.demoFragments.fragments[0]
 		);
-		this._el.demoFragmentContainer.append(this._el.demoFragment1);
+		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[0]);
 		
-		this._el.demoFragment2 = $("<div />")
+		// Big regional fragment Aleph 04
+		this._el.demoFragments.fragments[1] = $("<div />")
 			.css("display", "inline-block");
-		this._demoFragmentControllerInstance2 = new tswlairmgr.core.components.FragmentHTML(
-			this._el.demoFragment2,
-			tswlairmgr.core.data._struct.regions.tra.regional.getFragmentSet().getNNEFragment()
+		this._demoFragmentControllers[1] = new tswlairmgr.core.components.FragmentHTML(
+			tswlairmgr.core.data._struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
+			this._el.demoFragments.fragments[1]
 		);
-		this._el.demoFragmentContainer.append(this._el.demoFragment2);
+		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[1]);
 		
-		this._el.self.append(this._el.demoFragmentContainer);
+		// Small lair fragment Theta 07
+		this._el.demoFragments.fragments[2] = $("<div />")
+			.css("display", "inline-block");
+		this._demoFragmentControllers[2] = new tswlairmgr.core.components.FragmentHTML(
+			tswlairmgr.core.data._struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
+			this._el.demoFragments.fragments[2],
+			true // small
+		);
+		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[2]);
 		
+		this._el.self.append(this._el.demoFragments.rootNode);
+		
+		// Localization switcher
 		this._el.localizationSwitcher.rootNode = $("<div />");
 		
 		// Interface localization switcher
@@ -96,6 +128,11 @@ tswlairmgr.modules.sample = new function() {
 		this._el.localizationSwitcher.module.rootNode = $("<div />")
 			.css("margin-bottom", "5px");
 		this._el.localizationSwitcher.rootNode.append(this._el.localizationSwitcher.module.rootNode);
+		
+		// Data localization switcher
+		this._el.localizationSwitcher.data.rootNode = $("<div />")
+			.css("margin-bottom", "5px");
+		this._el.localizationSwitcher.rootNode.append(this._el.localizationSwitcher.data.rootNode);
 		
 		this._el.self.append(this._el.localizationSwitcher.rootNode);
 	};
@@ -150,54 +187,88 @@ tswlairmgr.modules.sample = new function() {
 				self._createModuleLocalizationSwitchButton(id)
 			);
 		});
+		
+		// Module localization switcher
+		$(this._el.localizationSwitcher.data.rootNode).empty();
+		$(self._el.localizationSwitcher.data.rootNode).append(
+			$("<div />").append(
+		   		Mustache.render(
+		   	        this._templates.data_switcher_title, { localization: this._localization.getLocalizationData(), context:
+		   	        	{}
+		   	        }
+		   		)
+			)
+		);
+		$.each(tswlairmgr.core.data.getAllLocalizationIds(), function(index, id) {
+			$(self._el.localizationSwitcher.data.rootNode).append(
+				self._createDataLocalizationSwitchButton(id)
+			);
+		});
 	};
 	
-	this._createInterfaceLocalizationSwitchButton = function(id) {
-		var meta = tswlairmgr.modules.getAllLocalizationsMeta()[id];
-		
+	this._createLocalizationSwitchButton = function(borderColorHex, backgroundColorHex, meta, callback) {
 		var self = this;
 		
 		var buttonNode = $(
-			'<div class="button" style="display: inline-block; border: 1px solid #80c080; margin: 2px; background-color: #00c000; cursor: pointer;">' +
+			'<div class="button" style="display: inline-block; border: 1px solid '+borderColorHex+'; margin: 2px; background-color: '+backgroundColorHex+'; cursor: pointer;">' +
 			'	<div class="buttonContent" style="padding: 2px;">' +
 			'		'+meta.localName+' (<i>'+meta.globalName+'</i>)' +
 			'	</div>' +
 			'</div>'
 		)
 		.click(function(){
-			console.log("<tswlairmgr.modules.sample>: interface <"+id+"> localization button clicked");
-	
-			if(tswlairmgr.modules.getLocalizationId() !== id)
-			{
-				tswlairmgr.modules.setLocalizationById(id);
-			}
+			callback.call();
 		});
 		
 		return buttonNode;
+	}
+	
+	this._createInterfaceLocalizationSwitchButton = function(id) {
+		return this._createLocalizationSwitchButton(
+			'#80c080', // Border
+			'#00c000', // Background
+			tswlairmgr.modules.getAllLocalizationsMeta()[id],
+			function() {
+				console.log("<tswlairmgr.modules.sample>: interface <"+id+"> localization button clicked");
+
+				if(tswlairmgr.modules.getLocalizationId() !== id)
+				{
+					tswlairmgr.modules.setLocalizationById(id);
+				}
+			}
+		);
 	};
 	
 	this._createModuleLocalizationSwitchButton = function(id) {
-		var meta = this._localization._localizations[id];
-		
-		var self = this;
-		
-		var buttonNode = $(
-			'<div class="button" style="display: inline-block; border: 1px solid #80c0c0; margin: 2px; background-color: #00c0c0; cursor: pointer;">' +
-			'	<div class="buttonContent" style="padding: 2px;">' +
-			'		'+meta.localName+' (<i>'+meta.globalName+'</i>)' +
-			'	</div>' +
-			'</div>'
-		)
-		.click(function(){
-			console.log("<tswlairmgr.modules.sample>: module <"+id+"> localization button clicked");
-			
-			if(self._localization.getLocalizationId() !== id)
-			{
-				self._localization.setLocalizationById(id);
+		return this._createLocalizationSwitchButton(
+			'#80c0c0', // Border
+			'#00c0c0', // Background
+			this._localization._localizations[id],
+			function() {
+				console.log("<tswlairmgr.modules.sample>: module <"+id+"> localization button clicked");
+
+				if(self._localization.getLocalizationId() !== id)
+				{
+					self._localization.setLocalizationById(id);
+				}
 			}
-		});
-		
-		return buttonNode;
+		);
+	};
+	
+	this._createDataLocalizationSwitchButton = function(id) {
+		return this._createLocalizationSwitchButton(
+			'#c08080', // Border
+			'#c00000', // Background
+			tswlairmgr.core.data.getAllLocalizationsMeta()[id],
+			function() {
+				console.log("<tswlairmgr.modules.sample>: data <"+id+"> localization button clicked");
+
+				if(tswlairmgr.core.data.getLocalizationId() !== id)
+				{
+					tswlairmgr.core.data.setLocalizationById(id);
+				}
+			}
+		);
 	};
 	
 	this.becameActive = function() {

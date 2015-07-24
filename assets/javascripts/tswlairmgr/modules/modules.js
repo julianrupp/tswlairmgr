@@ -172,7 +172,7 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 		.click(function() {
 			console.log("<tswlairmgr.modules>: localization <"+id+"> clicked");
 			
-			self.setLocalizationById(id);
+			self.setInterfaceAndDataLocalizationById(id);
 		});
 		
 		if(isActive)

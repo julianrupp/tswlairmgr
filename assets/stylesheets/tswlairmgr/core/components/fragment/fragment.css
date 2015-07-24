@@ -13,7 +13,6 @@
 	height: 32px;
 	padding: 2px 2px;
 	border-radius: 5px;
-	margin: 1px;
 	background-size: 100%;
 	display: inline-block;
 	border-width: 2px;
@@ -88,7 +87,7 @@
 .item.lairfragment .icon.n { background-position: top center; }
 .item.lairfragment .icon.ne { background-position: top right; }
 .item.lairfragment .icon.w { background-position: center left; }
-.item.lairfragment .icon.o { background-position: center center; }
+.item.lairfragment .icon.c { background-position: center center; }
 .item.lairfragment .icon.e { background-position: center right; }
 .item.lairfragment .icon.sw { background-position: bottom left; }
 .item.lairfragment .icon.s { background-position: bottom center; }

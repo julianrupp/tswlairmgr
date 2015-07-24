@@ -2,10 +2,11 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.components = tswlairmgr.core.components || {};
 
-tswlairmgr.core.components.FragmentHTMLView = function FragmentHTMLView(modelInstance, node) {
+tswlairmgr.core.components.FragmentHTMLView = function FragmentHTMLView(modelInstance, node, isSmall) {
 	this._model = modelInstance;
 	
 	this._node = node;
+	this._small = (isSmall) ? true : false;
 	
 	var self = this;
 	this._model.observables.nameChanged.registerCallback(function(origin, context) {
@@ -31,12 +32,15 @@ tswlairmgr.core.components.FragmentHTMLView = function FragmentHTMLView(modelIns
 		
 		$(fragment)
 			.addClass(this._model.getFragmentRarityCode())
-			.addClass(this._model.getFragmentTypeCode());
+			.addClass(this._model.getFragmentTypeCode())
+			.attr("title", this._model.getFragmentName());
 		$(".icon", $(fragment))
 			.addClass(this._model.getBossId())
 			.addClass(this._model.getFragmentSetOrientationCode());
 		$(".name", $(fragment))
 			.text(this._model.getFragmentName());
+		
+		if(this._small) { $(fragment).addClass("small"); }
 		
 		$(node).append(fragment);
 	};
