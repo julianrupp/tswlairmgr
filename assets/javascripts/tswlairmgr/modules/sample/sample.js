@@ -71,7 +71,7 @@ tswlairmgr.modules.sample = new function() {
 			.css("display", "inline-block");
 		this._demoFragmentControllerInstance1 = new tswlairmgr.core.components.FragmentHTML(
 			this._el.demoFragment1,
-			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getNFragment()
+			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment()
 		);
 		this._el.demoFragmentContainer.append(this._el.demoFragment1);
 		

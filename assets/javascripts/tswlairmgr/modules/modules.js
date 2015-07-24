@@ -181,6 +181,8 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 		}
 		
 		$(".localizationImage", button)
+			.attr("title", meta.localName)
+			.attr("alt", meta.localName)
 			.attr("src", "assets/images/localization/"+id+".png");
 		
 		$(menu).append(button);
