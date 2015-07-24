@@ -166,7 +166,7 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 		
 		var button = $(
 			'<div class="localizationContainer">' +
-			'	<img class="localizationImage" />' +
+			'	<div class="localizationImage" />' +
 			'</div>'
 		)
 		.click(function() {
@@ -181,9 +181,9 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 		}
 		
 		$(".localizationImage", button)
+			.addClass(id)
 			.attr("title", meta.localName)
-			.attr("alt", meta.localName)
-			.attr("src", "assets/images/localization/"+id+".png");
+			.attr("alt", meta.localName);
 		
 		$(menu).append(button);
 	});

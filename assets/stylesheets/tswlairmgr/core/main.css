@@ -70,6 +70,21 @@
 #topbar #localizationMenu .localizationContainer .localizationImage {
 	display: inline-block;
 	margin: 2px;
+	
+	width: 16px;
+	height: 11px;
+}
+
+#topbar #localizationMenu .localizationContainer .localizationImage.enUS {
+	background-image: url(../../../images/localization/enUS.png);
+}
+
+#topbar #localizationMenu .localizationContainer .localizationImage.deDE {
+	background-image: url(../../../images/localization/deDE.png);
+}
+
+#topbar #localizationMenu .localizationContainer .localizationImage.frFR {
+	background-image: url(../../../images/localization/frFR.png);
 }
 
 /* -------------------- */
