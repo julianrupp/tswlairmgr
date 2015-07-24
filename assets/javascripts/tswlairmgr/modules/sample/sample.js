@@ -212,23 +212,6 @@ tswlairmgr.modules.sample = new function() {
 		});
 	};
 	
-	this._createLocalizationSwitchButton = function(borderColorHex, backgroundColorHex, meta, callback) {
-		var self = this;
-		
-		var buttonNode = $(
-			'<div class="button" style="display: inline-block; border: 1px solid '+borderColorHex+'; margin: 2px; background-color: '+backgroundColorHex+'; cursor: pointer;">' +
-			'	<div class="buttonContent" style="padding: 2px;">' +
-			'		'+meta.localName+' (<i>'+meta.globalName+'</i>)' +
-			'	</div>' +
-			'</div>'
-		)
-		.click(function(){
-			callback.call();
-		});
-		
-		return buttonNode;
-	}
-	
 	this._createInterfaceLocalizationSwitchButton = function(id) {
 		return this._createLocalizationSwitchButton(
 			'#80c080', // Border
@@ -276,6 +259,23 @@ tswlairmgr.modules.sample = new function() {
 			}
 		);
 	};
+	
+	this._createLocalizationSwitchButton = function(borderColorHex, backgroundColorHex, meta, callback) {
+		var self = this;
+		
+		var buttonNode = $(
+			'<div class="button" style="display: inline-block; border: 1px solid '+borderColorHex+'; border-radius: 4px; margin: 2px; background-color: '+backgroundColorHex+'; cursor: pointer;">' +
+			'	<div class="buttonContent" style="padding: 3px 6px 3px 6px;">' +
+			'		'+meta.localName+' (<i>'+meta.globalName+'</i>)' +
+			'	</div>' +
+			'</div>'
+		)
+		.click(function(){
+			callback.call();
+		});
+		
+		return buttonNode;
+	}
 	
 	this.becameActive = function() {
 		console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
