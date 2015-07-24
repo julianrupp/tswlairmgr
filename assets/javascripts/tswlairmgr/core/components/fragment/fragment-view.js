@@ -38,7 +38,7 @@ tswlairmgr.core.components.FragmentHTMLView = function FragmentHTMLView(modelIns
 			.addClass(this._model.getBossId())
 			.addClass(this._model.getFragmentSetOrientationCode());
 		$(".name", $(fragment))
-			.text(this._model.getFragmentName());
+			.text(this._model.getFragmentCode());
 		
 		if(this._small) { $(fragment).addClass("small"); }
 		

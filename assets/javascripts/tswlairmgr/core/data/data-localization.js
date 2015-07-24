@@ -116,6 +116,16 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		});
 	});
 	
+	$.each(this.struct.itemNamePatterns, function(patternKey, currentPattern) {
+		var t = localization.data.itemNamePatterns[patternKey];
+		if(!t) {
+			console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+				"itemNamePatterns["+patternKey+"]");
+			t = "[Missing Translation]";
+		}
+		currentPattern.setPattern(t);
+	});
+	
 	$.each(this.struct.regions, function(regionId, currentRegion) {
 		var t = localization.data.regions[regionId].name;
 		if(!t) {

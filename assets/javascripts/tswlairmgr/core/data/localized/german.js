@@ -54,6 +54,12 @@ tswlairmgr.core.data.addLocalizationData("Deutsch", "German", "deDE", {
 			e: "E"
 		}
 	},
+	itemNamePatterns: {
+		fragmentLair: "Beschwörungsritualfragment: {{0}}",
+		fragmentRegional: "Säuberungsritualfragment: {{0}}",
+		summonLair: "Beschwörungsritual: {{0}}",
+		summonRegional: "Säuberungsritual: {{0}}"
+	},
 	regions: {
 		sol: {
 			name: "Solomon Island",
@@ -178,7 +184,7 @@ tswlairmgr.core.data.addLocalizationData("Deutsch", "German", "deDE", {
 			}
 		},
 		tra: {
-			name: "Transylvanien",
+			name: "Transsylvanien",
 			regionalName: "Aspekt des Großgeflügelten",
 			zones: {
 				bf: {

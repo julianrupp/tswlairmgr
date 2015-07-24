@@ -277,12 +277,25 @@ tswlairmgr.modules.sample = new function() {
 		return buttonNode;
 	}
 	
+	this._appBackground = {
+		savedSnapshot: null,
+		module: "#404040 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAA+SURBVDjLY/j//z8DJZgyzQwMDZQawDTgLmAcdcEgcMHApwOWAXcBG4gQAJvEwMALpbmhNBeU5kCmYTbDaABkFrFGcnxtxwAAAABJRU5ErkJggg==) repeat center"
+	};
+	
 	this.becameActive = function() {
 		console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
+		
+		// Save snapshot
+		this._appBackground.savedSnapshot = $("body").css("background");
+		// Set
+		$("body").css("background", this._appBackground.module);
 	};
 	
 	this.becameInactive = function() {
 		console.log("<tswlairmgr.modules.sample>: got notified that module became inactive.");
+		
+		// Restore snapshot
+		$("#webapp").css("background", this._appBackground.savedSnapshot);
 	};
 	
 	tswlairmgr.modules.registerModule(this);

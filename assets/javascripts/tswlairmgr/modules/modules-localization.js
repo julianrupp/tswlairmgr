@@ -171,7 +171,7 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 		
 		this._sortedLocalizations.push(id);
 		
-		this._addExternalLocalization(localName, globalName, id);
+		tswlairmgr.modules._addExternalLocalization(localName, globalName, id);
 	};
 	
 	this.getLocalizationId = function() {

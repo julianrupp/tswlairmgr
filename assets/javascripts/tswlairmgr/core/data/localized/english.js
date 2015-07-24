@@ -54,6 +54,12 @@ tswlairmgr.core.data.addLocalizationData("English", "English", "enUS", {
 			e: "E"
 		}
 	},
+	itemNamePatterns: {
+		fragmentLair: "Summoning Ritual Fragment: {{0}}",
+		fragmentRegional: "Cleansing Ritual Fragment: {{0}}",
+		summonLair: "Summoning Ritual: {{0}}",
+		summonRegional: "Cleansing Ritual: {{0}}"
+	},
 	regions: {
 		sol: {
 			name: "Solomon Island",

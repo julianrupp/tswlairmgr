@@ -69,6 +69,16 @@ tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Phoenician>: objects created");
 };
 
+tswlairmgr.core.data._bootstrap_itemnamepatterns = function()
+{
+	this.struct.inpFragLair = new tswlairmgr.core.data.NamePattern();
+	this.struct.inpFragRegional = new tswlairmgr.core.data.NamePattern();
+	this.struct.inpSummonLair = new tswlairmgr.core.data.NamePattern();
+	this.struct.inpSummonRegional = new tswlairmgr.core.data.NamePattern();
+	
+	console.log("<tswlairmgr.core.data-structure>: bootstrap: itemNamePatterns: objects created");
+};
+
 tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
 {
 	/* Bosses */
@@ -835,6 +845,11 @@ tswlairmgr.core.data._bootstrap_region_tra = function()
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: objects created");
 };
 
+tswlairmgr.core.data.getStruct = function()
+{
+	return this.struct;
+};
+
 tswlairmgr.core.data._bootstrap = function()
 {
 	console.log("<tswlairmgr.core.data-structure>: bootstrap: starting...");
@@ -844,6 +859,8 @@ tswlairmgr.core.data._bootstrap = function()
 	this._bootstrap_alphabet_greek();
 	this._bootstrap_alphabet_phoenician();
 	
+	this._bootstrap_itemnamepatterns();
+	
 	this._bootstrap_region_sol();
 	this._bootstrap_region_egy();
 	this._bootstrap_region_tra();
@@ -852,6 +869,12 @@ tswlairmgr.core.data._bootstrap = function()
 		alphabets: {
 			greek: this.struct.alphabetGreek,
 			phoenician: this.struct.alphabetPhoenician
+		},
+		itemNamePatterns: {
+			fragmentLair: this.struct.inpFragLair,
+			fragmentRegional: this.struct.inpFragRegional,
+			summonLair: this.struct.inpSummonLair,
+			summonRegional: this.struct.inpSummonRegional
 		},
 		regions: {
 			sol: {

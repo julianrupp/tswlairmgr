@@ -30,9 +30,38 @@ tswlairmgr.core.data.AlphabetCharacter = function AlphabetCharacter() {
 	};
 };
 
+tswlairmgr.core.data.NamePattern = function NamePattern() {
+	this._pattern = undefined;
+	
+	this.observables = {
+		changed: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
+	this.setPattern = function(pattern) {
+		var previous = this._pattern;
+		
+		this._pattern = pattern;
+		
+		this.observables.changed.notify(
+			{
+				previousPattern: previous
+			}
+		);
+	};
+	
+	this.renderWithContext = function(context) {
+		return Mustache.render(this._pattern, context);
+	};
+	
+	this.toString = function() {
+		return "[NamePattern(pattern:<"+this._pattern+">)]";
+	};
+};
+
 tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	this._character = character;
 	this._number = number;
+	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpFragLair;
 	
 	this.observables = {
 		nameChanged: new tswlairmgr.core.helpers.Observable(this)
@@ -40,6 +69,9 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	
 	var self = this;
 	this._character.observables.nameChanged.registerCallback(function(origin, context) {
+		self.observables.nameChanged.notify(context);
+	});
+	this._fullNamePattern.observables.changed.registerCallback(function(origin, context) {
 		self.observables.nameChanged.notify(context);
 	});
 	
@@ -61,6 +93,14 @@ tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	};
 	
 	this.getName = function() {
+		return this._fullNamePattern.renderWithContext(
+			[
+				this.getCode()
+			]
+		);
+	};
+	
+	this.getCode = function() {
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	
@@ -309,6 +349,7 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(character, number, droppedFromArray) {
 	this._character = character;
 	this._number = number;
+	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpFragRegional;
 	this._droppedFrom = droppedFromArray;
 	
 	this.observables = {
@@ -317,6 +358,9 @@ tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(charac
 	
 	var self = this;
 	this._character.observables.nameChanged.registerCallback(function(origin, context) {
+		self.observables.nameChanged.notify(context);
+	});
+	this._fullNamePattern.observables.changed.registerCallback(function(origin, context) {
 		self.observables.nameChanged.notify(context);
 	});
 	
@@ -350,6 +394,14 @@ tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(charac
 	};
 	
 	this.getName = function() {
+		return this._fullNamePattern.renderWithContext(
+			[
+				this.getCode()
+			]
+		);
+	};
+	
+	this.getCode = function() {
 		return this._character.getName() + " " + this._formattedNumberString();
 	};
 	

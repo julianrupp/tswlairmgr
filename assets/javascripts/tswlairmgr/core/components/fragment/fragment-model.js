@@ -19,6 +19,10 @@ tswlairmgr.core.components.FragmentHTMLModel = function FragmentHTMLModel(fragme
 		return this._fragment.getName();
 	};
 	
+	this.getFragmentCode = function() {
+		return this._fragment.getCode();
+	};
+	
 	this.isLairFragment = function() {
 		return (this._fragment instanceof tswlairmgr.core.data.BossFragment);
 	};

@@ -54,6 +54,12 @@ tswlairmgr.core.data.addLocalizationData("Français", "French", "frFR", {
 			e: "E"
 		}
 	},
+	itemNamePatterns: {
+		fragmentLair: "Fragment de rituel d'évocation : {{0}}",
+		fragmentRegional: "Fragment de rituel purificateur : {{0}}",
+		summonLair: "Rituel d'évocation : {{0}}",
+		summonRegional: "Rituel purificateur : {{0}}"
+	},
 	regions: {
 		sol: {
 			name: "Solomon Island",
@@ -128,7 +134,7 @@ tswlairmgr.core.data.addLocalizationData("Français", "French", "frFR", {
 			}
 		},
 		egy: {
-			name: "Egypte",
+			name: "Égypte",
 			regionalName: "Aspect aux Nombreux Membres",
 			zones: {
 				sd: {
