@@ -66,9 +66,11 @@ Credits
 	
 	Graphics settings: 2560x1440, DX11, FXAA-HQ, no motion blur, full tesselation, high quality SSAO, Brightness 1.0, Contrast 1.0, Gamma 1.0, all advanced sliders on 4.
 
--	Lair data (Mission names, Fragment names, Boss names, Fragment positions) has been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
+-	Lair data (mission names, fragment names, boss names) in its English localization and fragment positions have been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
--	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* of the [*In Vino Veritas*](http://invinoveritas.corplaunch.com) cabal.
+-	Lair data in its German localization has been collected in-game by myself.
+
+-	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* from my cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com).
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
 

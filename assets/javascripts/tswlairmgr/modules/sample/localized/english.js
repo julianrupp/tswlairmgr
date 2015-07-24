@@ -17,7 +17,7 @@ tswlairmgr.modules.sample._localization.addLocalizationData("English", "English"
 				setModuleLocalization: "Set module localization for this module"
 			},
 			data: {
-				setDataLocalization: "Set data localization for this module"
+				setDataLocalization: "Set data localization"
 			}
 		}
 	}
