@@ -12,13 +12,13 @@ tswlairmgr.modules.registerModule = function(module)
 	$.each(this._registeredModules, function(index, currentModule) {
 		if(module.id === currentModule.id)
 		{
-			console.log("<tswlairmgr.modules>: registerModule: error: <"+module.id+"> already registered!");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: registerModule: error: <"+module.id+"> already registered!");
 			found = true;
 		}
 	});
 	if(found) { return false; }
 	
-	console.log("<tswlairmgr.modules>: registerModule: registering <"+module.id+">...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: registerModule: registering <"+module.id+">...");
 	
 	if(this._registeredModules.length < 1)
 	{
@@ -30,7 +30,7 @@ tswlairmgr.modules.registerModule = function(module)
 
 tswlairmgr.modules._loadRegisteredModules = function ()
 {
-	console.log("<tswlairmgr.modules>: loadRegisteredModules: DOM ready, loading registered modules...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: loadRegisteredModules: DOM ready, loading registered modules...");
 	
 	var self = this;
 	$.each(this._registeredModules, function(index, module){
@@ -39,7 +39,7 @@ tswlairmgr.modules._loadRegisteredModules = function ()
 	
 	this._redrawTabs();
 	
-	console.log("<tswlairmgr.modules>: loadRegisteredModules: Setting default module active...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: loadRegisteredModules: Setting default module active...");
 	this.setActiveModuleById(
 		this.getDefaultModuleId()
 	);
@@ -47,7 +47,7 @@ tswlairmgr.modules._loadRegisteredModules = function ()
 
 tswlairmgr.modules._loadModule = function(module)
 {
-	console.log("<tswlairmgr.modules>: loadModule: loading <"+module.id+">...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: loadModule: loading <"+module.id+">...");
 	
 	var moduleContainerId = "module-"+module.id;
 	
@@ -67,7 +67,7 @@ tswlairmgr.modules._loadModule = function(module)
 		)
 		.data("moduleId", module.id)
 		.click(function(){
-			console.log("<tswlairmgr.modules>: tab <"+module.id+"> clicked");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: tab <"+module.id+"> clicked");
 			if(self.getActiveModuleId() !== module.id)
 			{
 				self.setActiveModuleById(module.id);
@@ -85,14 +85,14 @@ tswlairmgr.modules._loadModule = function(module)
 	
 	module.initWithRootNode(contentNode);
 	
-	console.log("<tswlairmgr.modules>: loadModule: finished loading <"+module.id+">");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: loadModule: finished loading <"+module.id+">");
 };
 
 tswlairmgr.modules.getModule = function(id)
 {
 	if(!(id in this._loadedModules))
 	{
-		console.log("<tswlairmgr.modules>: getModule: error: <"+id+"> not found!");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: getModule: error: <"+id+"> not found!");
 		return false;
 	}
 	return this._loadedModules[id].instance;
@@ -112,11 +112,11 @@ tswlairmgr.modules.setActiveModuleById = function(id)
 {
 	if(!(id in this._loadedModules))
 	{
-		console.log("<tswlairmgr.modules>: setActiveModuleById: error: <"+id+"> not found!");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: setActiveModuleById: error: <"+id+"> not found!");
 		return false;
 	}
 	
-	console.log("<tswlairmgr.modules>: setActiveModuleById: <"+id+">...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: setActiveModuleById: <"+id+">...");
 	
 	var previous = this.getActiveModuleId();
 	
@@ -170,7 +170,7 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 			'</div>'
 		)
 		.click(function() {
-			console.log("<tswlairmgr.modules>: localization <"+id+"> clicked");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: localization <"+id+"> clicked");
 			
 			self.setInterfaceAndDataLocalizationById(id);
 		});
@@ -191,7 +191,7 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 
 tswlairmgr.modules._redrawTabs = function()
 {
-	console.log("<tswlairmgr.modules>: redrawTabs called");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: redrawTabs called");
 	
 	var self = this;
 	$(".tab", $("#moduleTabs", $("#topbar"))).each(function(index) {

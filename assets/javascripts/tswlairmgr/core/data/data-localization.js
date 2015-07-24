@@ -17,11 +17,11 @@ tswlairmgr.core.data.addLocalizationData = function(localName, globalName, id, d
 {
 	if(id in this._localizations)
 	{
-		console.log("<tswlairmgr.core.data-localization>: addLocalizationData: error: <"+id+"> already registered!");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: addLocalizationData: error: <"+id+"> already registered!");
 		return(false);
 	}
 	
-	console.log("<tswlairmgr.core.data-localization>: addLocalizationData: adding <"+id+">");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: addLocalizationData: adding <"+id+">");
 	
 	if(this._sortedLocalizations.length < 1)
 	{
@@ -68,9 +68,9 @@ tswlairmgr.core.data.getDefaultLocalizationId = function()
 
 tswlairmgr.core.data.setLocalizationById = function(newId)
 {
-	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: starting");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: starting");
 	
-	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: trying <"+newId+">");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: trying <"+newId+">");
 	
 	var previous = this.getLocalizationId();
 	
@@ -78,24 +78,24 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 	
 	if(newId in this._localizations)
 	{
-		console.log("<tswlairmgr.data-localization>: data has localization for <"+newId+">.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.data-localization>: data has localization for <"+newId+">.");
 		
 		id = newId;
 	}
 	else
 	{
-		console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for <"+newId+">!");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for <"+newId+">!");
 		
 		var defaultInterfaceLocalizationId = tswlairmgr.modules.getDefaultLocalizationId();
 		if(defaultInterfaceLocalizationId in this._localizations)
 		{
-			console.log("<tswlairmgr.data-localization>: data has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.data-localization>: data has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
 			
 			id = defaultInterfaceLocalizationId;
 		}
 		else
 		{
-			console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.data-localization>: warning: data does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
 			
 			var defaultDataLocalizationId = this.getDefaultLocalizationId();
 			self.setLocalizationById(defaultDataLocalizationId);
@@ -108,7 +108,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		$.each(currentAlphabet, function(characterId, currentCharacter) {
 			var t = localization.data.alphabets[alphabetId][characterId];
 			if(!t) {
-				console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 					"alphabets["+alphabetId+"]["+characterId+"]");
 				t = "[Missing Translation]";
 			}
@@ -119,7 +119,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 	$.each(this.struct.itemNamePatterns, function(patternKey, currentPattern) {
 		var t = localization.data.itemNamePatterns[patternKey];
 		if(!t) {
-			console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 				"itemNamePatterns["+patternKey+"]");
 			t = "[Missing Translation]";
 		}
@@ -129,7 +129,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 	$.each(this.struct.regions, function(regionId, currentRegion) {
 		var t = localization.data.regions[regionId].name;
 		if(!t) {
-			console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 				"regions["+regionId+"].name");
 			t = "[Missing Translation]";
 		}
@@ -137,7 +137,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		
 		var tr = localization.data.regions[regionId].regionalName;
 		if(!tr) {
-			console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 				"regions["+regionId+"].regionalName");
 			tr = "[Missing Translation]";
 		}
@@ -146,7 +146,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		$.each(currentRegion.zones, function(zoneId, currentZone) {
 			var t = localization.data.regions[regionId].zones[zoneId].name;
 			if(!t) {
-				console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 					"regions["+regionId+"].zones["+zoneId+"].name");
 				t = "[Missing Translation]";
 			}
@@ -155,7 +155,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 			$.each(currentZone.lairs, function(lairIndex, currentLair) {
 				var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].name;
 				if(!t) {
-					console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+					if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 						"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].name");
 					t = "[Missing Translation]";
 				}
@@ -164,7 +164,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 				$.each(currentLair.bosses, function(bossIndex, currentBoss) {
 					var t = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].name;
 					if(!t) {
-						console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+						if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].name");
 						t = "[Missing Translation]";
 					}
@@ -172,7 +172,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 					
 					var tm = localization.data.regions[regionId].zones[zoneId].lairs[lairIndex].bosses[bossIndex].missionName;
 					if(!tm) {
-						console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
+						if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
 							"localization.data.regions["+regionId+"].zones["+zoneId+"].lairs["+lairIndex+"].bosses["+bossIndex+"].missionName");
 						tm = "[Missing Translation]";
 					}
@@ -193,7 +193,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		);
 	}
 	
-	console.log("<tswlairmgr.core.data-localization>: setLocalizationById: completed");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: completed");
 	
 	return true;
 };
@@ -214,7 +214,7 @@ tswlairmgr.core.data.executeWithDifferentLocalization = function(id, callback)
 
 tswlairmgr.core.data._init = function()
 {
-	console.log("<tswlairmgr.core.data-localization>: init: loading default localization...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: init: loading default localization...");
 	
 	this.setLocalizationById(this.getDefaultLocalizationId());
 };

@@ -11,7 +11,7 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 	
 	var self = this;
 	this._dataInstance.observables.changed.registerCallback(function(origin, context) {
-		console.log("<tswlairmgr.core.components.ItemHTMLModel>: got notified that data changed.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.components.ItemHTMLModel>: got notified that data changed.");
 		self.observables.changed.notify(context);
 	});
 	

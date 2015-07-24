@@ -44,7 +44,7 @@ tswlairmgr.core.data._bootstrap_alphabet_greek = function()
 	
 	this.struct.alphabetGreek = map;
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Greek>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Greek>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
@@ -66,7 +66,7 @@ tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
 	
 	this.struct.alphabetPhoenician = map;
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Phoenician>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Alphabet <Phoenician>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_itemnamepatterns = function()
@@ -76,7 +76,7 @@ tswlairmgr.core.data._bootstrap_itemnamepatterns = function()
 	this.struct.inpSummonLair = new tswlairmgr.core.data.NamePattern();
 	this.struct.inpSummonRegional = new tswlairmgr.core.data.NamePattern();
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: itemNamePatterns: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: itemNamePatterns: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
@@ -131,7 +131,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
 		this.struct.solKMLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Kingsmouth>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Kingsmouth>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
@@ -186,7 +186,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
 		this.struct.solSCLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Savage Coast>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Savage Coast>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
@@ -241,7 +241,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
 		this.struct.solBMLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Blue Mountain>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Blue Mountain>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol_regional = function()
@@ -329,12 +329,12 @@ tswlairmgr.core.data._bootstrap_region_sol_regional = function()
 		})
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Solomon Island>: object created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Solomon Island>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_sol = function()
 {
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Solomon Island>: building up...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Solomon Island>: building up...");
 	
 	this._bootstrap_region_sol_zone_km();
 	this._bootstrap_region_sol_zone_sc();
@@ -351,7 +351,7 @@ tswlairmgr.core.data._bootstrap_region_sol = function()
 		this.struct.solRegional
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Solomon Island>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Solomon Island>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
@@ -406,7 +406,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
 		this.struct.egySDLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Scorched Desert>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Scorched Desert>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
@@ -461,7 +461,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
 		this.struct.egyCSLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <City of the Sun God>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <City of the Sun God>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy_regional = function()
@@ -543,12 +543,12 @@ tswlairmgr.core.data._bootstrap_region_egy_regional = function()
 		})
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Egypt>: object created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Egypt>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_egy = function()
 {
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Egypt>: building up...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Egypt>: building up...");
 	
 	this._bootstrap_region_egy_zone_sd();
 	this._bootstrap_region_egy_zone_cs();
@@ -563,7 +563,7 @@ tswlairmgr.core.data._bootstrap_region_egy = function()
 		this.struct.egyRegional
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Egypt>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Egypt>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_bf = function()
@@ -618,7 +618,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_bf = function()
 		this.struct.traBFLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Besieged Farmlands>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Besieged Farmlands>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_sf = function()
@@ -673,7 +673,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_sf = function()
 		this.struct.traSFLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Shadowy Forest>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Shadowy Forest>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
@@ -728,7 +728,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
 		this.struct.traCFLair
 	]);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Carpathian Fangs>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Zone <Carpathian Fangs>: objects created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra_regional = function()
@@ -820,12 +820,12 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 		})
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Transylvania>: object created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Regional <Transylvania>: object created");
 };
 
 tswlairmgr.core.data._bootstrap_region_tra = function()
 {
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: building up...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: building up...");
 	
 	this._bootstrap_region_tra_zone_bf();
 	this._bootstrap_region_tra_zone_sf();
@@ -842,7 +842,7 @@ tswlairmgr.core.data._bootstrap_region_tra = function()
 		this.struct.traRegional
 	);
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: objects created");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: objects created");
 };
 
 tswlairmgr.core.data.getStruct = function()
@@ -852,7 +852,7 @@ tswlairmgr.core.data.getStruct = function()
 
 tswlairmgr.core.data._bootstrap = function()
 {
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: starting...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: starting...");
 	
 	this.struct = {};
 	
@@ -1078,7 +1078,7 @@ tswlairmgr.core.data._bootstrap = function()
 		}
 	];
 	
-	console.log("<tswlairmgr.core.data-structure>: bootstrap: completed");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: completed");
 };
 
 tswlairmgr.core.data._bootstrap();

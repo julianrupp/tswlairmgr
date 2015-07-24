@@ -2,11 +2,6 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.helpers = tswlairmgr.core.helpers || {};
 
-/* TODO: Move */
-tswlairmgr.core.config = {
-	debug: true
-};
-
 tswlairmgr.core.helpers.Observable = function Observable(origin) {
 	this._origin = origin;
 	this._observers = [];

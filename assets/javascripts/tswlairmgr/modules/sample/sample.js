@@ -6,7 +6,7 @@ tswlairmgr.modules.sample = new function() {
 	this._localization = new tswlairmgr.modules.ModuleLocalization();
 	var self = this;
 	this._localization.observables.moduleLocalizationChanged.registerCallback(function(origin, context) {
-		console.log("<tswlairmgr.modules.sample>: got notified that localization has changed.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that localization has changed.");
 		self.redraw();
 	});
 	
@@ -62,7 +62,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this.initWithRootNode = function(contentNode) {
-		console.log("<tswlairmgr.modules.sample>: initWithRootNode: initializing...");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: initWithRootNode: initializing...");
 		
 		this._el.self = contentNode;
 		
@@ -72,7 +72,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this.init = function() {
-		console.log("<tswlairmgr.modules.sample>: init called");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: init called");
 		
 		this._localization.init();
 		
@@ -220,7 +220,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this.redraw = function() {
-		console.log("<tswlairmgr.modules.sample>: redraw called");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: redraw called");
 		
 		// Sample Text
 		$(this._el.sampleText).empty();
@@ -294,7 +294,7 @@ tswlairmgr.modules.sample = new function() {
 			'#00c000', // Background
 			tswlairmgr.modules.getAllLocalizationsMeta()[id],
 			function() {
-				console.log("<tswlairmgr.modules.sample>: interface <"+id+"> localization button clicked");
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: interface <"+id+"> localization button clicked");
 
 				if(tswlairmgr.modules.getLocalizationId() !== id)
 				{
@@ -310,7 +310,7 @@ tswlairmgr.modules.sample = new function() {
 			'#00c0c0', // Background
 			this._localization._localizations[id],
 			function() {
-				console.log("<tswlairmgr.modules.sample>: module <"+id+"> localization button clicked");
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: module <"+id+"> localization button clicked");
 
 				if(self._localization.getLocalizationId() !== id)
 				{
@@ -326,7 +326,7 @@ tswlairmgr.modules.sample = new function() {
 			'#c00000', // Background
 			tswlairmgr.core.data.getAllLocalizationsMeta()[id],
 			function() {
-				console.log("<tswlairmgr.modules.sample>: data <"+id+"> localization button clicked");
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: data <"+id+"> localization button clicked");
 
 				if(tswlairmgr.core.data.getLocalizationId() !== id)
 				{
@@ -359,7 +359,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this.becameActive = function() {
-		console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
 		
 		// Save snapshot
 		this._appBackground.savedSnapshot = $("body").css("background");
@@ -368,7 +368,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this.becameInactive = function() {
-		console.log("<tswlairmgr.modules.sample>: got notified that module became inactive.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became inactive.");
 		
 		// Restore snapshot
 		$("#webapp").css("background", this._appBackground.savedSnapshot);

@@ -10,12 +10,12 @@ tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, n
 	
 	var self = this;
 	this._model.observables.changed.registerCallback(function(origin, context) {
-		console.log("<tswlairmgr.core.components.ItemHTMLView>: got notified that data changed.");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.components.ItemHTMLView>: got notified that data changed.");
 		self.redraw();
 	});
 	
 	this.redraw = function() {
-		console.log("<tswlairmgr.core.components.ItemHTMLView>: redraw called");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.components.ItemHTMLView>: redraw called");
 		var node = $(this._node);
 		
 		$(node).empty();
