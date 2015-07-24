@@ -2,11 +2,11 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.components = tswlairmgr.core.components || {};
 
-tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, node, isSmall) {
+tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, node, options) {
 	this._model = modelInstance;
 	
 	this._node = node;
-	this._small = (isSmall) ? true : false;
+	this._options = options;
 	
 	var self = this;
 	this._model.observables.changed.registerCallback(function(origin, context) {
@@ -38,7 +38,7 @@ tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, n
 		$(".name", $(item))
 			.text(this._model.getLabel());
 		
-		if(this._small) { $(item).addClass("small"); }
+		if(this._options.isSmall) { $(item).addClass("small"); }
 		
 		$(node).append(item);
 	};

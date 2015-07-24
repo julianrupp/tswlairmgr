@@ -128,7 +128,9 @@ tswlairmgr.modules.sample = new function() {
 				new tswlairmgr.core.components.ItemHTML(
 					compound.dataInstance,
 					node,
-					compound.isSmall
+					{
+						isSmall: compound.isSmall
+					}
 				)
 			);
 			
@@ -181,7 +183,9 @@ tswlairmgr.modules.sample = new function() {
 				new tswlairmgr.core.components.ItemHTML(
 					compound.dataInstance,
 					node,
-					compound.isSmall
+					{
+						isSmall: compound.isSmall
+					}
 				)
 			);
 			
