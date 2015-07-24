@@ -1,0 +1,47 @@
+var tswlairmgr = tswlairmgr || {};
+tswlairmgr.core = tswlairmgr.core || {};
+tswlairmgr.core.components = tswlairmgr.core.components || {};
+
+tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, node, isSmall) {
+	this._model = modelInstance;
+	
+	this._node = node;
+	this._small = (isSmall) ? true : false;
+	
+	var self = this;
+	this._model.observables.changed.registerCallback(function(origin, context) {
+		console.log("<tswlairmgr.core.components.ItemHTMLView>: got notified that data changed.");
+		self.redraw();
+	});
+	
+	this.redraw = function() {
+		console.log("<tswlairmgr.core.components.ItemHTMLView>: redraw called");
+		var node = $(this._node);
+		
+		$(node).empty();
+		
+		var item = $(
+			'<div class="item">' +
+			'	<div class="icon">' +
+			'		<div class="name">' +
+			'			' +
+			'		</div>' +
+			'	</div>' +
+			'</div>'
+		);
+		
+		$(item)
+			.addClass(this._model.getItemCssClasses().join(" "))
+			.attr("title", this._model.getName());
+		$(".icon", $(item))
+			.addClass(this._model.getIconCssClasses().join(" "));
+		$(".name", $(item))
+			.text(this._model.getLabel());
+		
+		if(this._small) { $(item).addClass("small"); }
+		
+		$(node).append(item);
+	};
+	
+	this.redraw();
+};

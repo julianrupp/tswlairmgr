@@ -13,13 +13,16 @@ tswlairmgr.modules.sample = new function() {
 	this._el = {
 		self: null,
 		sampleText: null,
-		demoFragments: {
+		demoItems: {
 			rootNode: null,
-			fragments: [
-				null,
-				null,
-				null
-			]
+			fragments: {
+				rootNode: null,
+				fragments: []
+			},
+			summons: {
+				rootNode: null,
+				summons: []
+			},
 		},
 		localizationSwitcher: {
 			rootNode: null,
@@ -35,11 +38,10 @@ tswlairmgr.modules.sample = new function() {
 		}
 	};
 	
-	this._demoFragmentControllers = [
-		null,
-		null,
-		null
-	];
+	this._demoItemControllers = {
+		fragments: [],
+		summons: []
+	};
 	
 	this._templates = {
 		sample:
@@ -81,46 +83,116 @@ tswlairmgr.modules.sample = new function() {
 			.css("margin-bottom", "15px");
 		this._el.self.append(this._el.sampleText);
 		
-		// Demo Fragments
+		// Demo Items
+		this._el.demoItems.rootNode = $("<div />");
 		
-		// Big lair fragment Omicron 01
-		this._el.demoFragments.rootNode = $("<div />")
+		// Fragments
+		this._el.demoItems.fragments.rootNode = $("<div />")
 			.css("margin-bottom", "15px");
 		
-		this._el.demoFragments.fragments[0] = $("<div />")
-			.css("display", "inline-block")
-			.css("border", "1px solid #00ff00")
-			.css("margin-right", "5px");
-		this._demoFragmentControllers[0] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data.struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
-			this._el.demoFragments.fragments[0]
-		);
-		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[0]);
+		var fragments = [
+			{
+				dataInstance:
+					// LF: Theta 07
+					tswlairmgr.core.data.struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
+				isSmall: false
+			},
+			{
+				dataInstance:
+					// RF: Alaph 04
+					tswlairmgr.core.data.struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
+				isSmall: false
+			},
+			{
+				dataInstance:
+					// LF: Omicron 01
+					tswlairmgr.core.data.struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
+				isSmall: true
+			},
+			{
+				dataInstance:
+					// RF: Lamadh 06
+					tswlairmgr.core.data.struct.regions.sol.regional.getFragmentSet().getNWWFragment(),
+				isSmall: true
+			}
+		];
 		
-		// Big regional fragment Aleph 04
-		this._el.demoFragments.fragments[1] = $("<div />")
-			.css("display", "inline-block")
-			.css("border", "1px solid #00ff00")
-			.css("margin-right", "5px");
-		this._demoFragmentControllers[1] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data.struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
-			this._el.demoFragments.fragments[1]
-		);
-		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[1]);
+		var self = this;
+		$.each(fragments, function(index, compound) {
+			var node = $("<div />")
+				.css("display", "inline-block")
+				.css("border", "1px solid #00ff00")
+				.css("margin-right", "5px");
+			
+			self._demoItemControllers.fragments.push(
+				new tswlairmgr.core.components.ItemHTML(
+					compound.dataInstance,
+					node,
+					compound.isSmall
+				)
+			);
+			
+			$(self._el.demoItems.fragments.rootNode).append(node);
+			
+			self._el.demoItems.fragments.fragments.push(node);
+		});
 		
-		// Small lair fragment Theta 07
-		this._el.demoFragments.fragments[2] = $("<div />")
-			.css("display", "inline-block")
-			.css("border", "1px solid #00ff00")
-			.css("margin-right", "5px");
-		this._demoFragmentControllers[2] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data.struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
-			this._el.demoFragments.fragments[2],
-			true // small
-		);
-		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[2]);
+		$(this._el.demoItems.rootNode).append(this._el.demoItems.fragments.rootNode);
 		
-		this._el.self.append(this._el.demoFragments.rootNode);
+		// Summons
+		this._el.demoItems.summons.rootNode = $("<div />")
+			.css("margin-bottom", "15px");
+		
+		var summons = [
+			{
+				dataInstance:
+					// LS: Head of Glamr
+					tswlairmgr.core.data.struct.regions.sol.zones.km.lairs[0].bosses[2].boss,
+				isSmall: false
+			},
+			{
+				dataInstance:
+					// RS: Egypt
+					tswlairmgr.core.data.struct.regions.egy.regional,
+				isSmall: false
+			},
+			{
+				dataInstance:
+					// LS: Duneback
+					tswlairmgr.core.data.struct.regions.egy.zones.cs.lairs[0].bosses[2].boss,
+				isSmall: true
+			},
+			{
+				dataInstance:
+					// RS: Transylvania
+					tswlairmgr.core.data.struct.regions.tra.regional,
+				isSmall: true
+			}
+		];
+		
+		var self = this;
+		$.each(summons, function(index, compound) {
+			var node = $("<div />")
+				.css("display", "inline-block")
+				.css("border", "1px solid #00ff00")
+				.css("margin-right", "5px");
+			
+			self._demoItemControllers.summons.push(
+				new tswlairmgr.core.components.ItemHTML(
+					compound.dataInstance,
+					node,
+					compound.isSmall
+				)
+			);
+			
+			$(self._el.demoItems.summons.rootNode).append(node);
+			
+			self._el.demoItems.summons.summons.push(node);
+		});
+		
+		$(this._el.demoItems.rootNode).append(this._el.demoItems.summons.rootNode);
+		
+		this._el.self.append(this._el.demoItems.rootNode);
 		
 		// Localization switcher
 		this._el.localizationSwitcher.rootNode = $("<div />");
