@@ -70,6 +70,8 @@ Credits
 
 -	Lair data in its German localization has been collected in-game by myself.
 
+-	Lair data in its French localization has been taken from [TSWRDB.pw](https://tswrdb.pw/live/1030002/).
+
 -	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* from my cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com).
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.

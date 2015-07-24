@@ -83,7 +83,26 @@ tswlairmgr.modules.setLocalizationById = function(id)
 
 tswlairmgr.modules._initLocalization = function()
 {
+	var self = this;
+	$.each(tswlairmgr.core.data.getAllLocalizationIds(), function(index, id){
+		var meta = tswlairmgr.core.data.getAllLocalizationsMeta()[id];
+		self._addExternalLocalization(meta.localName, meta.globalName, id);
+	});
+	
 	this.setInterfaceAndDataLocalizationById(this.getDefaultLocalizationId());
+};
+
+tswlairmgr.modules._addExternalLocalization = function(localName, globalName, id)
+{
+	if($.inArray(id, this._sortedModuleLocalizationIds) === -1)
+	{
+		this._sortedModuleLocalizationIds.push(id);
+		this._allModuleLocalizationsMeta[id] = {
+			localName: localName,
+			globalName: globalName,
+			id: id
+		};
+	}
 };
 
 tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
@@ -152,15 +171,7 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 		
 		this._sortedLocalizations.push(id);
 		
-		if($.inArray(id, tswlairmgr.modules._sortedModuleLocalizationIds) === -1)
-		{
-			tswlairmgr.modules._sortedModuleLocalizationIds.push(id);
-			tswlairmgr.modules._allModuleLocalizationsMeta[id] = {
-				localName: localName,
-				globalName: globalName,
-				id: id
-			};
-		}
+		this._addExternalLocalization(localName, globalName, id);
 	};
 	
 	this.getLocalizationId = function() {

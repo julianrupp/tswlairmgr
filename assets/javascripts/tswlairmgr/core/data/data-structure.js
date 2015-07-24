@@ -50,7 +50,7 @@ tswlairmgr.core.data._bootstrap_alphabet_greek = function()
 tswlairmgr.core.data._bootstrap_alphabet_phoenician = function()
 {
 	var characterIDs = [
-		"aleph", "beth", "gamal", "dalath",
+		"alaph", "beth", "gamal", "dalath",
 		"he", "waw", "zain", "heth",
 		"teth", "yudh", "kaph", "lamadh",
 		"mim", "nun", "semkath", /* "ayin", (unused so far) */
@@ -306,7 +306,7 @@ tswlairmgr.core.data._bootstrap_region_sol_regional = function()
 					this.struct.solKMLairBoss3
 				]
 			),
-			sse:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 7, [
+			sse:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 7, [
 					this.struct.solKMLairBoss2,
 					this.struct.solSCLairBoss1,
 					this.struct.solBMLairBoss2
@@ -733,7 +733,7 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 					this.struct.traCFLairBoss3
 				]
 			),
-			nne:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 4, [
+			nne:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 4, [
 					this.struct.traBFLairBoss2
 				]
 			),
@@ -741,7 +741,7 @@ tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 					this.struct.traBFLairBoss1
 				]
 			),
-			nww:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.aleph, 1, [
+			nww:  new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.alaph, 1, [
 					this.struct.traBFLairBoss1,
 					this.struct.traBFLairBoss2,
 					this.struct.traBFLairBoss3
@@ -848,7 +848,7 @@ tswlairmgr.core.data._bootstrap = function()
 	this._bootstrap_region_egy();
 	this._bootstrap_region_tra();
 	
-	this.struct.keyed = {
+	var keyed = {
 		alphabets: {
 			greek: this.struct.alphabetGreek,
 			phoenician: this.struct.alphabetPhoenician
@@ -1027,8 +1027,7 @@ tswlairmgr.core.data._bootstrap = function()
 		}
 	};
 	
-	this._struct = this.struct.keyed;
-	delete this.struct;
+	this.struct = keyed;
 	
 	this._sortedLairs = [
 		{

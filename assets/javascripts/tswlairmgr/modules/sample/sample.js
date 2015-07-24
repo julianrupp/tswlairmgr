@@ -92,7 +92,7 @@ tswlairmgr.modules.sample = new function() {
 			.css("border", "1px solid #00ff00")
 			.css("margin-right", "5px");
 		this._demoFragmentControllers[0] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data._struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
+			tswlairmgr.core.data.struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
 			this._el.demoFragments.fragments[0]
 		);
 		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[0]);
@@ -103,7 +103,7 @@ tswlairmgr.modules.sample = new function() {
 			.css("border", "1px solid #00ff00")
 			.css("margin-right", "5px");
 		this._demoFragmentControllers[1] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data._struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
+			tswlairmgr.core.data.struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
 			this._el.demoFragments.fragments[1]
 		);
 		this._el.demoFragments.rootNode.append(this._el.demoFragments.fragments[1]);
@@ -114,7 +114,7 @@ tswlairmgr.modules.sample = new function() {
 			.css("border", "1px solid #00ff00")
 			.css("margin-right", "5px");
 		this._demoFragmentControllers[2] = new tswlairmgr.core.components.FragmentHTML(
-			tswlairmgr.core.data._struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
+			tswlairmgr.core.data.struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
 			this._el.demoFragments.fragments[2],
 			true // small
 		);

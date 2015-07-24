@@ -29,7 +29,7 @@ tswlairmgr.core.data.addLocalizationData("English", "English", "enUS", {
 			omega: "Omega"
 		},
 		phoenician: {
-			aleph: "Aleph",
+			alaph: "Alaph",
 			beth: "Beth",
 			gamal: "Gamal",
 			dalath: "Dalath",

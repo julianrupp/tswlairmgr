@@ -104,7 +104,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 	
 	var localization = this._localizations[id];
 	
-	$.each(this._struct.alphabets, function(alphabetId, currentAlphabet) {
+	$.each(this.struct.alphabets, function(alphabetId, currentAlphabet) {
 		$.each(currentAlphabet, function(characterId, currentCharacter) {
 			var t = localization.data.alphabets[alphabetId][characterId];
 			if(!t) {
@@ -116,7 +116,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		});
 	});
 	
-	$.each(this._struct.regions, function(regionId, currentRegion) {
+	$.each(this.struct.regions, function(regionId, currentRegion) {
 		var t = localization.data.regions[regionId].name;
 		if(!t) {
 			console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
