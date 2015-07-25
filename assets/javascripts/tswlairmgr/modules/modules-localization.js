@@ -55,6 +55,10 @@ tswlairmgr.modules.setInterfaceAndDataLocalizationById = function(id)
 	
 	tswlairmgr.core.data.setLocalizationById(id);
 	
+	this._redrawTabs();
+	
+	tswlairmgr.core.persistentstate.updateActiveLocalizationId(id);
+	
 	return true;
 };
 
@@ -70,6 +74,9 @@ tswlairmgr.modules.setLocalizationById = function(id)
 	
 	var previous = this.getLocalizationId();
 	
+	var previousInterfaceAndDataLocalizationSetting = this._currentLocalizationId;
+	this._currentLocalizationId = id;
+	
 	this.observables.interfaceLocalizationChanged.notify(
 		{
 			previousLocalizationId: previous
@@ -77,6 +84,8 @@ tswlairmgr.modules.setLocalizationById = function(id)
 	);
 	
 	this._redrawTabs();
+	
+	this._currentLocalizationId = previousInterfaceAndDataLocalizationSetting;
 	
 	return true;
 };
@@ -117,30 +126,30 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 	
 	var self = this;
 	tswlairmgr.modules.observables.interfaceLocalizationChanged.registerCallback(function(origin, context) {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: callback for interfaceLocalizationChanged called");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] callback for interfaceLocalizationChanged called");
 		
 		var newLocalizationId = tswlairmgr.modules.getLocalizationId();
 		
 		if($.inArray(newLocalizationId, self._sortedLocalizations) !== -1)
 		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: module has localization for <"+newLocalizationId+">.");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] module has localization for <"+newLocalizationId+">.");
 			
 			self.setLocalizationById(newLocalizationId);
 		}
 		else
 		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: warning: module does not have a localization for <"+newLocalizationId+">!");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] warning: module does not have a localization for <"+newLocalizationId+">!");
 			
 			var defaultInterfaceLocalizationId = tswlairmgr.modules.getDefaultLocalizationId();
 			if($.inArray(defaultInterfaceLocalizationId, self._sortedLocalizations) !== -1)
 			{
-				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: module has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] module has a localization for default interface localization <"+defaultInterfaceLocalizationId+">.");
 				
 				self.setLocalizationById(defaultInterfaceLocalizationId);
 			}
 			else
 			{
-				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: warning: module does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] warning: module does not have a localization for default interface localization <"+defaultInterfaceLocalizationId+">!");
 				
 				var defaultModuleLocalizationId = self.getDefaultLocalizationId();
 				self.setLocalizationById(defaultModuleLocalizationId);
@@ -151,11 +160,11 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 	this.addLocalizationData = function(localName, globalName, id, data) {
 		if(id in this._localizations)
 		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: addLocalizationData: error: <"+id+"> already registered!");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] addLocalizationData: error: <"+id+"> already registered!");
 			return(false);
 		}
 		
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: addLocalizationData: adding <"+id+">");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] addLocalizationData: adding <"+id+">");
 		
 		if(this._sortedLocalizations.length < 1)
 		{
@@ -187,15 +196,15 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 	};
 	
 	this.setLocalizationById = function(id) {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: setLocalizationById: starting");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: starting");
 
 		if(!(id in this._localizations))
 		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: setLocalizationById: error: <"+id+"> not found!");
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: error: <"+id+"> not found!");
 			return false;
 		}
 
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: setLocalizationById: to <"+id+">");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: to <"+id+">");
 
 		var localization = this._localizations[id];
 		
@@ -207,13 +216,13 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 			}
 		);
 
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: setLocalizationById: completed");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: completed");
 
 		return true;
 	};
 
 	this.init = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.module-localization>: init: loading default localization...");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] init: loading default localization...");
 
 		this.setLocalizationById(this.getDefaultLocalizationId());
 	};

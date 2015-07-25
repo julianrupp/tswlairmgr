@@ -28,7 +28,12 @@ tswlairmgr.modules.registerModule = function(module)
 	this._registeredModules.push(module);
 };
 
-tswlairmgr.modules._loadRegisteredModules = function ()
+tswlairmgr.modules._initModuleController = function()
+{
+	this._loadRegisteredModules();
+};
+
+tswlairmgr.modules._loadRegisteredModules = function()
 {
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: loadRegisteredModules: DOM ready, loading registered modules...");
 	
@@ -130,15 +135,15 @@ tswlairmgr.modules.setActiveModuleById = function(id)
 			
 			module.becameInactive();
 		}
-		else
-		{
-			module.becameActive();
-		}
 	});
+	
+	this._loadedModules[id].instance.becameActive();
 	$(this._loadedModules[id].nodes.tab).addClass("active");
 	$(this._loadedModules[id].nodes.content).show();
 	
 	this._activeModule = id;
+	
+	tswlairmgr.core.persistentstate.updateActiveModuleId(id);
 };
 
 tswlairmgr.modules._initLocalizationMenu = function()

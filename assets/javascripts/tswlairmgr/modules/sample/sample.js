@@ -7,8 +7,34 @@ tswlairmgr.modules.sample = new function() {
 	var self = this;
 	this._localization.observables.moduleLocalizationChanged.registerCallback(function(origin, context) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that localization has changed.");
-		self.redraw();
+		self._redraw();
 	});
+	
+	this._templates = {
+		sample:
+			'<span style="font-size: 20px;">' +
+			'	{{localization.strings.sampleText.moduleContainerFor}} <b>{{context.name}}</b>' +
+			'</span>',
+		
+		dropdown_label:
+			'{{localization.strings.persistentStateDropdown.dropdownWithPersistentState}}:',
+		
+		interface_switcher_title:
+			'{{localization.strings.localizationSwitcher.interface.setInterfaceLocalization}}:',
+		module_switcher_title:
+			'{{localization.strings.localizationSwitcher.module.setModuleLocalization}}:',
+		data_switcher_title:
+			'{{localization.strings.localizationSwitcher.data.setDataLocalization}}:'
+	};
+	
+	this._compactState = {
+		dd: "1"
+	};
+	
+	this._appBackground = {
+		savedSnapshot: null,
+		module: "#404040 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAA+SURBVDjLY/j//z8DJZgyzQwMDZQawDTgLmAcdcEgcMHApwOWAXcBG4gQAJvEwMALpbmhNBeU5kCmYTbDaABkFrFGcnxtxwAAAABJRU5ErkJggg==) repeat center"
+	};
 	
 	this._el = {
 		self: null,
@@ -23,6 +49,11 @@ tswlairmgr.modules.sample = new function() {
 				rootNode: null,
 				summons: []
 			},
+		},
+		persistentStateDropdown: {
+			rootNode: null,
+			labelNode: null,
+			dropdown: null
 		},
 		localizationSwitcher: {
 			rootNode: null,
@@ -43,38 +74,71 @@ tswlairmgr.modules.sample = new function() {
 		summons: []
 	};
 	
-	this._templates = {
-		sample:
-			'<span style="font-size: 20px;">' +
-			'	{{localization.strings.sampleText.moduleContainerFor}} <b>{{context.name}}</b>' +
-			'</span>',
-		
-		interface_switcher_title:
-			'{{localization.strings.localizationSwitcher.interface.setInterfaceLocalization}}:',
-		module_switcher_title:
-			'{{localization.strings.localizationSwitcher.module.setModuleLocalization}}:',
-		data_switcher_title:
-			'{{localization.strings.localizationSwitcher.data.setDataLocalization}}:'
-	};
-	
 	this.getDisplayName = function() {
 		return this._localization.getLocalizationData().meta.displayName;
 	};
 	
 	this.initWithRootNode = function(contentNode) {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: initWithRootNode: initializing...");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: initWithRootNodeAndState: initializing...");
 		
 		this._el.self = contentNode;
 		
-		this.init();
+		this._localization.init();
 		
-		this.redraw();
+		this._build();
+		
+		var self = this;
+		tswlairmgr.core.persistentstate.observables.hashLoaded.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: persistent state loaded, running deferred initialization");
+			self._loadState(tswlairmgr.core.persistentstate.getModuleState(self));
+			self._redraw();
+		});
 	};
 	
-	this.init = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: init called");
+	this.becameActive = function() {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
 		
-		this._localization.init();
+		// Save snapshot
+		this._appBackground.savedSnapshot = $("body").css("background");
+		// Set
+		$("body").css("background", this._appBackground.module);
+	};
+	
+	this.becameInactive = function() {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became inactive.");
+		
+		// Restore snapshot
+		$("#webapp").css("background", this._appBackground.savedSnapshot);
+	};
+	
+	this._getState = function() {
+		return this._compactState;
+	};
+	
+	this._updateState = function() {
+		tswlairmgr.core.persistentstate.updateModuleState(this, this._compactState);
+	};
+	
+	this._loadState = function(state) {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: loadState =");
+		if(tswlairmgr.core.config.debug) console.log(state);
+		if(state)
+		{
+			if(state.dd && state.dd >= 1 && state.dd <= 5)
+			{
+				this._setPersistentStateDropdownState(state.dd);
+			}
+		}
+		this._updateState();
+	};
+	
+	this._setPersistentStateDropdownState = function(val) {
+		this._compactState.dd = val;
+		$(this._el.persistentStateDropdown.dropdown).val(this._getState().dd);
+	};
+	
+	this._build = function() {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: init called");
 		
 		$(this._el.self).addClass("uibox");
 		
@@ -198,6 +262,33 @@ tswlairmgr.modules.sample = new function() {
 		
 		this._el.self.append(this._el.demoItems.rootNode);
 		
+		// Persistent state dropdown
+		this._el.persistentStateDropdown.rootNode = $("<div />")
+			.css("margin-bottom", "15px");
+			
+		this._el.persistentStateDropdown.labelNode = $("<div />");
+		this._el.persistentStateDropdown.rootNode.append(this._el.persistentStateDropdown.labelNode);
+		
+		var self = this;
+		this._el.persistentStateDropdown.dropdown = $("<select>")
+			.attr("size", 1)
+			.change(function() {
+				self._getState().dd = $(this).val();
+				self._updateState();
+			});
+		var i;
+		var node;
+		for(i=1; i<=5; i++)
+		{
+			node = $("<option>")
+				.attr("value", i)
+				.text(i);
+			this._el.persistentStateDropdown.dropdown.append(node);
+		}
+		this._el.persistentStateDropdown.rootNode.append(this._el.persistentStateDropdown.dropdown);
+		
+		this._el.self.append(this._el.persistentStateDropdown.rootNode);
+		
 		// Localization switcher
 		this._el.localizationSwitcher.rootNode = $("<div />");
 		
@@ -219,7 +310,7 @@ tswlairmgr.modules.sample = new function() {
 		this._el.self.append(this._el.localizationSwitcher.rootNode);
 	};
 	
-	this.redraw = function() {
+	this._redraw = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: redraw called");
 		
 		// Sample Text
@@ -236,9 +327,19 @@ tswlairmgr.modules.sample = new function() {
 		// Demo Fragments
 		// Will redraw themselves.
 		
+		// Persistent state dropdown
+		$(this._el.persistentStateDropdown.labelNode).empty();
+		$(this._el.persistentStateDropdown.labelNode).append(
+			Mustache.render(
+				this._templates.dropdown_label, { localization: this._localization.getLocalizationData(), context:
+					{}
+				}
+			)
+		);
+		
 		// Interface localization switcher
 		$(this._el.localizationSwitcher.interface.rootNode).empty();
-		$(self._el.localizationSwitcher.interface.rootNode).append(
+		$(this._el.localizationSwitcher.interface.rootNode).append(
 			$("<div />").append(
 				Mustache.render(
 					this._templates.interface_switcher_title, { localization: this._localization.getLocalizationData(), context:
@@ -255,7 +356,7 @@ tswlairmgr.modules.sample = new function() {
 		
 		// Module localization switcher
 		$(this._el.localizationSwitcher.module.rootNode).empty();
-		$(self._el.localizationSwitcher.module.rootNode).append(
+		$(this._el.localizationSwitcher.module.rootNode).append(
 			$("<div />").append(
 		   		Mustache.render(
 		   	        this._templates.module_switcher_title, { localization: this._localization.getLocalizationData(), context:
@@ -272,7 +373,7 @@ tswlairmgr.modules.sample = new function() {
 		
 		// Module localization switcher
 		$(this._el.localizationSwitcher.data.rootNode).empty();
-		$(self._el.localizationSwitcher.data.rootNode).append(
+		$(this._el.localizationSwitcher.data.rootNode).append(
 			$("<div />").append(
 		   		Mustache.render(
 		   	        this._templates.data_switcher_title, { localization: this._localization.getLocalizationData(), context:
@@ -296,10 +397,7 @@ tswlairmgr.modules.sample = new function() {
 			function() {
 				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: interface <"+id+"> localization button clicked");
 
-				if(tswlairmgr.modules.getLocalizationId() !== id)
-				{
-					tswlairmgr.modules.setLocalizationById(id);
-				}
+				tswlairmgr.modules.setLocalizationById(id);
 			}
 		);
 	};
@@ -312,10 +410,7 @@ tswlairmgr.modules.sample = new function() {
 			function() {
 				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: module <"+id+"> localization button clicked");
 
-				if(self._localization.getLocalizationId() !== id)
-				{
-					self._localization.setLocalizationById(id);
-				}
+				self._localization.setLocalizationById(id);
 			}
 		);
 	};
@@ -328,10 +423,7 @@ tswlairmgr.modules.sample = new function() {
 			function() {
 				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: data <"+id+"> localization button clicked");
 
-				if(tswlairmgr.core.data.getLocalizationId() !== id)
-				{
-					tswlairmgr.core.data.setLocalizationById(id);
-				}
+				tswlairmgr.core.data.setLocalizationById(id);
 			}
 		);
 	};
@@ -352,27 +444,6 @@ tswlairmgr.modules.sample = new function() {
 		
 		return buttonNode;
 	}
-	
-	this._appBackground = {
-		savedSnapshot: null,
-		module: "#404040 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAA+SURBVDjLY/j//z8DJZgyzQwMDZQawDTgLmAcdcEgcMHApwOWAXcBG4gQAJvEwMALpbmhNBeU5kCmYTbDaABkFrFGcnxtxwAAAABJRU5ErkJggg==) repeat center"
-	};
-	
-	this.becameActive = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became active.");
-		
-		// Save snapshot
-		this._appBackground.savedSnapshot = $("body").css("background");
-		// Set
-		$("body").css("background", this._appBackground.module);
-	};
-	
-	this.becameInactive = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that module became inactive.");
-		
-		// Restore snapshot
-		$("#webapp").css("background", this._appBackground.savedSnapshot);
-	};
 	
 	tswlairmgr.modules.registerModule(this);
 };

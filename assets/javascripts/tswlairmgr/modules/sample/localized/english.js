@@ -9,6 +9,10 @@ tswlairmgr.modules.sample._localization.addLocalizationData("English", "English"
 			moduleContainerFor: "Module container for"
 		},
 		
+		persistentStateDropdown: {
+			dropdownWithPersistentState: "Dropdown with persistent state (select an entry and reload the page)"
+		},
+		
 		localizationSwitcher: {
 			interface: {
 				setInterfaceLocalization: "Set interface localization (module localization for all modules)"

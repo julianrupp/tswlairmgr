@@ -40,7 +40,9 @@ Open `index.html` to view.
 
 Using
 -----
-Click the **Help** tab in the upper right corner of the app to display an usage guide.
+Since I've now switched to a modular system, the old way of just having one single tab/popup/whatever for displaying an usage guide does no longer really work so well. I think as each module is a thing on its own, it should take care of integrating help or an usage guide itself.
+
+My UI drafts for the *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* will instead provide short snippets of help text at tricky spots, while *Lookup* will probably not include any kind of help text as its main functions should be self-explanatory.
 
 
 Distributing
@@ -52,7 +54,7 @@ Contributing
 ------------
 I've recently completely rewritten the code, though there sure still is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
 
-What I'm particularly looking for is a French translation for the interface (data is already done) so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
+**What I'm particularly looking for** is a French translation for the interface (data is already done) so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
 
 Other than pull requests, you can also send me feature requests or other constructive feedback.
 
@@ -76,7 +78,7 @@ Credits
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
 
--	The country flags have been taken from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/). The page states they are free to use and do not require attribution in any form.
+-	The country flags have been taken from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/).
 
 -	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn makes the fragment holder take ages to assemble a list of who-takes-what.
 
@@ -93,8 +95,14 @@ The external artwork (lair boss images and their x-ray derivatives, lair area sc
 
 The Lato font files keep their own license and are merely redistributed by this project; please see `assets/stylesheets/fonts/Lato/OFL.txt` for their license.
 
-This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey ([@eligrey](https://github.com/eligrey)) and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
+The country flags downloaded from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/) do not have a formal license attached to them. The website states: "These flag icons are available for free use for any purpose with no requirement for attribution."
+
+This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
 
 This software makes use of [jQuery](https://github.com/jquery/jquery) by the jQuery foundation and other contributors and redistributes it. Please see the `MIT-LICENSE.txt` file in `assets/javascripts/libraries/jQuery` for its license.
 
 This software makes use of [mustache.js](https://github.com/janl/mustache.js) by Chris Wanstrath, Jan Lehnardt and the mustache.js community and redistributes it. Please see the `LICENSE` file in `assets/javascripts/libraries/mustache.js` for its license.
+
+This software makes use of Douglas Crockford's [JSON implementation](https://github.com/douglascrockford/JSON-js) and redistributes it. Please see the first block comment in the `assets/javascripts/libraries/JSON/json2.js` file for its license.
+
+This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js` GitHub gist](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.

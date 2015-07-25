@@ -2,11 +2,15 @@ var tswlairmgr = tswlairmgr || {};
 
 tswlairmgr.modules.sample._localization.addLocalizationData("Deutsch", "German", "deDE", {
 	meta: {
-		displayName: "Beispiel-Modul"
+		displayName: "Beispielmodul"
 	},
 	strings: {
 		sampleText: {
 			moduleContainerFor: "Modulcontainer für"
+		},
+		
+		persistentStateDropdown: {
+			dropdownWithPersistentState: "Dropdown mit gesichertem Zustand (Eintrag auswählen und Seite neu laden)"
 		},
 		
 		localizationSwitcher: {

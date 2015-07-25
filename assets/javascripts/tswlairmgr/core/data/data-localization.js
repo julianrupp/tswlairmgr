@@ -212,9 +212,9 @@ tswlairmgr.core.data.executeWithDifferentLocalization = function(id, callback)
 	this._suppressNotifications = false;
 };
 
-tswlairmgr.core.data._init = function()
+tswlairmgr.core.data._initLocalization = function()
 {
-	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: init: loading default localization...");
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: initLocalization: loading default localization...");
 	
 	this.setLocalizationById(this.getDefaultLocalizationId());
 };
