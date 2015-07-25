@@ -65,15 +65,15 @@ tswlairmgr.core.persistentstate = new function() {
 			try
 			{
 				parsed = JSON.parse(lzw_decode(compressedStringifiedData));
-				if(parsed.v === tswlairmgr.core.info.version)
-				{
+				/*if(parsed.v === tswlairmgr.core.info.version)
+				{*/
 					if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: data loaded.");
-					this._moduleStateStruct = parsed;
-				}
+					this._moduleStateStruct.m = parsed.m;
+				/*}
 				else
 				{
 					if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: warning: version <"+parsed.v+"> does not match expected <"+tswlairmgr.core.info.version+">!");
-				}
+				}*/
 			}
 			catch(e)
 			{

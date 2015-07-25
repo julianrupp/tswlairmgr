@@ -28,6 +28,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this._compactState = {
+		v: 1,
 		dd: "1"
 	};
 	
@@ -124,9 +125,12 @@ tswlairmgr.modules.sample = new function() {
 		if(tswlairmgr.core.config.debug) console.log(state);
 		if(state)
 		{
-			if(state.dd && state.dd >= 1 && state.dd <= 5)
+			if(state.v == this._getState().v)
 			{
-				this._setPersistentStateDropdownState(state.dd);
+				if(state.dd && state.dd >= 1 && state.dd <= 5)
+				{
+					this._setPersistentStateDropdownState(state.dd);
+				}
 			}
 		}
 		this._updateState();
