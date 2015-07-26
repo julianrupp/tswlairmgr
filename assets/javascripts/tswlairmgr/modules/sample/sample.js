@@ -312,6 +312,17 @@ tswlairmgr.modules.sample = new function() {
 		this._el.localizationSwitcher.rootNode.append(this._el.localizationSwitcher.data.rootNode);
 		
 		this._el.self.append(this._el.localizationSwitcher.rootNode);
+		
+		// Item MVC destroy test
+		var dummy = $("<div />");
+		var mvcController = new tswlairmgr.core.components.ItemHTML(
+			tswlairmgr.core.data.struct.regions.tra.regional,
+			dummy
+		);
+		$(dummy).click(function() {
+			mvcController.destroy();
+		});
+		this._el.self.append(dummy);
 	};
 	
 	this._redraw = function() {

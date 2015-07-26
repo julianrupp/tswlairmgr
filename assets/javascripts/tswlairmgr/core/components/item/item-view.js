@@ -6,7 +6,7 @@ tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, n
 	this._model = modelInstance;
 	
 	this._node = node;
-	this._options = options;
+	this._options = (options) ? options : {};
 	
 	var self = this;
 	this._model.observables.changed.registerCallback(function(origin, context) {
@@ -41,6 +41,12 @@ tswlairmgr.core.components.ItemHTMLView = function ItemHTMLView(modelInstance, n
 		if(this._options.isSmall) { $(item).addClass("small"); }
 		
 		$(node).append(item);
+	};
+	
+	this.destroy = function() {
+		delete this._model;
+		$(this._node).empty();
+		delete this._node;
 	};
 	
 	this.redraw();

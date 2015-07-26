@@ -7,13 +7,33 @@ tswlairmgr.core.helpers.Observable = function Observable(origin) {
 	this._observers = [];
 	
 	this.registerCallback = function(callback) {
-		this._observers.push(callback);
+		if(!(callback in this._observers))
+		{
+			this._observers.push(callback);
+			return true;
+		}
+		return false;
+	};
+	
+	this.unregisterCallback = function(callback) {
+		var self = this;
+		$.each(this._observers, function(index, currentCallback) {
+			if(currentCallback === callback)
+			{
+				delete self._observers[index];
+				return true;
+			}
+		});
+		return false;
 	};
 	
 	this.notify = function(context) {
 		var self = this;
 		$.each(this._observers, function(index, callback) {
-			callback.call(self.origin, context);
+			if(callback && callback.call)
+			{
+				callback.call(self.origin, context);
+			}
 		});
 	};
 };

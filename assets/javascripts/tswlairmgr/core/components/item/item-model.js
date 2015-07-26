@@ -10,10 +10,12 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 	};
 	
 	var self = this;
-	this._dataInstance.observables.changed.registerCallback(function(origin, context) {
+	this.dataChangedCallback = function(origin, context) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.components.ItemHTMLModel>: got notified that data changed.");
 		self.observables.changed.notify(context);
-	});
+	};
+	
+	this._dataInstance.observables.changed.registerCallback(this.dataChangedCallback);
 	
 	this.getName = function() {
 		return this._dataInstance.getItemName();
@@ -77,5 +79,10 @@ tswlairmgr.core.components.ItemHTMLModel = function ItemHTMLModel(dataInstance) 
 		
 		// Should never reach here
 		return "error";
+	};
+	
+	this.destroy = function() {
+		this._dataInstance.observables.changed.unregisterCallback(this.dataChangedCallback);
+		delete this._dataInstance;
 	};
 };
