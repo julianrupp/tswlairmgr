@@ -4,6 +4,7 @@ tswlairmgr.modules = tswlairmgr.modules || {};
 tswlairmgr.modules.sample = new function() {
 	this.id = "sample";
 	this._localization = new tswlairmgr.modules.ModuleLocalization();
+	
 	var self = this;
 	this._localization.observables.moduleLocalizationChanged.registerCallback(function(origin, context) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: got notified that localization has changed.");
@@ -142,7 +143,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this._build = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: init called");
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: build called");
 		
 		$(this._el.self).addClass("uibox");
 		
