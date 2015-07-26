@@ -24,6 +24,7 @@ tswlairmgr.core.persistentstate = new function() {
 		
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash: trying to set localization to <"+blocks[0]+">...");
 		tswlairmgr.modules.setInterfaceAndDataLocalizationById(blocks[0]);
+		tswlairmgr.modules._redrawLocalizationMenu();
 		
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash: trying to set active module to <"+blocks[1]+">...");
 		tswlairmgr.modules.setActiveModuleById(blocks[1]);
@@ -65,15 +66,9 @@ tswlairmgr.core.persistentstate = new function() {
 			try
 			{
 				parsed = JSON.parse(lzw_decode(compressedStringifiedData));
-				/*if(parsed.v === tswlairmgr.core.info.version)
-				{*/
-					if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: data loaded.");
-					this._moduleStateStruct.m = parsed.m;
-				/*}
-				else
-				{
-					if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: warning: version <"+parsed.v+"> does not match expected <"+tswlairmgr.core.info.version+">!");
-				}*/
+				
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: data loaded.");
+				this._moduleStateStruct.m = parsed.m;
 			}
 			catch(e)
 			{
