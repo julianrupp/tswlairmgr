@@ -151,15 +151,17 @@ tswlairmgr.modules._initLocalizationMenu = function()
 	var menuNode = $("#localizationMenu" ,$("#topbar"));
 	
 	var self = this;
-	this.observables.interfaceLocalizationChanged.registerCallback(function(origin, context) {
-		self._redrawLocalizationMenu();
-	});
+	/*this.observables.interfaceAndDataLocalizationChanged.registerCallback(function(origin, context) {
+		
+	});*/
 	
 	this._redrawLocalizationMenu();
 };
 
 tswlairmgr.modules._redrawLocalizationMenu = function()
 {
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: redrawLocalizationMenu called");
+	
 	var menu = $("#localizationMenu" ,$("#topbar"));
 	
 	$(menu).empty();
@@ -178,6 +180,8 @@ tswlairmgr.modules._redrawLocalizationMenu = function()
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules>: localization <"+id+"> clicked");
 			
 			self.setInterfaceAndDataLocalizationById(id);
+			
+			self._redrawLocalizationMenu();
 		});
 		
 		if(isActive)
