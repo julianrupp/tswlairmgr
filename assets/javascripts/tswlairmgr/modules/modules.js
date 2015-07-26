@@ -206,7 +206,6 @@ tswlairmgr.modules._redrawTabs = function()
 	$(".tab", $("#moduleTabs", $("#topbar"))).each(function(index) {
 		var tab = this;
 		var moduleId = $(tab).data("moduleId");
-		
 		$(".tabContent", tab).text(
 			self.getModule(moduleId).getDisplayName()
 		);
