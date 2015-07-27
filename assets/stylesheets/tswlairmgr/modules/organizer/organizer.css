@@ -1,0 +1,25 @@
+#module-organizer #topmenu {
+	display: block;
+	text-align: right;
+}
+
+#module-organizer #topmenu #lairselector {
+	display: inline-block;
+	text-align: left;
+}
+
+#module-organizer #topmenu #lairselector #lairselectorLabel {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#module-organizer #topmenu #lairselector select#lairselectorDropdown {
+	display: inline-block;
+	border: 2px solid rgba(255, 255, 255, 1);
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #ffffff;
+	height: 32px;
+}
+
+/* -------------------- */

@@ -5,6 +5,10 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Engli
 		displayName: "Organizer"
 	},
 	strings: {
-		
+		topmenu: {
+			lairselector: {
+				selectLair: "Select lair"
+			}
+		}
 	}
 });

@@ -37,7 +37,7 @@ tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry = fu
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(v in state) || !(r in state)) { return false; }
+		if(!(state.v) || !(state.r)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
 			var valid = true;

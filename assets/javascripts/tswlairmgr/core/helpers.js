@@ -32,7 +32,7 @@ tswlairmgr.core.helpers.Observable = function Observable(origin) {
 		$.each(this._observers, function(index, callback) {
 			if(callback && callback.call)
 			{
-				callback.call(self.origin, context);
+				callback.call(null, self.origin, context);
 			}
 		});
 	};

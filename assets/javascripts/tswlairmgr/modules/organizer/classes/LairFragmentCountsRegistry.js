@@ -80,7 +80,7 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(r in state) || !(v in state)) { return false; }
+		if(!(state.v) || !(state.r)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
 			var valid = true;

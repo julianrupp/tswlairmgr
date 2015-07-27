@@ -113,6 +113,11 @@ tswlairmgr.modules.getActiveModuleId = function()
 	return this._activeModule;
 };
 
+tswlairmgr.modules.isActiveModule = function(moduleInstance)
+{
+	return this.getModule(this.getActiveModuleId()) === moduleInstance;
+};
+
 tswlairmgr.modules.setActiveModuleById = function(id)
 {
 	if(!(id in this._loadedModules))
@@ -137,13 +142,14 @@ tswlairmgr.modules.setActiveModuleById = function(id)
 		}
 	});
 	
-	this._loadedModules[id].instance.becameActive();
 	$(this._loadedModules[id].nodes.tab).addClass("active");
 	$(this._loadedModules[id].nodes.content).show();
 	
 	this._activeModule = id;
 	
 	tswlairmgr.core.persistentstate.updateActiveModuleId(id);
+	
+	this._loadedModules[id].instance.becameActive();
 };
 
 tswlairmgr.modules._initLocalizationMenu = function()

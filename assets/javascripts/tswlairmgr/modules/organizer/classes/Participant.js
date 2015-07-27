@@ -31,7 +31,7 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(v in state) || !(n in state) || !(r in state)) { return false; }
+		if(!(state.v) || !(state.n) || !(state.r)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
 			var valid = true;

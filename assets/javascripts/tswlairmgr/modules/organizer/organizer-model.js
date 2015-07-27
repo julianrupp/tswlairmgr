@@ -7,7 +7,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._selectedLairId = null;
 	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
 	this._participants = [];
-	this._selectedChatScriptLocalizationId = null;
+	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getAllLocalizationIds()[0];
 	
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
@@ -108,10 +108,24 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(v in state) || !(l in state) || !(fcr in state) || !(p in state) || !(csl in state)) { return false; }
+		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.p) /*|| !(state.csl)*/) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
-			this._selectedLairId = state.l;
+			var foundLairId = false;
+			$.each(tswlairmgr.core.data.getRegions(), function(regionId, regionInstance) {
+				$.each(regionInstance.getZones(), function(zoneId, zoneInstance) {
+					$.each(zoneInstance.getLairs(), function(lairId, lairInstance) {
+						if(lairId === state.l)
+						{
+							foundLairId = true;
+						}
+					});
+				});
+			});
+			if(foundLairId)
+			{
+				this.setSelectedLairId(state.l);
+			}
 			
 			this._fragmentCounts.setPersistentState(state.fcr);
 			this.observables.fragmentCountsChanged.notify({});
@@ -127,7 +141,10 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 			this._participants = restoredParticipants
 			this.observables.participantsChanged.notify({});
 			
-			this._selectedChatScriptLocalizationId = state.csl;
+			if($.inArray(state.csl, tswlairmgr.core.data.getAllLocalizationIds()) !== -1)
+			{
+				this.setSelectedChatScriptLocalizationId(state.csl);
+			}
 			
 			return true;
 		}
