@@ -223,7 +223,6 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 
 	this.init = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] init: loading default localization...");
-
 		this.setLocalizationById(this.getDefaultLocalizationId());
 	};
 };

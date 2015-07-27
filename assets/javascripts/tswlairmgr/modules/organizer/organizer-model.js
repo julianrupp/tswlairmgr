@@ -7,7 +7,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._selectedLairId = null;
 	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
 	this._participants = [];
-	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getAllLocalizationIds()[0];
+	this._selectedChatScriptLocalizationId = null;
 	
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
