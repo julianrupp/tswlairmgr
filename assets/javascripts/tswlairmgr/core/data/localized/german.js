@@ -138,7 +138,7 @@ tswlairmgr.core.data.addLocalizationData("Deutsch", "German", "deDE", {
 			regionalName: "Aspekt des Vielarmigen",
 			zones: {
 				sd: {
-					name: "Die Verbrannte Wüste",
+					name: "Die verbrannte Wüste",
 					lairs: [
 						{
 							name: "Die Gipfel",
