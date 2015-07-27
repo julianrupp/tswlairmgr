@@ -54,7 +54,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(participantName);
 		this._participants.push(newParticipant);
 		this.observables.participantsChanged.notify({
-			participantAdded: true
+			participantAdded: true,
 			participantInstance: newParticipant
 		});
 	};
@@ -113,7 +113,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		{
 			this._selectedLairId = state.l;
 			
-			this._fragmentCounts.setPersistentState(state.fcr));
+			this._fragmentCounts.setPersistentState(state.fcr);
 			this.observables.fragmentCountsChanged.notify({});
 			
 			var restoredParticipants = [];
