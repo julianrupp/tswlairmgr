@@ -61,7 +61,7 @@ tswlairmgr.core.data.NamePattern = function NamePattern() {
 tswlairmgr.core.data.BossFragment = function BossFragment(character, number) {
 	this._character = character;
 	this._number = number;
-	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpFragLair;
+	this._fullNamePattern = tswlairmgr.core.data.struct.inpFragLair;
 	
 	this.observables = {
 		changed: new tswlairmgr.core.helpers.Observable(this)
@@ -193,7 +193,7 @@ tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash) {
 tswlairmgr.core.data.Boss = function Boss(id, fragmentSet) {
 	this._id = id;
 	this._fragmentSet = fragmentSet;
-	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpSummonLair;
+	this._fullNamePattern = tswlairmgr.core.data.struct.inpSummonLair;
 	this._regionalFragmentDrops = [];
 	
 	this._fragmentSet._setBackreferenceToBoss(this);
@@ -301,6 +301,14 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray) {
 	};
 	
 	this.getBosses = function() {
+		var res = {};
+		$.each(this._bosses, function(index, boss) {
+			res[boss.getId()] = boss;
+		});
+		return res;
+	};
+	
+	this.getSortedBosses = function() {
 		return this._bosses;
 	};
 	
@@ -320,12 +328,17 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray) {
 		return this._name;
 	};
 	
+	this.getId = function() {
+		return this._id;
+	};
+	
 	this.toString = function() {
 		return "[Lair(name:<"+this.getName()+">, id:<"+this._id+">)]";
 	};
 };
 
-tswlairmgr.core.data.Zone = function Zone(lairsArray) {
+tswlairmgr.core.data.Zone = function Zone(id, lairsArray) {
+	this._id = id;
 	this._lairs = lairsArray;
 	
 	var lairs = this._lairs;
@@ -346,6 +359,14 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 	};
 	
 	this.getLairs = function() {
+		var res = {};
+		$.each(this._lairs, function(index, lair) {
+			res[lair.getId()] = lair;
+		});
+		return res;
+	};
+	
+	this.getSortedLairs = function() {
 		return this._lairs;
 	};
 	
@@ -365,6 +386,10 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 		return this._name;
 	};
 	
+	this.getId = function() {
+		return this._id;
+	};
+	
 	this.toString = function() {
 		return "[Zone(name:<"+this.getName()+">)]";
 	};
@@ -373,7 +398,7 @@ tswlairmgr.core.data.Zone = function Zone(lairsArray) {
 tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(character, number, droppedFromArray) {
 	this._character = character;
 	this._number = number;
-	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpFragRegional;
+	this._fullNamePattern = tswlairmgr.core.data.struct.inpFragRegional;
 	this._droppedFrom = droppedFromArray;
 	
 	this.observables = {
@@ -538,7 +563,7 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 	this._id = id;
 	this._fragmentSet = fragmentSet;
-	this._fullNamePattern = tswlairmgr.core.data.getStruct().inpSummonRegional;
+	this._fullNamePattern = tswlairmgr.core.data.struct.inpSummonRegional;
 	
 	this._fragmentSet._setBackreferenceToBoss(this);
 	
@@ -611,6 +636,14 @@ tswlairmgr.core.data.Region = function Region(zonesArray, regionalBoss) {
 	};
 	
 	this.getZones = function() {
+		var res = {};
+		$.each(this._zones, function(index, zone) {
+			res[zone.getId()] = zone;
+		});
+		return res;
+	};
+	
+	this.getSortedZones = function() {
 		return this._zones;
 	};
 	

@@ -7,7 +7,7 @@ tswlairmgr.core.persistentstate = new function() {
 		activeModule: null
 	};
 	this._moduleStateStruct = {
-		v: tswlairmgr.core.info.version,
+		/*v: tswlairmgr.core.info.version,*/
 		m: {}
 	};
 	

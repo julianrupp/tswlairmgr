@@ -127,7 +127,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_km = function()
 	]);
 	
 	/* Zone */
-	this.struct.solKM = new tswlairmgr.core.data.Zone([
+	this.struct.solKM = new tswlairmgr.core.data.Zone("km", [
 		this.struct.solKMLair
 	]);
 	
@@ -182,7 +182,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_sc = function()
 	]);
 	
 	/* Zone */
-	this.struct.solSC = new tswlairmgr.core.data.Zone([
+	this.struct.solSC = new tswlairmgr.core.data.Zone("sc", [
 		this.struct.solSCLair
 	]);
 	
@@ -237,7 +237,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
 	]);
 	
 	/* Zone */
-	this.struct.solBM = new tswlairmgr.core.data.Zone([
+	this.struct.solBM = new tswlairmgr.core.data.Zone("bm", [
 		this.struct.solBMLair
 	]);
 	
@@ -351,6 +351,8 @@ tswlairmgr.core.data._bootstrap_region_sol = function()
 		this.struct.solRegional
 	);
 	
+	this._sortedRegions.push(this.struct.sol);
+	
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Solomon Island>: objects created");
 };
 
@@ -402,7 +404,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
 	]);
 	
 	/* Zone */
-	this.struct.egySD = new tswlairmgr.core.data.Zone([
+	this.struct.egySD = new tswlairmgr.core.data.Zone("sd", [
 		this.struct.egySDLair
 	]);
 	
@@ -457,7 +459,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
 	]);
 	
 	/* Zone */
-	this.struct.egyCS = new tswlairmgr.core.data.Zone([
+	this.struct.egyCS = new tswlairmgr.core.data.Zone("cs", [
 		this.struct.egyCSLair
 	]);
 	
@@ -563,6 +565,8 @@ tswlairmgr.core.data._bootstrap_region_egy = function()
 		this.struct.egyRegional
 	);
 	
+	this._sortedRegions.push(this.struct.egy);
+	
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Egypt>: objects created");
 };
 
@@ -614,7 +618,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_bf = function()
 	]);
 	
 	/* Zone */
-	this.struct.traBF = new tswlairmgr.core.data.Zone([
+	this.struct.traBF = new tswlairmgr.core.data.Zone("bf", [
 		this.struct.traBFLair
 	]);
 	
@@ -669,7 +673,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_sf = function()
 	]);
 	
 	/* Zone */
-	this.struct.traSF = new tswlairmgr.core.data.Zone([
+	this.struct.traSF = new tswlairmgr.core.data.Zone("sf", [
 		this.struct.traSFLair
 	]);
 	
@@ -724,7 +728,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
 	]);
 	
 	/* Zone */
-	this.struct.traCF = new tswlairmgr.core.data.Zone([
+	this.struct.traCF = new tswlairmgr.core.data.Zone("cf", [
 		this.struct.traCFLair
 	]);
 	
@@ -842,12 +846,9 @@ tswlairmgr.core.data._bootstrap_region_tra = function()
 		this.struct.traRegional
 	);
 	
+	this._sortedRegions.push(this.struct.tra);
+	
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: Region <Transylvania>: objects created");
-};
-
-tswlairmgr.core.data.getStruct = function()
-{
-	return this.struct;
 };
 
 tswlairmgr.core.data._bootstrap = function()
@@ -855,6 +856,7 @@ tswlairmgr.core.data._bootstrap = function()
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: starting...");
 	
 	this.struct = {};
+	this._sortedRegions = [];
 	
 	this._bootstrap_alphabet_greek();
 	this._bootstrap_alphabet_phoenician();
@@ -1050,35 +1052,29 @@ tswlairmgr.core.data._bootstrap = function()
 		}
 	};
 	
-	this.struct = keyed;
-	
-	this._sortedLairs = [
-		{
-			key: "sol",
-			zones: [
-				{ key: "km" },
-				{ key: "sc" },
-				{ key: "bm" }
-			]
-		},
-		{
-			key: "egy",
-			zones: [
-				{ key: "sd" },
-				{ key: "cs" }
-			]
-		},
-		{
-			key: "tra",
-			zones: [
-				{ key: "bf" },
-				{ key: "sf" },
-				{ key: "cf" }
-			]
-		}
-	];
+	this._struct = keyed;
+	delete this.struct;
 	
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-structure>: bootstrap: completed");
+};
+
+tswlairmgr.core.data._getStruct = function()
+{
+	return this._struct;
+};
+
+tswlairmgr.core.data.getRegions = function()
+{
+	var res = {};
+	$.each(this._struct.regions, function(key, compound) {
+		res[key] = compound.region;
+	});
+	return res;
+};
+
+tswlairmgr.core.data.getSortedRegions = function()
+{
+	return this._sortedRegions;
 };
 
 tswlairmgr.core.data._bootstrap();

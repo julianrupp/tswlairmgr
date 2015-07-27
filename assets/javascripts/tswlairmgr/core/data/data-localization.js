@@ -104,7 +104,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 	
 	var localization = this._localizations[id];
 	
-	$.each(this.struct.alphabets, function(alphabetId, currentAlphabet) {
+	$.each(this._getStruct().alphabets, function(alphabetId, currentAlphabet) {
 		$.each(currentAlphabet, function(characterId, currentCharacter) {
 			var t = localization.data.alphabets[alphabetId][characterId];
 			if(!t) {
@@ -116,7 +116,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		});
 	});
 	
-	$.each(this.struct.itemNamePatterns, function(patternKey, currentPattern) {
+	$.each(this._getStruct().itemNamePatterns, function(patternKey, currentPattern) {
 		var t = localization.data.itemNamePatterns[patternKey];
 		if(!t) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +
@@ -126,7 +126,7 @@ tswlairmgr.core.data.setLocalizationById = function(newId)
 		currentPattern.setPattern(t);
 	});
 	
-	$.each(this.struct.regions, function(regionId, currentRegion) {
+	$.each(this._getStruct().regions, function(regionId, currentRegion) {
 		var t = localization.data.regions[regionId].name;
 		if(!t) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.data-localization>: setLocalizationById: warning: Missing Translation: " +

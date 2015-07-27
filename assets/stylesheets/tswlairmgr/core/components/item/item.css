@@ -47,22 +47,22 @@
 /* -------------------- */
 
 .item.lairfragment {
-	background: #0b404e url(../../../../../images/item/pattern_background.png);
-	background-size: 100%;
+	background-color: #0c3f4d;
+	background-image: url(../../../../../images/item/pattern_background.png);
 }
 
 .item.lairboss {
-	background: #11730e url(../../../../../images/item/consumable_background.png);
-	background-size: 100%;
+	background-color: #0a720c;
+	background-image: url(../../../../../images/item/consumable_background.png);
 }
 
 .item.regionalfragment {
-	background-color: #0b404e;
+	background-color: #0c3f4d;
 	background-image: url(../../../../../images/item/pattern_background.png);
 }
 
 .item.regionalboss {
-	background-color: #11730e;
+	background-color: #0a720c;
 	background-image: url(../../../../../images/item/consumable_background.png);
 }
 
@@ -173,12 +173,6 @@
 	padding-top: 78%;
 
 	cursor: default;
-	-webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
 }
 
 .item.small .name {

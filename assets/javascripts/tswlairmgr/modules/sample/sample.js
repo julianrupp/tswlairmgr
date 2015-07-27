@@ -34,7 +34,7 @@ tswlairmgr.modules.sample = new function() {
 	};
 	
 	this._appBackground = {
-		savedSnapshot: null,
+		savedSnapshot: {},
 		module: "#404040 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAA+SURBVDjLY/j//z8DJZgyzQwMDZQawDTgLmAcdcEgcMHApwOWAXcBG4gQAJvEwMALpbmhNBeU5kCmYTbDaABkFrFGcnxtxwAAAABJRU5ErkJggg==) repeat center"
 	};
 	
@@ -93,7 +93,6 @@ tswlairmgr.modules.sample = new function() {
 		tswlairmgr.core.persistentstate.observables.hashLoaded.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.sample>: persistent state loaded, running deferred initialization");
 			self._loadState(tswlairmgr.core.persistentstate.getModuleState(self));
-			self._redraw();
 		});
 	};
 	
@@ -163,25 +162,41 @@ tswlairmgr.modules.sample = new function() {
 			{
 				dataInstance:
 					// LF: Theta 07
-					tswlairmgr.core.data.struct.regions.tra.zones.bf.lairs[0].bosses[0].boss.getFragmentSet().getCFragment(),
+					tswlairmgr.core.data
+						.getRegions()["tra"]
+						.getZones()["bf"]
+						.getLairs()["bf"]
+						.getBosses()["bf01"]
+						.getFragmentSet().getCFragment(),
 				isSmall: false
 			},
 			{
 				dataInstance:
 					// RF: Alaph 04
-					tswlairmgr.core.data.struct.regions.tra.regional.getFragmentSet().getNNEFragment(),
+					tswlairmgr.core.data
+						.getRegions()["tra"]
+						.getRegional()
+						.getFragmentSet().getNNEFragment(),
 				isSmall: false
 			},
 			{
 				dataInstance:
 					// LF: Omicron 01
-					tswlairmgr.core.data.struct.regions.sol.zones.bm.lairs[0].bosses[1].boss.getFragmentSet().getEFragment(),
+					tswlairmgr.core.data
+						.getRegions()["sol"]
+						.getZones()["bm"]
+						.getLairs()["bm"]
+						.getBosses()["bm02"]
+						.getFragmentSet().getEFragment(),
 				isSmall: true
 			},
 			{
 				dataInstance:
 					// RF: Lamadh 06
-					tswlairmgr.core.data.struct.regions.sol.regional.getFragmentSet().getNWWFragment(),
+					tswlairmgr.core.data
+						.getRegions()["sol"]
+						.getRegional()
+						.getFragmentSet().getNWWFragment(),
 				isSmall: true
 			}
 		];
@@ -218,25 +233,37 @@ tswlairmgr.modules.sample = new function() {
 			{
 				dataInstance:
 					// LS: Head of Glamr
-					tswlairmgr.core.data.struct.regions.sol.zones.km.lairs[0].bosses[2].boss,
+					tswlairmgr.core.data
+						.getRegions()["sol"]
+						.getZones()["km"]
+						.getLairs()["km"]
+						.getBosses()["km03"],
 				isSmall: false
 			},
 			{
 				dataInstance:
 					// RS: Egypt
-					tswlairmgr.core.data.struct.regions.egy.regional,
+					tswlairmgr.core.data
+						.getRegions()["egy"]
+						.getRegional(),
 				isSmall: false
 			},
 			{
 				dataInstance:
 					// LS: Duneback
-					tswlairmgr.core.data.struct.regions.egy.zones.cs.lairs[0].bosses[2].boss,
+					tswlairmgr.core.data
+						.getRegions()["egy"]
+						.getZones()["cs"]
+						.getLairs()["cs"]
+						.getBosses()["cs03"],
 				isSmall: true
 			},
 			{
 				dataInstance:
 					// RS: Transylvania
-					tswlairmgr.core.data.struct.regions.tra.regional,
+					tswlairmgr.core.data
+						.getRegions()["tra"]
+						.getRegional(),
 				isSmall: true
 			}
 		];
@@ -315,9 +342,10 @@ tswlairmgr.modules.sample = new function() {
 		this._el.self.append(this._el.localizationSwitcher.rootNode);
 		
 		// Item MVC destroy test
-		var dummy = $("<div />");
+		var dummy = $("<div />")
+			.css("display", "inline-block");
 		var mvcController = new tswlairmgr.core.components.ItemHTML(
-			tswlairmgr.core.data.struct.regions.tra.regional,
+			tswlairmgr.core.data.getRegions()["tra"].getRegional(),
 			dummy
 		);
 		$(dummy).click(function() {
