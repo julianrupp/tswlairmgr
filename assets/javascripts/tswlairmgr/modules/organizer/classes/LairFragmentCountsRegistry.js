@@ -67,7 +67,14 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 			this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()] = {};
 		}
 		
-		this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
+		if(newCount > 0)
+		{
+			this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
+		}
+		else
+		{
+			delete this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()];
+		}
 	};
 	
 	this.getPersistentState = function()

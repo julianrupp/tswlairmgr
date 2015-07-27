@@ -174,26 +174,24 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, mode
 	
 	this._update_topmenu_lairselector = function() {
 		var newId = this._model.getSelectedLairId();
-		var self = this;
 		
 		if(newId === null)
 		{
-			$(this._el.topmenu.lairselector.select).change();
+			newId = $(this._el.topmenu.lairselector.select).find(":selected").data("lairInstance").getId();
 		}
-		else
-		{
-			$("option", $(this._el.topmenu.lairselector.select)).each(function(index) {
-				var optionNode = this;
-				var optionLairId = $(optionNode).data("lairInstance").getId();
-				if(optionLairId === newId)
-				{
-					$(self._el.topmenu.lairselector.select).val($(optionNode).val());
-					self._appBackground["background"] = "#808080 url(assets/images/lair/"+newId+".jpg) no-repeat fixed center";
-					self._refreshBackground();
-					return;
-				}
-			});
-		}
+		
+		var self = this;
+		$("option", $(this._el.topmenu.lairselector.select)).each(function(index) {
+			var optionNode = this;
+			var optionLairId = $(optionNode).data("lairInstance").getId();
+			if(optionLairId === newId)
+			{
+				$(self._el.topmenu.lairselector.select).val($(optionNode).val());
+				self._appBackground["background"] = "#808080 url(assets/images/lair/"+newId+".jpg) no-repeat fixed center";
+				self._refreshBackground();
+				return;
+			}
+		});
 	};
 	
 	// TODO: More update sub-functions
