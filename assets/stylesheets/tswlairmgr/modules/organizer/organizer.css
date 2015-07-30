@@ -23,3 +23,35 @@
 }
 
 /* -------------------- */
+
+#module-organizer #bosstable table {
+	border: width: 838px;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #bosstable td.pad {
+	width: 8px;
+}
+
+#module-organizer #bosstable table.two td.pad:first-child, #module-organizer #bosstable table.two td.pad:last-child {
+	width: 141px;
+}
+
+#module-organizer #bosstable table.one td.pad:first-child, #module-organizer #bosstable table.one td.pad:last-child {
+	width: 282px;
+}
+
+#module-organizer #bosstable td.inner {
+	width: 274px;
+	margin: 0px !important;
+	padding: 0px !important;
+	text-align: center;
+}
+
+#module-organizer #bosstable td.inner .innerContent {
+	padding: 10px; /* TODO: TEMP */
+}

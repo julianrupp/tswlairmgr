@@ -41,6 +41,11 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 				valid = false;
 			}
 			
+			if(!state.n.match.match(/^[a-zA-Z0-9\-]+$/))
+			{
+				valid = false;
+			}
+			
 			if(!valid) { return false; }
 			
 			this._name = state.n;

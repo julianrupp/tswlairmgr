@@ -4,10 +4,10 @@ tswlairmgr.modules.organizer = tswlairmgr.modules.organizer || {};
 
 tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._persistentStateVersion = 1;
-	this._selectedLairId = null;
+	this._selectedLair = tswlairmgr.core.data.getSortedRegions()[0].getSortedZones()[0].getSortedLairs()[0];
 	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
-	this._participants = [];
-	this._selectedChatScriptLocalizationId = null;
+	this._participants = new tswlairmgr.modules.organizer.classes.ParticipantRegistry();
+	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getDefaultLocalizationId();
 	
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
@@ -16,16 +16,14 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
-	this.getSelectedLairId = function() {
-		return this._selectedLairId;
+	this.getSelectedLair = function() {
+		return this._selectedLair;
 	};
 	
-	this.setSelectedLairId = function(lairId) {
-		var previous = this._selectedLairId;
-		this._selectedLairId = lairId;
+	this.setSelectedLair = function(lair) {
+		this._selectedLair = lair;
 		this.observables.selectedLairChanged.notify({
-			previousLairId: previous,
-			newLairId: lairId
+			newLair: lair
 		});
 	};
 	
@@ -34,49 +32,15 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	};
 	
 	this.setCountForFragment = function(fragmentInstance, newCount) {
-		return this._fragmentCounts.setCountForFragment(fragmentInstance, newCount);
-		this.observables.fragmentCountsChanged.notify({
-			fragment: fragmentInstance,
-			newCount: newCount
-		});
+		this._fragmentCounts.setCountForFragment(fragmentInstance, newCount);
 	};
 	
 	this.addParticipantByName = function(participantName) {
-		var found = false;
-		$.each(this._participants, function(index, participantInstance) {
-			if(participantInstance.getName() === participantName)
-			{
-				found = true;
-			}
-		});
-		if(found) { return false; }
-		
-		var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(participantName);
-		this._participants.push(newParticipant);
-		this.observables.participantsChanged.notify({
-			participantAdded: true,
-			participantInstance: newParticipant
-		});
+		// TODO
 	};
 	
-	this.removeParticipantByIndex = function(participantIndex) {
-		this._participants.splice(participantIndex, 1);
-		this.observables.participantsChanged.notify({
-			participantRemoved: true,
-			participantIndex: participantIndex
-		});
-	};
-	
-	this.getParticipantAvailabilityForBossMission = function(participantIndex, bossInstance) {
-		return this._participants[participantIndex].canTurnInMissionForBoss(bossInstance);
-	};
-	
-	this.toggleParticipantAvailabilityForBossMission = function(participantIndex, bossInstance) {
-		this._participants[participantIndex].toggleCanTurnInMissionForBoss(bossInstance);
-		this.observables.participantsChanged.notify({
-			participantAvailabilityChanged: true,
-			participantIndex: participantIndex
-		});
+	this.removeParticipantByWHAT = function(whatArg) {
+		// TODO
 	};
 	
 	this.getSelectedChatScriptLocalizationId = function() {
@@ -84,50 +48,31 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	};
 	
 	this.setSelectedChatScriptLocalizationId = function(newId) {
-		var previous = this._selectedChatScriptLocalizationId;
 		this._selectedChatScriptLocalizationId = newId;
 		this.observables.selectedChatScriptLocalizationIdChanged.notify({
-			previousLocalizationId: previous,
 			newLocalizationId: newId
 		});
 	};
 	
 	this.getPersistentState = function() {
-		var participantsPersistentState = [];
-		$.each(this._participants, function(index, participantInstance) {
-			participantsPersistentState.push(participantInstance.getPersistentState());
-		});
 		return {
 			v: this._persistentStateVersion,
-			l: this._selectedLairId,
-			fcr: this._fragmentCounts.getPersistentState(),
-			p: participantsPersistentState,
-			csl: this._selectedChatScriptLocalizationId
+			l: this.getSelectedLair().getId()
 		};
 	};
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.p) /*|| !(state.csl)*/) { return false; }
+		if(!(state.v) || !(state.l)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
-			var foundLairId = false;
-			$.each(tswlairmgr.core.data.getRegions(), function(regionId, regionInstance) {
-				$.each(regionInstance.getZones(), function(zoneId, zoneInstance) {
-					$.each(zoneInstance.getLairs(), function(lairId, lairInstance) {
-						if(lairId === state.l)
-						{
-							foundLairId = true;
-						}
-					});
-				});
-			});
-			if(foundLairId)
+			var lair = tswlairmgr.core.data.getLairById(state.l);
+			if(lair)
 			{
-				this.setSelectedLairId(state.l);
+				this.setSelectedLair(lair);
 			}
 			
-			this._fragmentCounts.setPersistentState(state.fcr);
+			/*this._fragmentCounts.setPersistentState(state.fcr);
 			this.observables.fragmentCountsChanged.notify({});
 			
 			var restoredParticipants = [];
@@ -144,7 +89,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 			if($.inArray(state.csl, tswlairmgr.core.data.getAllLocalizationIds()) !== -1)
 			{
 				this.setSelectedChatScriptLocalizationId(state.csl);
-			}
+			}*/
 			
 			return true;
 		}

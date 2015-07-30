@@ -7,6 +7,10 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 	this._persistentStateVersion = 1;
 	this._registry = {};
 	
+	this.observables = {
+		countChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this.getCountForFragment = function(fragmentInstance) {
 		var fBoss = fragmentInstance.getSet().getBoss();
 		var fLair = fBoss.getLair();
@@ -67,13 +71,27 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 			this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()] = {};
 		}
 		
+		var notificationNewValue = null;
 		if(newCount > 0)
 		{
-			this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
+			if(newCount <= 99)
+			{
+				this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
+				notificationNewValue = newCount;
+			}
 		}
 		else
 		{
 			delete this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()];
+			notificationNewValue = 0;
+		}
+		
+		if(newCount)
+		{
+			this.observables.countChanged.notify({
+				fragment: fragmentInstance,
+				newCount: notificationNewValue
+			});
 		}
 	};
 	

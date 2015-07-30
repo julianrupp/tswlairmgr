@@ -1077,4 +1077,23 @@ tswlairmgr.core.data.getSortedRegions = function()
 	return this._sortedRegions;
 };
 
+tswlairmgr.core.data.getLairById = function(id)
+{
+	var res = null;
+	$.each(this.getRegions(), function(regionKey, regionInstance) {
+		$.each(regionInstance.getZones(), function(zoneKey, zoneInstance) {
+			$.each(zoneInstance.getLairs(), function(lairKey, lairInstance) {
+				if(lairKey === id)
+				{
+					res = lairInstance;
+					return;
+				}
+			});
+			if(res) { return; }
+		});
+		if(res) { return; }
+	});
+	return res;
+};
+
 tswlairmgr.core.data._bootstrap();

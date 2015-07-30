@@ -2,12 +2,14 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
 tswlairmgr.modules.organizer = tswlairmgr.modules.organizer || {};
 
-tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, modelInstance, localization) {
-	this._moduleId = id;
+tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelInstance, localization) {
 	this._model = modelInstance;
 	this._localization = localization;
 	
+	this._subViews = {};
+	
 	this.observables = {
+		appBackgroundShouldChange: new tswlairmgr.core.helpers.Observable(this),
 		lairselectorDropdownChanged: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantAddButtonClicked: new tswlairmgr.core.helpers.Observable(this),
@@ -20,25 +22,10 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, mode
 	
 	this._el = {
 		self: contentNode,
-		topmenu: {
-			lairselector: {
-				rootNode: null,
-				label: null,
-				select: null
-			}
-		}
-	};
-	
-	this._templates = {
-		topmenu: {
-			lairselector: {
-				label: '{{localization.strings.topmenu.lairselector.selectLair}}:',
-				select: {
-					optgroup: '{{{context.regionName}}}',
-					option: '{{{context.zoneName}}}: {{{context.lairName}}}'
-				}
-			}
-		}
+		topmenu: null,
+		bosstable: null,
+		picktable: null,
+		output: null
 	};
 	
 	this._appBackground = {
@@ -55,146 +42,139 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, mode
 	};
 	
 	this._refreshBackground = function() {
-		if(tswlairmgr.modules.getActiveModuleId() == this._moduleId)
-		{
-			$("body").css("background", this._appBackground["background"]);
-			$("body").css("background-size", this._appBackground["background-size"]);
-		}
+		$("body").css("background", this._appBackground["background"]);
+		$("body").css("background-size", this._appBackground["background-size"]);
 	};
 	
 	this._build = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: build called");
 		
 		this._build_topmenu();
-		// TODO: More build sub-function calls
-		
-		$(this._el.topmenu.lairselector.select).change();
+		//this._build_bosstable();
+		// TODO: this._build_picktable();
+		// TODO: this._build_output();
 	};
 	
 	this._build_topmenu = function() {
-		this._el.topmenu.rootNode = $("<div />")
+		this._el.topmenu = $("<div />")
 			.attr("id", "topmenu");
 		
-		this._build_topmenu_lairselector();
+		$(this._el.self).append(this._el.topmenu);
 		
-		$(this._el.self).append(this._el.topmenu.rootNode);
+		this._subViews.topmenu = new tswlairmgr.modules.organizer.viewTopmenu(this._el.topmenu, this._model, this._localization);
+		this._subViews.topmenu._init();
 	};
 	
-	this._build_topmenu_lairselector = function() {
-		this._el.topmenu.lairselector.rootNode = $("<div />")
-			.attr("id", "lairselector")
-			.addClass("uibox");
+	/*this._build_bosstable = function() {
+		this._el.bosstable = $("<div />")
+			.attr("id", "bosstable");
 		
-		this._el.topmenu.lairselector.label = $("<div />")
-			.attr("id", "lairselectorLabel")
-			.text("Select lair:");
+		$(this._el.self).append(this._el.bosstable);
 		
-		var self = this;
-		this._el.topmenu.lairselector.select = $('<select />')
-			.attr("id", "lairselectorDropdown")
-			.change(function() {
-				var selectedLairInstance = $(self._el.topmenu.lairselector.select).find(":selected").data("lairInstance");
-				self.observables.lairselectorDropdownChanged.notify({
-					newLairInstance: selectedLairInstance
-				});
-			});
-		
-		var i=0;
-		var selectNode = this._el.topmenu.lairselector.select;
-		$.each(tswlairmgr.core.data.getSortedRegions(), function(regionIndex, regionInstance) {
-			var optgroupNode = $("<optgroup />")
-				.data("regionInstance", regionInstance);
-			$.each(regionInstance.getSortedZones(), function(zoneIndex, zoneInstance) {
-				$.each(zoneInstance.getSortedLairs(), function(lairIndex, lairInstance) {
-					var optionNode = $("<option />")
-						.data("zoneInstance", zoneInstance)
-						.data("lairInstance", lairInstance)
-						.val(i++);
-					$(optgroupNode).append(optionNode);
-				});
-			});
-			$(selectNode).append(optgroupNode);
-		});
-		
-		$(this._el.topmenu.lairselector.rootNode).append(this._el.topmenu.lairselector.label);
-		$(this._el.topmenu.lairselector.rootNode).append(this._el.topmenu.lairselector.select);
-		$(this._el.topmenu.rootNode).append(this._el.topmenu.lairselector.rootNode);
-		
-		this._update_topmenu_lairselector();
-	};
-	
-	// TODO: More build sub-functions
+		this._subViews.bosstable = new tswlairmgr.modules.organizer.viewBosstable(this._el.bosstable, this._model, this._localization);
+	};*/
 	
 	this._redraw = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: redraw called");
 		
 		this._redraw_topmenu();
-		// TODO: More redraw sub-function calls
+		//this._redraw_bosstable();
+		// TODO: this._redraw_picktable();
+		// TODO: this._redraw_output();
 	};
 	
 	this._redraw_topmenu = function() {
-		this._redraw_topmenu_lairselector();
+		this._subViews.topmenu._redraw();
 	};
 	
-	this._redraw_topmenu_lairselector = function() {
-		var self = this;
-		var lairselectorBox = $("#lairselector", $("#topmenu", $(this._el.self)));
-		var labelNode = $("#lairselectorLabel", $(lairselectorBox));
-		$(labelNode).html(
-			Mustache.render(self._templates.topmenu.lairselector.label, {
-				localization: self._localization.getLocalizationData(),
-				context: {}
-			})
-		);
-		var selectNode = $("#lairselectorDropdown", $(lairselectorBox));
-		$("optgroup", selectNode).each(function(index) {
-			var optgroupNode = this;
-			$(optgroupNode).attr("label",
-				Mustache.render(self._templates.topmenu.lairselector.select.optgroup, {
-					localization: self._localization.getLocalizationData(),
-					context: {
-						regionName: $(optgroupNode).data("regionInstance").getName()
-					}
-				})
-			);
-		});
-		$("option", selectNode).each(function(index) {
-			var optionNode = this;
-			$(optionNode).text(
-				Mustache.render(self._templates.topmenu.lairselector.select.option, {
-					localization: self._localization.getLocalizationData(),
-					context: {
-						zoneName: $(optionNode).data("zoneInstance").getName(),
-						lairName: $(optionNode).data("lairInstance").getName()
-					}
-				})
-			);
-		});
-	};
+	/*this._redraw_bosstable = function() {
+		this._subViews.bosstable._redraw();
+	};*/
 	
-	this._update_topmenu_lairselector = function() {
-		var newId = this._model.getSelectedLairId();
+	/* TODO: MOVE TO BOSSTABLE VIEW
+	this._redraw_bosstable = function() {
+		var bt = $(this._el.bosstable.rootNode);
+		$(bt).empty();
 		
-		if(newId === null)
+		var lair = this._model.getSelectedLair();
+		if(!lair){ return; }
+		
+		var bosses = lair.getSortedBosses();
+		var i = bosses.length;
+		var lineNode, lineNodeHTML = '<table><tbody><tr></tr></tbody></table>';
+		var columnNodeHTML = '<td class="uibox inner"><div class="innerContent"></div></td>'; // TODO: uibox temp
+		var paddingNodeHTML = '<td class="pad" />';
+		
+		while(i > 0)
 		{
-			newId = $(this._el.topmenu.lairselector.select).find(":selected").data("lairInstance").getId();
+			lineNode = $(lineNodeHTML);
+			
+			if(i >= 3)
+			{
+				$(lineNode).addClass("three");
+				$("tr", lineNode).append(columnNodeHTML);
+				$("tr", lineNode).append(paddingNodeHTML);
+				$("tr", lineNode).append(columnNodeHTML);
+				$("tr", lineNode).append(paddingNodeHTML);
+				$("tr", lineNode).append(columnNodeHTML);
+				i -= 3;
+			}
+			else if(i >= 2)
+			{
+				$(lineNode).addClass("two");
+				$("tr", lineNode).append(paddingNodeHTML);
+				$("tr", lineNode).append(columnNodeHTML);
+				$("tr", lineNode).append(paddingNodeHTML);
+				$("tr", lineNode).append(columnNodeHTML);
+				$("tr", lineNode).append(paddingNodeHTML);
+				i -= 2;
+			}
+			else if(i >= 1)
+			{
+				$(lineNode).addClass("one");
+				$("tr", lineNode).append(paddingNodeHTML);
+				$("tr", lineNode).append(columnNodeHTML);
+				$("tr", lineNode).append(paddingNodeHTML);
+				i -= 1;
+			}
+			
+			$(bt).append(lineNode);
 		}
 		
+		this._redraw_bosstable_bossblocks();
+	};
+	
+	this._redraw_bosstable_bossblocks = function() {
+		$.each(this._bosstableItemMVCControllers, function(index, controller) {
+			controller.destroy();
+		});
+		this._bosstableItemMVCControllers = [];
+		
+		var bt = $(this._el.bosstable.rootNode);
+		var lair = this._model.getSelectedLair();
+		if(!lair){ return; }
+		var bosses = lair.getSortedBosses();
+		
+		var k = 0;
 		var self = this;
-		$("option", $(this._el.topmenu.lairselector.select)).each(function(index) {
-			var optionNode = this;
-			var optionLairId = $(optionNode).data("lairInstance").getId();
-			if(optionLairId === newId)
-			{
-				$(self._el.topmenu.lairselector.select).val($(optionNode).val());
-				self._appBackground["background"] = "#808080 url(assets/images/lair/"+newId+".jpg) no-repeat fixed center";
-				self._refreshBackground();
-				return;
-			}
+		$("td.inner .innerContent", $(bt)).each(function(index) {
+			var contentNode = this;
+			var boss = bosses[k];
+			if(!boss) { return; }
+			self._bosstableItemMVCControllers.push(
+				new tswlairmgr.core.components.ItemHTML(
+					boss,
+					contentNode,
+					{}
+				) // TODO: TEMP
+			);
+			k++;
 		});
 	};
 	
-	// TODO: More update sub-functions
+	this._createBossFragmentsTable = function() {
+		// ...
+	};*/
 	
 	this._init = function() {
 		this._localization.init();
@@ -213,9 +193,19 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, mode
 			self._redraw();
 		});
 		
+		this._subViews.topmenu.observables.appBackgroundShouldChange.registerCallback(function(origin, context) {
+			self.observables.appBackgroundShouldChange.notify(context);
+		});
+		
+		this._subViews.topmenu.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {
+			self.observables.lairselectorDropdownChanged.notify(context);
+		});
+		
+		/* TODO: MOVE TO SUB-VIEWS
 		this._model.observables.selectedLairChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that selected lair has changed.");
-			self._update_topmenu_lairselector();
+			//self._update_topmenu();
+			//self._redraw_bosstable();
 		});
 		this._model.observables.fragmentCountsChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that fragment counts have changed.");
@@ -231,6 +221,6 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, id, mode
 		this._model.observables.selectedChatScriptLocalizationIdChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that selected chat script localization has changed.");
 			// TODO: self._update_output();
-		});
+		});*/
 	};
 };

@@ -16,10 +16,12 @@ tswlairmgr.modules.organizer.controller = new function() {
 	this.initWithRootNode = function(contentNode) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: initWithRootNode: initializing...");
 		
-		this._view = new tswlairmgr.modules.organizer.view(contentNode, this.id, this._model, this._localization);
+		this._view = new tswlairmgr.modules.organizer.view(contentNode, this._model, this._localization);
 		this._view._init();
 		
 		this._init();
+		
+		this._model.observables.selectedLairChanged.notify({});
 		
 		var self = this;
 		$.each(this._model.observables, function(observableName, observable) {
@@ -63,9 +65,25 @@ tswlairmgr.modules.organizer.controller = new function() {
 	
 	this._init = function() {
 		var self = this;
+		
+		this._model.observables.selectedLairChanged.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that selected lair has changed.");
+			self._view.observables.appBackgroundShouldChange.notify({});
+		});
+		
+		this._view.observables.appBackgroundShouldChange.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that app background should change.");
+			var lair = self._model.getSelectedLair();
+			self._view._appBackground["background"] = "#808080 url(assets/images/lair/"+lair.getId()+".jpg) no-repeat fixed center";
+			if(tswlairmgr.modules.getActiveModuleId() == self.id)
+			{
+				self._view._refreshBackground();
+			}
+		});
+		
 		this._view.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that lair dropdown selection has changed.");
-			self._model.setSelectedLairId(context.newLairInstance.getId());
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that lair selector dropdown selection has changed.");
+			self._model.setSelectedLair(context.newLairInstance);
 		});
 		
 		// TODO: Hook up other interface action observables
