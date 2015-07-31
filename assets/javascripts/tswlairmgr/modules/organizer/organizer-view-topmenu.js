@@ -23,13 +23,11 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 	};
 	
 	this._templates = {
-		topmenu: {
-			lairselector: {
-				label: '{{localization.strings.topmenu.lairselector.selectLair}}:',
-				select: {
-					optgroup: '{{{context.regionName}}}',
-					option: '{{{context.zoneName}}}: {{{context.lairName}}}'
-				}
+		lairselector: {
+			label: '{{localization.strings.topmenu.lairselector.selectLair}}:',
+			select: {
+				optgroup: '{{{context.regionName}}}',
+				option: '{{{context.zoneName}}}: {{{context.lairName}}}'
 			}
 		}
 	};
@@ -107,7 +105,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		var lairselectorBox = $("#lairselector", $(this._el.self));
 		var labelNode = $("#lairselectorLabel", $(lairselectorBox));
 		$(labelNode).html(
-			Mustache.render(self._templates.topmenu.lairselector.label, {
+			Mustache.render(self._templates.lairselector.label, {
 				localization: self._localization.getLocalizationData(),
 				context: {}
 			})
@@ -116,7 +114,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		$("optgroup", selectNode).each(function(index) {
 			var optgroupNode = this;
 			$(optgroupNode).attr("label",
-				Mustache.render(self._templates.topmenu.lairselector.select.optgroup, {
+				Mustache.render(self._templates.lairselector.select.optgroup, {
 					localization: self._localization.getLocalizationData(),
 					context: {
 						regionName: $(optgroupNode).data("regionInstance").getName()
@@ -127,7 +125,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		$("option", selectNode).each(function(index) {
 			var optionNode = this;
 			$(optionNode).text(
-				Mustache.render(self._templates.topmenu.lairselector.select.option, {
+				Mustache.render(self._templates.lairselector.select.option, {
 					localization: self._localization.getLocalizationData(),
 					context: {
 						zoneName: $(optionNode).data("zoneInstance").getName(),
