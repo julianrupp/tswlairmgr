@@ -42,10 +42,11 @@ tswlairmgr.modules.organizer.viewBosstable = function organizerViewBosstable(con
 		var lair = this._model.getSelectedLair();
 		//if(!lair){ return; }
 		
-		var bosses = [0, 1, 2];/*lair.getSortedBosses();*/
+		var bosses = lair.getSortedBosses();
 		var i = bosses.length;
+		
 		var lineNode, lineNodeHTML = '<table><tbody><tr></tr></tbody></table>';
-		var columnNodeHTML = '<td class="inner"><div class="innerContent">[BossFragmentControls view goes here]</div></td>'; // TODO: TEMP
+		var columnNodeHTML = '<td class="inner"><div class="innerContent"></div></td>';
 		var paddingNodeHTML = '<td class="pad" />';
 		
 		while(i > 0)
@@ -88,9 +89,9 @@ tswlairmgr.modules.organizer.viewBosstable = function organizerViewBosstable(con
 	};
 	
 	this._redraw_bosstable_bossfragmentcontrols = function() {
-		$.each(this._bossfragmentcontrolsSubViews, function(index, view) {
+		/*$.each(this._bossfragmentcontrolsSubViews, function(index, view) {
 			view.destroy();
-		});
+		});*/
 		this._bossfragmentcontrolsSubViews = [];
 		
 		var tc = $(this._el.table);
@@ -104,10 +105,17 @@ tswlairmgr.modules.organizer.viewBosstable = function organizerViewBosstable(con
 			var contentNode = this;
 			var boss = bosses[k];
 			
-			$(contentNode).text(boss.getName()); // TODO: TEMP
-			// TODO: Create new BossFragmentControls view and rig up observables
+			var bfcView = new tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts(contentNode, self._model, boss, self._localization);
+			bfcView._init();
 			
-			self._bossfragmentcontrolsSubViews.push(/*view instance*/);
+			bfcView.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
+				self.observables.fragmentCountPlusButtonClicked.notify(context);
+			});
+			bfcView.observables.fragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
+				self.observables.fragmentCountMinusButtonClicked.notify(context);
+			});
+			
+			self._bossfragmentcontrolsSubViews.push(bfcView);
 			k++;
 		});
 	};
