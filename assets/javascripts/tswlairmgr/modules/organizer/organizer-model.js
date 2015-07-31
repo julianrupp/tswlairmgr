@@ -40,6 +40,10 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		return 0; // TODO
 	};
 	
+	this.fragmentHasLowMark = function(fragmentInstance) {
+		return (Math.floor(Math.random()*2) == 0) ? false : true;// TODO
+	};
+	
 	this.addParticipantByName = function(participantName) {
 		// TODO
 	};

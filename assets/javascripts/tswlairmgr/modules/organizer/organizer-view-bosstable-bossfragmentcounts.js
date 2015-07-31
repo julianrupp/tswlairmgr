@@ -98,7 +98,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 				fragment = this._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
 				
 				cellNode = $(
-					'<td class="fragmentControlsContainer lowMark">' + // TODO
+					'<td class="fragmentControlsContainer">' +
 					'	<div class="fragment">' +
 					'		' +
 					'	</div>' +
@@ -177,11 +177,20 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		var self = this;
 		$(".fragmentControlsContainer", this._el.fragmentsBlock.rootNode).each(function(index) {
 			var fcc = this;
+			var fragment = $(fcc).data("fragmentInstance");
+			
+			if(self._model.fragmentHasLowMark(fragment))
+			{
+				$(fcc).addClass("lowMark");
+			}
+			else
+			{
+				$(fcc).removeClass("lowMark");
+			}
 			
 			var countsBlock = $(".counts", fcc);
-			
-			$(".countHave", countsBlock).text(self._model.getCountForFragment($(fcc).data("fragmentInstance"))); // TODO
-			$(".countWillHave", countsBlock).text(self._model.getWillHaveCountForFragment($(fcc).data("fragmentInstance"))); // TODO
+			$(".countHave", countsBlock).text(self._model.getCountForFragment(fragment)); // TODO
+			$(".countWillHave", countsBlock).text(self._model.getWillHaveCountForFragment(fragment)); // TODO
 		});
 	};
 	
