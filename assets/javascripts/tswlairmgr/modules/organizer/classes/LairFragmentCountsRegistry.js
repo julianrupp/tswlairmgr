@@ -13,7 +13,7 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 	
 	this.getCountForFragment = function(fragmentInstance) {
 		var fBoss = fragmentInstance.getSet().getBoss();
-		var fLair = fBoss.getLair();console.log(fLair);
+		var fLair = fBoss.getLair();
 		var fZone = fLair.getZone();
 		var fRegion = fZone.getRegion();
 		
@@ -41,7 +41,6 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 		{
 			return 0;
 		}
-		
 		return this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()];
 	};
 	
@@ -74,11 +73,8 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 		var notificationNewValue = null;
 		if(newCount > 0)
 		{
-			if(newCount <= 99)
-			{
-				this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
-				notificationNewValue = newCount;
-			}
+			this._registry[fRegion.getId()][fZone.getId()][fLair.getId()][fBoss.getId()][fragmentInstance.getOrientationCode()] = newCount;
+			notificationNewValue = newCount;
 		}
 		else
 		{
@@ -93,6 +89,16 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 				newCount: notificationNewValue
 			});
 		}
+	};
+	
+	this.incrementCountForFragment = function(fragmentInstance) {
+		var previous = this.getCountForFragment(fragmentInstance);
+		this.setCountForFragment(fragmentInstance, previous + 1);
+	};
+	
+	this.decrementCountForFragment = function(fragmentInstance) {
+		var previous = this.getCountForFragment(fragmentInstance);
+		this.setCountForFragment(fragmentInstance, previous - 1);
 	};
 	
 	this.getPersistentState = function()

@@ -7,6 +7,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._selectedLair = tswlairmgr.core.data.getSortedRegions()[0].getSortedZones()[0].getSortedLairs()[0];
 	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
 	this._participants = new tswlairmgr.modules.organizer.classes.ParticipantRegistry();
+	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentCounts, this._participants);
 	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getDefaultLocalizationId();
 	
 	this.observables = {
@@ -16,6 +17,16 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		participantsChanged: new tswlairmgr.core.helpers.Observable(this),
 		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
+	
+	var self = this;
+	this._fragmentCounts.observables.countChanged.registerCallback(function(origin, context) {
+		self.observables.fragmentCountsChanged.notify(context);
+	});
+	$.each(["participantAdded", "participantRemoved", "participantMissionAvailabilityChanged"], function(index, observableName) {
+		self._participants.observables[observableName].registerCallback(function(origin, context) {
+			self.observables.participantsChanged.notify({});
+		});
+	});
 	
 	this.getSelectedLair = function() {
 		return this._selectedLair;
@@ -36,12 +47,37 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		this._fragmentCounts.setCountForFragment(fragmentInstance, newCount);
 	};
 	
-	this.getWillHaveCountForFragment = function(fragmentInstance) {
-		return 0; // TODO
+	this.incrementCountForFragment = function(fragmentInstance) {
+		this._fragmentCounts.incrementCountForFragment(fragmentInstance);
 	};
 	
-	this.fragmentHasLowMark = function(fragmentInstance) {
-		return (Math.floor(Math.random()*2) == 0) ? false : true;// TODO
+	this.decrementCountForFragment = function(fragmentInstance) {
+		this._fragmentCounts.decrementCountForFragment(fragmentInstance);
+	};
+	
+	this.getWillHaveCountForFragment = function(fragmentInstance) {
+		return this._assigningStrategy.getWillHaveCountForFragment(fragmentInstance);
+	};
+	
+	this.isLowOnFragment = function(fragmentInstance) {
+		var fragments = fragmentInstance.getSet().getFragments();
+		var lowestCount = null;
+		
+		var self = this;
+		$.each(fragments, function(orientationCode, fragment) {
+			var count = self._fragmentCounts.getCountForFragment(fragment);
+			
+			if(lowestCount === null || count < lowestCount)
+			{
+				lowestCount = count;
+			}
+		});
+		
+		if(this._fragmentCounts.getCountForFragment(fragmentInstance) <= lowestCount)
+		{
+			return true;
+		}
+		return false;
 	};
 	
 	this.addParticipantByName = function(participantName) {

@@ -15,11 +15,12 @@
 
 #module-organizer #topmenu #lairselector select#lairselectorDropdown {
 	display: inline-block;
-	border: 2px solid rgba(255, 255, 255, 1);
+	border: 2px solid #ffffff;
 	border-radius: 5px;
-	background: rgba(0, 0, 0, 0.5);
-	color: #ffffff;
+	background-color: #ffffff;
+	color: #000000;
 	height: 32px;
+	font-size: 11px;
 }
 
 /* -------------------- */
@@ -154,6 +155,8 @@
 	display: inline-block;
 	vertical-align: middle;
 	width: 38px;
+	height: 14px;
+	overflow: hidden;
 }
 
 #module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {

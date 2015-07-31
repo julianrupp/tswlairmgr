@@ -7,6 +7,10 @@ tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry = fu
 	this._persistentStateVersion = 1;
 	this._registry = {};
 	
+	this.observables = {
+		changed: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
 	this.isAvailableForBossMission = function(bossInstance) {
 		if(!(bossInstance.getId() in this._registry))
 		{
@@ -18,6 +22,8 @@ tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry = fu
 	
 	this.setAvailabilityForBossMission = function(bossInstance, isAvailable) {
 		this._registry[bossInstance.getId()] = isAvailable;
+		
+		this.observables.changed.notify({});
 	};
 	
 	this.toggleAvailabilityForBossMission = function(bossInstance) {
@@ -47,6 +53,8 @@ tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry = fu
 			if(!valid) { return false; }
 			
 			this._registry = state.r;
+			
+			this.observables.changed.notify({});
 			
 			return true;
 		}

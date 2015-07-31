@@ -8,6 +8,15 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 	this._name = name;
 	this._missionAvailabilityRegistry = new tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry();
 	
+	this.observables = {
+		missionAvailabilityChanged: new tswlairmgr.core.helpers.Observable(this)
+	};
+	
+	this._missionAvailabilityChangedCallback = function(origin, context) {
+		this.observables.missionAvailabilityChanged.notify(context);
+	};
+	this._missionAvailabilityRegistry.observables.changed.registerCallback(this._missionAvailabilityChangedCallback);
+	
 	this.getName = function() {
 		return this._name;
 	};
@@ -18,6 +27,10 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 	
 	this.toggleCanTurnInMissionForBoss = function(bossInstance) {
 		this._missionAvailabilityRegistry.toggleAvailabilityForBossMission(bossInstance);
+	};
+	
+	this._isValidName = function(name) {
+		return name.match.match(/^[a-zA-Z0-9\-]+$/);
 	};
 	
 	this.getPersistentState = function()
@@ -41,7 +54,7 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 				valid = false;
 			}
 			
-			if(!state.n.match.match(/^[a-zA-Z0-9\-]+$/))
+			if(!this._isValidName(state.n))
 			{
 				valid = false;
 			}
@@ -54,4 +67,6 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 		}
 		return false;
 	};
+	
+	if(!this._isValidName(name)) { return false; }
 };

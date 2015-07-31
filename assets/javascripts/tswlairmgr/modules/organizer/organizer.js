@@ -86,6 +86,16 @@ tswlairmgr.modules.organizer.controller = new function() {
 			self._model.setSelectedLair(context.newLairInstance);
 		});
 		
+		this._view.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that a fragment count plus button was clicked.");
+			self._model.incrementCountForFragment(context.fragment);
+		});
+		
+		this._view.observables.fragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that a fragment count minus button was clicked.");
+			self._model.decrementCountForFragment(context.fragment);
+		});
+		
 		// TODO: Hook up other interface action observables
 	};
 	

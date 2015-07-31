@@ -78,59 +78,61 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			'</table>');
 		
 		var sideLength = Math.ceil(Math.sqrt(9));
-		var rowNode;
-		var cellNode;
 		var fragmentOrder = [
 			"nw", "n", "ne",
 			"w", "c", "e",
 			"sw", "s", "se"
 		];
-		var fragment;
+		var cellNode;
 		for(var row=0; row<sideLength; row++)
-		{
-			rowNode = $(
+		{	
+			var rowNode = $(
 				'<tr>' +
 				'	' +
 				'</tr>');
 			
 			for(var col=0; col<sideLength; col++)
 			{
-				fragment = this._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
-				
-				cellNode = $(
-					'<td class="fragmentControlsContainer">' +
-					'	<div class="fragment">' +
-					'		' +
-					'	</div>' +
-					'	<div class="controls">' +
-					'		<div class="button minus"><div class="symbol"></div></div>' +
-					'		<div class="counts">' +
-					'			<span class="countHave"></span> <span class="countWillHave"></span>' +
-					'		</div>' +
-					'		<div class="button plus"><div class="symbol"></div></div>' +
-					'	</div>' +
-					'</td>')
-					.data("fragmentInstance", fragment);
-				
 				var self = this;
-				$(".button.plus", cellNode).click(function() {
-					self.observables.fragmentCountPlusButtonClicked.notify({
-						fragment: fragment
-					});
-				});
 				
-				$(".button.minus", cellNode).click(function() {
-					self.observables.fragmentCountMinusButtonClicked.notify({
-						fragment: fragment
+				(function(){
+					var fragment = self._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
+			
+					cellNode = $(
+						'<td class="fragmentControlsContainer">' +
+						'	<div class="fragment">' +
+						'		' +
+						'	</div>' +
+						'	<div class="controls">' +
+						'		<div class="button minus"><div class="symbol"></div></div>' +
+						'		<div class="counts">' +
+						'			<span class="countHave"></span> <span class="countWillHave"></span>' +
+						'		</div>' +
+						'		<div class="button plus"><div class="symbol"></div></div>' +
+						'	</div>' +
+						'</td>');
+					$(cellNode).data("fragmentInstance", fragment);
+			
+					$(".button.plus", cellNode).click(function() {
+						self.observables.fragmentCountPlusButtonClicked.notify({
+							fragment: fragment
+						});
 					});
-				});
-				
-				this._itemMVCControllers.push(
-					new tswlairmgr.core.components.ItemHTML(
-						fragment,
-						$(".fragment", cellNode)
-					)
-				);
+			
+					$(".button.minus", cellNode).click(function() {
+						self.observables.fragmentCountMinusButtonClicked.notify({
+							fragment: fragment
+						});
+					});
+					
+					var fragmentNode = $(".fragment", cellNode);
+					self._itemMVCControllers.push(
+						new tswlairmgr.core.components.ItemHTML(
+							fragment,
+							fragmentNode
+						)
+					);
+				})();
 				
 				$(rowNode).append(cellNode);
 			}
@@ -179,7 +181,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			var fcc = this;
 			var fragment = $(fcc).data("fragmentInstance");
 			
-			if(self._model.fragmentHasLowMark(fragment))
+			if(self._model.isLowOnFragment(fragment))
 			{
 				$(fcc).addClass("lowMark");
 			}
@@ -189,8 +191,8 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			}
 			
 			var countsBlock = $(".counts", fcc);
-			$(".countHave", countsBlock).text(self._model.getCountForFragment(fragment)); // TODO
-			$(".countWillHave", countsBlock).text(self._model.getWillHaveCountForFragment(fragment)); // TODO
+			$(".countHave", countsBlock).text(self._model.getCountForFragment(fragment));
+			$(".countWillHave", countsBlock).text(self._model.getWillHaveCountForFragment(fragment));
 		});
 	};
 	
@@ -235,23 +237,9 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		self._redraw_namesblock();
 	};
 	
-	this._fragmentCountsCallback = function(origin, context) {
-		if(this._haveFragment(context.fragment))
-		{
-			this._redraw_fragmentsblock();
-		}
-	};
-	
-	this._willHaveCountsCallback = function(origin, context) {
-		if(this._haveFragment(context.fragment))
-		{
-			this._redraw_fragmentsblock();
-		}
-	};
-	
 	this._haveFragment = function(fragmentInstance) {
 		var found = false;
-		$.each(this._boss.getFragmentSet.getFragments(), function(orientationCode, fragment) {
+		$.each(this._boss.getFragmentSet().getFragments(), function(orientationCode, fragment) {
 			if(fragment === fragmentInstance)
 			{
 				found = true;
@@ -259,6 +247,21 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			}
 		});
 		return found;
+	};
+	
+	var self = this;
+	this._fragmentCountsCallback = function(origin, context) {
+		if(self._haveFragment(context.fragment))
+		{
+			self._redraw_fragmentsblock();
+		}
+	};
+	
+	this._willHaveCountsCallback = function(origin, context) {
+		if(self._haveFragment(context.fragment))
+		{
+			self._redraw_fragmentsblock();
+		}
 	};
 	
 	this._init = function() {
