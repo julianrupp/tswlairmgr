@@ -343,6 +343,7 @@ tswlairmgr.core.data._bootstrap_region_sol = function()
 	this._bootstrap_region_sol_regional();
 	
 	this.struct.sol = new tswlairmgr.core.data.Region(
+		"sol",
 		[
 			this.struct.solKM,
 			this.struct.solSC,
@@ -558,6 +559,7 @@ tswlairmgr.core.data._bootstrap_region_egy = function()
 	this._bootstrap_region_egy_regional();
 	
 	this.struct.egy = new tswlairmgr.core.data.Region(
+		"egy",
 		[
 			this.struct.egySD,
 			this.struct.egyCS
@@ -838,6 +840,7 @@ tswlairmgr.core.data._bootstrap_region_tra = function()
 	this._bootstrap_region_tra_regional();
 	
 	this.struct.tra = new tswlairmgr.core.data.Region(
+		"tra",
 		[
 			this.struct.traBF,
 			this.struct.traSF,

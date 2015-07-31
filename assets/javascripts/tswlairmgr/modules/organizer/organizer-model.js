@@ -36,6 +36,10 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		this._fragmentCounts.setCountForFragment(fragmentInstance, newCount);
 	};
 	
+	this.getWillHaveCountForFragment = function(fragmentInstance) {
+		return 0; // TODO
+	};
+	
 	this.addParticipantByName = function(participantName) {
 		// TODO
 	};

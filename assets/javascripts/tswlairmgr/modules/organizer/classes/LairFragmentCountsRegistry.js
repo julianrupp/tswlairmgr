@@ -13,7 +13,7 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 	
 	this.getCountForFragment = function(fragmentInstance) {
 		var fBoss = fragmentInstance.getSet().getBoss();
-		var fLair = fBoss.getLair();
+		var fLair = fBoss.getLair();console.log(fLair);
 		var fZone = fLair.getZone();
 		var fRegion = fZone.getRegion();
 		

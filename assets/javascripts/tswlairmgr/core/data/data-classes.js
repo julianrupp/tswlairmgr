@@ -284,8 +284,9 @@ tswlairmgr.core.data.Lair = function Lair(id, bossesArray) {
 	this._bosses = bossesArray;
 	
 	var bosses = this._bosses;
+	var self = this;
 	$.each(this._bosses, function(key, value) {
-		value._setBackreferenceToLair(this);
+		value._setBackreferenceToLair(self);
 	});
 	
 	this.observables = {
@@ -342,8 +343,9 @@ tswlairmgr.core.data.Zone = function Zone(id, lairsArray) {
 	this._lairs = lairsArray;
 	
 	var lairs = this._lairs;
+	var self = this;
 	$.each(this._lairs, function(key, value) {
-		value._setBackreferenceToZone(this);
+		value._setBackreferenceToZone(self);
 	});
 	
 	this.observables = {
@@ -622,12 +624,14 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 	};
 };
 
-tswlairmgr.core.data.Region = function Region(zonesArray, regionalBoss) {
+tswlairmgr.core.data.Region = function Region(id, zonesArray, regionalBoss) {
+	this._id = id;
 	this._zones = zonesArray;
 	this._regionalBoss = regionalBoss;
 	
+	var self = this;
 	$.each(this._zones, function(key, value) {
-		value._setBackreferenceToRegion(this);
+		value._setBackreferenceToRegion(self);
 	});
 	this._regionalBoss._setBackreferenceToRegion(this);
 	
@@ -669,6 +673,10 @@ tswlairmgr.core.data.Region = function Region(zonesArray, regionalBoss) {
 	
 	this.getName = function() {
 		return this._name;
+	};
+	
+	this.getId = function() {
+		return this._id;
 	};
 	
 	this.toString = function() {

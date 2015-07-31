@@ -22,8 +22,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			missionNameLine: null,
 		},
 		fragmentsBlock: {
-			rootNode: null,
-			fragmentCountControls: {}
+			rootNode: null
 		},
 		calculatedBlock: {
 			rootNode: null,
@@ -99,16 +98,32 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 				fragment = this._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
 				
 				cellNode = $(
-					'<td class="fragmentControlsContainer low-mark">' + // TODO
+					'<td class="fragmentControlsContainer lowMark">' + // TODO
 					'	<div class="fragment">' +
 					'		' +
 					'	</div>' +
-					'	<div class="controls">' + // TODO: rework HTML to align buttons left/right
-					'		<a class="button minus">&minus;</a>' +
-					'		<span class="count"></span> <span class="count-all"></span>' +
-					'		<a class="button plus">&plus;</a>' +
+					'	<div class="controls">' +
+					'		<div class="button minus"><div class="symbol"></div></div>' +
+					'		<div class="counts">' +
+					'			<span class="countHave"></span> <span class="countWillHave"></span>' +
+					'		</div>' +
+					'		<div class="button plus"><div class="symbol"></div></div>' +
 					'	</div>' +
-					'</td>');
+					'</td>')
+					.data("fragmentInstance", fragment);
+				
+				var self = this;
+				$(".button.plus", cellNode).click(function() {
+					self.observables.fragmentCountPlusButtonClicked.notify({
+						fragment: fragment
+					});
+				});
+				
+				$(".button.minus", cellNode).click(function() {
+					self.observables.fragmentCountMinusButtonClicked.notify({
+						fragment: fragment
+					});
+				});
 				
 				this._itemMVCControllers.push(
 					new tswlairmgr.core.components.ItemHTML(
@@ -157,7 +172,17 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	};
 	
 	this._redraw_fragmentsblock = function() {
-		/* Nothing to do directly in this view. ItemMVC redraws itself. */
+		/* ItemMVC redraw themselves. */
+		
+		var self = this;
+		$(".fragmentControlsContainer", this._el.fragmentsBlock.rootNode).each(function(index) {
+			var fcc = this;
+			
+			var countsBlock = $(".counts", fcc);
+			
+			$(".countHave", countsBlock).text(self._model.getCountForFragment($(fcc).data("fragmentInstance"))); // TODO
+			$(".countWillHave", countsBlock).text(self._model.getWillHaveCountForFragment($(fcc).data("fragmentInstance"))); // TODO
+		});
 	};
 	
 	this._redraw_calculatedblock = function() {
@@ -199,15 +224,32 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	this._dataLocalizationCallback = function(origin, context) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: got notified that data localization has changed.");
 		self._redraw_namesblock();
-		self._redraw_fragmentsblock();
 	};
 	
 	this._fragmentCountsCallback = function(origin, context) {
-		// TODO
+		if(this._haveFragment(context.fragment))
+		{
+			this._redraw_fragmentsblock();
+		}
 	};
 	
 	this._willHaveCountsCallback = function(origin, context) {
-		// TODO
+		if(this._haveFragment(context.fragment))
+		{
+			this._redraw_fragmentsblock();
+		}
+	};
+	
+	this._haveFragment = function(fragmentInstance) {
+		var found = false;
+		$.each(this._boss.getFragmentSet.getFragments(), function(orientationCode, fragment) {
+			if(fragment === fragmentInstance)
+			{
+				found = true;
+				return;
+			}
+		});
+		return found;
 	};
 	
 	this._init = function() {

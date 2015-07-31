@@ -96,9 +96,7 @@
 }
 
 #module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer {
-	width: 82px;
-	height: 96px;
-	margin: 1px;
+	padding: 2px;
 	
 	text-align: center;
 	font-size: 11px;
@@ -113,13 +111,15 @@
 	user-select: none;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
 	border-radius: 11px;
 	background-color: rgba(255, 204, 0, 0.30); /* #e97f0d: 233/127/13, #ffcc00: 255/204/0 */
 }
 
 #module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button {
+	display: inline-block;
 	text-align: center;
+	vertical-align: middle;
 	text-decoration: none;
 	color: #464646;
 	text-shadow: none;
@@ -129,35 +129,58 @@
 	height: 12px;
 	font-size: 10px;
 	cursor: pointer;
-	display: inline-block;
 	font-weight: bold;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 1px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 0.7;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
+	background-image: url(../../../../images/symbol/plus-black.svg);
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
+	background-image: url(../../../../images/symbol/minus-black.svg);
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts {
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
 	
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave {
 	color: #c0c0c0;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all:before {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:before {
 	color: #c0c0c0;
 	content: '(';
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all:after {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:after {
 	color: #c0c0c0;
 	content: ')';
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
 	color: #ffcc00;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all,
-	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all:before,
-	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all:after {
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave,
+	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:before,
+	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:after {
 	color: #e97f0d;
 }
 
