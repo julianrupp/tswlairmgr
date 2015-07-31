@@ -12,6 +12,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountsChanged: new tswlairmgr.core.helpers.Observable(this),
+		fragmentWillHaveCountBroadcast: new tswlairmgr.core.helpers.Observable(this), // TODO
 		participantsChanged: new tswlairmgr.core.helpers.Observable(this),
 		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this)
 	};

@@ -55,3 +55,137 @@
 #module-organizer #bosstable td.inner .innerContent {
 	
 }
+
+/* Names block */
+#module-organizer #bosstable td.inner .innerContent .names {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+}
+
+#module-organizer #bosstable td.inner .innerContent .names .bossName {
+	color: rgba(255, 255, 255, 1);
+	font-size: 20px;
+}
+
+#module-organizer #bosstable td.inner .innerContent .names .missionName {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+/* Fragment controls block */
+#module-organizer #bosstable td.inner .innerContent .fragments {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	border: 0px;
+	margin-top: 2px;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable {
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer {
+	width: 82px;
+	height: 96px;
+	margin: 1px;
+	
+	text-align: center;
+	font-size: 11px;
+	text-shadow: 1px 1px 1px #000000;
+	
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark {
+	border-radius: 11px;
+	background-color: rgba(255, 204, 0, 0.30); /* #e97f0d: 233/127/13, #ffcc00: 255/204/0 */
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button {
+	text-align: center;
+	text-decoration: none;
+	color: #464646;
+	text-shadow: none;
+	background-color: #c0c0c0;
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;
+	font-size: 10px;
+	cursor: pointer;
+	display: inline-block;
+	font-weight: bold;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count {
+	
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all {
+	color: #c0c0c0;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all:before {
+	color: #c0c0c0;
+	content: '(';
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .count-all:after {
+	color: #c0c0c0;
+	content: ')';
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count {
+	color: #ffcc00;
+}
+
+#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all,
+	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all:before,
+	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.low-mark .count-all:after {
+	color: #e97f0d;
+}
+
+/* Calculated counts block */
+#module-organizer #bosstable td.inner .innerContent .calculated {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#module-organizer #bosstable td.inner .innerContent .calculated .count-format {
+	font-size: 20px;
+}
+
+#module-organizer #bosstable td.inner .innerContent .calculated .count-format .count {
+	color: rgba(255, 255, 255, 1);
+	font-weight: bold;
+}
+
+#module-organizer #bosstable td.inner .innerContent .calculated .missing-format {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-organizer #bosstable td.inner .innerContent .calculated .missing-format .count {
+	
+}

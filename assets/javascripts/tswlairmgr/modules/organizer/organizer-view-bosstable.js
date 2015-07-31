@@ -89,9 +89,9 @@ tswlairmgr.modules.organizer.viewBosstable = function organizerViewBosstable(con
 	};
 	
 	this._redraw_bosstable_bossfragmentcontrols = function() {
-		/*$.each(this._bossfragmentcontrolsSubViews, function(index, view) {
+		$.each(this._bossfragmentcontrolsSubViews, function(index, view) {
 			view.destroy();
-		});*/
+		});
 		this._bossfragmentcontrolsSubViews = [];
 		
 		var tc = $(this._el.table);

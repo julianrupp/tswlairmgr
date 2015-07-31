@@ -17,18 +17,35 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	this._el = {
 		self: contentNode,
 		namesBlock: {
+			rootNode: null,
 			bossNameLine: null,
 			missionNameLine: null,
 		},
-		fragmentsBlock: {},
+		fragmentsBlock: {
+			rootNode: null,
+			fragmentCountControls: {}
+		},
 		calculatedBlock: {
+			rootNode: null,
 			numberOfFullSetsLine: null,
-			numberOfFragmentsMissingLine: null
+			numberOfMissingForNextLine: null
+		}
+	};
+	
+	this._templates = {
+		calculatedBlock: {
+			numberOfFullSets: {
+				countFormat: '<span class="count">{{context.number}}</span>'
+			},
+			numberOfMissingForNext: {
+				countFormat: '<span class="count">{{context.number}}</span>'
+			}
 		}
 	};
 	
 	this._build = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: build called");
+		$(this._el.self).empty();
 		
 		this._build_namesblock();
 		this._build_fragmentsblock();
@@ -36,48 +53,94 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	};
 	
 	this._build_namesblock = function() {
-		// TODO
+		this._el.namesBlock.rootNode = $("<div />")
+			.addClass("names");
 		
-/*		<div class="uibox boss-title center">
-			<div class="name">Cta-Tha</div>
-			<div class="mission">Unto the Beach</div>
-		</div>*/
+		this._el.namesBlock.bossNameLine = $("<div />")
+			.addClass("bossName");
+		this._el.namesBlock.missionNameLine = $("<div />")
+			.addClass("missionName");
+		
+		$(this._el.namesBlock.rootNode).append(this._el.namesBlock.bossNameLine);
+		$(this._el.namesBlock.rootNode).append(this._el.namesBlock.missionNameLine);
+		
+		$(this._el.self).append(this._el.namesBlock.rootNode);
 	};
 	
 	this._build_fragmentsblock = function() {
-		// TODO
+		this._el.fragmentsBlock.rootNode = $("<div />")
+			.addClass("fragments");
 		
-/*		<table class="uibox boss-fragments" border="0">
-			<tbody>
-				<tr>
-					<td class="boss-fragment low-mark">
-						<div class="item rare lairfragment">
-							<div class="icon km01 nw">
-								<div class="name">Theta 04</div>
-							</div>
-						</div>
-						<div class="bossfragment-controls">
-							<a class="button minus">−</a>
-							<span class="count">0</span> <span class="count-all">0</span>
-							<a class="button plus">+</a>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>*/
+		var table = $(
+			'<table class="fragmentsTable">' +
+			'	<tbody>' +
+			'		' +
+			'	</tbody>' +
+			'</table>');
+		
+		var sideLength = Math.ceil(Math.sqrt(9));
+		var rowNode;
+		var cellNode;
+		var fragmentOrder = [
+			"nw", "n", "ne",
+			"w", "c", "e",
+			"sw", "s", "se"
+		];
+		var fragment;
+		for(var row=0; row<sideLength; row++)
+		{
+			rowNode = $(
+				'<tr>' +
+				'	' +
+				'</tr>');
+			
+			for(var col=0; col<sideLength; col++)
+			{
+				fragment = this._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
+				
+				cellNode = $(
+					'<td class="fragmentControlsContainer low-mark">' + // TODO
+					'	<div class="fragment">' +
+					'		' +
+					'	</div>' +
+					'	<div class="controls">' + // TODO: rework HTML to align buttons left/right
+					'		<a class="button minus">&minus;</a>' +
+					'		<span class="count"></span> <span class="count-all"></span>' +
+					'		<a class="button plus">&plus;</a>' +
+					'	</div>' +
+					'</td>');
+				
+				this._itemMVCControllers.push(
+					new tswlairmgr.core.components.ItemHTML(
+						fragment,
+						$(".fragment", cellNode)
+					)
+				);
+				
+				$(rowNode).append(cellNode);
+			}
+			
+			$(table).append(rowNode);
+		}
+		
+		$(this._el.fragmentsBlock.rootNode).append(table);
+		
+		$(this._el.self).append(this._el.fragmentsBlock.rootNode);
 	};
 	
 	this._build_calculatedblock = function() {
-		// TODO
+		this._el.calculatedBlock.rootNode = $("<div />")
+			.addClass("calculated");
 		
-/*		<div class="uibox boss-counts center">
-			<div class="count-format">
-				<span class="count">0</span> <span class="subject">Summoning Rituals</span>
-			</div>
-			<div class="missing-format">
-				(<span class="count">9</span> more <span class="subject">fragments</span> for another)
-			</div>
-		</div>*/
+		this._el.calculatedBlock.numberOfFullSetsLine = $("<div />")
+			.addClass("count-format");
+		this._el.calculatedBlock.numberOfMissingForNextLine = $("<div />")
+			.addClass("missing-format");
+		
+		$(this._el.calculatedBlock.rootNode).append(this._el.calculatedBlock.numberOfFullSetsLine);
+		$(this._el.calculatedBlock.rootNode).append(this._el.calculatedBlock.numberOfMissingForNextLine);
+		
+		$(this._el.self).append(this._el.calculatedBlock.rootNode);
 	};
 	
 	this._redraw = function() {
@@ -89,22 +152,61 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	};
 	
 	this._redraw_namesblock = function() {
-		// TODO
-		
-		$(this._el.self).empty();
-		$(this._el.self).append(
-			$('<div style="font-size: 18px;" />').text(this._boss.getName())
-		);
-		$(this._el.self).append(
-			$('<div style="color: #e0e0e0;" />').text(this._boss.getMissionName())
-		);
+		$(this._el.namesBlock.bossNameLine).text(this._boss.getName());
+		$(this._el.namesBlock.missionNameLine).text(this._boss.getMissionName());
 	};
 	
 	this._redraw_fragmentsblock = function() {
-		// TODO
+		/* Nothing to do directly in this view. ItemMVC redraws itself. */
 	};
 	
 	this._redraw_calculatedblock = function() {
+		var numberOfFullSets = Math.floor(Math.random()*10);/* TODO: get from model */
+		
+		var locString1 = this._localization.getLocalizationData().strings.bosstable.calculated.numberOfFullSets;
+		locString1 = (numberOfFullSets == 1) ? locString1.singular : locString1.plural;
+		
+		$(this._el.calculatedBlock.numberOfFullSetsLine).html(
+			Mustache.render(locString1, {
+				localization: this._localization.getLocalizationData(),
+				context: {
+					count: Mustache.render(this._templates.calculatedBlock.numberOfFullSets.countFormat, { context: { number: numberOfFullSets } })
+				}
+			})
+		);
+		
+		var numberOfMissingForNext = Math.floor(Math.random()*10);/* TODO: get from model */
+		
+		var locString2 = this._localization.getLocalizationData().strings.bosstable.calculated.numberOfMissingForNext;
+		locString2 = (numberOfMissingForNext == 1) ? locString2.singular : locString2.plural;
+		
+		$(this._el.calculatedBlock.numberOfMissingForNextLine).html(
+			Mustache.render(locString2, {
+				localization: this._localization.getLocalizationData(),
+				context: {
+					count: Mustache.render(this._templates.calculatedBlock.numberOfMissingForNext.countFormat, { context: { number: numberOfMissingForNext } })
+				}
+			})
+		);
+	};
+	
+	var self = this;
+	this._moduleLocalizationCallback = function(origin, context) {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: got notified that module localization has changed.");
+		self._redraw_calculatedblock();
+	};
+	
+	this._dataLocalizationCallback = function(origin, context) {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: got notified that data localization has changed.");
+		self._redraw_namesblock();
+		self._redraw_fragmentsblock();
+	};
+	
+	this._fragmentCountsCallback = function(origin, context) {
+		// TODO
+	};
+	
+	this._willHaveCountsCallback = function(origin, context) {
 		// TODO
 	};
 	
@@ -114,14 +216,22 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		
 		var self = this;
 		
-		this._localization.observables.moduleLocalizationChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: got notified that module localization has changed.");
-			self._redraw_calculatedblock();
+		this._localization.observables.moduleLocalizationChanged.registerCallback(this._moduleLocalizationCallback);
+		tswlairmgr.core.data.observables.dataLocalizationChanged.registerCallback(this._dataLocalizationCallback);
+		
+		this._model.observables.fragmentCountsChanged.registerCallback(this._fragmentCountsCallback);
+		this._model.observables.fragmentWillHaveCountBroadcast.registerCallback(this._willHaveCountsCallback);
+	};
+	
+	this.destroy = function() {
+		$.each(this._itemMVCControllers, function(index, controller) {
+			controller.destroy();
 		});
-		tswlairmgr.core.data.observables.dataLocalizationChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstableBossFragmentControls>: got notified that data localization has changed.");
-			self._redraw_namesblock();
-			self._redraw_fragmentsblock();
-		});
+		
+		this._localization.observables.moduleLocalizationChanged.unregisterCallback(this._moduleLocalizationCallback);
+		tswlairmgr.core.data.observables.dataLocalizationChanged.unregisterCallback(this._dataLocalizationCallback);
+		
+		this._model.observables.fragmentCountsChanged.unregisterCallback(this._fragmentCountsCallback);
+		this._model.observables.fragmentWillHaveCountBroadcast.unregisterCallback(this._willHaveCountsCallback);
 	};
 };

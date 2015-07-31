@@ -29,17 +29,25 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		output: null
 	};
 	
+	this._appBackgroundSaved = {
+		"background": null,
+		"background-size": null
+	};
+	
 	this._appBackground = {
 		"background": "#808080",
 		"background-size": "cover"
 	};
 	
 	this.becameActive = function() {
+		this._appBackgroundSaved["background"] = $("body").css("background");
+		this._appBackgroundSaved["background-size"] = $("body").css("background-size");
 		this._refreshBackground();
 	};
 	
 	this.becameInactive = function() {
-		
+		$("body").css("background", this._appBackgroundSaved["background"]);
+		$("body").css("background-size", this._appBackgroundSaved["background-size"]);
 	};
 	
 	this._refreshBackground = function() {
