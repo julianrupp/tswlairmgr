@@ -27,13 +27,38 @@ a:hover {
 
 input {
 	font-size: 13px;
+	margin-left: 1px;
+	margin-right: 1px;
 }
 
 input[type="text"] {
+	height: 18px;
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	background-color: rgba(0, 0, 0, 0.25);
 	padding: 3px;
 	color: #ffffff;
+}
+
+input[type="button"], input[type="submit"] {
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 3px;
+}
+
+input[type="button"].icon {
+	background-size: 16px;
+	background-position: 4px center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+input[type="button"].icon.import {
+	background-image: url(../../../images/symbol/import-white.svg);
+}
+
+input[type="button"].icon.add {
+	background-image: url(../../../images/symbol/plus-white.svg);
 }
 
 select[size=1] {
@@ -65,7 +90,6 @@ select[size=1] {
 }
 
 .table {
-	width: 390px;
 	margin: 10px auto 10px auto;
 	border: 0;
 	border-collapse: collapse;

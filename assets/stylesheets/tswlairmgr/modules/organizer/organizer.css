@@ -215,3 +215,120 @@
 #module-organizer #bosstable td.inner .innerContent .calculated .missing-format .count {
 	
 }
+
+/* -------------------- */
+
+#module-organizer #picktable .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left,
+ 	#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right {
+	margin: 0px;
+	padding: 0px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left {
+	text-align: left;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .componentTitle {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .numParticipants {
+	display: inline-block;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .numParticipants span.number {
+	font-weight: bold;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right {
+	text-align: right;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right input.participantNameInput {
+	width: 175px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .infoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable {
+	width: 100%;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable th.name,
+ 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.name {
+	text-align: left;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable th.fragment,
+ 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
+	width: 43px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable th.actions,
+ 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions{
+	width: 70px;
+	text-align: left;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.name {
+	font-size: 16px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
+	height: 42px;
+	padding: 1px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip {
+	width: 40px;
+	height: 40px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .symbol {
+	width: 24px;
+	height: 24px;
+	margin: 0 auto;
+	font-size: 24px;
+	text-align: center;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .text {
+	margin-top: 2px;
+	height: 14px;
+	font-size: 10px;
+	text-align: center;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions {
+	text-align: center;
+	padding: 1px;
+}

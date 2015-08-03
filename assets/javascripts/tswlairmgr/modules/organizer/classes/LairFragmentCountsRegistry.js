@@ -82,7 +82,7 @@ tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairF
 			notificationNewValue = 0;
 		}
 		
-		if(newCount)
+		if(notificationNewValue !== null)
 		{
 			this.observables.countChanged.notify({
 				fragment: fragmentInstance,

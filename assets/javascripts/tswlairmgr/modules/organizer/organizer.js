@@ -96,6 +96,33 @@ tswlairmgr.modules.organizer.controller = new function() {
 			self._model.decrementCountForFragment(context.fragment);
 		});
 		
+		this._view.observables.participantAddButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant add button was clicked.");
+			
+			var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(context.nameFieldContents);
+			if(newParticipant.isValidName(context.nameFieldContents) &&
+				self._model._participants.addParticipant(newParticipant))
+			{
+				self._view._subViews.picktable.clearParticipantNameField();
+				self._view._subViews.picktable.refocusParticipantNameField();
+			}
+			else
+			{
+				alert(self._localization.getLocalizationData().strings.picktable.addFailedInfoText);
+			}
+		});
+		
+		this._view.observables.participantRemoveButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that a participant remove button was clicked.");
+			self._model._participants.removeParticipant(context.participantInstance);
+		});
+		
+		this._view.observables.participantImportButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant import button was clicked.");
+			
+			alert("TODO: Implement me.");
+		});
+		
 		// TODO: Hook up other interface action observables
 	};
 	

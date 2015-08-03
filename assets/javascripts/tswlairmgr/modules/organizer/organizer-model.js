@@ -13,7 +13,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountsChanged: new tswlairmgr.core.helpers.Observable(this),
-		fragmentWillHaveCountBroadcast: new tswlairmgr.core.helpers.Observable(this), // TODO
+		fragmentWillHaveCountBroadcast: new tswlairmgr.core.helpers.Observable(this),
 		participantsChanged: new tswlairmgr.core.helpers.Observable(this),
 		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
@@ -26,6 +26,9 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		self._participants.observables[observableName].registerCallback(function(origin, context) {
 			self.observables.participantsChanged.notify({});
 		});
+	});
+	this._assigningStrategy.observables.fragmentAssignmentChanged.registerCallback(function(origin, context) {
+		self.observables.participantsChanged.notify({});
 	});
 	
 	this.getSelectedLair = function() {

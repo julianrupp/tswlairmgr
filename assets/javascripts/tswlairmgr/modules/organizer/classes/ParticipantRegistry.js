@@ -31,9 +31,9 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 			return false;
 		}
 		
-		participantInstance.observables.missionAvailabilityChanged.registerCallback(this._missionAvailaibilityChangedCallback);
-		
 		this._participants.push(participantInstance);
+		
+		participantInstance.observables.missionAvailabilityChanged.registerCallback(this._missionAvailaibilityChangedCallback);
 		
 		this.observables.participantAdded.notify({
 			participant: participantInstance
@@ -50,15 +50,16 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 			{
 				participantInstance.observables.missionAvailabilityChanged.unregisterCallback(this._missionAvailaibilityChangedCallback);
 				fIndex = index;
+				found = true;
 			}
 		});
 		
 		if(found)
 		{
-			delete this._participants[fIndex];
+			this._participants.shift(fIndex, 1);
 			
 			this.observables.participantRemoved.notify({
-				participant: participant
+				participant: participantInstance
 			});
 			
 			return true;

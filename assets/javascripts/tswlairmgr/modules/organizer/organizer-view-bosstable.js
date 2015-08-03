@@ -126,23 +126,6 @@ tswlairmgr.modules.organizer.viewBosstable = function organizerViewBosstable(con
 		
 		var self = this;
 		
-		/* TODO: Move to boss fragment controls sub-views
-		this._localization.observables.moduleLocalizationChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstable>: got notified that module localization has changed.");
-			self._redraw();
-		});
-		tswlairmgr.core.data.observables.dataLocalizationChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstable>: got notified that data localization has changed.");
-			self._redraw();
-		});*/
-		
-		/*TEMP START*/
-		tswlairmgr.core.data.observables.dataLocalizationChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstable>: got notified that data localization has changed.");
-			self._redraw();
-		});
-		/*TEMP END*/
-		
 		this._model.observables.selectedLairChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewBosstable>: got notified that selected lair has changed.");
 			

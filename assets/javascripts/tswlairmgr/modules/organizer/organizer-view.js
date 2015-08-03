@@ -60,7 +60,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		
 		this._build_topmenu();
 		this._build_bosstable();
-		// TODO: this._build_picktable();
+		this._build_picktable();
 		// TODO: this._build_output();
 	};
 	
@@ -82,6 +82,16 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		
 		this._subViews.bosstable = new tswlairmgr.modules.organizer.viewBosstable(this._el.bosstable, this._model, this._localization);
 		this._subViews.bosstable._init();
+	};
+	
+	this._build_picktable = function() {
+		this._el.picktable = $("<div />")
+			.attr("id", "picktable");
+		
+		$(this._el.self).append(this._el.picktable);
+		
+		this._subViews.picktable = new tswlairmgr.modules.organizer.viewPicktable(this._el.picktable, this._model, this._localization);
+		this._subViews.picktable._init();
 	};
 	
 	this._redraw = function() {
@@ -112,6 +122,22 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		
 		this._subViews.bosstable.observables.fragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
 			self.observables.fragmentCountMinusButtonClicked.notify(context);
+		});
+		
+		this._subViews.picktable.observables.participantAddButtonClicked.registerCallback(function(origin, context) {
+			self.observables.participantAddButtonClicked.notify(context);
+		});
+		
+		this._subViews.picktable.observables.participantImportButtonClicked.registerCallback(function(origin, context) {
+			self.observables.participantImportButtonClicked.notify(context);
+		});
+		
+		this._subViews.picktable.observables.participantMissionAvailabilityToggleClicked.registerCallback(function(origin, context) {
+			self.observables.participantMissionAvailabilityToggleClicked.notify(context);
+		});
+		
+		this._subViews.picktable.observables.participantRemoveButtonClicked.registerCallback(function(origin, context) {
+			self.observables.participantRemoveButtonClicked.notify(context);
 		});
 		
 		// TODO: More observables

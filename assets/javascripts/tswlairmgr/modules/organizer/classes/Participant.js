@@ -5,7 +5,7 @@ tswlairmgr.modules.organizer.classes = tswlairmgr.modules.organizer.classes || 
 
 tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 	this._persistentStateVersion = 1;
-	this._name = name;
+	this._name = $.trim(name);
 	this._missionAvailabilityRegistry = new tswlairmgr.modules.organizer.classes.ParticipantMissionAvailabilityRegistry();
 	
 	this.observables = {
@@ -29,8 +29,9 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 		this._missionAvailabilityRegistry.toggleAvailabilityForBossMission(bossInstance);
 	};
 	
-	this._isValidName = function(name) {
-		return name.match.match(/^[a-zA-Z0-9\-]+$/);
+	this.isValidName = function(name) {
+		name = $.trim(name);
+		return name.match(/^[a-zA-Z0-9\-]+$/) && name.length > 0;
 	};
 	
 	this.getPersistentState = function()
@@ -67,6 +68,4 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 		}
 		return false;
 	};
-	
-	if(!this._isValidName(name)) { return false; }
 };
