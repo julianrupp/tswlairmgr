@@ -12,8 +12,9 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 		missionAvailabilityChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
+	var self = this;
 	this._missionAvailabilityChangedCallback = function(origin, context) {
-		this.observables.missionAvailabilityChanged.notify(context);
+		self.observables.missionAvailabilityChanged.notify(context);
 	};
 	this._missionAvailabilityRegistry.observables.changed.registerCallback(this._missionAvailabilityChangedCallback);
 	
@@ -55,7 +56,7 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 				valid = false;
 			}
 			
-			if(!this._isValidName(state.n))
+			if(!this.isValidName(state.n))
 			{
 				valid = false;
 			}

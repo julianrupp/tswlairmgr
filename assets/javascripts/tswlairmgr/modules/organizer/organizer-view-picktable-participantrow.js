@@ -28,7 +28,6 @@ tswlairmgr.modules.organizer.viewPicktableParticipantRow = function organizerVie
 		skipAssignmentDisplay:
 			'<div class="skip">' +
 			'	<div class="symbol">' +
-			'		&times;' +
 			'	</div>' +
 			'	<div class="text">' +
 			'		{{localization.strings.picktable.table.skipLabel}}' +
@@ -39,8 +38,6 @@ tswlairmgr.modules.organizer.viewPicktableParticipantRow = function organizerVie
 	this._build = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewPicktableParticipantRow>: build called");
 		$(this._el.self).empty();
-		
-		// TODO
 		
 		this._el.name = $('<td class="name" />')
 			.text(this._participant.getName())
@@ -71,6 +68,11 @@ tswlairmgr.modules.organizer.viewPicktableParticipantRow = function organizerVie
 	this._redraw = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewPicktableParticipantRow>: redraw called");
 		
+		$.each(this._itemMVCControllers, function(index, controller) {
+			controller.destroy();
+		});
+		this._itemMVCControllers = [];
+		
 		$(this._el.actions.remove).val(
 			Mustache.render(this._localization.getLocalizationData().strings.picktable.table.actions.remove, {
 				localization: this._localization.getLocalizationData(),
@@ -80,10 +82,44 @@ tswlairmgr.modules.organizer.viewPicktableParticipantRow = function organizerVie
 		
 		for(var i=0; i<this._model._selectedLair.getSortedBosses().length; i++)
 		{
-			var boss = this._model._selectedLair.getSortedBosses()[i];
-			var assignedFragment = this._model.assignmentStrategy.getAssignedFragmentForParticipantAndMission(this._participant, boss);
+			var self = this;
+			(function() {
+				var boss = self._model._selectedLair.getSortedBosses()[i];
+				
+				var itemRootNode = $("<div />")
+					.addClass("clickable")
+					.click(function() {
+						self.observables.participantMissionAvailabilityToggleClicked.notify({
+							participant: self._participant,
+							boss: boss
+						});
+					});
 			
-			// TODO
+				if(self._participant.canTurnInMissionForBoss(boss))
+				{
+					var assignedFragment = self._model._assigningStrategy.getAssignedFragmentForParticipantAndMission(self._participant, boss);
+				
+					self._itemMVCControllers.push(
+						new tswlairmgr.core.components.ItemHTML(
+							assignedFragment,
+							itemRootNode,
+							{ isSmall: true }
+						)
+					);
+				}
+				else
+				{
+					$(itemRootNode).append(
+						Mustache.render(self._templates.skipAssignmentDisplay, {
+							localization: self._localization.getLocalizationData(),
+							context: {}
+						})
+					);
+				}
+			
+				$(self._el.missions[i]).empty();
+				$(self._el.missions[i]).append(itemRootNode);
+			})();
 		}
 	};
 	

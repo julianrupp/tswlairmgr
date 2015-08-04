@@ -13,8 +13,9 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 		participantMissionAvailabilityChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
+	var self = this;
 	this._missionAvailabilityChangedCallback = function(origin, context) {
-		this.observables.participantMissionAvailabilityChanged.notify(context);
+		self.observables.participantMissionAvailabilityChanged.notify(context);
 	};
 	
 	this.addParticipant = function(participantInstance) {
@@ -33,7 +34,7 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 		
 		this._participants.push(participantInstance);
 		
-		participantInstance.observables.missionAvailabilityChanged.registerCallback(this._missionAvailaibilityChangedCallback);
+		participantInstance.observables.missionAvailabilityChanged.registerCallback(this._missionAvailabilityChangedCallback);
 		
 		this.observables.participantAdded.notify({
 			participant: participantInstance

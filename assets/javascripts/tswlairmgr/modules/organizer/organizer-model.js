@@ -7,7 +7,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._selectedLair = tswlairmgr.core.data.getSortedRegions()[0].getSortedZones()[0].getSortedLairs()[0];
 	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
 	this._participants = new tswlairmgr.modules.organizer.classes.ParticipantRegistry();
-	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentCounts, this._participants);
+	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentCounts, this._participants, this._selectedLair);
 	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getDefaultLocalizationId();
 	
 	this.observables = {
@@ -37,6 +37,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	
 	this.setSelectedLair = function(lair) {
 		this._selectedLair = lair;
+		this._assigningStrategy.setLair(this._selectedLair);
 		this.observables.selectedLairChanged.notify({
 			newLair: lair
 		});

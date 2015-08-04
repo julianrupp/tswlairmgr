@@ -290,7 +290,7 @@
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.fragment,
  	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
-	width: 43px;
+	width: 34px;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.actions,
@@ -309,21 +309,21 @@
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip {
-	width: 40px;
+	width: 42px;
 	height: 40px;
+	margin: 0 auto;
+	opacity: 0.5;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .symbol {
-	width: 24px;
-	height: 24px;
+	width: 28px;
+	height: 28px;
+	background: url(../../../../images/symbol/skip-white.svg);
 	margin: 0 auto;
-	font-size: 24px;
-	text-align: center;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .text {
-	margin-top: 2px;
-	height: 14px;
+	height: 12px;
 	font-size: 10px;
 	text-align: center;
 }

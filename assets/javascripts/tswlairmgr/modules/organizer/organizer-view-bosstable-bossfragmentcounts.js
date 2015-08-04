@@ -174,7 +174,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	};
 	
 	this._redraw_fragmentsblock = function() {
-		/* ItemMVC redraw themselves. */
+		/* Item MVCs redraw themselves. */
 		
 		var self = this;
 		$(".fragmentControlsContainer", this._el.fragmentsBlock.rootNode).each(function(index) {
@@ -197,7 +197,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 	};
 	
 	this._redraw_calculatedblock = function() {
-		var numberOfFullSets = Math.floor(Math.random()*10);/* TODO: get from model */
+		var numberOfFullSets = this._model._assigningStrategy.getNumberOfSummonsForBoss(this._boss);
 		
 		var locString1 = this._localization.getLocalizationData().strings.bosstable.calculated.numberOfFullSets;
 		locString1 = (numberOfFullSets == 1) ? locString1.singular : locString1.plural;
@@ -211,7 +211,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 			})
 		);
 		
-		var numberOfMissingForNext = Math.floor(Math.random()*10);/* TODO: get from model */
+		var numberOfMissingForNext = this._model._assigningStrategy.getNumberOfMissingFragmentsForNextSummonForBoss(this._boss);
 		
 		var locString2 = this._localization.getLocalizationData().strings.bosstable.calculated.numberOfMissingForNext;
 		locString2 = (numberOfMissingForNext == 1) ? locString2.singular : locString2.plural;
@@ -254,6 +254,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		if(self._haveFragment(context.fragment))
 		{
 			self._redraw_fragmentsblock();
+			self._redraw_calculatedblock();
 		}
 	};
 	
@@ -261,7 +262,13 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		if(self._haveFragment(context.fragment))
 		{
 			self._redraw_fragmentsblock();
+			self._redraw_calculatedblock();
 		}
+	};
+	
+	this._participantsCallback = function(origin, context) {
+		self._redraw_fragmentsblock();
+		self._redraw_calculatedblock();
 	};
 	
 	this._init = function() {
@@ -275,6 +282,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		
 		this._model.observables.fragmentCountsChanged.registerCallback(this._fragmentCountsCallback);
 		this._model.observables.fragmentWillHaveCountBroadcast.registerCallback(this._willHaveCountsCallback);
+		this._model.observables.participantsChanged.registerCallback(this._participantsCallback);
 	};
 	
 	this.destroy = function() {
@@ -287,5 +295,6 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 		
 		this._model.observables.fragmentCountsChanged.unregisterCallback(this._fragmentCountsCallback);
 		this._model.observables.fragmentWillHaveCountBroadcast.unregisterCallback(this._willHaveCountsCallback);
+		this._model.observables.participantsChanged.unregisterCallback(this._participantsCallback);
 	};
 };

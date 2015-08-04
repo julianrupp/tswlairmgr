@@ -99,16 +99,19 @@ tswlairmgr.modules.organizer.controller = new function() {
 		this._view.observables.participantAddButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant add button was clicked.");
 			
-			var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(context.nameFieldContents);
-			if(newParticipant.isValidName(context.nameFieldContents) &&
-				self._model._participants.addParticipant(newParticipant))
+			if($.trim(context.nameFieldContents).length > 0)
 			{
-				self._view._subViews.picktable.clearParticipantNameField();
-				self._view._subViews.picktable.refocusParticipantNameField();
-			}
-			else
-			{
-				alert(self._localization.getLocalizationData().strings.picktable.addFailedInfoText);
+				var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(context.nameFieldContents);
+				if(newParticipant.isValidName(context.nameFieldContents) &&
+					self._model._participants.addParticipant(newParticipant))
+				{
+					self._view._subViews.picktable.clearParticipantNameField();
+					self._view._subViews.picktable.refocusParticipantNameField();
+				}
+				else
+				{
+					alert(self._localization.getLocalizationData().strings.picktable.addFailedInfoText);
+				}
 			}
 		});
 		
@@ -121,6 +124,11 @@ tswlairmgr.modules.organizer.controller = new function() {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant import button was clicked.");
 			
 			alert("TODO: Implement me.");
+		});
+		
+		this._view.observables.participantMissionAvailabilityToggleClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that a participant's mission availability toggle was clicked.");
+			context.participant.toggleCanTurnInMissionForBoss(context.boss);
 		});
 		
 		// TODO: Hook up other interface action observables
