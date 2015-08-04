@@ -123,7 +123,38 @@ tswlairmgr.modules.organizer.controller = new function() {
 		this._view.observables.participantImportButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant import button was clicked.");
 			
-			alert("TODO: Implement me.");
+			if(self._view._subViews.picktable.importBoxIsOpen())
+			{
+				self._view._subViews.picktable.closeImportBox();
+			}
+			else
+			{
+				self._view._subViews.picktable.openImportBoxAndFocus();
+			}
+		});
+		
+		this._view.observables.participantImportChatLogPasted.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that data has been pasted into the participant import text field.");
+			var parsedNames = tswlairmgr.modules.organizer.classes.ChatLogNameParser.getCharacterNamesFromChatLogExcerpt(context.data);
+			var countAdded = 0;
+			$.each(parsedNames, function(index, name) {
+				var newParticipant = new tswlairmgr.modules.organizer.classes.Participant(name);
+				if(newParticipant.isValidName(name))
+				{
+					if(self._model._participants.addParticipant(newParticipant))
+					{
+						countAdded++;
+					}
+				}
+			});
+			var message = self._localization.getLocalizationData().strings.picktable.importFromChatLog.participantsAddedMessage;
+			var renderedMessage = Mustache.render( ((countAdded == 1) ? message.singular : message.plural), {
+				localization: self._localization.getLocalizationData(),
+				context: {
+					numberOfAddedParticipants: countAdded
+				}
+			})
+			alert(renderedMessage);
 		});
 		
 		this._view.observables.participantMissionAvailabilityToggleClicked.registerCallback(function(origin, context) {

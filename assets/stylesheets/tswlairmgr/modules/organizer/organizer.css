@@ -272,6 +272,32 @@
 	width: 175px;
 }
 
+#module-organizer #picktable .componentBox .componentBoxInner .importBox {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .importBox .importTitle {
+	font-size: 18px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .importBox .importInfoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner .importBox textarea.importTextField {
+	margin: 0 auto;
+	width: 798px;
+	height: 14px;
+	font-size: 11px;
+}
+
 #module-organizer #picktable .componentBox .componentBoxInner .infoText {
 	font-size: 12px;
 	margin-top: 3px;

@@ -15,6 +15,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		fragmentCountMinusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantAddButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantImportButtonClicked: new tswlairmgr.core.helpers.Observable(this),
+		participantImportChatLogPasted: new tswlairmgr.core.helpers.Observable(this),
 		participantMissionAvailabilityToggleClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantRemoveButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		outputDataLocalizationButtonClicked: new tswlairmgr.core.helpers.Observable(this),
@@ -108,6 +109,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		
 		var self = this;
 		
+		// Top menu
 		this._subViews.topmenu.observables.appBackgroundShouldChange.registerCallback(function(origin, context) {
 			self.observables.appBackgroundShouldChange.notify(context);
 		});
@@ -116,6 +118,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 			self.observables.lairselectorDropdownChanged.notify(context);
 		});
 		
+		// Boss table
 		this._subViews.bosstable.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
 			self.observables.fragmentCountPlusButtonClicked.notify(context);
 		});
@@ -124,12 +127,17 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 			self.observables.fragmentCountMinusButtonClicked.notify(context);
 		});
 		
+		// Pick table
 		this._subViews.picktable.observables.participantAddButtonClicked.registerCallback(function(origin, context) {
 			self.observables.participantAddButtonClicked.notify(context);
 		});
 		
 		this._subViews.picktable.observables.participantImportButtonClicked.registerCallback(function(origin, context) {
 			self.observables.participantImportButtonClicked.notify(context);
+		});
+		
+		this._subViews.picktable.observables.participantImportChatLogPasted.registerCallback(function(origin, context) {
+			self.observables.participantImportChatLogPasted.notify(context);
 		});
 		
 		this._subViews.picktable.observables.participantMissionAvailabilityToggleClicked.registerCallback(function(origin, context) {

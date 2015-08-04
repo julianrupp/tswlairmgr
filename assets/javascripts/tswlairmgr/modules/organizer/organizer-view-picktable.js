@@ -11,6 +11,7 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 	this.observables = {
 		participantAddButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantImportButtonClicked: new tswlairmgr.core.helpers.Observable(this),
+		participantImportChatLogPasted: new tswlairmgr.core.helpers.Observable(this),
 		participantMissionAvailabilityToggleClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantRemoveButtonClicked: new tswlairmgr.core.helpers.Observable(this)
 	};
@@ -25,12 +26,19 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 			nameField: null,
 			addButton: null
 		},
+		import: {
+			rootNode: null,
+			title: null,
+			info: null,
+			textField: null
+		},
 		info: null,
 		table: null
 	};
 	
 	this._templates = {
-		participantCountFormat: '<span class="number">{{context.number}}</span>'
+		participantCountFormat: '<span class="number">{{context.number}}</span>',
+		technicalFormat: '<span class="technical">{{context.text}}</span>'
 	};
 	
 	this._build = function() {
@@ -69,6 +77,11 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 			'		</tr>' +
 			'	</tbody>' +
 			'</table>' +
+			'<div class="importBox">' +
+			'	<div class="importTitle"></div>' +
+			'	<div class="importInfoText"></div>' +
+			'	<textarea class="importTextField"></textarea>' +
+			'</div>' +
 			'<div class="infoText"></div>'
 		);
 		
@@ -76,6 +89,24 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 		
 		this._el.title = $(".componentTitle", this._el.self);
 		this._el.participantcount = $(".numParticipants", this._el.self);
+		
+		this._el.import.rootNode = $(".importBox", this._el.self);
+		this._el.import.title = $(".importTitle", this._el.import.rootNode);
+		this._el.import.info = $(".importInfoText", this._el.import.rootNode);
+		this._el.import.textField = $(".importTextField", this._el.import.rootNode);
+		$(this._el.import.rootNode).hide();
+		
+		var self;
+		$(this._el.import.textField).on("paste", function() {
+			setTimeout(function() {
+				var pasted = $(self._el.import.textField).val();
+				self.closeAndClearImportBox();
+				self.observables.participantImportChatLogPasted.notify({
+					data: pasted
+				});
+			},0);
+		});
+		
 		this._el.info = $(".infoText", this._el.self);
 		
 		this._el.participantEntry.importButton = $("#buttonImport", this._el.self);
@@ -138,6 +169,24 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 		);
 		$(this._el.participantEntry.addButton).val(
 			this._localization.getLocalizationData().strings.picktable.addButtonLabel
+		);
+		
+		$(this._el.import.title).html(
+			this._localization.getLocalizationData().strings.picktable.importFromChatLog.title
+		);
+		var formattedPasteShortcut = Mustache.render(this._templates.technicalFormat, {
+			localization: this._localization.getLocalizationData(),
+			context: {
+				text: this._localization.getLocalizationData().strings.picktable.importFromChatLog.infoText.pasteShortcut
+			}
+		});
+		$(this._el.import.info).html(
+			Mustache.render(this._localization.getLocalizationData().strings.picktable.importFromChatLog.infoText.text, {
+				localization: this._localization.getLocalizationData(),
+				context: {
+					pasteShortcut: formattedPasteShortcut
+				}
+			})
 		);
 		
 		$(this._el.info).html(
@@ -212,6 +261,26 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 	
 	this.refocusParticipantNameField = function() {
 		$(this._el.participantEntry.nameField).focus();
+	};
+	
+	this.importBoxIsOpen = function() {
+		return $(this._el.participantEntry.importButton).hasClass("active");
+	};
+	
+	this.openImportBoxAndFocus = function() {
+		$(this._el.participantEntry.importButton).addClass("active");
+		$(this._el.import.rootNode).show();
+		$(this._el.import.textField).focus();
+	};
+	
+	this.closeImportBox = function() {
+		$(this._el.participantEntry.importButton).removeClass("active");
+		$(this._el.import.rootNode).hide();
+	};
+	
+	this.closeAndClearImportBox = function() {
+		$(this._el.import.textField).val("");
+		this.closeImportBox();
 	};
 	
 	this._init = function() {
