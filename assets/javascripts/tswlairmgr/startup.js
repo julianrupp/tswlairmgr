@@ -32,4 +32,9 @@ $(document).ready(function() {
 	
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] complete.");
 	$("#webapp").show();
+	
+	// Mobile browsers: Hide menu
+	setTimeout(function(){
+		window.scrollTo(0, 1);
+	}, 0);
 });
