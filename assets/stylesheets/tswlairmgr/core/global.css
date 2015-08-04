@@ -111,7 +111,7 @@ select[size=1] {
 .technical {
 	color: #f0f0f0;
 	font-family: 'Monaco', 'Courier New', monospace;
-	font-size: inherit;
+	font-size: 90%;
 	line-height: inherit;
 	background-color: #646464;
 	border-radius: 4px;

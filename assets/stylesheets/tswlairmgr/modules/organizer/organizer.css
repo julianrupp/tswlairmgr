@@ -281,7 +281,7 @@
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .importBox .importTitle {
-	font-size: 18px;
+	font-size: 16px;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .importBox .importInfoText {
@@ -318,6 +318,7 @@
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.fragment,
  	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
 	width: 34px;
+	text-align: center;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.actions,
@@ -345,7 +346,8 @@
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .symbol {
 	width: 28px;
 	height: 28px;
-	background: url(../../../../images/symbol/skip-white.svg);
+	background: transparent url(../../../../images/symbol/skip-white.svg) no-repeat center center;
+	background-size: 100%;
 	margin: 0 auto;
 }
 
