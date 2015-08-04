@@ -281,6 +281,7 @@
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable {
 	width: 100%;
+	margin-bottom: 0px;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.name,
@@ -326,6 +327,13 @@
 	height: 12px;
 	font-size: 10px;
 	text-align: center;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions {

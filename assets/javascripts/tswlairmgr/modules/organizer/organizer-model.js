@@ -106,13 +106,16 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this.getPersistentState = function() {
 		return {
 			v: this._persistentStateVersion,
-			l: this.getSelectedLair().getId()
+			l: this.getSelectedLair().getId(),
+			fcr: this._fragmentCounts.getPersistentState(),
+			pr: this._participants.getPersistentState(),
+			csl: this._selectedChatScriptLocalizationId
 		};
 	};
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(state.v) || !(state.l)) { return false; }
+		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.pr) || !(state.csl)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
 			var lair = tswlairmgr.core.data.getLairById(state.l);
@@ -121,24 +124,17 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 				this.setSelectedLair(lair);
 			}
 			
-			/*this._fragmentCounts.setPersistentState(state.fcr);
+			this._fragmentCounts.setPersistentState(state.fcr);
 			this.observables.fragmentCountsChanged.notify({});
 			
-			var restoredParticipants = [];
-			$.each(state.p, function(index, participantPersistentState) {
-				var restoredParticipant = new tswlairmgr.modules.organizer.classes.Participant(null);
-				if(restoredParticipant.setPersistentState(participantPersistentState))
-				{
-					restoredParticipants.push(restoredParticipant);
-				}
-			});
-			this._participants = restoredParticipants
+			this._participants.setPersistentState(state.pr);
+			
 			this.observables.participantsChanged.notify({});
 			
 			if($.inArray(state.csl, tswlairmgr.core.data.getAllLocalizationIds()) !== -1)
 			{
 				this.setSelectedChatScriptLocalizationId(state.csl);
-			}*/
+			}
 			
 			return true;
 		}

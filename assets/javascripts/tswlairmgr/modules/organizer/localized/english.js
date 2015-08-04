@@ -28,10 +28,10 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Engli
 				singular: "{{{context.count}}} participant",
 				plural: "{{{context.count}}} participants"
 			},
-			importButtonLabel: "Import",
-			addButtonLabel: "Add",
+			importButtonLabel: "Import...",
+			addButtonLabel: "Add participant",
 			addFailedInfoText: "The participant could not be added. There either already is a participant with that name, or the name you entered contains invalid characters. A name may only consist of A-Z, a-z, 0-9 and dashes (-) and must be at least one character long.",
-			infoText: "Add all players that participate in your lair run here. Click the respective lair fragment next to a name to skip fragment assignment for that player and mission, e.g. when they already prematurely sent the mission report.",
+			infoText: "Add all players that participate in your lair run here. Click the respective lair fragment next to a name to skip fragment assignment for that player and mission, e.g. when they already prematurely sent the mission report. Click the skip indicator to mark the participant available again.",
 			table: {
 				headings: {
 					name: "Name",

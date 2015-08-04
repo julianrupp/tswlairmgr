@@ -39,9 +39,13 @@ tswlairmgr.modules.organizer.viewPicktableParticipantRow = function organizerVie
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewPicktableParticipantRow>: build called");
 		$(this._el.self).empty();
 		
+		var participantIndex = this._model._participants.getListIndexOfParticipant(this._participant);
+		var nameColor = tswlairmgr.modules.organizer.classes.NameColors.getHTMLColorForListIndex(participantIndex);
+		
 		this._el.name = $('<td class="name" />')
 			.text(this._participant.getName())
-			.addClass();
+			.css("color", nameColor);
+		
 		$(this._el.self).append(this._el.name);
 		
 		var fragmentCols = '';

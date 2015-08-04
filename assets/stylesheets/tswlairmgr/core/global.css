@@ -53,14 +53,23 @@ input[type="button"].icon {
 	padding-left: 20px;
 }
 
+input[type="button"].import {
+	color: #faf5a4;
+}
 input[type="button"].icon.import {
 	background-image: url(../../../images/symbol/import-white.svg);
 }
 
+input[type="button"].add {
+	color: #acec9a;
+}
 input[type="button"].icon.add {
 	background-image: url(../../../images/symbol/plus-white.svg);
 }
 
+input[type="button"].remove {
+	color: #fabca4;
+}
 input[type="button"].icon.remove {
 	background-image: url(../../../images/symbol/remove-white.svg);
 }

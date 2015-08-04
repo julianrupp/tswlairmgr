@@ -52,12 +52,13 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 				participantInstance.observables.missionAvailabilityChanged.unregisterCallback(this._missionAvailaibilityChangedCallback);
 				fIndex = index;
 				found = true;
+				return;
 			}
 		});
 		
 		if(found)
 		{
-			this._participants.shift(fIndex, 1);
+			this._participants.splice(fIndex, 1);
 			
 			this.observables.participantRemoved.notify({
 				participant: participantInstance
@@ -71,6 +72,21 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 	
 	this.getParticipants = function() {
 		return this._participants;
+	};
+	
+	this.getListIndexOfParticipant = function(participantInstance) {
+		var found = false;
+		var listIndex = null;
+		$.each(this._participants, function(index, participant) {
+			if(participant === participantInstance)
+			{
+				listIndex = index;
+				found = true;
+				return;
+			}
+		});
+		if(!found) { return false; }
+		return listIndex;
 	};
 	
 	this.getPersistentState = function()
@@ -90,11 +106,13 @@ tswlairmgr.modules.organizer.classes.ParticipantRegistry = function ParticipantR
 		if(!(state.v) || !(state.pa)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
+			this._participants = [];
+			var self = this;
 			$.each(state.pa, function(index, participantPS) {
 				var newParticipant = new tswlairmgr.modules.organizer.classes.Participant();
 				if(newParticipant.setPersistentState(participantPS))
 				{
-					this._participants.addParticipant(newParticipant);
+					self.addParticipant(newParticipant);
 				}
 			});
 			
