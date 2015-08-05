@@ -298,5 +298,10 @@ tswlairmgr.modules.organizer.viewPicktable = function organizerViewPicktable(con
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewPicktable>: got notified that participants have changed.");
 			self._redraw();
 		});
+		
+		this._model.observables.fragmentAssignmentChanged.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewPicktable>: got notified that fragment assignments have changed.");
+			self._redraw();
+		});
 	};
 };

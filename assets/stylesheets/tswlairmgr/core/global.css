@@ -51,6 +51,7 @@ input[type="button"], input[type="submit"] {
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	background-color: rgba(0, 0, 0, 0.25);
 	padding: 3px;
+	cursor: pointer;
 }
 
 input[type="button"].icon {
@@ -58,30 +59,6 @@ input[type="button"].icon {
 	background-position: 4px center;
 	background-repeat: no-repeat;
 	padding-left: 20px;
-}
-
-input[type="button"].import {
-	color: #faf5a4;
-}
-input[type="button"].icon.import {
-	background-image: url(../../../images/symbol/import-white.svg);
-}
-input[type="button"].import.active {
-	background-color: rgba(255, 255, 255, 0.1);
-}
-
-input[type="button"].add {
-	color: #acec9a;
-}
-input[type="button"].icon.add {
-	background-image: url(../../../images/symbol/plus-white.svg);
-}
-
-input[type="button"].remove {
-	color: #fabca4;
-}
-input[type="button"].icon.remove {
-	background-image: url(../../../images/symbol/remove-white.svg);
 }
 
 select[size=1] {

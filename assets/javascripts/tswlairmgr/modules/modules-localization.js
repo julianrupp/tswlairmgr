@@ -195,6 +195,11 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 		return this._localizations[this.getLocalizationId()].data;
 	};
 	
+	this.getAllLocalizationIds = function()
+	{
+		return this._sortedLocalizations;
+	};
+	
 	this.setLocalizationById = function(id) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: starting");
 
@@ -209,16 +214,33 @@ tswlairmgr.modules.ModuleLocalization = function ModuleLocalization() {
 		var localization = this._localizations[id];
 		
 		this._currentLocalizationId = id;
-
-		this.observables.moduleLocalizationChanged.notify(
-			{
-				previousLocalizationId: this.getDefaultLocalizationId()
-			}
-		);
+		
+		if(!this._suppressNotifications)
+		{
+			this.observables.moduleLocalizationChanged.notify(
+				{
+					previousLocalizationId: this.getDefaultLocalizationId()
+				}
+			);
+		}
 
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules-localization>: [module] setLocalizationById: completed");
 
 		return true;
+	};
+	
+	this.executeWithDifferentLocalization = function(id, callback)
+	{
+		this._suppressNotifications = true;
+
+		var previous = this.getLocalizationId();
+
+		this.setLocalizationById(id);
+		callback.call();
+
+		this.setLocalizationById(previous);
+
+		this._suppressNotifications = false;
 	};
 
 	this.init = function() {

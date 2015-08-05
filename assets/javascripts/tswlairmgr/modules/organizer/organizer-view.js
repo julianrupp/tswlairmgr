@@ -19,6 +19,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		participantMissionAvailabilityToggleClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantRemoveButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		outputDataLocalizationButtonClicked: new tswlairmgr.core.helpers.Observable(this),
+		outputOrderStyleButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		outputGenerateButtonClicked: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
@@ -62,7 +63,7 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		this._build_topmenu();
 		this._build_bosstable();
 		this._build_picktable();
-		// TODO: this._build_output();
+		this._build_output();
 	};
 	
 	this._build_topmenu = function() {
@@ -95,9 +96,17 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		this._subViews.picktable._init();
 	};
 	
-	this._redraw = function() {
-		//if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: redraw called");
+	this._build_output = function() {
+		this._el.output = $("<div />")
+			.attr("id", "output");
 		
+		$(this._el.self).append(this._el.output);
+		
+		this._subViews.output = new tswlairmgr.modules.organizer.viewOutput(this._el.output, this._model, this._localization);
+		this._subViews.output._init();
+	};
+	
+	this._redraw = function() {
 		/* Nothing to redraw directly in this view. */
 	};
 	
@@ -148,28 +157,19 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 			self.observables.participantRemoveButtonClicked.notify(context);
 		});
 		
-		// TODO: More observables
+		// Output
+		this._subViews.output.observables.outputDataLocalizationButtonClicked.registerCallback(function(origin, context) {
+			self.observables.outputDataLocalizationButtonClicked.notify(context);
+		});
 		
-		/* TODO: MOVE TO SUB-VIEWS
-		this._model.observables.selectedLairChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that selected lair has changed.");
-			//self._update_topmenu();
-			//self._redraw_bosstable();
+		this._subViews.output.observables.outputOrderStyleButtonClicked.registerCallback(function(origin, context) {
+			self.observables.outputOrderStyleButtonClicked.notify(context);
 		});
-		this._model.observables.fragmentCountsChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that fragment counts have changed.");
-			// TODO: self._update_bosstable();
-			// TODO: self._update_picktable();
-			// TODO: self._update_output();
+		
+		this._subViews.output.observables.outputGenerateButtonClicked.registerCallback(function(origin, context) {
+			self.observables.outputGenerateButtonClicked.notify(context);
 		});
-		this._model.observables.participantsChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that participants have changed.");
-			// TODO: self._update_picktable();
-			// TODO: self._update_output();
-		});
-		this._model.observables.selectedChatScriptLocalizationIdChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.view>: got notified that selected chat script localization has changed.");
-			// TODO: self._update_output();
-		});*/
+		
+		// TODO
 	};
 };

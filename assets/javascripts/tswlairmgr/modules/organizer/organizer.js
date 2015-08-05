@@ -81,11 +81,15 @@ tswlairmgr.modules.organizer.controller = new function() {
 			}
 		});
 		
+		// ----------
+		// Top
 		this._view.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that lair selector dropdown selection has changed.");
 			self._model.setSelectedLair(context.newLairInstance);
 		});
 		
+		// ----------
+		// Boss Fragment Counts
 		this._view.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that a fragment count plus button was clicked.");
 			self._model.incrementCountForFragment(context.fragment);
@@ -96,6 +100,8 @@ tswlairmgr.modules.organizer.controller = new function() {
 			self._model.decrementCountForFragment(context.fragment);
 		});
 		
+		// ----------
+		// Pick Table
 		this._view.observables.participantAddButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the participant add button was clicked.");
 			
@@ -162,7 +168,27 @@ tswlairmgr.modules.organizer.controller = new function() {
 			context.participant.toggleCanTurnInMissionForBoss(context.boss);
 		});
 		
-		// TODO: Hook up other interface action observables
+		// ----------
+		// Output
+		this._view.observables.outputDataLocalizationButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that an output localization button was clicked.");
+			self._model.setSelectedChatScriptLocalizationId(context.localizationId);
+		});
+		
+		this._view.observables.outputOrderStyleButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that an output order style button was clicked.");
+			self._model.setSelectedChatScriptOrderStyle(context.orderStyleCode);
+		});
+		
+		this._view.observables.outputGenerateButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the output download button was clicked.");
+			
+			var chatScriptGenerator = new tswlairmgr.modules.organizer.classes.ChatScriptGenerator(self._model, self._localization);
+			var script = chatScriptGenerator.generate();
+			
+			var blob = new Blob([script], {type: "application/octet-stream;charset=utf-8"});
+			saveAs(blob, "tswlairmgr");
+		});
 	};
 	
 	tswlairmgr.modules.registerModule(this);

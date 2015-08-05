@@ -32,7 +32,7 @@ tswlairmgr.modules.organizer.classes.Participant = function Participant(name) {
 	
 	this.isValidName = function(name) {
 		name = $.trim(name);
-		return name.match(/^[a-zA-Z0-9\-]+$/) && name.length > 0;
+		return name.match(/^[a-zA-Z0-9\-_]+$/) && name.length > 0;
 	};
 	
 	this.getPersistentState = function()

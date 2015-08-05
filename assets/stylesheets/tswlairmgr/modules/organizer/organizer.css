@@ -284,6 +284,26 @@
 	font-size: 16px;
 }
 
+input[type="button"].import {
+	color: #faf5a4;
+}
+
+input[type="button"].icon.import {
+	background-image: url(../../../../images/symbol/import-white.svg);
+}
+
+input[type="button"].import.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="button"].add {
+	color: #acec9a;
+}
+
+input[type="button"].icon.add {
+	background-image: url(../../../../images/symbol/plus-white.svg);
+}
+
 #module-organizer #picktable .componentBox .componentBoxInner .importBox .importInfoText {
 	font-size: 12px;
 	margin-top: 3px;
@@ -353,7 +373,7 @@
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .text {
 	height: 12px;
-	font-size: 10px;
+	font-size: 8px;
 	text-align: center;
 	
 	-webkit-touch-callout: none;
@@ -367,4 +387,153 @@
 #module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions {
 	text-align: center;
 	padding: 1px;
+}
+
+input[type="button"].remove {
+	color: #fabca4;
+}
+
+input[type="button"].icon.remove {
+	background-image: url(../../../../images/symbol/remove-white.svg);
+}
+
+/* -------------------- */
+
+#module-organizer #output .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left,
+ 	#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right {
+	margin: 0px;
+	padding: 0px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left {
+	text-align: left;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left .componentTitle {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right {
+	text-align: right;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer {
+	display: inline-block;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer.active {
+	opacity: 1.0;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer .localizationImage {
+	display: inline-block;
+	margin: 2px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyle {
+	display: inline-block;
+}
+
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyle input[type="button"].active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="button"].participant, input[type="button"].boss {
+	color: #c0c0c0;
+}
+
+input[type="button"].icon.participant {
+	background-image: url(../../../../images/symbol/participant-white.svg);
+}
+
+input[type="button"].icon.boss {
+	background-image: url(../../../../images/symbol/boss-white.svg);
+}
+
+#module-organizer #output .componentBox .componentBoxInner .infoTextUpper,
+	#module-organizer #output .componentBox .componentBoxInner .infoTextLower {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #output .componentBox .componentBoxInner .downloadButton {
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 6px;
+	cursor: pointer;
+	font-size: 16px;
+	background-size: 32px;
+	background-position: 8px center;
+	background-repeat: no-repeat;
+	padding-left: 44px;
+	background-image: url(../../../../images/symbol/download-white.svg);
+	display: block;
+	margin: 10px auto 10px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner .infoTextLowerToggle {
+	display: block;
+	margin-top: 10px;
+	cursor: pointer;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-organizer #output .componentBox .componentBoxInner .infoTextLower {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-organizer #output .componentBox .componentBoxInner ul {
+	list-style: outside none square;
+}
+
+#module-organizer #output .componentBox .componentBoxInner ul li {
+	margin-left: -15px;
+	margin-bottom: 10px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner .emphasis {
+	font-weight: bold;
 }

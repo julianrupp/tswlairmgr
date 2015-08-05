@@ -9,13 +9,16 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	this._participants = new tswlairmgr.modules.organizer.classes.ParticipantRegistry();
 	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentCounts, this._participants, this._selectedLair);
 	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getDefaultLocalizationId();
+	this._selectedChatScriptOrderStyle = tswlairmgr.modules.organizer.classes.ChatScriptOrderEnum.o.BY_PARTICIPANT;
 	
 	this.observables = {
 		selectedLairChanged: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountsChanged: new tswlairmgr.core.helpers.Observable(this),
 		fragmentWillHaveCountBroadcast: new tswlairmgr.core.helpers.Observable(this),
 		participantsChanged: new tswlairmgr.core.helpers.Observable(this),
-		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this)
+		fragmentAssignmentChanged: new tswlairmgr.core.helpers.Observable(this),
+		selectedChatScriptLocalizationIdChanged: new tswlairmgr.core.helpers.Observable(this),
+		selectedChatScriptOrderStyleChanged: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
 	var self = this;
@@ -28,7 +31,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		});
 	});
 	this._assigningStrategy.observables.fragmentAssignmentChanged.registerCallback(function(origin, context) {
-		self.observables.participantsChanged.notify({});
+		self.observables.fragmentAssignmentChanged.notify({});
 	});
 	
 	this.getSelectedLair = function() {
@@ -103,19 +106,27 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		});
 	};
 	
+	this.setSelectedChatScriptOrderStyle = function(newOrderStyle) {
+		this._selectedChatScriptOrderStyle = newOrderStyle;
+		this.observables.selectedChatScriptOrderStyleChanged.notify({
+			newOrderStyle: newOrderStyle
+		});
+	};
+	
 	this.getPersistentState = function() {
 		return {
 			v: this._persistentStateVersion,
 			l: this.getSelectedLair().getId(),
 			fcr: this._fragmentCounts.getPersistentState(),
 			pr: this._participants.getPersistentState(),
-			csl: this._selectedChatScriptLocalizationId
+			csl: this._selectedChatScriptLocalizationId,
+			csos: this._selectedChatScriptOrderStyle
 		};
 	};
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.pr) || !(state.csl)) { return false; }
+		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.pr) || !(state.csl) || !(state.csos)) { return false; }
 		if(state.v === this._persistentStateVersion)
 		{
 			var lair = tswlairmgr.core.data.getLairById(state.l);
@@ -134,6 +145,11 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 			if($.inArray(state.csl, tswlairmgr.core.data.getAllLocalizationIds()) !== -1)
 			{
 				this.setSelectedChatScriptLocalizationId(state.csl);
+			}
+			
+			if(tswlairmgr.modules.organizer.classes.ChatScriptOrderEnum.orderExists(state.csos))
+			{
+				this.setSelectedChatScriptOrderStyle(state.csos);
 			}
 			
 			return true;
