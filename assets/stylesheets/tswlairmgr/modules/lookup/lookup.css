@@ -1,0 +1,14 @@
+#module-lookup #selector .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-lookup #selector .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+/* -------------------- */

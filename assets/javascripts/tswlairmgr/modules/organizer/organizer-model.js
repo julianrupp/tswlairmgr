@@ -87,14 +87,6 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		return false;
 	};
 	
-	this.addParticipantByName = function(participantName) {
-		// TODO
-	};
-	
-	this.removeParticipantByWHAT = function(whatArg) {
-		// TODO
-	};
-	
 	this.getSelectedChatScriptLocalizationId = function() {
 		return this._selectedChatScriptLocalizationId;
 	};

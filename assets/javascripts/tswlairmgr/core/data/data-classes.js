@@ -562,8 +562,9 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 	};
 };
 
-tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
+tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, lair, fragmentSet) {
 	this._id = id;
+	this._backreferenceToLair = lair;
 	this._fragmentSet = fragmentSet;
 	this._fullNamePattern = tswlairmgr.core.data.struct.inpSummonRegional;
 	
@@ -580,6 +581,10 @@ tswlairmgr.core.data.RegionalBoss = function RegionalBoss(id, fragmentSet) {
 	
 	this.getRegion = function() {
 		return this._backreferenceToRegion;
+	};
+	
+	this.getLair = function() {
+		return this._backreferenceToLair;
 	};
 	
 	this.getFragmentSet = function() {

@@ -169,7 +169,5 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		this._subViews.output.observables.outputGenerateButtonClicked.registerCallback(function(origin, context) {
 			self.observables.outputGenerateButtonClicked.notify(context);
 		});
-		
-		// TODO
 	};
 };
