@@ -8,6 +8,7 @@ tswlairmgr.modules.organizer.classes.ChatScriptGenerator = function ChatScriptGe
 	this._localization = localization;
 	
 	this.projectURL = "http://github.com/julianrupp/tswlairmgr";
+	this.forumThreadURL = "http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager";
 	
 	this._styles = {
 		title: {
@@ -94,6 +95,7 @@ tswlairmgr.modules.organizer.classes.ChatScriptGenerator = function ChatScriptGe
 							'<br>' +
 							'<font face=LARGE color=#c0c0c0>'+self._localization.getLocalizationData().strings.chatScript.generatorNotice.description + '</font><br>' +
 							'<br>' +
+							'<font face=LARGE color=#ffffff><a href=\'chatcmd:///option WebBrowserStartURL &quot;'+self.forumThreadURL+'&quot; \\n /option web_browser 1\'>'+self.forumThreadURL+'</a></font><br>' +
 							'<font face=LARGE color=#ffffff><a href=\'chatcmd:///option WebBrowserStartURL &quot;'+self.projectURL+'&quot; \\n /option web_browser 1\'>'+self.projectURL+'</a></font>' +
 						'">' +
 						self._localization.getLocalizationData().strings.chatScript.generatorNotice.linkTitle +

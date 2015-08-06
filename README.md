@@ -7,7 +7,7 @@ It can be used by the leaders or fragment holders of lair groups to easily deter
 
 Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
 
-With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: regional bosses, localization support, and fragment lookup. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
+With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: localization support, persisting state via URL hash, participant name import from chat log excerpts, and fragment lookup including regional bosses/fragments. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
 
 Features:
 
@@ -15,15 +15,15 @@ Features:
 * Regional bosses from all 3 classic regions
 * Fragment lookup utility
 * Support for arbitrary group sizes
+* Batch participant name import from chat log excerpts
+* On-the-fly TSW chat script generation in 2 sorting styles
+* Crash resilience and saving/sharing ability via URL hashes
+* Localized in English, German and French
 * Easy and fast to use
-* On-the-fly TSW chat script generation
-* Localized in English and German
 
 An instance of TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
-**Note:** All active development takes place in feature branches branching off the `dev` branch.
-
-**Official TSW forums announcement and discussion thread:** [http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager](http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager)
+**Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager)
 
 
 Requirements
@@ -42,39 +42,43 @@ Using
 -----
 Since I've now switched to a modular system, the old way of just having one single tab/popup/whatever for displaying an usage guide does no longer really work so well. I think as each module is a thing on its own, it should take care of integrating help or an usage guide itself.
 
-My UI drafts for the *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* will instead provide short snippets of help text at tricky spots, while *Lookup* will probably not include any kind of help text as its main functions should be self-explanatory.
+The *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* will instead provide short snippets of help text at tricky spots, while *Lookup* will probably not include any kind of help text at all, as its main functions should be self-explanatory.
 
 
 Distributing
 ------------
-Upload `index.html` and the `assets` folder to a web server.
+Upload `index.html` and the `assets` folder to a basic web server.
 
 
 Contributing
 ------------
-I've recently completely rewritten the code, though there sure still is a lot to do to enhance as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
+I've recently completely rewritten the code and cleaned it up, though there definitely still is a lot of room for improvement. I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
 
-**What I'm particularly looking for** is a French translation for the interface (data is already done) so that with the existing English and German localizations, TSW Lair Manager would then be localized in the same set of languages as The Secret World itself. Please note that I do not want to integrate any other localizations than those three.
+- All active development takes place in feature branches branching off the `dev` branch.
+
+- Source files for various graphics (PSD, AI, ...) are in a separate resource repository. Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
+
+- Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
 
 Other than pull requests, you can also send me feature requests, bug reports or other constructive feedback.
 
 
 Credits
 -------
--	Lair boss images have been taken from [*dancingstar93*'s Flickr album](https://www.flickr.com/photos/79764031@N03/sets/72157638380829154/).
+-	Lair boss images have been taken from [*dancingstar93*'s Flickr album](https://www.flickr.com/photos/79764031@N03/sets/72157638380829154/), which in turn are taken from the game.
 	I derived "x-ray"-esque versions from them using Adobe Photoshop CS6 Extended. You can find the PSD files in the resource repository.
 
--	Lair area screenshots have been taken by myself.
-	
-	Graphics settings: 2560x1440, DX11, FXAA-HQ, no motion blur, full tesselation, high quality SSAO, Brightness 1.0, Contrast 1.0, Gamma 1.0, all advanced sliders on 4.
+-	Lair area screenshots have been taken by myself ingame. Graphics settings: 2560x1440 resolution, DX11, FXAA-HQ, no motion blur, full tesselation, high quality SSAO, Brightness/Contrast/Gamma 1.0, all advanced sliders on 4.
 
--	Lair data (mission names, fragment names, boss names) in its English localization and fragment positions have been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
+-	Lair data (mission, fragment and boss names) in its English localization as well as fragment positions have been taken from [*Pandion Knights*' ultimate lair guide](http://forums.thesecretworld.com/showthread.php?t=77874).
 
--	Lair data in its German localization has been collected in-game by myself.
+-	Lair data in its German localization has been collected in-game by myself. The English and German interface localizations were also done by myself.
 
 -	Lair data in its French localization has been taken from [TSWRDB.pw](https://tswrdb.pw/live/1030002/).
 
--	Regional fragment drop data was kindly provided by *Dott* and *Jermaine* from my cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com).
+-	The French interface translation was done by [*Rexxars*](http://chronicle.thesecretworld.com/character/Rexxars) from my cabal.
+
+-	Regional fragment drop data was kindly provided by [*Dott*](http://chronicle.thesecretworld.com/character/Dott) and [*Jermaine*](http://chronicle.thesecretworld.com/character/Jermaine) from my cabal.
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
 
@@ -105,4 +109,4 @@ This software makes use of [mustache.js](https://github.com/janl/mustache.js) by
 
 This software makes use of Douglas Crockford's [JSON implementation](https://github.com/douglascrockford/JSON-js) and redistributes it. Please see the first block comment in the `assets/javascripts/libraries/JSON/json2.js` file for its license.
 
-This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js` GitHub gist](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.
+This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js`](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.

@@ -65,7 +65,9 @@ tswlairmgr.modules.organizer.viewOutput = function organizerViewOutput(contentNo
 			'	</tbody>' +
 			'</table>' +
 			'<div class="infoTextUpper"></div>' +
-			'<input type="button" class="downloadButton" />' +
+			'<div class="downloadButtonAlign">' +
+			'	<input type="button" class="downloadButton" />' +
+			'</div>' +
 			'<div class="infoTextLowerToggle"></div>' +
 			'<div class="infoTextLower"></div>'
 		);

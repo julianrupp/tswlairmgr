@@ -24,7 +24,6 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 	
 	this._templates = {
 		lairselector: {
-			label: '{{localization.strings.topmenu.lairselector.selectLair}}:',
 			select: {
 				optgroup: '{{{context.regionName}}}',
 				option: '{{{context.zoneName}}}: {{{context.lairName}}}'
@@ -49,8 +48,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 			.addClass("uibox");
 		
 		this._el.lairselector.label = $("<div />")
-			.attr("id", "lairselectorLabel")
-			.text("Select lair:");
+			.attr("id", "lairselectorLabel");
 		
 		var self = this;
 		this._el.lairselector.select = $('<select />')
@@ -104,12 +102,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		var self = this;
 		var lairselectorBox = $("#lairselector", $(this._el.self));
 		var labelNode = $("#lairselectorLabel", $(lairselectorBox));
-		$(labelNode).html(
-			Mustache.render(self._templates.lairselector.label, {
-				localization: self._localization.getLocalizationData(),
-				context: {}
-			})
-		);
+		$(labelNode).text(self._localization.getLocalizationData().strings.topmenu.lairselector.selectLair);
 		var selectNode = $("#lairselectorDropdown", $(lairselectorBox));
 		$("optgroup", selectNode).each(function(index) {
 			var optgroupNode = this;

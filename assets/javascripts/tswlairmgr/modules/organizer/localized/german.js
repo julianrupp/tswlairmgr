@@ -7,7 +7,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Deuts
 	strings: {
 		topmenu: {
 			lairselector: {
-				selectLair: "Lair auswählen"
+				selectLair: "Lair auswählen:"
 			}
 		},
 		bosstable: {

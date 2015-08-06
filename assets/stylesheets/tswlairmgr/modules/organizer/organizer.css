@@ -343,7 +343,7 @@ input[type="button"].icon.add {
 
 #module-organizer #picktable .componentBox .componentBoxInner .picktable th.actions,
  	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions{
-	width: 70px;
+	width: 100px;
 	text-align: left;
 }
 
@@ -488,6 +488,12 @@ input[type="button"].icon.boss {
 	color: rgba(255, 255, 255, 0.5);
 }
 
+#module-organizer #output .componentBox .componentBoxInner .downloadButtonAlign {
+	display: block;
+	margin: 10px 0 10px;
+	text-align: center;
+}
+
 #module-organizer #output .componentBox .componentBoxInner .downloadButton {
 	color: #fbd2a4;
 	border: 1px solid rgba(255, 255, 255, 0.25);
@@ -500,12 +506,12 @@ input[type="button"].icon.boss {
 	background-repeat: no-repeat;
 	padding-left: 44px;
 	background-image: url(../../../../images/symbol/download-white.svg);
-	display: block;
-	margin: 10px auto 10px;
+	display: inline-block;
 }
 
 #module-organizer #output .componentBox .componentBoxInner .infoTextLowerToggle {
 	display: block;
+	text-align: right;
 	margin-top: 10px;
 	cursor: pointer;
 	
