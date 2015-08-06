@@ -17,6 +17,7 @@ tswlairmgr.modules.organizer.viewOutput = function organizerViewOutput(contentNo
 		componentBoxInner: null,
 		title: null,
 		chatScriptLocalization: null,
+		orderStyleLabel: null,
 		orderStyle: null,
 		infoTextUpper: null,
 		downloadButton: null,
@@ -59,6 +60,7 @@ tswlairmgr.modules.organizer.viewOutput = function organizerViewOutput(contentNo
 			'			</td>' +
 			'			<td class="right">' +
 			'				<div class="chatScriptLocalization"></div>' +
+			'				<div class="orderStyleLabel"></div>' +
 			'				<div class="orderStyle"></div>' +
 			'			</td>' +
 			'		</tr>' +
@@ -76,6 +78,7 @@ tswlairmgr.modules.organizer.viewOutput = function organizerViewOutput(contentNo
 		
 		this._el.title = $(".componentTitle", this._el.self);
 		this._el.chatScriptLocalization = $(".chatScriptLocalization", this._el.self);
+		this._el.orderStyleLabel = $(".orderStyleLabel", this._el.self);
 		this._el.orderStyle = $(".orderStyle", this._el.self);
 		this._el.infoTextUpper = $(".infoTextUpper", this._el.self);
 		

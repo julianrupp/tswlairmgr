@@ -460,6 +460,16 @@ input[type="button"].icon.remove {
 	margin: 2px;
 }
 
+#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyleLabel {
+	display: inline-block;
+	margin-right: 1px;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	background: url(../../../../images/symbol/sort-white.svg) no-repeat center center;
+	background-size: 100%;
+}
+
 #module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyle {
 	display: inline-block;
 }
