@@ -21,7 +21,7 @@ Features:
 * Localized in English, German and French
 * Easy and fast to use
 
-An instance of TSW Lair Manager can be found at: [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
+**An instance of TSW Lair Manager can be found at:** [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
 **Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager)
 
@@ -54,19 +54,79 @@ Contributing
 ------------
 I've recently completely rewritten the code and cleaned it up, though there definitely still is a lot of room for improvement. I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
 
-- All active development takes place in feature branches branching off the `dev` branch.
+-	All active development takes place in feature branches branching off the `dev` branch.
 
-- Source files for various graphics (PSD, AI, ...) are in a separate resource repository. Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
+-	Source files for various graphics (PSD, AI, ...) are in a separate resource repository. Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
 
-- Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
+-	Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
 
 Other than pull requests, you can also send me feature requests, bug reports or other constructive feedback.
+
+
+Changelog
+---------
+
+#### Version 2.0
+
+##### 2.0.0 beta
+-	Complete code rewrite
+	-	Added module system
+	-	Added localization system
+	-	Added persistent state system using URL hashes
+	-	Added shared MVC component for displaying item icons of boss summons and fragments
+-	Localized in English, German and French
+-	*Organizer* module
+	-	Holds old functionality, enhanced for ease of use
+	-	Extensive, separate help removed in favor of short help texts within the interface
+	-	Boss fragment counts table
+		-	Fixed positions of `+` and `-` buttons
+	-	Participants / pick table
+		-	Both side-by-side blocks have been merged into one
+		-	Unstable checking off fragments feature removed
+		-	Made naming rules less restrictive
+		-	Added mass-importing player names by pasting a chat log excerpt feature
+			*(proposed by [Grimmy](https://forums.thesecretworld.com/member.php?90310-Grimmy) on the forums)*
+	-	Output
+		-	Added ability to choose a separate localization for the chat script output independent of the webapp interface localization
+		-	Added new alternative output sorting style *by participant* as new default
+-	*Lookup* module
+	-	...
+
+
+#### Version 1.1
+
+##### 1.1.2 beta
+-	Minor visual changes to the usage guide
+
+##### 1.1.1 beta
+-	Resolved a bug where the pick table wouldn't get redrawn as intended when switching the lair
+-	Changed usage guide appearance
+
+##### 1.1.0 beta
+-	Integrated an extensive usage guide into the webapp, accessible via the `?` button in the menu bar.
+
+
+#### Version 1.0
+
+##### 1.0.3 beta
+-	Strengthened item label drop shadow to make it more readable, and some other minor improvements to the CSS.
+	*(Proposed by [Gridviper](http://chronicle.thesecretworld.com/character/Gridviper) in-game)*
+
+##### 1.0.2 beta
+-	Fixed a bug where the pick table would not get fully rendered when a participant was marked as unavailable on all three missions.
+	*(Reported by [Jyusan](https://forums.thesecretworld.com/member.php?31891-Jyusan) on the forums)*
+
+##### 1.0.1 beta
+-	Fixed a bug where the TSW chat script download button would no longer work as soon as at least one person was marked as unavailable for at least one mission.
+
+##### 1.0.0 beta
+-	The initial release.
 
 
 Credits
 -------
 -	Lair boss images have been taken from [*dancingstar93*'s Flickr album](https://www.flickr.com/photos/79764031@N03/sets/72157638380829154/), which in turn are taken from the game.
-	I derived "x-ray"-esque versions from them using Adobe Photoshop CS6 Extended. You can find the PSD files in the resource repository.
+	I derived "x-ray"-esque versions from them using Adobe Photoshop CS6 Extended.
 
 -	Lair area screenshots have been taken by myself ingame. Graphics settings: 2560x1440 resolution, DX11, FXAA-HQ, no motion blur, full tesselation, high quality SSAO, Brightness/Contrast/Gamma 1.0, all advanced sliders on 4.
 

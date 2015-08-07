@@ -65,7 +65,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 				byBossMission: "Par Boss/Mission"
 			},
 			infoTextUpper:
-				"<p>Après avoir ajouté tous les participants et entré tous les nombres de fragments, générez un script de discussion afin de dire aux participants quels fragments choisir.<br />Cliquer sur le bouton ci-dessous vous fournira un script de discussion en tant que fichier à télécharger qui, lors de l'utilisation, postera la répartition des fragments dans le canal de discussion sélectionné.</p>",
+				"<p>Après avoir ajouté tous les participants et entré tous les nombres de fragments, générez un script de discussion afin de dire aux participants quels fragments choisir. Cliquer sur le bouton ci-dessous vous fournira un script de discussion en tant que fichier à télécharger qui, lors de l'utilisation, postera la répartition des fragments dans le canal de discussion sélectionné.</p>",
 			downloadButtonLabel: "Télécharger\nTSW Chat Script",
 			infoTextLower: {
 				showLabel: "Montrer le guide d'utilisation",

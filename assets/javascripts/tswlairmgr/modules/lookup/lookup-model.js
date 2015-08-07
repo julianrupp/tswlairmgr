@@ -100,7 +100,7 @@ tswlairmgr.modules.lookup.model = function lookupModel() {
 			};
 		}
 		
-		// Should never reach here
+		// Reaches here when persistent state is saved/loaded before any object was viewed
 		return null;
 	};
 	
@@ -132,7 +132,7 @@ tswlairmgr.modules.lookup.model = function lookupModel() {
 					.getFragments()[nodeInfo.rfo];
 			break;
 			default:
-				// Should never reach here
+				// Reaches here when persistent state is saved/loaded before any object was viewed
 				return null;
 			break;
 		}

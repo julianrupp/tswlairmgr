@@ -11,4 +11,53 @@
 	padding: 10px;
 }
 
+#module-lookup #selector table.selectors {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+#module-lookup #selector table.selectors td {
+	width: 408px;
+	text-align: center;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#module-lookup #selector table.selectors td:first-child {
+	padding-left: 0;
+}
+
+#module-lookup #selector table.selectors td:last-child {
+	padding-right: 0;
+}
+
+#module-lookup #selector table.selectors td.splitLine {
+	padding: 0px;
+	width: 1px;
+	background: rgba(255, 255, 255, 0.25);
+}
+
+#module-lookup #selector table.selectors .align {
+	width: 398px;
+	display: inline-block;
+	text-align: left;
+}
+
+#module-lookup #selector table.selectors .label {
+	margin-bottom: 5px;
+}
+
+#module-lookup #selector table.selectors select {
+	width: 100%;
+	display: inline-block;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+	height: 32px;
+	font-size: 11px;
+}
+
 /* -------------------- */

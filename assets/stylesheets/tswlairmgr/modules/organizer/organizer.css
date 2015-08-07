@@ -25,8 +25,10 @@
 
 /* -------------------- */
 
-#module-organizer #bosstable table {
-	border: width: 838px;
+#module-organizer #bosstable table.one,
+ 	#module-organizer #bosstable table.two, 
+	#module-organizer #bosstable table.three {
+	width: 838px;
 	margin: 0px;
 	padding: 0px;
 	border-collapse: collapse;
@@ -47,7 +49,7 @@
 }
 
 #module-organizer #bosstable td.inner {
-	width: 274px;
+	width: 274px !important;
 	margin: 0px !important;
 	padding: 0px !important;
 	text-align: center;
@@ -58,7 +60,7 @@
 }
 
 /* Names block */
-#module-organizer #bosstable td.inner .innerContent .names {
+#module-organizer #bosstable .names {
 	color: #ffffff;
 	background-color: rgba(0, 0, 0, 0.65);
 	padding: 10px;
@@ -67,18 +69,18 @@
 	text-align: center;
 }
 
-#module-organizer #bosstable td.inner .innerContent .names .bossName {
+#module-organizer #bosstable .names .bossName {
 	color: rgba(255, 255, 255, 1);
 	font-size: 20px;
 }
 
-#module-organizer #bosstable td.inner .innerContent .names .missionName {
+#module-organizer #bosstable .names .missionName {
 	font-size: 12px;
 	color: rgba(255, 255, 255, 0.75);
 }
 
 /* Fragment controls block */
-#module-organizer #bosstable td.inner .innerContent .fragments {
+#module-organizer #bosstable .fragments {
 	color: #ffffff;
 	background-color: rgba(0, 0, 0, 0.65);
 	padding: 10px;
@@ -88,7 +90,7 @@
 	margin-top: 2px;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable {
+#module-organizer #bosstable .fragments .fragmentsTable {
 	margin: 0px;
 	border: 0px;
 	
@@ -96,7 +98,7 @@
 	border-collapse: separate;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer {
 	padding: 2px;
 	
 	text-align: center;
@@ -112,12 +114,12 @@
 	user-select: none;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
 	border-radius: 11px;
-	background-color: rgba(255, 204, 0, 0.30); /* #e97f0d: 233/127/13, #ffcc00: 255/204/0 */
+	background-color: rgba(255, 204, 0, 0.30);
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button {
 	display: inline-block;
 	text-align: center;
 	vertical-align: middle;
@@ -133,7 +135,7 @@
 	font-weight: bold;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
 	display: inline-block;
 	width: 10px;
 	height: 10px;
@@ -143,15 +145,15 @@
 	opacity: 0.7;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
 	background-image: url(../../../../images/symbol/plus-black.svg);
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
 	background-image: url(../../../../images/symbol/minus-black.svg);
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts {
 	display: inline-block;
 	vertical-align: middle;
 	width: 38px;
@@ -159,36 +161,36 @@
 	overflow: hidden;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
 	
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave {
 	color: #c0c0c0;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:before {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:before {
 	color: #c0c0c0;
 	content: '(';
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:after {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:after {
 	color: #c0c0c0;
 	content: ')';
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
 	color: #ffcc00;
 }
 
-#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave,
-	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:before,
-	#module-organizer #bosstable td.inner .innerContent .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:after {
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave,
+	#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:before,
+	#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:after {
 	color: #e97f0d;
 }
 
 /* Calculated counts block */
-#module-organizer #bosstable td.inner .innerContent .calculated {
+#module-organizer #bosstable .calculated {
 	color: #ffffff;
 	background-color: rgba(0, 0, 0, 0.65);
 	padding: 10px;
@@ -198,21 +200,21 @@
 	margin-top: 2px;
 }
 
-#module-organizer #bosstable td.inner .innerContent .calculated .count-format {
+#module-organizer #bosstable .calculated .count-format {
 	font-size: 20px;
 }
 
-#module-organizer #bosstable td.inner .innerContent .calculated .count-format .count {
+#module-organizer #bosstable .calculated .count-format .count {
 	color: rgba(255, 255, 255, 1);
 	font-weight: bold;
 }
 
-#module-organizer #bosstable td.inner .innerContent .calculated .missing-format {
+#module-organizer #bosstable .calculated .missing-format {
 	font-size: 12px;
 	color: rgba(255, 255, 255, 0.75);
 }
 
-#module-organizer #bosstable td.inner .innerContent .calculated .missing-format .count {
+#module-organizer #bosstable .calculated .missing-format .count {
 	
 }
 
@@ -231,48 +233,48 @@
 	padding: 10px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead {
+#module-organizer #picktable table.componentHead {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 	border-collapse: collapse;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left,
- 	#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right {
+#module-organizer #picktable table.componentHead td.left,
+ 	#module-organizer #picktable table.componentHead td.right {
 	margin: 0px;
 	padding: 0px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left {
+#module-organizer #picktable table.componentHead td.left {
 	text-align: left;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .componentTitle {
+#module-organizer #picktable table.componentHead td.left .componentTitle {
 	display: inline-block;
 	font-size: 18px;
 	margin-right: 10px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .numParticipants {
+#module-organizer #picktable table.componentHead td.left .numParticipants {
 	display: inline-block;
 	font-size: 12px;
 	color: rgba(255, 255, 255, 0.75);
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.left .numParticipants span.number {
+#module-organizer #picktable table.componentHead td.left .numParticipants span.number {
 	font-weight: bold;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right {
+#module-organizer #picktable table.componentHead td.right {
 	text-align: right;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner table.componentHead td.right input.participantNameInput {
+#module-organizer #picktable table.componentHead td.right input.participantNameInput {
 	width: 175px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .importBox {
+#module-organizer #picktable .importBox {
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -280,7 +282,7 @@
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .importBox .importTitle {
+#module-organizer #picktable .importBox .importTitle {
 	font-size: 16px;
 }
 
@@ -304,66 +306,66 @@ input[type="button"].icon.add {
 	background-image: url(../../../../images/symbol/plus-white.svg);
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .importBox .importInfoText {
+#module-organizer #picktable .importBox .importInfoText {
 	font-size: 12px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 	color: rgba(255, 255, 255, 0.5);
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .importBox textarea.importTextField {
+#module-organizer #picktable .importBox textarea.importTextField {
 	margin: 0 auto;
 	width: 798px;
 	height: 14px;
 	font-size: 11px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .infoText {
+#module-organizer #picktable .infoText {
 	font-size: 12px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 	color: rgba(255, 255, 255, 0.5);
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable {
+#module-organizer #picktable table.picktable {
 	width: 100%;
 	margin-bottom: 0px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable th.name,
- 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.name {
+#module-organizer #picktable table.picktable th.name,
+ 	#module-organizer #picktable table.picktable td.name {
 	text-align: left;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable th.fragment,
- 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
+#module-organizer #picktable table.picktable th.fragment,
+ 	#module-organizer #picktable table.picktable td.fragment {
 	width: 34px;
 	text-align: center;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable th.actions,
- 	#module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions{
+#module-organizer #picktable table.picktable th.actions,
+ 	#module-organizer #picktable table.picktable td.actions {
 	width: 100px;
 	text-align: left;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.name {
+#module-organizer #picktable table.picktable td.name {
 	font-size: 16px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment {
+#module-organizer #picktable table.picktable td.fragment {
 	height: 42px;
 	padding: 1px;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip {
+#module-organizer #picktable table.picktable td.fragment .skip {
 	width: 42px;
 	height: 40px;
 	margin: 0 auto;
 	opacity: 0.5;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .symbol {
+#module-organizer #picktable table.picktable td.fragment .skip .symbol {
 	width: 28px;
 	height: 28px;
 	background: transparent url(../../../../images/symbol/skip-white.svg) no-repeat center center;
@@ -371,7 +373,7 @@ input[type="button"].icon.add {
 	margin: 0 auto;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.fragment .skip .text {
+#module-organizer #picktable table.picktable td.fragment .skip .text {
 	height: 12px;
 	font-size: 8px;
 	text-align: center;
@@ -384,7 +386,7 @@ input[type="button"].icon.add {
 	user-select: none;
 }
 
-#module-organizer #picktable .componentBox .componentBoxInner .picktable td.actions {
+#module-organizer #picktable table.picktable td.actions {
 	text-align: center;
 	padding: 1px;
 }
@@ -412,55 +414,55 @@ input[type="button"].icon.remove {
 	padding: 10px;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead {
+#module-organizer #output table.componentHead {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 	border-collapse: collapse;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left,
- 	#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right {
+#module-organizer #output table.componentHead td.left,
+ 	#module-organizer #output table.componentHead td.right {
 	margin: 0px;
 	padding: 0px;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left {
+#module-organizer #output table.componentHead td.left {
 	text-align: left;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.left .componentTitle {
+#module-organizer #output table.componentHead td.left .componentTitle {
 	display: inline-block;
 	font-size: 18px;
 	margin-right: 10px;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right {
+#module-organizer #output table.componentHead td.right {
 	text-align: right;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization {
+#module-organizer #output table.componentHead td.right .chatScriptLocalization {
 	display: inline-block;
 	margin-right: 10px;
 	vertical-align: middle;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer {
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer {
 	display: inline-block;
 	cursor: pointer;
 	opacity: 0.5;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer.active {
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer.active {
 	opacity: 1.0;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .chatScriptLocalization .localizationContainer .localizationImage {
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer .localizationImage {
 	display: inline-block;
 	margin: 2px;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyleLabel {
+#module-organizer #output table.componentHead td.right .orderStyleLabel {
 	display: inline-block;
 	margin-right: 1px;
 	vertical-align: middle;
@@ -470,11 +472,11 @@ input[type="button"].icon.remove {
 	background-size: 100%;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyle {
+#module-organizer #output table.componentHead td.right .orderStyle {
 	display: inline-block;
 }
 
-#module-organizer #output .componentBox .componentBoxInner table.componentHead td.right .orderStyle input[type="button"].active {
+#module-organizer #output table.componentHead td.right .orderStyle input[type="button"].active {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -490,21 +492,21 @@ input[type="button"].icon.boss {
 	background-image: url(../../../../images/symbol/boss-white.svg);
 }
 
-#module-organizer #output .componentBox .componentBoxInner .infoTextUpper,
-	#module-organizer #output .componentBox .componentBoxInner .infoTextLower {
+#module-organizer #output .infoTextUpper,
+	#module-organizer #output .infoTextLower {
 	font-size: 12px;
 	margin-top: 3px;
 	margin-bottom: 3px;
 	color: rgba(255, 255, 255, 0.5);
 }
 
-#module-organizer #output .componentBox .componentBoxInner .downloadButtonAlign {
+#module-organizer #output .downloadButtonAlign {
 	display: block;
 	margin: 10px 0 10px;
 	text-align: center;
 }
 
-#module-organizer #output .componentBox .componentBoxInner .downloadButton {
+#module-organizer #output .downloadButton {
 	color: #fbd2a4;
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	background-color: rgba(0, 0, 0, 0.25);
@@ -519,7 +521,7 @@ input[type="button"].icon.boss {
 	display: inline-block;
 }
 
-#module-organizer #output .componentBox .componentBoxInner .infoTextLowerToggle {
+#module-organizer #output .infoTextLowerToggle {
 	display: block;
 	text-align: right;
 	margin-top: 10px;
@@ -533,7 +535,7 @@ input[type="button"].icon.boss {
 	user-select: none;
 }
 
-#module-organizer #output .componentBox .componentBoxInner .infoTextLower {
+#module-organizer #output .infoTextLower {
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	margin-top: 5px;
 	padding-left: 5px;
@@ -541,15 +543,15 @@ input[type="button"].icon.boss {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
-#module-organizer #output .componentBox .componentBoxInner ul {
+#module-organizer #output ul {
 	list-style: outside none square;
 }
 
-#module-organizer #output .componentBox .componentBoxInner ul li {
+#module-organizer #output ul li {
 	margin-left: -15px;
 	margin-bottom: 10px;
 }
 
-#module-organizer #output .componentBox .componentBoxInner .emphasis {
+#module-organizer #output .emphasis {
 	font-weight: bold;
 }

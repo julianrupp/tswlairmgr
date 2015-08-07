@@ -66,31 +66,56 @@ tswlairmgr.modules.lookup.controller = new function() {
 		
 		this._view.observables.appBackgroundShouldChange.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.lookup.controller>: got notified that app background should change.");
-			var obj = self._model.getSelectedObject();
-			if(obj instanceof tswlairmgr.core.data.Boss)
+			
+			var appBackgroundCss = {};
+			var objectviewInstance = self._view._activeObjectView;
+			if(objectviewInstance !== null)
 			{
-				self._view._appBackground["background"] = "#808080 url(assets/images/lair/"+obj.getLair().getId()+".jpg) no-repeat fixed center";
+				appBackgroundCss = objectviewInstance.getAppBackgroundCss();
+				
+				// TODO: Factor this out to object views
+				/*if(obj instanceof tswlairmgr.core.data.Boss)
+				{
+					"background": "#808080 url(assets/images/lair/"+this._object.getLair().getId()+".jpg) no-repeat fixed center"
+				}
+				else if(obj instanceof tswlairmgr.core.data.RegionalBoss)
+				{
+					self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getId()+".jpg) no-repeat fixed center";
+				}
+				else if(obj instanceof tswlairmgr.core.data.BossFragment)
+				{
+					// moved
+				}
+				else if(obj instanceof tswlairmgr.core.data.RegionalBossFragment)
+				{
+					self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getSet().getBoss().getId()+".jpg) no-repeat fixed center";
+				}*/
 			}
-			else if(obj instanceof tswlairmgr.core.data.RegionalBoss)
+			else
 			{
-				self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getId()+".jpg) no-repeat fixed center";
-			}
-			else if(obj instanceof tswlairmgr.core.data.BossFragment)
-			{
-				self._view._appBackground["background"] = "#808080 url(assets/images/lair/"+obj.getSet().getBoss().getId()+".jpg) no-repeat fixed center";
-			}
-			else if(obj instanceof tswlairmgr.core.data.RegionalBossFragment)
-			{
-				self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getSet().getBoss().getId()+".jpg) no-repeat fixed center";
+				// No object selected yet
+				appBackgroundCss = {
+					"background": "#808080 url(assets/images/lookup/default.jpg) no-repeat fixed center"
+				};
 			}
 			
+			self._view._appBackground = appBackgroundCss;
 			if(tswlairmgr.modules.getActiveModuleId() == self.id)
 			{
 				self._view._refreshBackground();
 			}
 		});
 		
+		this._view.observables.selectorDropdownUsed.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.lookup.controller>: got notified that one of the dropdown selectors was used.");
+			
+			var obj = context.selectedObject;
+			self._model.setSelectedObject(obj);
+		});
+		
 		// TODO: Callback registering here
+		
+		this._view.observables.appBackgroundShouldChange.notify({});
 	};
 	
 	tswlairmgr.modules.registerModule(this);
