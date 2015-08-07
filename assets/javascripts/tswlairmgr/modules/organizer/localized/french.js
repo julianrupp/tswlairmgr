@@ -78,7 +78,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 					"	<li>Choisissez {{{context.raidChannel}}} si les membres de votre équipe sont dans un raid de 10 personnes (double groupe).</li>" +
 					"	<li>Choisissez {{{context.sayChannel}}} si vous avez plus de participants que ne peut en contenir un raid. Assurez vous que tous les participants sont proches de vous avant d'envoyer le script, étant donné qu'ils ne recevront le message Dire que dans une zone délimitée autour de vous.</li>" +
 					"</ul>" +
-					"<p>Puis entrez {{{context.scriptCommand}}} (supposant que vous n'avez pas changé le nom du fichier) en tant que message de discussion puis appuyez sur {{{context.enterButton}}}.</p>",
+					"<p>Puis entrez {{{context.scriptCommand}}} (supposant que vous n'avez pas changé le nom du fichier) en tant que message de discussion et appuyez sur {{{context.enterButton}}}.</p>",
 				groupChannelName: "Groupe",
 				raidChannelName: "Raid",
 				sayChannelName: "Dire",

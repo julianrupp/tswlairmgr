@@ -15,7 +15,8 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	};
 	
 	this._el = {
-		self: contentNode
+		self: contentNode,
+		title: null
 	};
 	
 	this.getAppBackgroundCss = function() {
@@ -28,15 +29,16 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	this._build = function() {
 		$(this._el.self).empty();
 		
+		this._el.title = $("<div />");
+		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
+		titleView._init();
+		this._subViews.push(titleView);
+		$(this._el.self).append(this._el.title);
+		
 		// TODO
 	};
 	
 	this._redraw = function() {
-		$(this._el.self).empty();
-		$(this._el.self).append(
-			$('<div class="uibox" />')
-				.text("RegionalFragment: <"+this._object.getCode()+">")
-		);
 		// TODO
 	};
 	

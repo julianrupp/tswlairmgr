@@ -2,9 +2,10 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
 tswlairmgr.modules.lookup = tswlairmgr.modules.lookup || {};
 tswlairmgr.modules.lookup.objectviews = tswlairmgr.modules.lookup.objectviews || {};
+tswlairmgr.modules.lookup.objectviews.components = tswlairmgr.modules.lookup.objectviews.components || {};
 
-tswlairmgr.modules.lookup.objectviews.LairBoss = function lookupObjectviewLairBoss(contentNode, lairbossInstance, localization) {
-	this._object = lairbossInstance;
+tswlairmgr.modules.lookup.objectviews.components.ItemTitle = function lookupObjectviewComponentItemTitle(contentNode, object, localization) {
+	this._object = object;
 	this._localization = localization;
 	
 	this._itemMVCControllers = [];
@@ -16,30 +17,41 @@ tswlairmgr.modules.lookup.objectviews.LairBoss = function lookupObjectviewLairBo
 	
 	this._el = {
 		self: contentNode,
-		title: null
-	};
-	
-	this.getAppBackgroundCss = function() {
-		return {
-			"background": "#808080 url(assets/images/lair/"+this._object.getLair().getId()+".jpg) no-repeat fixed center",
-			"background-size": "cover"
-		};
+		title: {
+			rootNode: null,
+			itemIconContainer: null,
+			titleTextContainer: null
+		}
 	};
 	
 	this._build = function() {
 		$(this._el.self).empty();
 		
-		this._el.title = $("<div />");
-		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
-		titleView._init();
-		this._subViews.push(titleView);
-		$(this._el.self).append(this._el.title);
+		this._el.title.rootNode = $("<div />")
+			.addClass("itemTitle");
 		
-		// TODO
+		this._el.title.itemIconContainer = $("<div />")
+			.addClass("itemIcon");
+		this._itemMVCControllers.push(
+			new tswlairmgr.core.components.ItemHTML(
+				this._object,
+				this._el.title.itemIconContainer,
+				{ isSmall: true }
+			)
+		);
+		$(this._el.title.rootNode).append(this._el.title.itemIconContainer);
+		
+		this._el.title.titleTextContainer = $("<div />")
+			.addClass("titleText");
+		$(this._el.title.rootNode).append(this._el.title.titleTextContainer);
+		
+		$(this._el.self).append(this._el.title.rootNode);
 	};
 	
 	this._redraw = function() {
-		// TODO
+		$(this._el.title.titleTextContainer).text(
+			this._object.getItemName()
+		);
 	};
 	
 	var self = this;
