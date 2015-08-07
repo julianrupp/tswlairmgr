@@ -3,8 +3,8 @@ tswlairmgr.modules = tswlairmgr.modules || {};
 tswlairmgr.modules.lookup = tswlairmgr.modules.lookup || {};
 tswlairmgr.modules.lookup.objectviews = tswlairmgr.modules.lookup.objectviews || {};
 
-tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLairFragment(contentNode, lairfragmentInstance, localization) {
-	this._object = lairfragmentInstance;
+tswlairmgr.modules.lookup.objectviews.LairBoss = function lookupObjectviewLairBoss(contentNode, lairbossInstance, localization) {
+	this._object = lairbossInstance;
 	this._localization = localization;
 	
 	this._itemMVCControllers = [];
@@ -19,7 +19,7 @@ tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLa
 	
 	this.getAppBackgroundCss = function() {
 		return {
-			"background": "#808080 url(assets/images/lair/"+this._object.getSet().getBoss().getLair().getId()+".jpg) no-repeat fixed center"
+			"background": "#808080 url(assets/images/lair/"+this._object.getLair().getId()+".jpg) no-repeat fixed center"
 		};
 	};
 	
@@ -33,7 +33,7 @@ tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLa
 		$(this._el.self).empty();
 		$(this._el.self).append(
 			$('<div class="uibox" />')
-				.text("LairFragment: <"+this._object.getCode()+">")
+				.text("LairBoss: <"+this._object.getName()+">")
 		);
 		// TODO
 	};

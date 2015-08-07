@@ -72,24 +72,6 @@ tswlairmgr.modules.lookup.controller = new function() {
 			if(objectviewInstance !== null)
 			{
 				appBackgroundCss = objectviewInstance.getAppBackgroundCss();
-				
-				// TODO: Factor this out to object views
-				/*if(obj instanceof tswlairmgr.core.data.Boss)
-				{
-					"background": "#808080 url(assets/images/lair/"+this._object.getLair().getId()+".jpg) no-repeat fixed center"
-				}
-				else if(obj instanceof tswlairmgr.core.data.RegionalBoss)
-				{
-					self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getId()+".jpg) no-repeat fixed center";
-				}
-				else if(obj instanceof tswlairmgr.core.data.BossFragment)
-				{
-					// moved
-				}
-				else if(obj instanceof tswlairmgr.core.data.RegionalBossFragment)
-				{
-					self._view._appBackground["background"] = "#808080 url(assets/images/region/"+obj.getSet().getBoss().getId()+".jpg) no-repeat fixed center";
-				}*/
 			}
 			else
 			{

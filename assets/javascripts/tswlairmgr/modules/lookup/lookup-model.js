@@ -9,7 +9,7 @@ tswlairmgr.modules.lookup.model = function lookupModel() {
 		boss: "bl",
 		regional_boss: "br",
 		fragment: "fl",
-		fragment_regional: "fr"
+		regional_fragment: "fr"
 	};
 	
 	this._history = new tswlairmgr.modules.lookup.classes.ObjectHistory(50);
@@ -42,7 +42,6 @@ tswlairmgr.modules.lookup.model = function lookupModel() {
 	
 	this.getSelectedObjectTypeCode = function() {
 		var obj = this.getSelectedObject();
-		
 		if(obj instanceof tswlairmgr.core.data.Boss)
 		{
 			return this._objectTypeCodes.boss;

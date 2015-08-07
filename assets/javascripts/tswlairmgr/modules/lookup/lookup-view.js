@@ -134,21 +134,22 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			return (a.getCode().toLowerCase() <= b.getCode().toLowerCase()) ? -1 : 1;
 		});
 		
+		$(fragmentSelector).append(
+			$("<option />")
+				.data("objectInstance", null)
+		);
+		
 		var lairfragmentsOptgroupNode = $("<optgroup />")
-			.data("type", "lairfragments");
+			.data("type", "lairfragmentsLabel");
 		$.each(lairFragments, function(index, fragmentInstance) {
 			var optionNode = $("<option />")
 				.data("objectInstance", fragmentInstance);
 			$(lairfragmentsOptgroupNode).append(optionNode);
 		});
-		$(fragmentSelector).append(
-			$("<option />")
-				.data("objectInstance", null)
-		);
 		$(fragmentSelector).append(lairfragmentsOptgroupNode);
 		
 		var regionalfragmentsOptgroupNode = $("<optgroup />")
-			.data("type", "regionalfragments");
+			.data("type", "regionalfragmentsLabel");
 		$.each(regionalFragments, function(index, fragmentInstance) {
 			var optionNode = $("<option />")
 				.data("objectInstance", fragmentInstance);
@@ -158,7 +159,57 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._build_bossselector = function() {
-		// TODO
+		var bossSelector = this._el.selector.bosses.dropdown;
+		
+		var self = this;
+		$(bossSelector).change(function() {
+			var selectedObject = $(self._el.selector.bosses.dropdown).find(":selected").data("objectInstance");
+			self.observables.selectorDropdownUsed.notify({
+				selectedObject: selectedObject
+			});
+			self.observables.appBackgroundShouldChange.notify({});
+		});
+		
+		$(bossSelector).append(
+			$("<option />")
+				.data("objectInstance", null)
+		);
+		
+		var regionalBosses = [];
+		
+		// HTML spec allows no optgroup nesting... oh well
+		$.each(tswlairmgr.core.data.getSortedRegions(), function(regionIndex, regionInstance) {
+			regionalBosses.push(regionInstance.getRegional());
+			$.each(regionInstance.getSortedZones(), function(zoneIndex, zoneInstance) {
+				$.each(zoneInstance.getSortedLairs(), function(lairIndex, lairInstance) {
+					var lairOptgroupNode = $("<optgroup />")
+						.data("type", "lairLabel")
+						.data("lairInstance", lairInstance);
+					
+					$.each(lairInstance.getSortedBosses(), function(bossIndex, bossInstance) {
+						$(lairOptgroupNode).append(
+							$("<option />")
+								.data("objectInstance", bossInstance)
+						);
+					});
+					
+					$(bossSelector).append(lairOptgroupNode);
+				});
+			});
+		});
+		
+		var regionalbossesOptgroupNode = $("<optgroup />")
+			.data("type", "regionalbossesLabel");
+		
+		$.each(regionalBosses, function(index, boss) {
+			console.log(boss);
+			$(regionalbossesOptgroupNode).append(
+				$("<option />")
+					.data("objectInstance", boss)
+			);
+		});
+		
+		$(bossSelector).append(regionalbossesOptgroupNode);
 	};
 	
 	this._redraw = function() {
@@ -178,13 +229,13 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			var labelText = "";
 			switch($(optgroupNode).data("type"))
 			{
-				case "lairfragments":
+				case "lairfragmentsLabel":
 					labelText = Mustache.render(self._localization.getLocalizationData().strings.selectors.fragments.optionGroups.lairFragments, {
 						localization: self._localization.getLocalizationData(),
 						context: {}
 					});
 				break;
-				case "regionalfragments":
+				case "regionalfragmentsLabel":
 					labelText = Mustache.render(self._localization.getLocalizationData().strings.selectors.fragments.optionGroups.regionalFragments, {
 						localization: self._localization.getLocalizationData(),
 						context: {}
@@ -222,12 +273,77 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._redraw_bossselector = function() {
-		// TODO
+		var bossSelector = $(this._el.selector.bosses.dropdown);
+		
+		var self = this;
+		$("optgroup", bossSelector).each(function(index) {
+			var optgroupNode = this;
+			
+			var labelText = "";
+			switch($(optgroupNode).data("type"))
+			{
+				case "lairLabel":
+					labelText = $(optgroupNode).data("lairInstance").getZone().getName() + ": " + $(optgroupNode).data("lairInstance").getName();
+				break;
+				case "lairbossesLabel":
+					labelText = Mustache.render(self._localization.getLocalizationData().strings.selectors.bosses.optionGroups.lairBosses, {
+						localization: self._localization.getLocalizationData(),
+						context: {}
+					});
+				break;
+				case "regionalbossesLabel":
+					labelText = Mustache.render(self._localization.getLocalizationData().strings.selectors.bosses.optionGroups.regionalBosses, {
+						localization: self._localization.getLocalizationData(),
+						context: {}
+					});
+				break;
+				default:
+					// Should never reach here
+				break;
+			}
+			
+			$(optgroupNode).attr("label", labelText);
+		});
+		$("option", bossSelector).each(function(index) {
+			var optionNode = this;
+			
+			if(index == 0)
+			{
+				$(optionNode).text(
+					Mustache.render(self._localization.getLocalizationData().strings.selectors.bosses.chooseLabel, {
+						localization: self._localization.getLocalizationData(),
+						context: {}
+					})
+				);
+				return;
+			}
+			
+			var obj = $(optionNode).data("objectInstance");
+			if(obj !== null)
+			{
+				$(optionNode).text(
+					obj.getName()
+				);
+			}
+		});
 	};
 	
 	this._reset_selectors = function() {
-		$(this._el.selector.fragments.dropdown).val( $("option:first", this._el.selector.fragments.dropdown).val() );
-		$(this._el.selector.bosses.dropdown).val( $("option:first", this._el.selector.bosses.dropdown).val() );
+		var self = this;
+		$("option", this._el.selector.fragments.dropdown).each(function(index) {
+			var optionNode = this;
+			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
+			{
+				$(self._el.selector.fragments.dropdown).val( $(optionNode).val() );
+			}
+		});
+		$("option", this._el.selector.bosses.dropdown).each(function(index) {
+			var optionNode = this;
+			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
+			{
+				$(self._el.selector.bosses.dropdown).val( $(optionNode).val() );
+			}
+		});
 	};
 	
 	this._init = function() {
@@ -253,11 +369,11 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			var v = null;
 			if(obj instanceof tswlairmgr.core.data.Boss)
 			{
-				/*v = new tswlairmgr.modules.lookup.objectviews.LairBoss(self._el.objectView, obj, self._localization);*/
+				v = new tswlairmgr.modules.lookup.objectviews.LairBoss(self._el.objectView, obj, self._localization);
 			}
 			else if(obj instanceof tswlairmgr.core.data.RegionalBoss)
 			{
-				/*v = new tswlairmgr.modules.lookup.objectviews.RegionalBoss(self._el.objectView, obj, self._localization);*/
+				v = new tswlairmgr.modules.lookup.objectviews.RegionalBoss(self._el.objectView, obj, self._localization);
 			}
 			else if(obj instanceof tswlairmgr.core.data.BossFragment)
 			{
@@ -265,14 +381,14 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			}
 			else if(obj instanceof tswlairmgr.core.data.RegionalBossFragment)
 			{
-				/*v = new tswlairmgr.modules.lookup.objectviews.RegionalFragment(self._el.objectView, obj, self._localization);*/
+				v = new tswlairmgr.modules.lookup.objectviews.RegionalFragment(self._el.objectView, obj, self._localization);
 			}
 			self._activeObjectView = v;
 			
 			if(v !== null) {
 				self._activeObjectView._init();
 				self._activeObjectView.observables.objectLinkClicked.registerCallback(function(origin, context) {
-					
+					// TODO
 				});
 			}
 			self.observables.appBackgroundShouldChange.notify({});

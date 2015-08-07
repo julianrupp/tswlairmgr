@@ -9,14 +9,13 @@ tswlairmgr.modules.lookup.controller._localization.addLocalizationData("English"
 			fragments: {
 				chooseLabel: "Select fragment...",
 				optionGroups: {
-					lairFragments: "Lair fragments",
-					regionalFragments: "Regional fragments"
+					lairFragments: "Summoning Ritual Fragments",
+					regionalFragments: "Cleansing Ritual Fragments"
 				}
 			},
 			bosses: {
 				chooseLabel: "Select boss...",
 				optionGroups: {
-					lairBosses: "Lair bosses",
 					regionalBosses: "Regional bosses"
 				}
 			}
