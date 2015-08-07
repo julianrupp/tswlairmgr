@@ -8,6 +8,7 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	this._localization = localization;
 	
 	this._itemMVCControllers = [];
+	this._subViews = [];
 	
 	this.observables = {
 		objectLinkClicked: new tswlairmgr.core.helpers.Observable(this)
@@ -19,7 +20,8 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	
 	this.getAppBackgroundCss = function() {
 		return {
-			"background": "#808080 url(assets/images/region/"+this._object.getSet().getBoss().getId()+".jpg) no-repeat fixed center"
+			"background": "#808080 url(assets/images/region/"+this._object.getSet().getBoss().getId()+".jpg) no-repeat fixed center",
+			"background-size": "cover"
 		};
 	};
 	
@@ -60,6 +62,9 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	this.destroy = function() {
 		$.each(this._itemMVCControllers, function(index, controller) {
 			controller.destroy();
+		});
+		$.each(this._subViews, function(index, view) {
+			view.destroy();
 		});
 		
 		this._localization.observables.moduleLocalizationChanged.unregisterCallback(this._moduleLocalizationCallback);

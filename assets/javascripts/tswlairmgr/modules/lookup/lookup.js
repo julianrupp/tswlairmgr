@@ -77,7 +77,8 @@ tswlairmgr.modules.lookup.controller = new function() {
 			{
 				// No object selected yet
 				appBackgroundCss = {
-					"background": "#808080 url(assets/images/lookup/default.jpg) no-repeat fixed center"
+					"background": "#808080 url(assets/images/lookup/default.jpg) no-repeat fixed center",
+					"background-size": "cover"
 				};
 			}
 			
