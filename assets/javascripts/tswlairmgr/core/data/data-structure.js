@@ -687,39 +687,39 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
 	/* Bosses */
 	this.struct.traCFLairBoss1 = new tswlairmgr.core.data.Boss("cf01",
 		new tswlairmgr.core.data.BossFragmentSet({
-			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.zeta, 2),
-			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.kappa, 2),
-			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.epsilon, 4),
-			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.upsilon, 8),
-			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.eta, 4),
-			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.sigma, 1),
-			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.rho, 8),
-			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.upsilon, 5),
-			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.rho, 2)
+			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.epsilon, 8),
+			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.tau, 3),
+			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.chi, 8),
+			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.pi, 1),
+			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.tau, 8),
+			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.omicron, 3),
+			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.beta, 9),
+			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.beta, 4),
+			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.delta, 8)
 	}));
 	this.struct.traCFLairBoss2 = new tswlairmgr.core.data.Boss("cf02",
 		new tswlairmgr.core.data.BossFragmentSet({
-			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.mu, 3),
-			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.sigma, 3),
-			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.eta, 9),
-			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.phi, 8),
-			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.sigma, 5),
-			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.lambda, 8),
-			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.beta, 2),
-			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.delta, 9),
-			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.nu, 6)
+			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.gamma, 7),
+			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.eta, 6),
+			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.psi, 4),
+			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.psi, 7),
+			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.mu, 2),
+			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.omega, 3),
+			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.omega, 8),
+			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.pi, 5),
+			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.omega, 2)
 	}));
 	this.struct.traCFLairBoss3 = new tswlairmgr.core.data.Boss("cf03",
 		new tswlairmgr.core.data.BossFragmentSet({
-			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.kappa, 1),
-			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.tau, 1),
-			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.sigma, 9),
-			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.rho, 9),
-			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.sigma, 4),
-			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.rho, 5),
-			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.phi, 1),
-			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.delta, 1),
-			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.beta, 5)
+			nw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.alpha, 8),
+			n:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.gamma, 8),
+			ne: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.kappa, 8),
+			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.epsilon, 6),
+			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.chi, 9),
+			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.iota, 9),
+			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.xi, 2),
+			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.iota, 7),
+			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.mu, 7)
 	}));
 	
 	/* Lair */

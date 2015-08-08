@@ -27,9 +27,13 @@ tswlairmgr.modules.lookup.controller._localization.addLocalizationData("English"
 					region: "Region:"
 				},
 				regionalboss: {
-					name: "Boss:",
-					summoningLair: "Summoning Lair:"
-				}
+					name: "Name:",
+					location: "Summoning location:"
+				},
+				lairfragment: {
+					boss: "Boss:",
+					lair: "Lair:"
+				},
 			},
 			regionalFragmentDropsFrom: {
 				title: "Drops from:"

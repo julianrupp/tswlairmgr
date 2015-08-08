@@ -20,7 +20,9 @@ tswlairmgr.modules.lookup.objectviews.components.PropertyTable = function lookup
 		"RegionalFragment_Boss": '{{context.bossName}}',
 		"RegionalFragment_Region": '{{context.regionName}}',
 		"RegionalBoss_Name": '{{context.bossName}}',
-		"RegionalBoss_SummoningLair": '{{context.lairName}} ({{context.zoneName}})'
+		"RegionalBoss_SummoningLair": '{{context.lairName}},<br />{{context.zoneName}}',
+		"LairFragment_Boss": '{{context.bossName}} ({{context.bossMissionName}})',
+		"LairFragment_Lair": '{{context.lairName}} ({{context.zoneName}})'
 	};
 	
 	this._build = function() {
@@ -103,7 +105,46 @@ tswlairmgr.modules.lookup.objectviews.components.PropertyTable = function lookup
 				break;
 				case "RegionalBoss_SummoningLair":
 					title = Mustache.render(
-						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.regionalboss.summoningLair,
+						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.regionalboss.location,
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {}
+						}
+					);
+					text = Mustache.render(
+						self._templates[compound.type],
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {
+								lairName: compound.object.getName(),
+								zoneName: compound.object.getZone().getName()
+							}
+						}
+					);
+				break;
+				case "LairFragment_Boss":
+					title = Mustache.render(
+						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.lairfragment.boss,
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {}
+						}
+					);
+					text = Mustache.render(
+						self._templates[compound.type],
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {
+								bossName: compound.object.getName(),
+								bossMissionName: compound.object.getMissionName()
+							}
+						}
+					);
+					link = compound.object;
+				break;
+				case "LairFragment_Lair":
+					title = Mustache.render(
+						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.lairfragment.lair,
 						{
 							localization: self._localization.getLocalizationData(),
 							context: {}

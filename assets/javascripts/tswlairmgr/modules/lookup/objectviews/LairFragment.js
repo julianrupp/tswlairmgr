@@ -12,7 +12,18 @@ tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLa
 	
 	this._el = {
 		self: contentNode,
-		title: null
+		mainTable: {
+			rootNode: null,
+			left: null,
+			right: null
+		},
+		components: {
+			title: null,
+			set: null,
+			propertytable: null,
+			otherbosses: null,
+			associatedregional: null
+		}
 	};
 	
 	this.getAppBackgroundCss = function() {
@@ -25,12 +36,75 @@ tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLa
 	this._build = function() {
 		$(this._el.self).empty();
 		
-		this._el.title = $("<div />");
-		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
+		this._el.components.title = $("<div />");
+		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.components.title, this._object, this._localization);
 		this._subViews.push(titleView);
-		$(this._el.self).append(this._el.title);
+		$(this._el.self).append(this._el.components.title);
 		
-		// TODO
+		this._el.mainTable.rootNode = $(
+			'<table class="mainTable">' +
+			'	<tr>' +
+			'		<td class="left"></td>' +
+			'		<td class="pad"></td>' +
+			'		<td class="right"></td>' +
+			'	</tr>' +
+			'</table>'
+		);
+		
+		$(this._el.self).append(this._el.mainTable.rootNode);
+		this._el.mainTable.left = $(".left", this._el.mainTable.rootNode);
+		this._el.mainTable.right = $(".right", this._el.mainTable.rootNode);
+		
+		this._build_left_set();
+		this._build_right_propertytable();
+		this._build_right_otherbosses();
+		this._build_right_associatedregional();
+	};
+	
+	this._build_left_set = function() {
+		this._el.components.set = $("<div />");
+		var set = new tswlairmgr.modules.lookup.objectviews.components.LairBossFragmentSet(
+			this._el.components.set,
+			this._object.getSet().getBoss(),
+			{
+				markSpecific: this._object
+			},
+			this._localization
+		);
+		this._subViews.push(set);
+		
+		$(this._el.mainTable.left).append(this._el.components.set);
+		$(this._el.mainTable.left).addClass("lair");
+	};
+	
+	this._build_right_propertytable = function() {
+		this._el.components.propertytable = $("<div />")
+			.addClass("component");
+		var propertytable = new tswlairmgr.modules.lookup.objectviews.components.PropertyTable(
+			this._el.components.propertytable,
+			[
+				{
+					type: "LairFragment_Boss",
+					object: this._object.getSet().getBoss()
+				},
+				{
+					type: "LairFragment_Lair",
+					object: this._object.getSet().getBoss().getLair()
+				}
+			],
+			this._localization
+		);
+		this._subViews.push(propertytable);
+		
+		$(this._el.mainTable.right).append(this._el.components.propertytable);
+	};
+	
+	this._build_right_otherbosses = function() {
+		
+	};
+	
+	this._build_right_associatedregional = function() {
+		
 	};
 	
 	this._redraw = function() {
