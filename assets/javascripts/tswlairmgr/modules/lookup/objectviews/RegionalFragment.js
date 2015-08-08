@@ -20,7 +20,8 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 		components: {
 			title: null,
 			set: null,
-			propertytable: null
+			propertytable: null,
+			dropsfrom: null
 		}
 	};
 	

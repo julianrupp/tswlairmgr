@@ -73,6 +73,10 @@ tswlairmgr.modules.lookup.objectviews.components.RegionalBossFragmentSet = funct
 							$(cellNode).addClass("marked");
 						}
 					}
+					if(self._options.markAll)
+					{
+						$(cellNode).addClass("marked");
+					}
 					
 					$(cellNode).addClass("clickable");
 					$(cellNode).click(function() {

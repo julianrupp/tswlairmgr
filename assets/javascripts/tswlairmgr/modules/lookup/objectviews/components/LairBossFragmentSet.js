@@ -72,6 +72,10 @@ tswlairmgr.modules.lookup.objectviews.components.LairBossFragmentSet = function 
 							$(cellNode).addClass("marked");
 						}
 					}
+					if(self._options.markAll)
+					{
+						$(cellNode).addClass("marked");
+					}
 					
 					$(cellNode).addClass("clickable");
 					$(cellNode).click(function() {

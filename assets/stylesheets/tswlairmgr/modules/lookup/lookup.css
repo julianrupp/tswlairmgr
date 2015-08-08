@@ -174,7 +174,7 @@
 }
 
 #module-lookup .propertyTable table.properties td.title {
-	width: 100px;
+	width: 110px;
 	color: #c0c0c0;
 	font-weight: bold;
 	padding: 4px;
@@ -255,5 +255,93 @@
 }
 
 #module-lookup .regionalFragmentDropsFrom table.droptable tr {
+	
+}
+
+/* -------------------- */
+
+#module-lookup .allRegionLairBosses {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	padding: 7px;
+}
+
+#module-lookup .allRegionLairBosses .componentTitle {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #c0c0c0;
+	margin-bottom: 5px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable {
+	width: 100%;
+	
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 5px;
+	border-collapse: separate;
+	
+	font-size: 14px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable tr td {
+	
+}
+
+#module-lookup .allRegionLairBosses table.lairtable .lairTitle {
+	padding: 5px;
+	font-size: 12px;
+	color: #a0a0a0;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable {
+	width: 100%;
+	
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+	
+	font-size: 14px;
+	
+	background: rgba(255, 255, 255, 0.15);
+	border-radius: 7px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td {
+	vertical-align: middle;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td.icon {
+	width: 40px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td.titles {
+	padding: 4px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td.titles .container {
+	background: url(../../../../images/symbol/follow-white.svg) no-repeat center right;
+	background-size: 16px 16px;
+	padding-right: 20px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td.titles .title {
+	font-size: 16px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable td.titles .subTitle {
+	color: #a0a0a0;
+	font-size: 12px;
+}
+
+#module-lookup .allRegionLairBosses table.lairtable table.bosstable tr {
 	
 }
