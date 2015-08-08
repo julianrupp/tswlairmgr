@@ -45,6 +45,7 @@ tswlairmgr.modules.lookup.objectviews.components.ItemTitle = function lookupObje
 	};
 	
 	this._redraw = function() {
+		$(this._el.title.titleTextContainer).empty();
 		$(this._el.title.titleTextContainer).append(
 			this._object.getItemName()
 		);
