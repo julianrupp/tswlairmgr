@@ -1,0 +1,187 @@
+.item {
+	background-size: 100%;
+	display: inline-block;
+	vertical-align: text-bottom;
+	
+	width: 64px;
+	height: 64px;
+	padding: 4px 4px;
+	border-radius: 9px;
+}
+
+.item.small {
+	width: 32px;
+	height: 32px;
+	padding: 2px 2px;
+	border-radius: 5px;
+}
+
+/* -------------------- */
+
+.item.common {
+	border: 0 solid #ffffff;
+}
+.item.uncommon {
+	border: 0 solid #00ff16;
+}
+.item.rare {
+	border: 0 solid #02b6ff;
+}
+.item.epic {
+	border: 0 solid #d565f8;
+}
+.item.legendary {
+	border: 0 solid #ffd001;
+}
+
+/* -------------------- */
+
+.item {
+	border-width: 3px !important;
+}
+
+.item.small {
+	border-width: 2px !important;
+}
+
+/* -------------------- */
+
+.item.lairfragment {
+	background-color: #0c3f4d;
+	background-image: url(../../../../../images/item/pattern_background.png);
+}
+
+.item.lairboss {
+	background-color: #0a720c;
+	background-image: url(../../../../../images/item/consumable_background.png);
+}
+
+.item.regionalfragment {
+	background-color: #0c3f4d;
+	background-image: url(../../../../../images/item/pattern_background.png);
+}
+
+.item.regionalboss {
+	background-color: #0a720c;
+	background-image: url(../../../../../images/item/consumable_background.png);
+}
+
+/* -------------------- */
+
+.item .icon {
+	width: 100%;
+	height: 100%;
+	border-radius: 8%;
+	overflow: hidden;
+}
+
+.item.lairfragment .icon {
+	background-size: 300%;
+}
+
+.item.lairboss .icon {
+	background-size: 100%;
+}
+
+.item.regionalfragment .icon {
+	background-size: 400%;
+}
+
+.item.regionalboss .icon {
+	background-size: 100%;
+}
+
+.item.lairfragment .icon.nw { background-position: top left; }
+.item.lairfragment .icon.n { background-position: top center; }
+.item.lairfragment .icon.ne { background-position: top right; }
+.item.lairfragment .icon.w { background-position: center left; }
+.item.lairfragment .icon.c { background-position: center center; }
+.item.lairfragment .icon.e { background-position: center right; }
+.item.lairfragment .icon.sw { background-position: bottom left; }
+.item.lairfragment .icon.s { background-position: bottom center; }
+.item.lairfragment .icon.se { background-position: bottom right; }
+
+.item.regionalfragment .icon.nnww { background-position: 0% 0%; }
+.item.regionalfragment .icon.nnw { background-position: 33% 0%; }
+.item.regionalfragment .icon.nne { background-position: 66% 0%; }
+.item.regionalfragment .icon.nnee { background-position: 100% 0%; }
+.item.regionalfragment .icon.nww { background-position: 0% 33%; }
+.item.regionalfragment .icon.nw { background-position: 33% 33%; }
+.item.regionalfragment .icon.ne { background-position: 66% 33%; }
+.item.regionalfragment .icon.nee { background-position: 100% 33%; }
+.item.regionalfragment .icon.sww { background-position: 0% 66%; }
+.item.regionalfragment .icon.sw { background-position: 33% 66%; }
+.item.regionalfragment .icon.se { background-position: 66% 66%; }
+.item.regionalfragment .icon.see { background-position: 100% 66%; }
+.item.regionalfragment .icon.ssww { background-position: 0% 100%; }
+.item.regionalfragment .icon.ssw { background-position: 33% 100%; }
+.item.regionalfragment .icon.sse { background-position: 66% 100%; }
+.item.regionalfragment .icon.ssee { background-position: 100% 100%; }
+
+/* ====================
+ * Solomon Island
+ */
+.item .icon.km01 { background-image: url(../../../../../images/boss/km01.png); }
+.item .icon.km02 { background-image: url(../../../../../images/boss/km02.png); }
+.item .icon.km03 { background-image: url(../../../../../images/boss/km03.png); }
+.item .icon.sc01 { background-image: url(../../../../../images/boss/sc01.png); }
+.item .icon.sc02 { background-image: url(../../../../../images/boss/sc02.png); }
+.item .icon.sc03 { background-image: url(../../../../../images/boss/sc03.png); }
+.item .icon.bm01 { background-image: url(../../../../../images/boss/bm01.png); }
+.item .icon.bm02 { background-image: url(../../../../../images/boss/bm02.png); }
+.item .icon.bm03 { background-image: url(../../../../../images/boss/bm03.png); }
+
+/* ====================
+ * Egypt
+ */
+.item .icon.sd01 { background-image: url(../../../../../images/boss/sd01.png); }
+.item .icon.sd02 { background-image: url(../../../../../images/boss/sd02.png); }
+.item .icon.sd03 { background-image: url(../../../../../images/boss/sd03.png); }
+.item .icon.cs01 { background-image: url(../../../../../images/boss/cs01.png); }
+.item .icon.cs02 { background-image: url(../../../../../images/boss/cs02.png); }
+.item .icon.cs03 { background-image: url(../../../../../images/boss/cs03.png); }
+
+/* ====================
+ * Transylvania
+ */
+.item .icon.bf01 { background-image: url(../../../../../images/boss/bf01.png); }
+.item .icon.bf02 { background-image: url(../../../../../images/boss/bf02.png); }
+.item .icon.bf03 { background-image: url(../../../../../images/boss/bf03.png); }
+.item .icon.sf01 { background-image: url(../../../../../images/boss/sf01.png); }
+.item .icon.sf02 { background-image: url(../../../../../images/boss/sf02.png); }
+.item .icon.sf03 { background-image: url(../../../../../images/boss/sf03.png); }
+.item .icon.cf01 { background-image: url(../../../../../images/boss/cf01.png); }
+.item .icon.cf02 { background-image: url(../../../../../images/boss/cf02.png); }
+.item .icon.cf03 { background-image: url(../../../../../images/boss/cf03.png); }
+
+/* ====================
+ * Regionals
+ */
+
+.item .icon.sol { background-image: url(../../../../../images/regionalboss/sol.png); }
+.item .icon.egy { background-image: url(../../../../../images/regionalboss/egy.png); }
+.item .icon.tra { background-image: url(../../../../../images/regionalboss/tra.png); }
+
+/* -------------------- */
+
+.item .name {
+	font-size: 11px;
+	letter-spacing: -0.5px;
+	color: #ffffff;
+	text-shadow: 0 0 1px #000000, 0 0 3px #000000, 0 0 5px #000000, 0 0 7px #000000; /* Quadruple strength */
+	text-align: center;
+	padding-top: 78%;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.item.small .name {
+	font-size: 7px;
+	text-shadow: 0 0 3px #000000, 0 0 5px #000000;
+	padding-top: 72%;
+}

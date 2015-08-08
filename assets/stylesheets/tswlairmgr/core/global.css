@@ -1,0 +1,131 @@
+* {
+	font-family: 'Lato', 'Century Gothic', 'Arial', sans-serif;
+}
+body {
+	margin: 0;
+	color: #ffffff;
+	font-size: 12px;
+	background: #808080 no-repeat fixed center;
+	background-size: cover;
+}
+
+a {
+	color: #ffffff;
+}
+
+a:active, a:focus {
+	color: #c0c0c0;
+}
+
+a:visited {
+	color: #a0a0a0;
+}
+
+a:hover {
+	color: #808080;
+}
+
+input {
+	font-size: 13px;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
+input[type="text"] {
+	height: 18px;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 3px;
+	color: #ffffff;
+}
+
+textarea {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 3px;
+	color: #ffffff;
+}
+
+input[type="button"], input[type="submit"] {
+	color: #ffffff;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 3px;
+	cursor: pointer;
+}
+
+input[type="button"].icon {
+	background-size: 16px;
+	background-position: 4px center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+select[size=1] {
+	border: 2px solid rgba(255, 255, 255, 1);
+	border-radius: 5px;
+	background: rgba(0, 0, 0, 0.5);
+	color: #ffffff;
+}
+
+.uibox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+}
+
+.uibox > h3:first-child {
+	margin-top: 0;
+	text-align: center;
+}
+
+.center {
+	text-align: center;
+}
+
+.technical {
+	color: #f0f0f0;
+	font-family: 'Monaco', 'Courier New', monospace;
+	font-size: 90%;
+	line-height: inherit;
+	background-color: #646464;
+	border-radius: 4px;
+	padding: 1px 3px;
+}
+
+.clickable {
+	cursor: pointer !important;
+}
+
+.table {
+	margin: 10px auto 10px auto;
+	border: 0;
+	border-collapse: collapse;
+}
+
+.table input[type="button"] {
+	font-size: 11px;
+}
+
+.table > thead > tr, .table > tbody > tr {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	min-height: 25px;
+}
+
+.table > thead > tr > th {
+	font-size: 11px;
+	font-weight: normal;
+	color: #c0c0c0;
+}
+
+.table > thead > tr > th, .table > tbody > tr > td {
+	padding: 5px;
+	border-left: 1px solid rgba(255, 255, 255, 0.25);
+	border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.table > tbody > tr > td {
+	background-color: rgba(255, 255, 255, 0.07);
+}
