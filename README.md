@@ -52,13 +52,19 @@ Upload `index.html` and the `assets` folder to a basic web server.
 
 Contributing
 ------------
-I've recently completely rewritten the code and cleaned it up, though there definitely still is a lot of room for improvement. I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery.
+I've recently completely rewritten the code and cleaned it up, though there definitely still is a lot of room for improvement as I'm not really into web development this much anymore, and also never really was into JavaScript and jQuery. Plus, some of the paths I paved I didn't completely pave all the way to the end, but those things should be fairly easy to refactor given their position in the chain.
 
--	All active development takes place in feature branches branching off the `dev` branch.
+-	All active development takes place in feature branches branching off the `dev` branch. Use branch names like `feature/<title>` or `bugfix/<issue number>`.
 
 -	Source files for various graphics (PSD, AI, ...) are in a separate resource repository. Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
 
 -	Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
+
+-	Requiring Flash, Silverlight or any other proprietary/closed-source stuff for your feature additions to work is a no-go. Implement your functionality solely in JavaScript. You may use additional helper libraries, not just the ones that are already there
+
+-	Please note that I'm not really fond of introducing any kind of build process in this project that is required to get the project files into a ready-to-use/upload state.
+
+-	You may modify system code (module system, localization system, Item MVC, data structure), however, if it is not a bugfix for existing code, you may only extend it with functionality, never alter existing functionality. Try to implement as much as you can in the module you're writing. Only put things into the system files which you know will be used by other modules as well.
 
 Other than pull requests, you can also send me feature requests, bug reports or other constructive feedback.
 
@@ -74,7 +80,6 @@ Changelog
 	-	Added localization system
 	-	Added persistent state system using URL hashes
 	-	Added shared MVC component for displaying item icons of boss summons and fragments
--	Localized in English, German and French
 -	*Organizer* module
 	-	Holds old functionality, enhanced for ease of use
 	-	Extensive, separate help removed in favor of short help texts within the interface
@@ -90,7 +95,11 @@ Changelog
 		-	Added ability to choose a separate localization for the chat script output independent of the webapp interface localization
 		-	Added new alternative output sorting style *by participant* as new default
 -	*Lookup* module
-	-	...
+	-	Explore fragments and bosses and their interconnections
+		-	See what lair bosses drop a particular regional fragment
+		-	See what regional fragments a particular lair boss drops
+		-	See the position of a fragment within its set and the other fragments' names
+-	Localized in English, German and French
 
 
 #### Version 1.1

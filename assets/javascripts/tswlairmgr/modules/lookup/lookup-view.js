@@ -61,14 +61,14 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			'	<div id="fragmentSelector">' +
 			'		<div class="componentBox">' +
 			'			<div class="componentBoxInner">' +
-			'				<select id="fragmentDropdown"></select>' +
+			'				<select id="bossDropdown"></select>' +
 			'			</div>' +
 			'		</div>' +
 			'	</div>' +
 			'	<div id="bossSelector">' +
 			'		<div class="componentBox">' +
 			'			<div class="componentBoxInner">' +
-			'				<select id="bossDropdown"></select>' +
+			'				<select id="fragmentDropdown"></select>' +
 			'			</div>' +
 			'		</div>' +
 			'	</div>' +

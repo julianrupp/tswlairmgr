@@ -12,8 +12,16 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	
 	this._el = {
 		self: contentNode,
-		title: null,
-		set: null
+		mainTable: {
+			rootNode: null,
+			left: null,
+			right: null
+		},
+		components: {
+			title: null,
+			set: null,
+			propertytable: null
+		}
 	};
 	
 	this.getAppBackgroundCss = function() {
@@ -26,24 +34,33 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	this._build = function() {
 		$(this._el.self).empty();
 		
-		this._el.title = $("<div />");
-		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
+		this._el.components.title = $("<div />");
+		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.components.title, this._object, this._localization);
 		this._subViews.push(titleView);
-		$(this._el.self).append(this._el.title);
+		$(this._el.self).append(this._el.components.title);
 		
-		var mainTable = $(
+		this._el.mainTable.rootNode = $(
 			'<table class="mainTable">' +
 			'	<tr>' +
-			'		<td class="left regional"></td>' +
+			'		<td class="left"></td>' +
 			'		<td class="pad"></td>' +
 			'		<td class="right"></td>' +
 			'	</tr>' +
 			'</table>'
 		);
 		
-		this._el.set = $("<div />");
+		$(this._el.self).append(this._el.mainTable.rootNode);
+		this._el.mainTable.left = $(".left", this._el.mainTable.rootNode);
+		this._el.mainTable.right = $(".right", this._el.mainTable.rootNode);
+		
+		this._build_left_set();
+		this._build_right_propertytable();
+	};
+	
+	this._build_left_set = function() {
+		this._el.components.set = $("<div />");
 		var set = new tswlairmgr.modules.lookup.objectviews.components.RegionalBossFragmentSet(
-			this._el.set,
+			this._el.components.set,
 			this._object.getSet().getBoss(),
 			{
 				markSpecific: this._object
@@ -52,13 +69,30 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 		);
 		this._subViews.push(set);
 		
-		$(".left", mainTable).append(this._el.set);
+		$(this._el.mainTable.left).append(this._el.components.set);
+		$(this._el.mainTable.left).addClass("regional");
+	};
+	
+	this._build_right_propertytable = function() {
+		this._el.components.propertytable = $("<div />")
+			.addClass("component");
+		var propertytable = new tswlairmgr.modules.lookup.objectviews.components.PropertyTable(
+			this._el.components.propertytable,
+			[
+				{
+					type: "RegionalFragment_Boss",
+					object: this._object.getSet().getBoss()
+				},
+				{
+					type: "RegionalFragment_Region",
+					object: this._object.getSet().getBoss().getRegion()
+				}
+			],
+			this._localization
+		);
+		this._subViews.push(propertytable);
 		
-		$(".right", mainTable).append('<div class="uibox">Placeholder<br />Content<br />Box</div>');
-		
-		$(this._el.self).append(mainTable);
-		
-		// TODO
+		$(this._el.mainTable.right).append(this._el.components.propertytable);
 	};
 	
 	this._redraw = function() {

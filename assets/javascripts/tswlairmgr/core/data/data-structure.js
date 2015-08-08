@@ -246,7 +246,7 @@ tswlairmgr.core.data._bootstrap_region_sol_zone_bm = function()
 
 tswlairmgr.core.data._bootstrap_region_sol_regional = function()
 {
-	this.struct.solRegional = new tswlairmgr.core.data.RegionalBoss("sol", this.struct.solBM,
+	this.struct.solRegional = new tswlairmgr.core.data.RegionalBoss("sol", this.struct.solBMLair,
 		new tswlairmgr.core.data.RegionalBossFragmentSet({
 			nnww: new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.sadhe, 9, [
 					this.struct.solKMLairBoss1
@@ -469,7 +469,7 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_cs = function()
 
 tswlairmgr.core.data._bootstrap_region_egy_regional = function()
 {
-	this.struct.egyRegional = new tswlairmgr.core.data.RegionalBoss("egy", this.struct.egyCS,
+	this.struct.egyRegional = new tswlairmgr.core.data.RegionalBoss("egy", this.struct.egyCSLair,
 		new tswlairmgr.core.data.RegionalBossFragmentSet({
 			nnww: new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.teth, 3, [
 					this.struct.egySDLairBoss1
@@ -739,7 +739,7 @@ tswlairmgr.core.data._bootstrap_region_tra_zone_cf = function()
 
 tswlairmgr.core.data._bootstrap_region_tra_regional = function()
 {
-	this.struct.traRegional = new tswlairmgr.core.data.RegionalBoss("tra", this.struct.traBF,
+	this.struct.traRegional = new tswlairmgr.core.data.RegionalBoss("tra", this.struct.traBFLair,
 		new tswlairmgr.core.data.RegionalBossFragmentSet({
 			nnww: new tswlairmgr.core.data.RegionalBossFragment(this.struct.alphabetPhoenician.he, 2, [
 					this.struct.traSFLairBoss2

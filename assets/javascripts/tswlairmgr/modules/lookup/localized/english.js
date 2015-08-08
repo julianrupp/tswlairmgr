@@ -19,6 +19,15 @@ tswlairmgr.modules.lookup.controller._localization.addLocalizationData("English"
 					regionalBosses: "Regional bosses"
 				}
 			}
+		},
+		objectviewComponents: {
+			propertyTable: {
+				regionalfragment: {
+					boss: "Boss:",
+					region: "Region:",
+					spawnLair: "Lair:"
+				}
+			}
 		}
 	}
 });
