@@ -40,7 +40,6 @@ tswlairmgr.modules.lookup.objectviews.components.BossDropsRegionalFragments = fu
 	};
 	
 	this._redraw = function() {
-		console.log(this._drops);
 		$(this._el.title).text(
 			this._localization.getLocalizationData().strings.objectviewComponents.bossDropsRegionalFragments.title
 		);

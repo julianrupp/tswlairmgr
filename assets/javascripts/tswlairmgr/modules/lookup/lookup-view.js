@@ -176,7 +176,6 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			.data("type", "regionalbossesLabel");
 		
 		$.each(regionalBosses, function(index, boss) {
-			console.log(boss);
 			$(regionalbossesOptgroupNode).append(
 				$("<option />")
 					.data("objectInstance", boss)
