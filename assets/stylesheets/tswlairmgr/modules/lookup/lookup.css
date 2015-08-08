@@ -345,3 +345,183 @@
 #module-lookup .allRegionLairBosses table.lairtable table.bosstable tr {
 	
 }
+
+/* -------------------- */
+
+#module-lookup .otherLairBosses {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	padding: 7px;
+}
+
+#module-lookup .otherLairBosses .componentTitle {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #c0c0c0;
+	margin-bottom: 5px;
+}
+
+#module-lookup .otherLairBosses table.bosstable {
+	width: 100%;
+	
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+	
+	font-size: 14px;
+}
+
+#module-lookup .otherLairBosses table.bosstable td {
+	vertical-align: middle;
+}
+
+#module-lookup .otherLairBosses table.bosstable td.icon {
+	width: 40px;
+}
+
+#module-lookup .otherLairBosses table.bosstable td.titles {
+	padding: 4px;
+	padding-left: 8px;
+	
+	background: url(../../../../images/symbol/follow-white.svg) no-repeat center right;
+	background-size: 16px 16px;
+	padding-right: 20px;
+}
+
+#module-lookup .otherLairBosses table.bosstable td.titles .title {
+	font-size: 16px;
+}
+
+#module-lookup .otherLairBosses table.bosstable td.titles .subTitle {
+	color: #a0a0a0;
+	font-size: 12px;
+}
+
+#module-lookup .otherLairBosses table.bosstable tr {
+	
+}
+
+/* -------------------- */
+
+#module-lookup .associatedRegionalBoss {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	padding: 7px;
+}
+
+#module-lookup .associatedRegionalBoss .componentTitle {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #c0c0c0;
+	margin-bottom: 5px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable {
+	width: 100%;
+	
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+	
+	font-size: 14px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable td {
+	vertical-align: middle;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable td.icon {
+	width: 40px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable td.titles {
+	padding: 4px;
+	padding-left: 8px;
+	
+	background: url(../../../../images/symbol/follow-white.svg) no-repeat center right;
+	background-size: 16px 16px;
+	padding-right: 20px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable td.titles .title {
+	font-size: 16px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable td.titles .subTitle {
+	color: #a0a0a0;
+	font-size: 12px;
+}
+
+#module-lookup .associatedRegionalBoss table.bosstable tr {
+	
+}
+
+/* -------------------- */
+
+#module-lookup .bossDropsRegionalFragments {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	padding: 7px;
+}
+
+#module-lookup .bossDropsRegionalFragments .componentTitle {
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	font-size: 14px;
+	color: #c0c0c0;
+	margin-bottom: 5px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable {
+	width: 100%;
+	
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+	
+	font-size: 14px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable td {
+	vertical-align: middle;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable td.icon {
+	width: 40px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable td.titles {
+	padding: 4px;
+	padding-left: 8px;
+	
+	background: url(../../../../images/symbol/follow-white.svg) no-repeat center right;
+	background-size: 16px 16px;
+	padding-right: 20px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable td.titles .title {
+	font-size: 16px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable td.titles .subTitle {
+	color: #a0a0a0;
+	font-size: 12px;
+}
+
+#module-lookup .bossDropsRegionalFragments table.droptable tr {
+	
+}

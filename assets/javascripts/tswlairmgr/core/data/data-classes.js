@@ -421,8 +421,9 @@ tswlairmgr.core.data.RegionalBossFragment = function RegionalBossFragment(charac
 	
 	this._generateDropReferences = function() {
 		var droppers = this.getDroppedFrom();
+		var self = this;
 		$.each(droppers, function(key, value) {
-			value._addRegionalFragmentDrop(this);
+			value._addRegionalFragmentDrop(self);
 		});
 	};
 	

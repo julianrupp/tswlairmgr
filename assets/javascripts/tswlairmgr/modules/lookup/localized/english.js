@@ -34,12 +34,47 @@ tswlairmgr.modules.lookup.controller._localization.addLocalizationData("English"
 					boss: "Boss:",
 					lair: "Lair:"
 				},
+				lairboss: {
+					lair: "Lair:",
+					mission: "Mission:"
+				},
 			},
 			regionalFragmentDropsFrom: {
 				title: "Drops from:"
 			},
 			allRegionLairBosses: {
 				title: "Lair bosses from this region:"
+			},
+			otherLairBosses: {
+				title: "Other bosses from this lair:"
+			},
+			associatedRegionalBoss: {
+				title: "Associated regional boss:"
+			},
+			bossDropsRegionalFragments: {
+				title: "Drops fragments:",
+				position: "Position",
+				regionalFragmentPositions: {
+					nnww: "NNWW",
+					nnw: "NNW",
+					nne: "NNE",
+					nnee: "NNEE",
+					
+					nww: "NWW",
+					nw: "NW",
+					ne: "NE",
+					nee: "NEE",
+					
+					sww: "SWW",
+					sw: "SW",
+					se: "SE",
+					see: "SEE",
+					
+					ssww: "SSWW",
+					ssw: "SSW",
+					sse: "SSE",
+					ssee: "SSEE",
+				}
 			}
 		}
 	}

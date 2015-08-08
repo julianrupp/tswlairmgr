@@ -22,7 +22,9 @@ tswlairmgr.modules.lookup.objectviews.components.PropertyTable = function lookup
 		"RegionalBoss_Name": '{{context.bossName}}',
 		"RegionalBoss_SummoningLair": '{{context.lairName}},<br />{{context.zoneName}}',
 		"LairFragment_Boss": '{{context.bossName}} ({{context.bossMissionName}})',
-		"LairFragment_Lair": '{{context.lairName}} ({{context.zoneName}})'
+		"LairFragment_Lair": '{{context.lairName}} ({{context.zoneName}})',
+		"LairBoss_Lair": '{{context.lairName}} ({{context.zoneName}})',
+		"LairBoss_Mission": '{{context.bossMissionName}}'
 	};
 	
 	this._build = function() {
@@ -157,6 +159,43 @@ tswlairmgr.modules.lookup.objectviews.components.PropertyTable = function lookup
 							context: {
 								lairName: compound.object.getName(),
 								zoneName: compound.object.getZone().getName()
+							}
+						}
+					);
+				break;
+				case "LairBoss_Lair":
+					title = Mustache.render(
+						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.lairboss.lair,
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {}
+						}
+					);
+					text = Mustache.render(
+						self._templates[compound.type],
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {
+								lairName: compound.object.getName(),
+								zoneName: compound.object.getZone().getName()
+							}
+						}
+					);
+				break;
+				case "LairBoss_Mission":
+					title = Mustache.render(
+						self._localization.getLocalizationData().strings.objectviewComponents.propertyTable.lairboss.mission,
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {}
+						}
+					);
+					text = Mustache.render(
+						self._templates[compound.type],
+						{
+							localization: self._localization.getLocalizationData(),
+							context: {
+								bossMissionName: compound.object.getMissionName()
 							}
 						}
 					);

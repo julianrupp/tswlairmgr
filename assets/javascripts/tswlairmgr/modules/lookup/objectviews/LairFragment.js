@@ -100,11 +100,30 @@ tswlairmgr.modules.lookup.objectviews.LairFragment = function lookupObjectviewLa
 	};
 	
 	this._build_right_otherbosses = function() {
+		this._el.components.otherbosses = $("<div />")
+			.addClass("component");
+		var otherbosses = new tswlairmgr.modules.lookup.objectviews.components.OtherLairBosses(
+			this._el.components.otherbosses,
+			this._object.getSet().getBoss().getLair(),
+			this._object.getSet().getBoss(),
+			this._localization
+		);
+		this._subViews.push(otherbosses);
 		
+		$(this._el.mainTable.right).append(this._el.components.otherbosses);
 	};
 	
 	this._build_right_associatedregional = function() {
+		this._el.components.associatedregional = $("<div />")
+			.addClass("component");
+		var associatedregional = new tswlairmgr.modules.lookup.objectviews.components.AssociatedRegionalBoss(
+			this._el.components.associatedregional,
+			this._object.getSet().getBoss().getLair().getZone().getRegion().getRegional(),
+			this._localization
+		);
+		this._subViews.push(associatedregional);
 		
+		$(this._el.mainTable.right).append(this._el.components.associatedregional);
 	};
 	
 	this._redraw = function() {
