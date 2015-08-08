@@ -1,0 +1,557 @@
+#module-organizer #topmenu {
+	display: block;
+	text-align: right;
+}
+
+#module-organizer #topmenu #lairselector {
+	display: inline-block;
+	text-align: left;
+}
+
+#module-organizer #topmenu #lairselector #lairselectorLabel {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#module-organizer #topmenu #lairselector select#lairselectorDropdown {
+	display: inline-block;
+	border: 2px solid #ffffff;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #000000;
+	height: 32px;
+	font-size: 11px;
+}
+
+/* -------------------- */
+
+#module-organizer #bosstable table.one,
+ 	#module-organizer #bosstable table.two, 
+	#module-organizer #bosstable table.three {
+	width: 838px;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #bosstable td.pad {
+	width: 8px;
+}
+
+#module-organizer #bosstable table.two td.pad:first-child, #module-organizer #bosstable table.two td.pad:last-child {
+	width: 141px;
+}
+
+#module-organizer #bosstable table.one td.pad:first-child, #module-organizer #bosstable table.one td.pad:last-child {
+	width: 282px;
+}
+
+#module-organizer #bosstable td.inner {
+	width: 274px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	text-align: center;
+}
+
+#module-organizer #bosstable td.inner .innerContent {
+	
+}
+
+/* Names block */
+#module-organizer #bosstable .names {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+}
+
+#module-organizer #bosstable .names .bossName {
+	color: rgba(255, 255, 255, 1);
+	font-size: 20px;
+}
+
+#module-organizer #bosstable .names .missionName {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+/* Fragment controls block */
+#module-organizer #bosstable .fragments {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	border: 0px;
+	margin-top: 2px;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable {
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer {
+	padding: 2px;
+	
+	text-align: center;
+	font-size: 11px;
+	text-shadow: 1px 1px 1px #000000;
+	
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
+	border-radius: 11px;
+	background-color: rgba(255, 204, 0, 0.30);
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #464646;
+	text-shadow: none;
+	background-color: #c0c0c0;
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 1px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 0.7;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
+	background-image: url(../../../../images/symbol/plus-black.svg);
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
+	background-image: url(../../../../images/symbol/minus-black.svg);
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts {
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+	height: 14px;
+	overflow: hidden;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
+	
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave {
+	color: #c0c0c0;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:before {
+	color: #c0c0c0;
+	content: '(';
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer .counts .countWillHave:after {
+	color: #c0c0c0;
+	content: ')';
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
+	color: #ffcc00;
+}
+
+#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave,
+	#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:before,
+	#module-organizer #bosstable .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countWillHave:after {
+	color: #e97f0d;
+}
+
+/* Calculated counts block */
+#module-organizer #bosstable .calculated {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#module-organizer #bosstable .calculated .count-format {
+	font-size: 20px;
+}
+
+#module-organizer #bosstable .calculated .count-format .count {
+	color: rgba(255, 255, 255, 1);
+	font-weight: bold;
+}
+
+#module-organizer #bosstable .calculated .missing-format {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-organizer #bosstable .calculated .missing-format .count {
+	
+}
+
+/* -------------------- */
+
+#module-organizer #picktable .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #picktable .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+#module-organizer #picktable table.componentHead {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+#module-organizer #picktable table.componentHead td.left,
+ 	#module-organizer #picktable table.componentHead td.right {
+	margin: 0px;
+	padding: 0px;
+}
+
+#module-organizer #picktable table.componentHead td.left {
+	text-align: left;
+}
+
+#module-organizer #picktable table.componentHead td.left .componentTitle {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#module-organizer #picktable table.componentHead td.left .numParticipants {
+	display: inline-block;
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-organizer #picktable table.componentHead td.left .numParticipants span.number {
+	font-weight: bold;
+}
+
+#module-organizer #picktable table.componentHead td.right {
+	text-align: right;
+}
+
+#module-organizer #picktable table.componentHead td.right input.participantNameInput {
+	width: 175px;
+}
+
+#module-organizer #picktable .importBox {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-organizer #picktable .importBox .importTitle {
+	font-size: 16px;
+}
+
+input[type="button"].import {
+	color: #faf5a4;
+}
+
+input[type="button"].icon.import {
+	background-image: url(../../../../images/symbol/import-white.svg);
+}
+
+input[type="button"].import.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="button"].add {
+	color: #acec9a;
+}
+
+input[type="button"].icon.add {
+	background-image: url(../../../../images/symbol/plus-white.svg);
+}
+
+#module-organizer #picktable .importBox .importInfoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #picktable .importBox textarea.importTextField {
+	margin: 0 auto;
+	width: 798px;
+	height: 14px;
+	font-size: 11px;
+}
+
+#module-organizer #picktable .infoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #picktable table.picktable {
+	width: 100%;
+	margin-bottom: 0px;
+}
+
+#module-organizer #picktable table.picktable th.name,
+ 	#module-organizer #picktable table.picktable td.name {
+	text-align: left;
+}
+
+#module-organizer #picktable table.picktable th.fragment,
+ 	#module-organizer #picktable table.picktable td.fragment {
+	width: 34px;
+	text-align: center;
+}
+
+#module-organizer #picktable table.picktable th.actions,
+ 	#module-organizer #picktable table.picktable td.actions {
+	width: 100px;
+	text-align: left;
+}
+
+#module-organizer #picktable table.picktable td.name {
+	font-size: 16px;
+}
+
+#module-organizer #picktable table.picktable td.fragment {
+	height: 42px;
+	padding: 1px;
+}
+
+#module-organizer #picktable table.picktable td.fragment .skip {
+	width: 42px;
+	height: 40px;
+	margin: 0 auto;
+	opacity: 0.5;
+}
+
+#module-organizer #picktable table.picktable td.fragment .skip .symbol {
+	width: 28px;
+	height: 28px;
+	background: transparent url(../../../../images/symbol/skip-white.svg) no-repeat center center;
+	background-size: 100%;
+	margin: 0 auto;
+}
+
+#module-organizer #picktable table.picktable td.fragment .skip .text {
+	height: 12px;
+	font-size: 8px;
+	text-align: center;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-organizer #picktable table.picktable td.actions {
+	text-align: center;
+	padding: 1px;
+}
+
+input[type="button"].remove {
+	color: #fabca4;
+}
+
+input[type="button"].icon.remove {
+	background-image: url(../../../../images/symbol/remove-white.svg);
+}
+
+/* -------------------- */
+
+#module-organizer #output .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-organizer #output .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+#module-organizer #output table.componentHead {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+}
+
+#module-organizer #output table.componentHead td.left,
+ 	#module-organizer #output table.componentHead td.right {
+	margin: 0px;
+	padding: 0px;
+}
+
+#module-organizer #output table.componentHead td.left {
+	text-align: left;
+}
+
+#module-organizer #output table.componentHead td.left .componentTitle {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#module-organizer #output table.componentHead td.right {
+	text-align: right;
+}
+
+#module-organizer #output table.componentHead td.right .chatScriptLocalization {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer {
+	display: inline-block;
+	cursor: pointer;
+	opacity: 0.5;
+}
+
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer.active {
+	opacity: 1.0;
+}
+
+#module-organizer #output table.componentHead td.right .chatScriptLocalization .localizationContainer .localizationImage {
+	display: inline-block;
+	margin: 2px;
+}
+
+#module-organizer #output table.componentHead td.right .orderStyleLabel {
+	display: inline-block;
+	margin-right: 1px;
+	vertical-align: middle;
+	width: 20px;
+	height: 20px;
+	background: url(../../../../images/symbol/sort-white.svg) no-repeat center center;
+	background-size: 100%;
+}
+
+#module-organizer #output table.componentHead td.right .orderStyle {
+	display: inline-block;
+}
+
+#module-organizer #output table.componentHead td.right .orderStyle input[type="button"].active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+input[type="button"].participant, input[type="button"].boss {
+	color: #c0c0c0;
+}
+
+input[type="button"].icon.participant {
+	background-image: url(../../../../images/symbol/participant-white.svg);
+}
+
+input[type="button"].icon.boss {
+	background-image: url(../../../../images/symbol/boss-white.svg);
+}
+
+#module-organizer #output .infoTextUpper,
+	#module-organizer #output .infoTextLower {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #output .downloadButtonAlign {
+	display: block;
+	margin: 10px 0 10px;
+	text-align: center;
+}
+
+#module-organizer #output .downloadButton {
+	color: #fbd2a4;
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	background-color: rgba(0, 0, 0, 0.25);
+	padding: 6px;
+	cursor: pointer;
+	font-size: 16px;
+	background-size: 32px;
+	background-position: 8px center;
+	background-repeat: no-repeat;
+	padding-left: 44px;
+	background-image: url(../../../../images/symbol/download-white.svg);
+	display: inline-block;
+}
+
+#module-organizer #output .infoTextLowerToggle {
+	display: block;
+	text-align: right;
+	margin-top: 10px;
+	cursor: pointer;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-organizer #output .infoTextLower {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-organizer #output ul {
+	list-style: outside none square;
+}
+
+#module-organizer #output ul li {
+	margin-left: -15px;
+	margin-bottom: 10px;
+}
+
+#module-organizer #output .emphasis {
+	font-weight: bold;
+}

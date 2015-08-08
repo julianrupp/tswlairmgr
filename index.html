@@ -2,797 +2,129 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	
+
 	<title>TSW Lair Manager</title>
-	
+
 	<meta name="viewport" content="width=850">
 	<meta name="description" content="TSW Lair Manager is a fan-made lair fragment organizer for The Secret World (TSW), a MMORPG by Funcom.">
-	<meta name="keywords" content="tsw,the,secret,world,lair,manager,fragment,boss,organizer">
-    <meta name="author" content="Julian Rupp">
+	<meta name="keywords" content="tsw,the secret world,lair,regional,manager,lair manager,fragment,boss,organizer,drop,assign,mission">
+	<meta name="author" content="Julian Rupp">
 
 	<link rel="icon" type="image/png" href="assets/images/favicon.png" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 	
-	<!-- <link href="http://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet" type="text/css"> -->
 	<link href="assets/stylesheets/fonts/Lato/Lato.css" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr/core/global.css" />
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr/core/main.css" />
 	
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr.css" />
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments.css" />
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items.css" />
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-bossfragments-items-lair.css" />
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-lairselector.css" />
-	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr-turnin.css" />
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr/core/components/item/item.css" />
 	
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-settings.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-bootstrapper.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-preloader.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-help.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-bossfragments.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-lairselector.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-participants.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-picktable.js"></script>
-	<script type="text/javascript" src="assets/javascripts/tswlairmgr-turnin-namecolorizer.js"></script>
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr/modules/organizer/organizer.css" />
 	
-	<script type="text/javascript" src="assets/javascripts/data/english.js"></script>
+	<link rel="stylesheet" href="assets/stylesheets/tswlairmgr/modules/lookup/lookup.css" />
 	
-	<script type="text/javascript" src="assets/javascripts/libraries/Blob/Blob.js"></script>
-	<script type="text/javascript" src="assets/javascripts/libraries/FileSaver/FileSaver.min.js"></script>
+	<script src="assets/javascripts/libraries/jQuery/jquery-1.11.3.min.js"></script>
+	<script src="assets/javascripts/libraries/mustache.js/mustache-2.1.2.min.js"></script>
+	<script src="assets/javascripts/libraries/JSON/json2.min.js"></script>
+	<script src="assets/javascripts/libraries/LZW/lzw_encoder.min.js"></script>
+	<script src="assets/javascripts/libraries/Blob/Blob.min.js"></script>
+	<script src="assets/javascripts/libraries/FileSaver/FileSaver.min.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/core/info.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/config.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/core/helpers.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/persistentstate.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/core/data/data-classes.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/data/data-structure.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/data/data-localization.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/data/localized/english.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/data/localized/german.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/data/localized/french.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/core/components/item/item-model.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/components/item/item-view.js"></script>
+	<script src="assets/javascripts/tswlairmgr/core/components/item/item.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/modules/modules.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/modules-localization.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/LairFragmentCountsRegistry.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/ParticipantMissionAvailabilityRegistry.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/NameColors.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/Participant.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/ParticipantRegistry.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/LairFragmentAssigningStrategy.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/ChatLogNameParser.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/ChatScriptOrderEnum.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/classes/ChatScriptGenerator.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-model.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-topmenu.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-bosstable-bossfragmentcounts.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-bosstable.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-picktable-participantrow.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-picktable.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view-output.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer-view.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/organizer.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/localized/english.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/localized/german.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/organizer/localized/french.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/classes/ObjectHistory.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/ItemTitle.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/LairBossFragmentSet.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/RegionalBossFragmentSet.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/PropertyTable.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/RegionalFragmentDropsFrom.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/AllRegionLairBosses.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/OtherLairBosses.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/AssociatedRegionalBoss.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/components/BossDropsRegionalFragments.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/LairFragment.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/LairBoss.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/RegionalFragment.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/objectviews/RegionalBoss.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/lookup-model.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/lookup-view.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/lookup.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/localized/english.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/localized/german.js"></script>
+	<script src="assets/javascripts/tswlairmgr/modules/lookup/localized/french.js"></script>
+	
+	<script src="assets/javascripts/tswlairmgr/startup.js"></script>
 </head>
 <body>
-	<div id="javascript-disabled-notice">
-		<div id="js-required-warning" class="uibox">
-			<h1>JavaScript disabled</h1>
-			You have JavaScript disabled in your browser. Please activate it to be able to use this webapp.
+	<noscript>
+		<div id="javascriptDisabledNotice">
+			<div class="uibox">
+				<h1>JavaScript disabled</h1>
+				You have JavaScript disabled in your browser. Please activate it to be able to use this webapp.
+			</div>
 		</div>
-	</div>
-	
+	</noscript>
+
 	<div id="webapp">
 		<div id="topbar">
-			<div id="title">
-				<span id="app-name">TSW Lair Manager</span> <span id="side">by Cobin</span>
-			</div>
-			
-			<div id="right">
-				<div id="lair-selector">
-					<select>
-					</select>
+			<div id="topbarContent">
+				<div class="title">
+					<span class="app-name">TSW Lair Manager</span> <span class="side">by Cobin</span>
 				</div>
 				
-				<div id="help-button">
-					?
-				</div>
+				<div id="localizationMenu"></div>
+
+				<div id="moduleTabs"></div>
 			</div>
 		</div>
-		
-		<div id="content">
-			<table id="boss-fragments">
-				<tbody>
-					<tr>
-						<td class="boss">
-							<div class="uibox boss-title center">
-								<div class="name">
-							
-								</div>
-								<div class="mission">
-								
-								</div>
-							</div>
-					
-							<table border="0" class="uibox boss-fragments">
-								<tbody>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-					
-							<div class="uibox boss-counts center">
-								<div class="count-format">
-									<span class="count"></span> <span class="subject"></span>
-								</div>
-								<div class="missing-format">
-									(<span class="count"></span> more <span class="subject"></span> for another)
-								</div>
-							</div>
-						</td>
-						<td class="boss">
-							<div class="uibox boss-title center">
-								<div class="name">
-							
-								</div>
-								<div class="mission">
-							
-								</div>
-							</div>
-					
-							<table border="0" class="uibox boss-fragments">
-								<tbody>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-					
-							<div class="uibox boss-counts center">
-								<div class="count-format">
-									<span class="count"></span> <span class="subject"></span>
-								</div>
-								<div class="missing-format">
-									(<span class="count"></span> more <span class="subject"></span> for another)
-								</div>
-							</div>
-						</td>
-						<td class="boss">
-							<div class="uibox boss-title center">
-								<div class="name">
-							
-								</div>
-								<div class="mission">
-							
-								</div>
-							</div>
-					
-							<table border="0" class="uibox boss-fragments">
-								<tbody>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-										<td class="boss-fragment">
-											<div class="item">
-												<div class="icon">
-													<div class="name">
-											
-													</div>
-												</div>
-											</div>
-											<div class="bossfragment-controls">
-												<a class="button minus">&minus;</a>
-												<span class="count"></span> <span class="count-all"></span>
-												<a class="button plus">&plus;</a>
-											</div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-					
-							<div class="uibox boss-counts center">
-								<div class="count-format">
-									<span class="count"></span> <span class="subject"></span>
-								</div>
-								<div class="missing-format">
-									(<span class="count"></span> more <span class="subject"></span> for another)
-								</div>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<table id="turn-in">
-				<tbody>
-					<tr>
-						<td>
-							<div id="participants" class="uibox">
-								<h3>Participants</h3>
-							
-								<span class="center">
-									<form id="participants-add">
-										<input type="text" id="participants-add-name" value=""> <input type="button" id="participants-add-submit" value="Add">
-									</form>
-								</span>
-							
-								<table id="participants-list" class="table names">
-									<thead>
-										<tr>
-											<th class="name">Name</th>
-											<th class="mission-checkbox"></th>
-											<th class="mission-checkbox"></th>
-											<th class="mission-checkbox"></th>
-											<th>Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="prototype">
-											<td class="name"></td>
-											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
-											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
-											<td class="mission-checkbox"><input type="checkbox" class="checkbox"></td>
-											<td class="actions"><input type="button" class="button-remove" value="Remove"></td>
-										</tr>
-									</tbody>
-								</table>
-							
-								<div id="participants-list-count">
-									<span class="count"></span> <span class="subject"></span>
-								</div>
-							</div>
-						</td>
-						<td>
-						
-						</td>
-						<td>
-							<div id="pick-table" class="uibox">
-								<h3>Pick Table</h3>
-							
-								<table id="picks" class="table names">
-									<thead>
-										<tr>
-											<th class="name">Name</th>
-											<th class="fragment-checkbox"></th>
-											<th class="fragment-checkbox"></th>
-											<th class="fragment-checkbox"></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="prototype">
-											<td class="name"></td>
-											<td class="fragment-checkbox">
-												
-											</td>
-											<td class="fragment-checkbox">
-												
-											</td>
-											<td class="fragment-checkbox">
-												
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							
-								<table id="pick-table-count">
-									<tbody>
-										<tr>
-											<td>
-												<input type="button" id="download-button" value="Download TSW chat script">
-											</td>
-											<td>
-												<span class="count-received">1</span> received<br />
-												<span class="count-outstanding">1</span> outstanding
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		
-		<div id="help-container" style="display: none";>			
-			<h2>How to use</h2>
 
-			<div id="help-container-content">
-				<table>
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/01-lair-select.png" /></span>
-						</td>
-						<td class="text">
-							Start out by selecting your lair from the dropdown menu in the upper right corner.
-						</td>
-					</tr>
+		<div id="moduleContainer"></div>
 
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/02-fragment-counting.png" /></span>
-						</td>
-						<td class="text">
-							<p>Click the <span class="emphasis">+</span> and <span class="emphasis">-</span> buttons to select how many of each fragment you have.</p>
-
-							<ul>
-								<li>The first number below each fragment is the count you already have in your inventory (e.g. brought with you or looted from monsters while doing the lair missions), and it is also the number you will modify by clicking the buttons.</li>
-								<li>The second number in braces tells you how many you will have in total after collecting the mission reward fragments from your team according to the pick table.</li>
-							</ul>
-
-							<p><span class="note">Note:</span> Changing the number of fragments you have will instantly recalculate and update the pick table accordingly. It will not respect any previously assigned and received fragments and completely mix things up.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/03-fragment-count-marks.png" /></span>
-						</td>
-						<td class="text">
-							<p>The fragment(s) with the lowest count will be marked in yellow for each boss so you can at a glance see which fragment drops to look out for when farming more or searching the marketplace.</p>
-
-							<p><span class="note">Note:</span> This will only consider the number of fragments you currently have, as the pick table will be adjusted accordingly if you add another fragment to the boss fragment table.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/04-summons-and-missing.png" /></span>
-						</td>
-						<td class="text">
-							<p>See at a glance how many boss summons you will get for each boss (this counts in fragments from the pick table) and also how many distinct fragments you will need to get another full set.</p>
-
-							<p><span class="note">Note:</span> The number of missing fragments will not always resemble the number of marked fragments as the markings will only consider which fragments you already have, whereas the calculations here take into account the fragments you will get as mission rewards.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/05-adding-team-members.png" /></span>
-						</td>
-						<td class="text">
-							<p>You can either add your team members before or after the run.</p>
-
-							<ul>
-								<li>Adding them before the run will allow you to predict the number of boss summons calculating in the fragments you will get from your team members.</li>
-
-								<li>Adding them afterwards can make the markings on the boss fragment table a little less confusing.</li>
-							</ul>
-
-							<p><span class="tip">Tip:</span> You don't have to click the <span class="emphasis">Add</span> button after entering each name; simply pressing <span class="technical">Return</span> while still having the text box selected will also add the name to the list. This makes it very easy and fast to enter multiple names in sequence.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/06-mission-availability.png" /></span>
-						</td>
-						<td class="text">
-							<p>Untick the respective checkbox(es) next to a name &ndash; one for each mission/boss, same order as in the boss fragment table at the top &ndash; to tell the app that this team member can not turn in those missions and needs to be skipped at fragment assignment.</p>
-
-							<p><span class="note">Note:</span> This will instantly update the pick table.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/07-received-and-outstanding.png" /></span>
-						</td>
-						<td class="text">
-							<p>See at a glance which team member should pick which fragments as their mission rewards.</p>
-
-							<p>Click the fragments to check them off (reduce opacity) for a better overview about who has traded you which fragments already and who still has to.</p>
-
-							<p><span class="note">Note:</span> The order of fragments/missions/bosses is the same as in the boss fragment table at the top.</p>
-
-							<p><span class="warning">Warning:</span> Any changes you make in the boss fragment and participants tables will reset the checked/unchecked states here.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/08-download-chat-script.png" /></span>
-						</td>
-						<td class="text">
-							<p>Click the download button to download a TSW chat script which will output the pick table, sorted by mission/boss, in the currently selected chat channel.</p>
-
-							<p><span class="warning">Warning:</span> This will post many lines of text at once, so <span class="emphasis">make sure you have a "private" channel selected first</span> before firing it, such as Group, Raid or Say chat.<br />
-								<span class="emphasis extra">Please do not spam global channels.</span></p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/09-2-savedialog2.png" /></span>
-						</td>
-						<td class="text">
-							<p>Save the file in the <span class="technical">Scripts</span> subfolder located in your installation folder of TSW.<br />
-								If there is no folder with that name inside your installation folder, you will have to create it manually.</p>
-
-							<p>If you are asked if you want to overwrite an already existing file, double check the file name in the <span class="emphasis">Save file</span> dialog:</p>
-
-							<ul>
-								<li>If the name is still <span class="technical">tswlairmgr</span> (without any file extension), you can safely choose to overwrite as you will likely not want to keep multiple TSW lair manager scripts at the same time to avoid confusion.</li>
-
-								<li>If you find a different name in the file name field, you must have accidentally marked a file in the <span class="emphasis">Save file</span> dialog. The easiest way to resolve this is to simply cancel at that point and clicking the download button again.</li>
-							</ul>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/09-3-entering-command.png" /></span>
-						</td>
-						<td class="text">
-							<p>In the TSW client, click the text in square brackets in the lower left corner of your chat window to bring up a menu to select into which chat channel you want to post.</p>
-
-							<ul>
-								<li>Select <span class="emphasis" style="color: #4169e1;">Group</span> if all your team's members are in a 5-person group.</li>
-
-								<li>Select <span class="emphasis" style="color: #a0522d;">Raid</span> if all your team's members are in a 10-person raid (double group).</li>
-
-								<li>Select <span class="emphasis" style="color: #808080;">Say</span> if you have more team members than what you can fit into one raid. Make sure all team members are standing close to you before you fire the script as people will only receive Say messages within a certain radius around you.</li>
-							</ul>
-
-							<p>Then enter <span class="technical">/tswlairmgr</span> (assuming you haven't changed the file name) as the chat message and press <span class="technical">Return</span>.</p>
-
-							<p><span class="tip">Tip:</span> You can also just type the first few characters (e.g. <span class="technical">/tswl</span>) and then press <span class="technical">Tab</span> to either instantly complete the script name or display a selection menu containing all scripts beginning with those characters in which you can then use <span class="technical">&uarr;</span> and <span class="technical">&darr;</span> to select an item and press <span class="technical">Return</span> to accept it.</p>
-						</td>
-					</tr>
-
-					<tr>
-						<td class="image">
-							<span class="shadow"><img src="assets/images/howto/09-4-output.png" /></span>
-						</td>
-						<td class="text">
-							<p>The pick table will now be posted, sorted by mission/boss, in chat.</p>
-						</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		
 		<div id="bottombar">
 			<div class="info">
 				<span class="version">
-					Version <span class="emphasis">1.1.2 beta</span>
+					Version <span class="versionString emphasis"></span>
 				</span><br />
 				<span class="link">
 					<a href="http://github.com/julianrupp/tswlairmgr" target="_blank">http://github.com/julianrupp/tswlairmgr</a>
