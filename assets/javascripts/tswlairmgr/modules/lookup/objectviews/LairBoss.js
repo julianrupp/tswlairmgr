@@ -10,10 +10,6 @@ tswlairmgr.modules.lookup.objectviews.LairBoss = function lookupObjectviewLairBo
 	this._itemMVCControllers = [];
 	this._subViews = [];
 	
-	this.observables = {
-		objectLinkClicked: new tswlairmgr.core.helpers.Observable(this)
-	};
-	
 	this._el = {
 		self: contentNode,
 		title: null
@@ -31,7 +27,6 @@ tswlairmgr.modules.lookup.objectviews.LairBoss = function lookupObjectviewLairBo
 		
 		this._el.title = $("<div />");
 		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
-		titleView._init();
 		this._subViews.push(titleView);
 		$(this._el.self).append(this._el.title);
 		

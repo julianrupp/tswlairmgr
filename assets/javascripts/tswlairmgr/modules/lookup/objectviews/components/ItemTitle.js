@@ -11,10 +11,6 @@ tswlairmgr.modules.lookup.objectviews.components.ItemTitle = function lookupObje
 	this._itemMVCControllers = [];
 	this._subViews = [];
 	
-	this.observables = {
-		objectLinkClicked: new tswlairmgr.core.helpers.Observable(this)
-	};
-	
 	this._el = {
 		self: contentNode,
 		title: {
@@ -84,4 +80,6 @@ tswlairmgr.modules.lookup.objectviews.components.ItemTitle = function lookupObje
 		this._localization.observables.moduleLocalizationChanged.unregisterCallback(this._moduleLocalizationCallback);
 		tswlairmgr.core.data.observables.dataLocalizationChanged.unregisterCallback(this._dataLocalizationCallback);
 	};
+	
+	this._init();
 };

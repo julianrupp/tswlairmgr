@@ -61,6 +61,12 @@ tswlairmgr.modules.lookup.controller = new function() {
 		tswlairmgr.core.persistentstate.updateModuleState(this, this._model.getPersistentState());
 	};
 	
+	this.setSelectedObject = function(obj) {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.lookup.controller>: setSelectedObject");
+		
+		this._model.setSelectedObject(obj);
+	};
+	
 	this._init = function() {
 		var self = this;
 		
@@ -92,8 +98,7 @@ tswlairmgr.modules.lookup.controller = new function() {
 		this._view.observables.selectorDropdownUsed.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.lookup.controller>: got notified that one of the dropdown selectors was used.");
 			
-			var obj = context.selectedObject;
-			self._model.setSelectedObject(obj);
+			self.setSelectedObject(context.selectedObject);
 		});
 		
 		// TODO: Callback registering here

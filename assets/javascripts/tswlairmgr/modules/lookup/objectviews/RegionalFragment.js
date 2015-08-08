@@ -10,13 +10,10 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 	this._itemMVCControllers = [];
 	this._subViews = [];
 	
-	this.observables = {
-		objectLinkClicked: new tswlairmgr.core.helpers.Observable(this)
-	};
-	
 	this._el = {
 		self: contentNode,
-		title: null
+		title: null,
+		set: null
 	};
 	
 	this.getAppBackgroundCss = function() {
@@ -31,9 +28,35 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 		
 		this._el.title = $("<div />");
 		var titleView = new tswlairmgr.modules.lookup.objectviews.components.ItemTitle(this._el.title, this._object, this._localization);
-		titleView._init();
 		this._subViews.push(titleView);
 		$(this._el.self).append(this._el.title);
+		
+		var mainTable = $(
+			'<table class="mainTable">' +
+			'	<tr>' +
+			'		<td class="left regional"></td>' +
+			'		<td class="pad"></td>' +
+			'		<td class="right"></td>' +
+			'	</tr>' +
+			'</table>'
+		);
+		
+		this._el.set = $("<div />");
+		var set = new tswlairmgr.modules.lookup.objectviews.components.RegionalBossFragmentSet(
+			this._el.set,
+			this._object.getSet().getBoss(),
+			{
+				markSpecific: this._object
+			},
+			this._localization
+		);
+		this._subViews.push(set);
+		
+		$(".left", mainTable).append(this._el.set);
+		
+		$(".right", mainTable).append('<div class="uibox">Placeholder<br />Content<br />Box</div>');
+		
+		$(this._el.self).append(mainTable);
 		
 		// TODO
 	};

@@ -15,14 +15,12 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	
 	this._el = {
 		self: contentNode,
-		selector: {
+		selectors: {
 			rootNode: null,
 			fragments: {
-				label: null,
 				dropdown: null
 			},
 			bosses: {
-				label: null,
 				dropdown: null
 			}
 		},
@@ -59,38 +57,31 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.lookup.view>: build called");
 		
 		var selectorContainer = $(
-			'<div id="selector">' +
-			'	<div class="componentBox">' +
-			'		<div class="componentBoxInner">' +
-			'			<table class="selectors">' +
-			'				<tr>' +
-			'					<td>' +
-			'						<div class="align">' +
-			'							<select id="fragmentDropdown"></select>' +
-			'						</div>' +
-			'					</td>' +
-			'					<td class="splitLine"></td>' +
-			'					<td>' +
-			'						<div class="align">' +
-			'							<select id="bossDropdown"></select>' +
-			'						</div>' +
-			'					</td>' +
-			'				</tr>' +
-			'			</table>' +
+			'<div id="selectors">' +
+			'	<div id="fragmentSelector">' +
+			'		<div class="componentBox">' +
+			'			<div class="componentBoxInner">' +
+			'				<select id="fragmentDropdown"></select>' +
+			'			</div>' +
+			'		</div>' +
+			'	</div>' +
+			'	<div id="bossSelector">' +
+			'		<div class="componentBox">' +
+			'			<div class="componentBoxInner">' +
+			'				<select id="bossDropdown"></select>' +
+			'			</div>' +
 			'		</div>' +
 			'	</div>' +
 			'</div>'
 		);
 		$(this._el.self).append(selectorContainer);
 		
-		this._el.selector.rootNode = $("#selector", this._el.self);
+		this._el.selectors.rootNode = $("#selector", this._el.self);
 		
-		this._el.selector.fragments.label = $("#fragmentLabel", this._el.self);
-		this._el.selector.fragments.dropdown = $("#fragmentDropdown", this._el.self);
+		this._el.selectors.fragments.dropdown = $("#fragmentDropdown", this._el.self);
 		this._build_fragmentselector();
 		
-		this._el.selector.bosses.label = $("#bossLabel", this._el.self);
-		this._el.selector.bosses.dropdown = $("#bossDropdown", this._el.self);
+		this._el.selectors.bosses.dropdown = $("#bossDropdown", this._el.self);
 		this._build_bossselector();
 		
 		$(this._el.self).append(
@@ -100,11 +91,11 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._build_fragmentselector = function() {
-		var fragmentSelector = this._el.selector.fragments.dropdown;
+		var fragmentSelector = this._el.selectors.fragments.dropdown;
 		
 		var self = this;
 		$(fragmentSelector).change(function() {
-			var selectedObject = $(self._el.selector.fragments.dropdown).find(":selected").data("objectInstance");
+			var selectedObject = $(self._el.selectors.fragments.dropdown).find(":selected").data("objectInstance");
 			self.observables.selectorDropdownUsed.notify({
 				selectedObject: selectedObject
 			});
@@ -159,11 +150,11 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._build_bossselector = function() {
-		var bossSelector = this._el.selector.bosses.dropdown;
+		var bossSelector = this._el.selectors.bosses.dropdown;
 		
 		var self = this;
 		$(bossSelector).change(function() {
-			var selectedObject = $(self._el.selector.bosses.dropdown).find(":selected").data("objectInstance");
+			var selectedObject = $(self._el.selectors.bosses.dropdown).find(":selected").data("objectInstance");
 			self.observables.selectorDropdownUsed.notify({
 				selectedObject: selectedObject
 			});
@@ -220,7 +211,7 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._redraw_fragmentselector = function() {
-		var fragmentSelector = $(this._el.selector.fragments.dropdown);
+		var fragmentSelector = $(this._el.selectors.fragments.dropdown);
 		
 		var self = this;
 		$("optgroup", fragmentSelector).each(function(index) {
@@ -273,7 +264,7 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._redraw_bossselector = function() {
-		var bossSelector = $(this._el.selector.bosses.dropdown);
+		var bossSelector = $(this._el.selectors.bosses.dropdown);
 		
 		var self = this;
 		$("optgroup", bossSelector).each(function(index) {
@@ -329,22 +320,27 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 	};
 	
 	this._reset_selectors = function() {
-		$(this._el.selector.fragments.dropdown).val( $("option:first", this._el.selector.fragments.dropdown).val() );
-		$(this._el.selector.bosses.dropdown).val( $("option:first", this._el.selector.bosses.dropdown).val() );
+		$(this._el.selectors.fragments.dropdown).val( $("option:first", this._el.selectors.fragments.dropdown).val() );
+		$(this._el.selectors.bosses.dropdown).val( $("option:first", this._el.selectors.bosses.dropdown).val() );
+		
+		$(this._el.selectors.fragments.dropdown).removeClass("active");
+		$(this._el.selectors.bosses.dropdown).removeClass("active");
 		
 		var self = this;
-		$("option", this._el.selector.fragments.dropdown).each(function(index) {
+		$("option", this._el.selectors.fragments.dropdown).each(function(index) {
 			var optionNode = this;
 			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
 			{
-				$(self._el.selector.fragments.dropdown).val( $(optionNode).val() );
+				$(self._el.selectors.fragments.dropdown).val( $(optionNode).val() );
+				$(self._el.selectors.fragments.dropdown).addClass("active");
 			}
 		});
-		$("option", this._el.selector.bosses.dropdown).each(function(index) {
+		$("option", this._el.selectors.bosses.dropdown).each(function(index) {
 			var optionNode = this;
 			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
 			{
-				$(self._el.selector.bosses.dropdown).val( $(optionNode).val() );
+				$(self._el.selectors.bosses.dropdown).val( $(optionNode).val() );
+				$(self._el.selectors.bosses.dropdown).addClass("active");
 			}
 		});
 	};
@@ -391,9 +387,6 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 			
 			if(v !== null) {
 				self._activeObjectView._init();
-				self._activeObjectView.observables.objectLinkClicked.registerCallback(function(origin, context) {
-					// TODO
-				});
 			}
 			self.observables.appBackgroundShouldChange.notify({});
 			

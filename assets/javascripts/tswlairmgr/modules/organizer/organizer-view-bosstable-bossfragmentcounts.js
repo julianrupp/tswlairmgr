@@ -96,7 +96,7 @@ tswlairmgr.modules.organizer.viewBosstableBossFragmentCounts = function organize
 				var self = this;
 				
 				(function(){
-					var fragment = self._boss.getFragmentSet().getFragments()[ fragmentOrder[row*3 + col] ];
+					var fragment = self._boss.getFragmentSet().getFragments()[ fragmentOrder[row*sideLength + col] ];
 			
 					cellNode = $(
 						'<td class="fragmentControlsContainer">' +
