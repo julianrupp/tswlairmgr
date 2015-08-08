@@ -55,6 +55,7 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 		
 		this._build_left_set();
 		this._build_right_propertytable();
+		this._build_right_dropsfrom();
 	};
 	
 	this._build_left_set = function() {
@@ -93,6 +94,19 @@ tswlairmgr.modules.lookup.objectviews.RegionalFragment = function lookupObjectvi
 		this._subViews.push(propertytable);
 		
 		$(this._el.mainTable.right).append(this._el.components.propertytable);
+	};
+	
+	this._build_right_dropsfrom = function() {
+		this._el.components.dropsfrom = $("<div />")
+			.addClass("component");
+		var dropsfrom = new tswlairmgr.modules.lookup.objectviews.components.RegionalFragmentDropsFrom(
+			this._el.components.dropsfrom,
+			this._object.getDroppedFrom(),
+			this._localization
+		);
+		this._subViews.push(dropsfrom);
+		
+		$(this._el.mainTable.right).append(this._el.components.dropsfrom);
 	};
 	
 	this._redraw = function() {

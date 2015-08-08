@@ -27,6 +27,9 @@ tswlairmgr.modules.lookup.controller._localization.addLocalizationData("English"
 					region: "Region:",
 					spawnLair: "Lair:"
 				}
+			},
+			regionalFragmentDropsFrom: {
+				title: "Drops from:"
 			}
 		}
 	}
