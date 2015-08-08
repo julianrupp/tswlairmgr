@@ -168,9 +168,25 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 		
 		var regionalBosses = [];
 		
-		// HTML spec allows no optgroup nesting... oh well
 		$.each(tswlairmgr.core.data.getSortedRegions(), function(regionIndex, regionInstance) {
 			regionalBosses.push(regionInstance.getRegional());
+		});
+		
+		var regionalbossesOptgroupNode = $("<optgroup />")
+			.data("type", "regionalbossesLabel");
+		
+		$.each(regionalBosses, function(index, boss) {
+			console.log(boss);
+			$(regionalbossesOptgroupNode).append(
+				$("<option />")
+					.data("objectInstance", boss)
+			);
+		});
+		
+		$(bossSelector).append(regionalbossesOptgroupNode);
+		
+		// HTML spec allows no optgroup nesting... oh well
+		$.each(tswlairmgr.core.data.getSortedRegions(), function(regionIndex, regionInstance) {
 			$.each(regionInstance.getSortedZones(), function(zoneIndex, zoneInstance) {
 				$.each(zoneInstance.getSortedLairs(), function(lairIndex, lairInstance) {
 					var lairOptgroupNode = $("<optgroup />")
@@ -188,19 +204,6 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 				});
 			});
 		});
-		
-		var regionalbossesOptgroupNode = $("<optgroup />")
-			.data("type", "regionalbossesLabel");
-		
-		$.each(regionalBosses, function(index, boss) {
-			console.log(boss);
-			$(regionalbossesOptgroupNode).append(
-				$("<option />")
-					.data("objectInstance", boss)
-			);
-		});
-		
-		$(bossSelector).append(regionalbossesOptgroupNode);
 	};
 	
 	this._redraw = function() {
