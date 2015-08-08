@@ -88,12 +88,12 @@ tswlairmgr.modules.lookup.objectviews.components.RegionalFragmentDropsFrom = fun
 				.append(
 					$("<div />")
 						.addClass("title")
-						.html(titleLine)
+						.append(titleLine)
 				)
 				.append(
 					$("<div />")
 						.addClass("subTitle")
-						.html(subTitleLine)
+						.append(subTitleLine)
 				);
 			
 			$(rowNode).click(function() {

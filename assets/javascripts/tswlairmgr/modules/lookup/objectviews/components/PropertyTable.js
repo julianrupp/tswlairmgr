@@ -97,7 +97,7 @@ tswlairmgr.modules.lookup.objectviews.components.PropertyTable = function lookup
 				.append(
 					$("<div />")
 						.addClass("container")
-						.html(text)
+						.append(text)
 				);
 			
 			if(link !== null)
