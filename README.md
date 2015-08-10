@@ -74,6 +74,9 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.1 beta
+-	Exchanged Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
+
 ##### 2.0.0 beta
 -	Complete code rewrite
 	-	Added module system
