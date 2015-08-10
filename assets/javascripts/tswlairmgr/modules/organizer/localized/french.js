@@ -62,7 +62,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 			title: "Edition du script de discussion",
 			sortingStylesButtonLabels: {
 				byParticipant: "Par Participant",
-				byBossMission: "Par Boss/Mission"
+				byBossMission: "Par Mission"
 			},
 			infoTextUpper:
 				"<p>Après avoir ajouté tous les participants et entré tous les nombres de fragments, générez un script de discussion afin de dire aux participants quels fragments choisir. Cliquer sur le bouton ci-dessous vous fournira un script de discussion en tant que fichier à télécharger qui, lors de l'utilisation, postera la répartition des fragments dans le canal de discussion sélectionné.</p>",
