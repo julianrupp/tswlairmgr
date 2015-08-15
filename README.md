@@ -77,6 +77,7 @@ Changelog
 ##### 2.0.2 beta
 -	Simplified chat script output sorting style label "By Boss/Mission" to "By Mission".
 -	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detial page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
+-	When you now try to load the app with a new location hash in the same tab as an already open instance, the app will now load the new hash instead of doing nothing.
 
 ##### 2.0.1 beta
 -	Exchanged Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
