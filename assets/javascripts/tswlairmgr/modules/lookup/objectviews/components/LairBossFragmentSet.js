@@ -78,9 +78,19 @@ tswlairmgr.modules.lookup.objectviews.components.LairBossFragmentSet = function 
 					}
 					
 					$(cellNode).addClass("clickable");
-					$(cellNode).click(function() {
-						tswlairmgr.modules.lookup.controller.setSelectedObject(fragment);
-					});
+					
+					if(self._options.markSpecific && fragment === self._options.markSpecific)
+					{
+						$(cellNode).click(function() {
+							tswlairmgr.modules.lookup.controller.setSelectedObject(fragment.getSet().getBoss());
+						});
+					}
+					else
+					{
+						$(cellNode).click(function() {
+							tswlairmgr.modules.lookup.controller.setSelectedObject(fragment);
+						});
+					}
 					
 					var fragmentNode = $(".fragment", cellNode);
 					self._itemMVCControllers.push(

@@ -62,7 +62,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Engli
 			title: "Chat Script Output",
 			sortingStylesButtonLabels: {
 				byParticipant: "By Participant",
-				byBossMission: "By Boss/Mission"
+				byBossMission: "By Mission"
 			},
 			infoTextUpper:
 				"<p>After you have added all participants and entered all fragment counts, generate a chat script to easily tell people what fragments they should pick.<br />Clicking the button below will offer you a chat script as a file to download which, when used, will post all fragment assignments in the currently selected chat channel.</p>",

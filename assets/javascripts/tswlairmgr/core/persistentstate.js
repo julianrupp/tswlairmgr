@@ -2,6 +2,9 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 
 tswlairmgr.core.persistentstate = new function() {
+	this._lastHash = null;
+	this._currentlyChangingHash = false;
+	
 	this._coreStateData = {
 		activeLocalization: null,
 		activeModule: null
@@ -15,10 +18,14 @@ tswlairmgr.core.persistentstate = new function() {
 		hashLoaded: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
+	this._hashData = function(hash) {
+		return (hash.charAt(0) == "#") ? hash.substring(1) : hash;
+	};
+	
 	this._loadStateFromHash = function(hash) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash called");
 		
-		var data = (hash.charAt(0) == "#") ? hash.substring(1) : hash;
+		var data = this._hashData(hash);
 		
 		var blocks = data.split(":");
 		
@@ -109,11 +116,28 @@ tswlairmgr.core.persistentstate = new function() {
 		this._setHash(newHash);
 	};
 	
+	var self = this;
 	this._setHash = function(string) {
-		window.location.hash = string;
+		var hash = self._hashData(string);
+		
+		self._currentlyChangingHash = true;
+		self._lastHash = hash;
+		window.location.hash = hash;
+		self._currentlyChangingHash = false;
 		
 		// Bugfix for FF: Disappearing favicon on window.location change
 		$("link[rel*=icon]", $("head")).detach().appendTo($("head"));
+	};
+	
+	this.pollHashChange = function() {
+		var currentHash = self._hashData(window.location.hash);
+		if(!self._currentlyChangingHash && self._lastHash !== currentHash)
+		{
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: pollHashChange: User hash change detected.");
+			self._loadStateFromHash(currentHash);
+		}
+		
+		window.setTimeout(self.pollHashChange, 50);
 	};
 	
 	this.hashify = function() {
@@ -138,3 +162,7 @@ tswlairmgr.core.persistentstate = new function() {
 		
 	};
 };
+
+$(document).ready(function() {
+	tswlairmgr.core.persistentstate.pollHashChange();
+});

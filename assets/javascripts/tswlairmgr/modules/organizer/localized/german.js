@@ -62,7 +62,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Deuts
 			title: "Chatskript-Ausgabe",
 			sortingStylesButtonLabels: {
 				byParticipant: "Nach Teilnehmer",
-				byBossMission: "Nach Boss/Mission"
+				byBossMission: "Nach Mission"
 			},
 			infoTextUpper:
 				"<p>Nachdem du alle Teilnehmer hinzugefügt und die Anzahl aller deiner Fragmente eingegeben hast, kannst du dir hier ein Chatskript generieren lassen, um deinen Teilnehmern auf einfache und schnelle Weise zu sagen wer welche Fragmente nehmen soll.</p>" +
