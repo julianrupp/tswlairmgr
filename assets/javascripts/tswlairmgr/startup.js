@@ -9,10 +9,6 @@ $(document).ready(function() {
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] setting initial data localization...");
 	tswlairmgr.core.data._initLocalization();
 	
-	// Initialize persistent state controller
-	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] initializing persistent state manager...");
-	tswlairmgr.core.persistentstate._initPersistentStateController();
-	
 	// Set initial interface localization
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] setting initial interface localization...");
 	tswlairmgr.modules._initLocalization();
@@ -25,8 +21,11 @@ $(document).ready(function() {
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] initializing localization menu...");
 	tswlairmgr.modules._initLocalizationMenu();
 	
+	// Initialize persistent state controller
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] initializing persistent state manager...");
+	//tswlairmgr.core.persistentstate._initPersistentStateController();
 	// Set application state
-	tswlairmgr.core.persistentstate._loadStateFromHash(hash);
+	tswlairmgr.core.persistentstate._secondTierInitWithHash(hash);
 	
 	$(".versionString", $("#bottombar")).text(tswlairmgr.core.info.version);
 	
