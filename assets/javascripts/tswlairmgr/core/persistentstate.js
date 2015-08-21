@@ -158,7 +158,7 @@ tswlairmgr.core.persistentstate = new function() {
 		return packedDataWithChecksum;
 	};
 	
-	this._secondTierInitWithHash = function(hash) {
+	this._initWithHash = function(hash) {
 		tswlairmgr.core.persistentstate._loadStateFromHash(hash);
 
 		$(document).ready(function() {
