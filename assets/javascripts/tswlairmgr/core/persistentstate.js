@@ -158,11 +158,11 @@ tswlairmgr.core.persistentstate = new function() {
 		return packedDataWithChecksum;
 	};
 	
-	this._initPersistentStateController = function() {
-		
+	this._secondTierInitWithHash = function(hash) {
+		tswlairmgr.core.persistentstate._loadStateFromHash(hash);
+
+		$(document).ready(function() {
+			tswlairmgr.core.persistentstate.pollHashChange();
+		});
 	};
 };
-
-$(document).ready(function() {
-	tswlairmgr.core.persistentstate.pollHashChange();
-});

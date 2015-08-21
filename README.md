@@ -74,6 +74,9 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.3 beta
+-	Fixed a bug introduced in the last version where loading the app state hash on page load wouldn't work in the ingame browser anymore.
+
 ##### 2.0.2 beta
 -	Simplified chat script output sorting style label "By Boss/Mission" to "By Mission".
 -	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detial page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
