@@ -23,9 +23,7 @@ $(document).ready(function() {
 	
 	// Initialize persistent state controller
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] initializing persistent state manager...");
-	//tswlairmgr.core.persistentstate._initPersistentStateController();
-	// Set application state
-	tswlairmgr.core.persistentstate._secondTierInitWithHash(hash);
+	tswlairmgr.core.persistentstate._initWithHash(hash);
 	
 	$(".versionString", $("#bottombar")).text(tswlairmgr.core.info.version);
 	
