@@ -74,6 +74,9 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.4 beta
+-	Participant import from chat log will now also import the names of people you've sent a tell to, and of people who shouted something.
+
 ##### 2.0.3 beta
 -	Fixed a bug introduced in the last version where loading the app state hash on page load wouldn't work in the ingame browser anymore.
 
