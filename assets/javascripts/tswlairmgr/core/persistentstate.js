@@ -159,10 +159,10 @@ tswlairmgr.core.persistentstate = new function() {
 	};
 	
 	this._initWithHash = function(hash) {
-		tswlairmgr.core.persistentstate._loadStateFromHash(hash);
+		this._loadStateFromHash(hash);
 
 		$(document).ready(function() {
-			tswlairmgr.core.persistentstate.pollHashChange();
+			this.pollHashChange();
 		});
 	};
 };
