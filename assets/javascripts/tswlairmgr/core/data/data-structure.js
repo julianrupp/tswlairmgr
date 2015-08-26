@@ -392,8 +392,8 @@ tswlairmgr.core.data._bootstrap_region_egy_zone_sd = function()
 			w:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.lambda, 9),
 			c:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.gamma, 2),
 			e:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.omega, 1),
-			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.delta, 8),
-			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.theta, 3),
+			sw: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.theta, 8),
+			s:  new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.delta, 3),
 			se: new tswlairmgr.core.data.BossFragment(this.struct.alphabetGreek.rho, 4)
 	}));
 	
