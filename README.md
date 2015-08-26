@@ -74,6 +74,10 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.5 beta
+
+-	Fixed incorrect fragment names/numbers for the SD3 boss.
+
 ##### 2.0.4 beta
 -	Participant import from chat log will now also import the names of people you've sent a tell to, and of people who shouted something.
 
