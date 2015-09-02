@@ -68,6 +68,8 @@ I've recently completely rewritten the code and cleaned it up, though there defi
 
 Other than pull requests, you can also send me feature requests, bug reports or other constructive feedback.
 
+By contributing source code, you agree to transfer all rights to your code contribution to this project.
+
 
 Changelog
 ---------
@@ -90,7 +92,7 @@ Changelog
 -	When you now try to load the app with a new location hash in the same tab as an already open instance, the app will now load the new hash instead of doing nothing.
 
 ##### 2.0.1 beta
--	Exchanged Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
+-	Replaced Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
 
 ##### 2.0.0 beta
 -	Complete code rewrite
