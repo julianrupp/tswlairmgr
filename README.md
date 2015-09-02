@@ -3,9 +3,9 @@ TSW Lair Manager
 
 TSW Lair Manager is a fan-made lair fragment organizer for [The Secret World](http://thesecretworld.com) (TSW), a MMORPG by Funcom.
 
-It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons.
+It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons they can get.
 
-Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
+Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, has the potential to take you much less time to use, and doesn't clash with team window mods like [FiveAlive](https://forums.thesecretworld.com/showthread.php?71072) which are considered essential by many players. Also, it just works in any modern/standards-compliant browser.
 
 With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: localization support, persisting state via URL hash, participant name import from chat log excerpts, and fragment lookup including regional bosses/fragments. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
 
@@ -23,7 +23,7 @@ Features:
 
 **An instance of TSW Lair Manager can be found at:** [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
-**Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager)
+**Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221)
 
 
 Requirements
