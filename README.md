@@ -60,7 +60,7 @@ I've recently completely rewritten the code and cleaned it up, though there defi
 
 -	Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
 
--	Requiring Flash, Silverlight or any other proprietary/closed-source stuff for your feature additions to work is a no-go. Implement your functionality solely in JavaScript. You may use additional helper libraries, not just the ones that are already there
+-	Requiring Flash, Silverlight or any other proprietary/closed-source stuff for your feature additions to work is a no-go. Implement your functionality solely in JavaScript. You may use additional helper libraries, not just the ones that are already there.
 
 -	Please note that I'm not really fond of introducing any kind of build process in this project that is required to get the project files into a ready-to-use/upload state.
 
@@ -86,7 +86,7 @@ Changelog
 
 ##### 2.0.2 beta
 -	Simplified chat script output sorting style label "By Boss/Mission" to "By Mission".
--	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detial page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
+-	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detail page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
 -	When you now try to load the app with a new location hash in the same tab as an already open instance, the app will now load the new hash instead of doing nothing.
 
 ##### 2.0.1 beta
