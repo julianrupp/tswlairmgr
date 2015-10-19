@@ -180,22 +180,32 @@ Credits
 -	Alex Netkachov's blog post [Model-View-Controller (MVC) with JavaScript](https://alexatnet.com/articles/model-view-controller-mvc-javascript) has helped me a lot figuring out how to tackle this design pattern in this very language.
 
 
+Donations
+---------
+
+First and foremost: This is a private hobby project on which I've been working in my spare time.
+
+I wrote this tool because I saw something with huge room for optimization, had ideas how to do it, and the technical knowledge to actually implement those ideas. Originally targeted at my cabal, I sure also have an use for it myself, too. This software will always stay open source and with that, available free of charge.
+
+That being said, if you like TSW Lair Manager so much that you want to support me financially, I've now set up [PayPal donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VSNL78C29M9QN). This is entirely voluntary and will not get you anything special; there'll be no mentions of any donators' names, extra features or anything like that. I certainly do appreciate your donations though :)
+
+
 License
 -------
 MIT License for the source code and fully self-created assets. Please see the `LICENSE` file.
 
-The external artwork (lair boss images and their x-ray derivatives, lair area screenshots) should be considered property of Funcom GmbH unless otherwise noted and is redistributed under fair use.
+- The external artwork (lair boss images and their x-ray derivatives, lair area screenshots) should be considered property of Funcom GmbH unless otherwise noted and is redistributed under fair use.
 
-The Lato font files keep their own license and are merely redistributed by this project; please see `assets/stylesheets/fonts/Lato/OFL.txt` for their license.
+- The Lato font files keep their own license and are merely redistributed by this project; please see `assets/stylesheets/fonts/Lato/OFL.txt` for their license.
 
-The country flags downloaded from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/) do not have a formal license attached to them. The website states: "These flag icons are available for free use for any purpose with no requirement for attribution."
+- The country flags downloaded from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/) do not have a formal license attached to them. The website states: "These flag icons are available for free use for any purpose with no requirement for attribution."
 
-This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
+- This software makes use of [Blob.js](https://github.com/eligrey/Blob.js) and [FileSaver.js](https://github.com/eligrey/FileSaver.js) by Eli Grey and redistributes them. Please see the respective `LICENSE.md` files in their subfolders in `assets/javascripts/libraries` for their license.
 
-This software makes use of [jQuery](https://github.com/jquery/jquery) by the jQuery foundation and other contributors and redistributes it. Please see the `MIT-LICENSE.txt` file in `assets/javascripts/libraries/jQuery` for its license.
+- This software makes use of [jQuery](https://github.com/jquery/jquery) by the jQuery foundation and other contributors and redistributes it. Please see the `MIT-LICENSE.txt` file in `assets/javascripts/libraries/jQuery` for its license.
 
-This software makes use of [mustache.js](https://github.com/janl/mustache.js) by Chris Wanstrath, Jan Lehnardt and the mustache.js community and redistributes it. Please see the `LICENSE` file in `assets/javascripts/libraries/mustache.js` for its license.
+- This software makes use of [mustache.js](https://github.com/janl/mustache.js) by Chris Wanstrath, Jan Lehnardt and the mustache.js community and redistributes it. Please see the `LICENSE` file in `assets/javascripts/libraries/mustache.js` for its license.
 
-This software makes use of Douglas Crockford's [JSON implementation](https://github.com/douglascrockford/JSON-js) and redistributes it. Please see the first block comment in the `assets/javascripts/libraries/JSON/json2.js` file for its license.
+- This software makes use of Douglas Crockford's [JSON implementation](https://github.com/douglascrockford/JSON-js) and redistributes it. Please see the first block comment in the `assets/javascripts/libraries/JSON/json2.js` file for its license.
 
-This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js`](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.
+- This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js`](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.
