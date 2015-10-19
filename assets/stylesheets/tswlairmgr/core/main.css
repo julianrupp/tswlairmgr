@@ -149,3 +149,7 @@
 	color: #c0c0c0;
 	font-size: 9px;
 }
+
+#bottombar .info .link, #bottombar .info .link.dark a {
+	color: #808080;
+}
