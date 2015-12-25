@@ -76,6 +76,11 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.6 beta
+
+-	Tweaked persistency system's inner workings to improve performance.
+-	If the browser supports it, working with TSW Lair Manager shouldn't spam your web browser's history anymore. (experimental)
+
 ##### 2.0.5 beta
 
 -	Fixed incorrect fragment names/numbers for the SD3 boss.

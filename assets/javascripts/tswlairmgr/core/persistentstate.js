@@ -122,7 +122,16 @@ tswlairmgr.core.persistentstate = new function() {
 		
 		self._currentlyChangingHash = true;
 		self._lastHash = hash;
-		window.location.hash = hash;
+		
+		if("replaceState" in window.history)
+		{
+			window.history.replaceState(undefined, undefined, "#"+hash)
+		}
+		else
+		{
+			window.location.replace("#"+hash);
+		}
+		
 		self._currentlyChangingHash = false;
 		
 		// Bugfix for FF: Disappearing favicon on window.location change
@@ -137,7 +146,10 @@ tswlairmgr.core.persistentstate = new function() {
 			self._loadStateFromHash(currentHash);
 		}
 		
-		window.setTimeout(self.pollHashChange, 50);
+		if(!("onhashchange" in window))
+		{
+			window.setTimeout(self.pollHashChange, 100);
+		}
 	};
 	
 	this.hashify = function() {
@@ -160,9 +172,19 @@ tswlairmgr.core.persistentstate = new function() {
 	
 	this._initWithHash = function(hash) {
 		this._loadStateFromHash(hash);
-
-		$(document).ready(function() {
-			this.pollHashChange();
-		});
+		
+		var self = this;
+		if("onhashchange" in window)
+		{
+			$(window).bind("hashchange", function(){
+				self.pollHashChange();
+			});
+		}
+		else
+		{
+			$(document).ready(function(){
+				self.pollHashChange();
+			});
+		}
 	};
 };
