@@ -3,9 +3,9 @@ TSW Lair Manager
 
 TSW Lair Manager is a fan-made lair fragment organizer for [The Secret World](http://thesecretworld.com) (TSW), a MMORPG by Funcom.
 
-It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons.
+It can be used by the leaders or fragment holders of lair groups to easily determine and communicate what fragments group members should pick as their mission reward to maximize the amount of boss summons they can get.
 
-Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, and has the potential to take you much less time to use. Also, it just works in any modern/standards-compliant browser.
+Unlike the [MissionHelper](http://www.curse.com/tsw-mods/tsw/missionhelper) addon, this webapp can be used with an arbitrary number of group members, lets you see everything at a glance, has the potential to take you much less time to use, and doesn't clash with team window mods like [FiveAlive](https://forums.thesecretworld.com/showthread.php?71072) which are considered essential by many players. Also, it just works in any modern/standards-compliant browser.
 
 With version 2, a major rewrite, the source code was made more readable and easier to extend, and some new features have been added: localization support, persisting state via URL hash, participant name import from chat log excerpts, and fragment lookup including regional bosses/fragments. It now makes use of [jQuery](http://jquery.com) and [mustache.js](http://mustache.github.io/).
 
@@ -23,7 +23,7 @@ Features:
 
 **An instance of TSW Lair Manager can be found at:** [http://tsw.nex4k.net/lairs/](http://tsw.nex4k.net/lairs/)
 
-**Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager)
+**Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221)
 
 
 Requirements
@@ -60,7 +60,7 @@ I've recently completely rewritten the code and cleaned it up, though there defi
 
 -	Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
 
--	Requiring Flash, Silverlight or any other proprietary/closed-source stuff for your feature additions to work is a no-go. Implement your functionality solely in JavaScript. You may use additional helper libraries, not just the ones that are already there
+-	Requiring Flash, Silverlight or any other proprietary/closed-source stuff for your feature additions to work is a no-go. Implement your functionality solely in JavaScript. You may use additional helper libraries, not just the ones that are already there.
 
 -	Please note that I'm not really fond of introducing any kind of build process in this project that is required to get the project files into a ready-to-use/upload state.
 
@@ -68,11 +68,18 @@ I've recently completely rewritten the code and cleaned it up, though there defi
 
 Other than pull requests, you can also send me feature requests, bug reports or other constructive feedback.
 
+By contributing source code, you agree to transfer all rights to your code contribution to this project.
+
 
 Changelog
 ---------
 
 #### Version 2.0
+
+##### 2.0.6 beta
+
+-	Tweaked persistency system's inner workings to improve performance.
+-	If the browser supports it, working with TSW Lair Manager shouldn't spam your web browser's history anymore. (experimental)
 
 ##### 2.0.5 beta
 
@@ -86,11 +93,11 @@ Changelog
 
 ##### 2.0.2 beta
 -	Simplified chat script output sorting style label "By Boss/Mission" to "By Mission".
--	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detial page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
+-	Changed Lookup module fragment tables so clicking an already-selected fragment on the fragment detail page takes you back to the boss itself. This should make switching back and forth while checking multiple fragments a little faster because of less mouse movement required.
 -	When you now try to load the app with a new location hash in the same tab as an already open instance, the app will now load the new hash instead of doing nothing.
 
 ##### 2.0.1 beta
--	Exchanged Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
+-	Replaced Scorched Desert and Carpathian Fangs lair background images. Both were very bright which rendered the foreground text less readable. SD now has a nice relatively dark one; the new CF image is only slightly darker and somewhat noisy, but the darker shots I have of this lair don't really fit it well in my opinion.
 
 ##### 2.0.0 beta
 -	Complete code rewrite

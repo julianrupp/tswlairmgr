@@ -61,7 +61,7 @@ input[type="button"].icon {
 	padding-left: 20px;
 }
 
-select[size=1] {
+select[size="1"] {
 	border: 2px solid rgba(255, 255, 255, 1);
 	border-radius: 5px;
 	background: rgba(0, 0, 0, 0.5);
