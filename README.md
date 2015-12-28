@@ -76,6 +76,10 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.7 beta
+
+-	If you're starting from scratch, TSW Lair Manager will now detect your browser's language settings and automatically select the matching localization if one is avaliable.
+
 ##### 2.0.6 beta
 
 -	Tweaked persistency system's inner workings to improve performance.
