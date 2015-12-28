@@ -30,7 +30,22 @@ tswlairmgr.core.persistentstate = new function() {
 		var blocks = data.split(":");
 		
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash: trying to set localization to <"+blocks[0]+">...");
-		tswlairmgr.modules.setInterfaceAndDataLocalizationById(blocks[0]);
+		var lang = blocks[0];
+		if(!lang)
+		{
+			lang = window.navigator.languages ? window.navigator.languages[0] : (window.navigator.language || window.navigator.browserLanguage || window.navigator.userLanguage);
+			if(lang.indexOf('-') !== -1) lang = lang.split('-')[0];
+			if(lang.indexOf('_') !== -1) lang = lang.split('_')[0];
+			
+			$.each(tswlairmgr.core.data.getAllLocalizationIds(), function(index, id) {
+				if(id.indexOf(lang) >= 0)
+				{
+					lang = id;
+					return;
+				}
+			});
+		}
+		tswlairmgr.modules.setInterfaceAndDataLocalizationById(lang);
 		tswlairmgr.modules._redrawLocalizationMenu();
 		
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash: trying to set active module to <"+blocks[1]+">...");
