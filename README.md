@@ -42,7 +42,7 @@ Using
 -----
 Since I've now switched to a modular system, the old way of just having one single tab/popup/whatever for displaying an usage guide does no longer really work so well. I think as each module is a thing on its own, it should take care of integrating help or an usage guide itself.
 
-The *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* will instead provide short snippets of help text at tricky spots, while *Lookup* will probably not include any kind of help text at all, as its main functions should be self-explanatory.
+The *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* instead provides short snippets of help text at tricky spots, while *Lookup* does not include any kind of help text at all, as its main functions should be self-explanatory.
 
 
 Distributing
