@@ -331,6 +331,7 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 		var self = this;
 		$("option", this._el.selectors.fragments.dropdown).each(function(index) {
 			var optionNode = this;
+			if(! $(optionNode).data("objectInstance")) return;
 			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
 			{
 				$(self._el.selectors.fragments.dropdown).val( $(optionNode).val() );
@@ -339,6 +340,7 @@ tswlairmgr.modules.lookup.view = function lookupView(contentNode, modelInstance,
 		});
 		$("option", this._el.selectors.bosses.dropdown).each(function(index) {
 			var optionNode = this;
+			if(! $(optionNode).data("objectInstance")) return;
 			if($(optionNode).data("objectInstance") === self._model.getSelectedObject())
 			{
 				$(self._el.selectors.bosses.dropdown).val( $(optionNode).val() );
