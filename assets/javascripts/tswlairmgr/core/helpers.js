@@ -2,6 +2,74 @@ var tswlairmgr = tswlairmgr || {};
 tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.helpers = tswlairmgr.core.helpers || {};
 
+tswlairmgr.core.helpers.IngameBrowserDetector = {};
+
+tswlairmgr.core.helpers.IngameBrowserDetector._browserFingerprints = [
+	{
+		/* TSW_tsw_v1.13@551639_TSWLiveWin32_2015_12_11-22_06_Rev(551639) */
+		navigator_appCodeName: "Mozilla",
+		navigator_appName: "Netscape",
+		navigator_appVersion: "5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.3 (KHTML, like Gecko) Chrome/1, 6, 0, 4 Safari/535.3",
+		navigator_cookieEnabled: true,
+		navigator_language: "en-US",
+		navigator_onLine: true,
+		navigator_platform: "Win32"
+	}
+];
+tswlairmgr.core.helpers.IngameBrowserDetector.isIngameBrowser = function() {
+	var allCriteriaFulfilled;
+	
+	$.each(tswlairmgr.core.helpers.IngameBrowserDetector._browserFingerprints, function(index, currentFingerprint) {
+		allCriteriaFulfilled = true;
+		
+		$.each(currentFingerprint, function(property, value) {
+			var compareWith;
+			switch(property)
+			{
+				case "navigator_appCodeName":
+					compareWith = navigator.appCodeName;
+				break;
+				case "navigator_appName":
+					compareWith = navigator.appName;
+				break;
+				case "navigator_appVersion":
+					compareWith = navigator.appVersion;
+				break;
+				case "navigator_cookieEnabled":
+					compareWith = navigator.cookieEnabled;
+				break;
+				case "navigator_language":
+					compareWith = navigator.language;
+				break;
+				case "navigator_onLine":
+					compareWith = navigator.onLine;
+				break;
+				case "navigator_platform":
+					compareWith = navigator.platform;
+				break;
+				case "navigator_userAgent":
+					compareWith = navigator.userAgent;
+				break;
+				
+				default:
+					/* Unrecognized property; fail silently */
+				break;
+			}
+			
+			if(compareWith != value)
+			{
+				allCriteriaFulfilled = false;
+			}
+		});
+		
+		if(allCriteriaFulfilled) { return; }
+	});
+	
+	if(allCriteriaFulfilled) { return true; }
+	
+	return false;
+}
+
 tswlairmgr.core.helpers.Observable = function Observable(origin) {
 	this._origin = origin;
 	this._observers = [];

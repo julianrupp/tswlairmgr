@@ -4,6 +4,11 @@ $(document).ready(function() {
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] starting...");
 	$("#javascriptDisabledNotice").hide();
 	
+	if(!tswlairmgr.core.helpers.IngameBrowserDetector.isIngameBrowser())
+	{
+		$("#ingameBrowserNotice").hide();
+	}
+	
 	var hash = window.location.hash;
 	
 	// Set initial data localization
