@@ -116,6 +116,34 @@
 
 /* -------------------- */
 
+#ingameBrowserNotice .uibox {
+	display: block;
+	font-size: 13px;
+	color: #ffcc00;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 838px;
+	padding: 0;
+}
+#ingameBrowserNotice .uibox .inner {
+	padding: 10px;
+}
+#ingameBrowserNotice .uibox .inner p:first-of-type {
+	margin-top: 0;
+}
+#ingameBrowserNotice .uibox .inner p:last-of-type {
+	margin-bottom: 0;
+}
+#ingameBrowserNotice .uibox h1 {
+	text-align: center;
+	color: #e97f0d;
+	font-size: 18px;
+	margin-top: -3px;
+	margin-bottom: 6px;
+}
+
+/* -------------------- */
+
 #moduleContainer {
 	margin: 5px auto;
 	width: 838px;

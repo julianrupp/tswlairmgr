@@ -42,7 +42,7 @@ Using
 -----
 Since I've now switched to a modular system, the old way of just having one single tab/popup/whatever for displaying an usage guide does no longer really work so well. I think as each module is a thing on its own, it should take care of integrating help or an usage guide itself.
 
-The *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* will instead provide short snippets of help text at tricky spots, while *Lookup* will probably not include any kind of help text at all, as its main functions should be self-explanatory.
+The *Organizer* and *Lookup* modules currently do not include some kind of a tab for displaying a comprehensive guide. *Organizer* instead provides short snippets of help text at tricky spots, while *Lookup* does not include any kind of help text at all, as its main functions should be self-explanatory.
 
 
 Distributing
@@ -76,9 +76,14 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.8
+
+-	Added warning message when trying to use TSW Lair Manager with the ingame browser to inform about its limitations and hazards.
+-	Dropped the "beta" label.
+
 ##### 2.0.7 beta
 
--	If you're starting from scratch, TSW Lair Manager will now detect your browser's language settings and automatically select the matching localization if one is avaliable.
+-	If you're starting from scratch, TSW Lair Manager will now detect your browser's language settings and automatically select the matching localization if one is avaliable. *(Does not work with the ingame browser because its language is always set to en-US no matter what the game language is set to)*
 
 ##### 2.0.6 beta
 

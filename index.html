@@ -97,14 +97,12 @@
 	<script src="assets/javascripts/tswlairmgr/startup.js"></script>
 </head>
 <body>
-	<noscript>
-		<div id="javascriptDisabledNotice">
-			<div class="uibox">
-				<h1>JavaScript disabled</h1>
-				You have JavaScript disabled in your browser. Please activate it to be able to use this webapp.
-			</div>
+	<div id="javascriptDisabledNotice">
+		<div class="uibox">
+			<h1>JavaScript disabled</h1>
+			You have JavaScript disabled in your browser. Please activate it to be able to use this webapp.
 		</div>
-	</noscript>
+	</div>
 
 	<div id="webapp">
 		<div id="topbar">
@@ -116,6 +114,22 @@
 				<div id="localizationMenu"></div>
 
 				<div id="moduleTabs"></div>
+			</div>
+		</div>
+		
+		<div id="ingameBrowserNotice">
+			<div class="uibox">
+				<div class="inner">
+				<h1>Warning: Using ingame web browser</h1>
+					<p>It appears like you are using the ingame web browser.</p>
+					
+					<ul>
+						<li>The chat script download feature will <b>not</b> work with the ingame browser.</li>
+						<li>Your work in the app will <b>vanish</b> as soon as you zone or close the browser, as the ingame browser does not keep a history.</li>
+					</ul>
+				
+					<p>Please open this site in a modern, external web browser to safely make proper use of TSW Lair Manager.</p>
+				</div>
 			</div>
 		</div>
 
