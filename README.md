@@ -76,9 +76,14 @@ Changelog
 
 #### Version 2.0
 
+##### 2.0.8
+
+-	Added warning message when trying to use TSW Lair Manager with the ingame browser to inform about its limitations and hazards.
+-	Dropped the "beta" label.
+
 ##### 2.0.7 beta
 
--	If you're starting from scratch, TSW Lair Manager will now detect your browser's language settings and automatically select the matching localization if one is avaliable.
+-	If you're starting from scratch, TSW Lair Manager will now detect your browser's language settings and automatically select the matching localization if one is avaliable. *(Does not work with the ingame browser because its language is always set to en-US no matter what the game language is set to)*
 
 ##### 2.0.6 beta
 
