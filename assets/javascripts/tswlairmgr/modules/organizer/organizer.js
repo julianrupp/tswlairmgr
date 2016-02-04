@@ -83,9 +83,90 @@ tswlairmgr.modules.organizer.controller = new function() {
 		
 		// ----------
 		// Top
+		this._view.observables.fragmentcountsImportButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the fragment counts import button was clicked.");
+			
+			if(self._view._subViews.topmenu.importBoxIsOpen())
+			{
+				self._view._subViews.topmenu.closeImportBox();
+			}
+			else
+			{
+				self._view._subViews.topmenu.openImportBoxAndFocus();
+			}
+		});
+		
 		this._view.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that lair selector dropdown selection has changed.");
 			self._model.setSelectedLair(context.newLairInstance);
+		});
+		
+		this._view.observables.fragmentcountsImportStringPasted.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that data has been pasted into the fragment counts import text field.");
+			
+			var stats = tswlairmgr.modules.organizer.classes.ExportStringParser.updateFragmentRegistryFromExportString(self._model._fragmentCounts, context.data);
+			
+			var messageBase = self._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.importedMessage;
+			var renderedMessage = Mustache.render(messageBase.message, {
+				localization: self._localization.getLocalizationData(),
+				context: {
+					totalFragments: Mustache.render(
+						((stats.totalFragments == 1) ?
+							messageBase.totalFragments.singular :
+							messageBase.totalFragments.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.totalFragments
+						}
+					}),
+					distinctFragments: Mustache.render(
+						((stats.distinctFragments == 1) ?
+							messageBase.distinctFragments.singular :
+							messageBase.distinctFragments.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.distinctFragments
+						}
+					}),
+					distinctRegions: Mustache.render(
+						((stats.distinctRegions == 1) ?
+							messageBase.distinctRegions.singular :
+							messageBase.distinctRegions.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.distinctRegions
+						}
+					}),
+					distinctZones: Mustache.render(
+						((stats.distinctZones == 1) ?
+							messageBase.distinctZones.singular :
+							messageBase.distinctZones.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.distinctZones
+						}
+					}),
+					distinctLairs: Mustache.render(
+						((stats.distinctLairs == 1) ?
+							messageBase.distinctLairs.singular :
+							messageBase.distinctLairs.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.distinctLairs
+						}
+					}),
+					distinctBosses: Mustache.render(
+						((stats.distinctBosses == 1) ?
+							messageBase.distinctBosses.singular :
+							messageBase.distinctBosses.plural), {
+						localization: self._localization.getLocalizationData(),
+						context: {
+							number: stats.distinctBosses
+						}
+					})
+				}
+			})
+			alert(renderedMessage);
 		});
 		
 		// ----------

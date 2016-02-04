@@ -3,9 +3,65 @@
 	text-align: right;
 }
 
+#module-organizer #topmenu #fragmentcountsImportButtonBox {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
+#module-organizer #topmenu #fragmentcountsImportButtonBox #fragmentcountsImportButton {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
 #module-organizer #topmenu #lairselector {
 	display: inline-block;
 	text-align: left;
+	height: 32px;
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox {
+	clear: both;
+	margin-top: 10px;
+	display: inline-block;
+	text-align: left;
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox .importTitle {
+	font-size: 16px;
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox .importInfoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox .importInfoText a {
+	color: rgba(255, 255, 255, 0.66);
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox .importInfoText a:hover {
+	color: rgba(255, 255, 255, 0.33);
+}
+
+#module-organizer #topmenu #fragmentcountsImportBox .importBox textarea.importTextField {
+	margin: 0 auto;
+	width: 798px;
+	height: 14px;
+	font-size: 11px;
 }
 
 #module-organizer #topmenu #lairselector #lairselectorLabel {

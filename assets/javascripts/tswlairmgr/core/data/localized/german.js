@@ -224,7 +224,7 @@ tswlairmgr.core.data.addLocalizationData("Deutsch", "German", "deDE", {
 									missionName: "Zwielichtige Unterwelt"
 								},
 								{
-									name: "Dakischer Rudelläufer",
+									name: "Dakisches Reinblut",
 									missionName: "Ansturm der Widerlinge"
 								}
 							]
