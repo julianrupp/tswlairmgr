@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.1
+
+-	Minor hotfix for erroneous import success messages when pasting an invalid string. Will simply stay silent now instead of displaying an incomplete alert message.
+
 ##### 2.1.0
 
 -	Added support for importing fragment counts from the new export mod. French translation for new UI done by myself this time; if you're a native speaker and find any mistakes or bad wording, please contact me!
