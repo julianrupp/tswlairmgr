@@ -42,6 +42,9 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Deuts
 							singular: "{{context.number}} Boss",
 							plural: "{{context.number}} Bossen"
 						}
+					},
+					importErrorMessage: {
+						message: "Konnte keinen TSWLM Exporter-Code im eingefügten Text finden, oder der Code hat ein ungültiges Format."
 					}
 				}
 			},

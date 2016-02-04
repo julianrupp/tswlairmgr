@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.4
+
+-	Hotfix to add an error message when trying to import an invalid string with the fragment counts import feature.
+
 ##### 2.1.3
 
 -	Hotfix for some minor translation mistakes.

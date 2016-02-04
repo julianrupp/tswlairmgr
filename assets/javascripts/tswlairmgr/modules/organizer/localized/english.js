@@ -42,6 +42,9 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Engli
 							singular: "{{context.number}} boss",
 							plural: "{{context.number}} bosses"
 						}
+					},
+					importErrorMessage: {
+						message: "Could not find a TSWLM Exporter code in the pasted text, or the code is malformed."
 					}
 				}
 			},
