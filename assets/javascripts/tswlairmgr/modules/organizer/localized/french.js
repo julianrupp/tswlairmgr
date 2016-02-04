@@ -40,7 +40,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 						},
 						distinctBosses: {
 							singular: "{{context.number}} boss",
-							plural: "{{context.number}} bosses"
+							plural: "{{context.number}} boss"
 						}
 					}
 				}
@@ -83,7 +83,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 			addFailedInfoText:
 				"Le participant n'a pas pu être ajouté.\n" +
 				"Soit il existe déjà un participant portant le même nom, soit le nom que vous avez entré contient des caractères non valides.\n" +
-				"Un nom ne peut être composé que de A-Z, a-z, 0-9, tirets (-) et tirets du bas (_) et doit contenir au moins un caractère.",
+				"Un nom peut être composé que de A-Z, a-z, 0-9, tirets (-) et tirets du bas (_) et doit contenir au moins un caractère.",
 			infoText:
 				"Ajoutez ici tous les joueurs qui participent à votre Lair run. Cliquez sur le fragment d'antre respectif à côté d'un nom pour ignorer l'attribution du fragment pour ce joueur et la mission, par exemple lorsqu'ils ont envoyé le rapport de mission trop tôt. Cliquez sur le signe d'annulation pour rendre le participant à nouveau disponible.",
 			table: {
