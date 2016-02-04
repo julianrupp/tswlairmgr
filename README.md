@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.6
+
+-	Yo dawg, we heard you like fixes, so we put a fix in your fix so you can fix while you fix.
+
 ##### 2.1.5
 
 -	Fixed new french translation for the fragment counts import feature. Thanks [Rexxars](http://chronicle.thesecretworld.com/character/Rexxars) for sanity checking!
