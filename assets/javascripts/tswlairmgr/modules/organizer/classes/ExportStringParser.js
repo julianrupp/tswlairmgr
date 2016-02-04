@@ -157,7 +157,6 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 																	{
 																		var count = counts[ci];
 																		var fragment = boss.getFragmentSet().getFragmentAtOrientation(orientations[ci]);
-																		internalStats.encounteredFragments[fragment.getCode()] = true;
 																		
 																		var countMatch = this._patterns.sfcnCountsNumber.exec(count);
 																		if(countMatch)
@@ -168,6 +167,11 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 																				fragment: fragment,
 																				count: count	
 																			});
+																			
+																			if(count > 0)
+																			{
+																				internalStats.encounteredFragments[fragment.getCode()] = true;
+																			}
 																			
 																			stats.totalFragmentCount += count;
 																			
