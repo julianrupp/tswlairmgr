@@ -6,6 +6,45 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 	},
 	strings: {
 		topmenu: {
+			fragmentcountsImport: {
+				importButton: {
+					label: "Importer nombres de fragments...",
+				},
+				importBox: {
+					title: "Importer les nombres de fragments du jeu",
+					infoText: {
+						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les nombres de fragments dans votre inventaire et banque personelle (si ouvert). Ceci remplacera les nombres de tous les fragments associé avec un ensemble de quel vous avez un ou plusieurs de fragments.",
+						pasteShortcut: "Ctrl+V"
+					},
+					importedMessage: {
+						message: "Les nombres de {{context.distinctFragments}} de {{context.distinctRegions}}, {{context.distinctZones}}, {{context.distinctBosses}} ont été importés.",
+						totalFragments: {
+							singular: "{{context.number}} fragment",
+							plural: "{{context.number}} fragments"
+						},
+						distinctFragments: {
+							singular: "{{context.number}} fragment",
+							plural: "{{context.number}} fragments distincts"
+						},
+						distinctRegions: {
+							singular: "{{context.number}} région",
+							plural: "{{context.number}} régions"
+						},
+						distinctZones: {
+							singular: "{{context.number}} zone",
+							plural: "{{context.number}} zones"
+						},
+						distinctLairs: {
+							singular: "{{context.number}} antre",
+							plural: "{{context.number}} antres"
+						},
+						distinctBosses: {
+							singular: "{{context.number}} boss",
+							plural: "{{context.number}} bosses"
+						}
+					}
+				}
+			},
 			lairselector: {
 				selectLair: "Choisir antre:"
 			}

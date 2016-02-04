@@ -25,6 +25,13 @@ Features:
 
 **Official TSW forums announcement and discussion thread:** [[Webapp] TSW Lair Manager](http://forums.thesecretworld.com/showthread.php?84221)
 
+Fragment export mod
+-------------------
+
+I've cobbled together a game mod now that will scan your character's inventory and personal bank (if open) for lair fragments and produce a string you can copy & paste into TSW Lair Manager to automatically set the counts of all fragments in the app accordingly.
+
+You can find the mod [here](http://github.com/julianrupp/tswlairmgr-export-mod).
+
 
 Requirements
 ------------
@@ -74,6 +81,13 @@ By contributing source code, you agree to transfer all rights to your code contr
 Changelog
 ---------
 
+#### Version 2.1
+
+##### 2.1.0
+
+-	Added support for importing fragment counts from the new export mod. French translation for new UI done by myself this time; if you're a native speaker and find any mistakes or bad wording, please contact me!
+
+
 #### Version 2.0
 
 ##### 2.0.8
@@ -88,7 +102,7 @@ Changelog
 ##### 2.0.6 beta
 
 -	Tweaked persistency system's inner workings to improve performance.
--	If the browser supports it, working with TSW Lair Manager shouldn't spam your web browser's history anymore. (experimental)
+-	If the browser supports it, working with TSW Lair Manager shouldn't spam your web browser's history anymore. Experimental, based on HTML5 `history.replaceState()`. Doesn't work yet with Firefox 48 / Chrome 47.
 
 ##### 2.0.5 beta
 
@@ -187,7 +201,7 @@ Credits
 
 -	The country flags have been taken from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/).
 
--	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn makes the fragment holder take ages to assemble a list of who-takes-what.
+-	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn made the fragment holder take ages to work out assignments.
 
 -	Joakim Bjørnstad ([@joakibj](http://github.com/joakibj)) has inspired me with his [tswcalc](http://github.com/joakibj/tswcalc) webapp in the technical design of this one.
 

@@ -6,6 +6,45 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Deuts
 	},
 	strings: {
 		topmenu: {
+			fragmentcountsImport: {
+				importButton: {
+					label: "Fragmente importieren...",
+				},
+				importBox: {
+					title: "Fragmente aus dem Spiel importieren",
+					infoText: {
+						text: "Füge die Zeichenkette, die du aus dem {{{context.modLink}}}-Mod kopiert hast, hier ein ({{{context.pasteShortcut}}}) um alle Fragmente aus deinem Inventar und deiner persönlichen Bank (sofern geöffnet) zu importieren. Dies wird die eingetragene Anzahl aller Fragmente ersetzen, die zu einem Set gehören, von welchem du ein oder mehrere Fragmente hast.",
+						pasteShortcut: "Strg+V"
+					},
+					importedMessage: {
+						message: "{{context.distinctFragments}} aus {{context.distinctRegions}}, {{context.distinctZones}}, {{context.distinctBosses}} wurden importiert.",
+						totalFragments: {
+							singular: "{{context.number}} Fragment",
+							plural: "{{context.number}} Fragmente"
+						},
+						distinctFragments: {
+							singular: "{{context.number}} Fragment",
+							plural: "{{context.number}} verschiedene Fragmente"
+						},
+						distinctRegions: {
+							singular: "{{context.number}} Region",
+							plural: "{{context.number}} Regionen"
+						},
+						distinctZones: {
+							singular: "{{context.number}} Zone",
+							plural: "{{context.number}} Zonen"
+						},
+						distinctLairs: {
+							singular: "{{context.number}} Bau",
+							plural: "{{context.number}} Bauen"
+						},
+						distinctBosses: {
+							singular: "{{context.number}} Boss",
+							plural: "{{context.number}} Bossen"
+						}
+					}
+				}
+			},
 			lairselector: {
 				selectLair: "Bau auswählen:"
 			}
@@ -46,7 +85,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Deuts
 				"Entweder gibt es bereits einen Teilnehmer mit diesem Namen, oder der eingegebene Name enthält ungültige Zeichen.\n" +
 				"Ein Name darf nur aus den Zeichen A-Z, a-z, 0-9, Bindestrich (-) und Unterstrich (_) bestehen und mindestens ein Zeichen lang sein.",
 			infoText:
-				"Füge hier alle Spieler hinzu, die an deinem Lairrun teilnehmen. Klicke auf das jeweilige Fragment neben einem Namen, um die Fragmentzuweisung für diesen Teilnehmer und diese Mission zu überspringen, z.B. wenn dieser den Missionsbericht bereits gesendet hat. Klicke die Überspringungsmarkierung an, um den Teilnehmer wieder als verfügbar zu markieren.",
+				"Füge hier alle Spieler hinzu, die an deinem Lair Run teilnehmen. Klicke auf das jeweilige Fragment neben einem Namen, um die Fragmentzuweisung für diesen Teilnehmer und diese Mission zu überspringen, z.B. wenn dieser den Missionsbericht bereits gesendet hat. Klicke die Überspringungsmarkierung an, um den Teilnehmer wieder als verfügbar zu markieren.",
 			table: {
 				headings: {
 					name: "Name",
