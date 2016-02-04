@@ -158,6 +158,10 @@ tswlairmgr.core.data.BossFragmentSet = function BossFragmentSet(fragmentsHash) {
 		return this._fragments;
 	};
 	
+	this.getFragmentAtOrientation = function(orientation) {
+		return this._fragments[orientation];
+	};
+	
 	this.getOrientationOfFragment = function(fragmentInstance) {
 		var r = null;
 		$.each(this._fragments, function(key, fragment) {
@@ -520,6 +524,10 @@ tswlairmgr.core.data.RegionalBossFragmentSet = function RegionalBossFragmentSet(
 	
 	this.getFragments = function() {
 		return this._fragments;
+	};
+	
+	this.getFragmentAtOrientation = function(orientation) {
+		return this._fragments[orientation];
 	};
 	
 	this.getOrientationOfFragment = function(fragmentInstance) {
