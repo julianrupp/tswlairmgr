@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.5
+
+-	Fixed new french translation for the fragment counts import feature. Thanks [Rexxars](http://chronicle.thesecretworld.com/character/Rexxars) for sanity checking!
+
 ##### 2.1.4
 
 -	Hotfix to add an error message when trying to import an invalid string with the fragment counts import feature.
