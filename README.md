@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.3
+
+-	Hotfix for some minor translation mistakes.
+
 ##### 2.1.2
 
 -	Minor hotfix for miscalculation of the number of distinct fragments for the fragment import success message.
