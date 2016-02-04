@@ -8,12 +8,12 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 		topmenu: {
 			fragmentcountsImport: {
 				importButton: {
-					label: "Importer nombres de fragments...",
+					label: "Importer fragments...",
 				},
 				importBox: {
-					title: "Importer les nombres de fragments du jeu",
+					title: "Importer les fragments du jeu",
 					infoText: {
-						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les nombres de fragments dans votre inventaire et banque personelle (si ouvert). Ceci remplacera les nombres de tous les fragments associé avec un ensemble de quel vous avez un ou plusieurs de fragments.",
+						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les fragments de votre inventaire et banque personnelle (si ouverte). Ceci remplacera les nombres de tous les fragments associés avec un ensemble duquel vous avez un ou plusieurs de fragments.",
 						pasteShortcut: "Ctrl+V"
 					},
 					importedMessage: {
@@ -44,7 +44,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 						}
 					},
 					importErrorMessage: {
-						message: "N'a pas pu trouver un code de TSWLM Exporter dans le texte collé, ou le code a un format mauvais."
+						message: "N'a pas pu trouver un code de TSWLM Exporter dans le texte collé, ou le code a un mauvais format."
 					}
 				}
 			},
