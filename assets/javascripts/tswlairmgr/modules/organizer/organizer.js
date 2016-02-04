@@ -106,10 +106,11 @@ tswlairmgr.modules.organizer.controller = new function() {
 			
 			var stats = tswlairmgr.modules.organizer.classes.ExportStringParser.updateFragmentRegistryFromExportString(self._model._fragmentCounts, context.data);
 			
+			var renderedMessage = "";
 			if(stats)
 			{
 				var messageBase = self._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.importedMessage;
-				var renderedMessage = Mustache.render(messageBase.message, {
+				renderedMessage = Mustache.render(messageBase.message, {
 					localization: self._localization.getLocalizationData(),
 					context: {
 						totalFragments: Mustache.render(
@@ -168,8 +169,17 @@ tswlairmgr.modules.organizer.controller = new function() {
 						})
 					}
 				})
-				alert(renderedMessage);
 			}
+			else
+			{
+				renderedMessage = Mustache.render(
+					self._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.importErrorMessage.message, {
+					localization: self._localization.getLocalizationData(),
+					context: {
+					}
+				});
+			}
+			alert(renderedMessage);
 		});
 		
 		// ----------
