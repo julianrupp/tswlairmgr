@@ -237,7 +237,6 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 		for(var uIdx=0; uIdx<updates.length; uIdx++)
 		{
 			var update = updates[uIdx];
-			console.log("Update fragment:"+update.fragment+" count:"+update.count);
 			fragmentRegistry.setCountForFragment(update.fragment, update.count);
 		}
 		
