@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.2
+
+-	Minor hotfix for miscalculation of the number of distinct fragments for the fragment import success message.
+
 ##### 2.1.1
 
 -	Minor hotfix for erroneous import success messages when pasting an invalid string. Will simply stay silent now instead of displaying an incomplete alert message.
