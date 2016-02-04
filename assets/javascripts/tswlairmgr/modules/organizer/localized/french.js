@@ -13,7 +13,7 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 				importBox: {
 					title: "Importer les fragments du jeu",
 					infoText: {
-						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les fragments de votre inventaire et banque personnelle (si ouverte). Ceci remplacera les nombres de tous les fragments associés avec un ensemble duquel vous avez un ou plusieurs de fragments.",
+						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les fragments de votre inventaire et banque personnelle (si ouverte). Ceci remplacera les nombres de tous les fragments associés avec un ensemble duquel vous avez un ou plusieurs fragments.",
 						pasteShortcut: "Ctrl+V"
 					},
 					importedMessage: {
