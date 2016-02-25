@@ -35,9 +35,11 @@ tswlairmgr.modules.organizer.classes.ChatLogNameParser = new function() {
 	[11:22] [Character-TiLoShtDE] ruft:x
 	[11:22] [*Character-TiExShtFR] crie :x
 	[11:22] [Character-TiLoShtFR] crie :x
+	
+	+ Equivalents with "|Game Master" and "|Maître de jeu" attached to the character name.
 	*/
 	
-	this._pattern = /^(?:\[\d{2}:\d{2}\] )?(?:(?:(?:\[[^\]]+\] )?\[(?:\*)?([^\]]+)\]: .+)|(?:(?:To|An|À) (?:\[(?:\*)?([^\]]+)\]): .+)|(?:\[(?:\*)?([^\]]+)\] (?:shouts: |ruft:|crie :).+))$/gm;
+	this._pattern = /^(?:\[\d{2}:\d{2}\] )?(?:(?:(?:\[[^\]]+\] )?\[(?:\*)?([^\]\|]+)(?:\|Game Master|\|Maître de jeu)?\]: .+)|(?:(?:To|An|À) (?:\[(?:\*)?([^\]\|]+)(?:\|Game Master|\|Maître de jeu)?\]): .+)|(?:\[(?:\*)?([^\]]+)\] (?:shouts: |ruft:|crie :).+))$/gm;
 	
 	this.getCharacterNamesFromChatLogExcerpt = function(chatLog)
 	{
