@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.7
+
+-	Made the chat script parser compatible with messages originating from Game Masters.
+
 ##### 2.1.6
 
 -	Yo dawg, we heard you like fixes, so we put a fix in your fix so you can fix while you fix.
