@@ -7,8 +7,8 @@ tswlairmgr.modules.organizer.classes.ChatScriptGenerator = function ChatScriptGe
 	this._model = model;
 	this._localization = localization;
 	
-	this.projectURL = "http://github.com/julianrupp/tswlairmgr";
-	this.forumThreadURL = "http://forums.thesecretworld.com/showthread.php?84221-Webapp-TSW-Lair-Manager";
+	this.projectURL = tswlairmgr.core.info.url_project;
+	this.forumThreadURL = tswlairmgr.core.info.url_forum;
 	
 	this._styles = {
 		title: {
