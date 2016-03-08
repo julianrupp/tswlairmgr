@@ -83,6 +83,11 @@ Changelog
 
 #### Version 2.1
 
+##### 2.1.8
+
+-	Changed the link to the Export mod to point directly to the "releases" subpage so novice users find the right files to download more easily.
+-	Minor internal rearrangements for easier maintenance.
+
 ##### 2.1.7
 
 -	Made the chat script parser compatible with messages originating from Game Masters.
