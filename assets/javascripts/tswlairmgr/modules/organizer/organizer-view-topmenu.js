@@ -224,7 +224,7 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 				localization: this._localization.getLocalizationData(),
 				context: {
 					pasteShortcut: formattedPasteShortcut,
-					modLink: '<a href="http://github.com/julianrupp/tswlairmgr-export-mod/releases" target="_blank">TSW Lair Manager Export</a>'
+					modLink: '<a href="'+tswlairmgr.core.info.exportmod.url_download+'" target="_blank">'+tswlairmgr.core.info.exportmod.name+'</a>'
 				}
 			})
 		);
