@@ -63,7 +63,7 @@ I've recently completely rewritten the code and cleaned it up, though there defi
 
 -	All active development takes place in feature branches branching off the `dev` branch. Use branch names like `feature/<title>` or `bugfix/<issue number>`.
 
--	Source files for various graphics (PSD, AI, ...) are in a separate resource repository. Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
+-	Source files for various graphics (PSD, AI, ...) are in a separate [resource repository](http://github.com/julianrupp/tswlairmgr-resources). Only commit ready-to-use versions of graphics files into the main repository. Put source files into the resource repository.
 
 -	Please note that I do not want to officially integrate any other localizations than English, German and French, the set of languages the game itself is localized in. Reasoning behind this is mainly that I don't want to litter the menu with a lot of languages. I might however make an exemption if I get proof that there is a substantial population of native speakers in the game for a particular language.
 
