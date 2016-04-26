@@ -226,15 +226,15 @@ Credits
 
 -	Lair data in its French localization has been taken from [TSWRDB.pw](https://tswrdb.pw/live/1030002/).
 
--	The French interface translation was done by [*Rexxars*](http://chronicle.thesecretworld.com/character/Rexxars) from my cabal.
+-	The French interface translation was done by [*Rexxars*](http://chronicle.thesecretworld.com/character/Rexxars).
 
--	Regional fragment drop data was kindly provided by [*Dott*](http://chronicle.thesecretworld.com/character/Dott) and [*Jermaine*](http://chronicle.thesecretworld.com/character/Jermaine) from my cabal.
+-	Regional fragment drop data was kindly provided by [*Dott*](http://chronicle.thesecretworld.com/character/Dott) and [*Jermaine*](http://chronicle.thesecretworld.com/character/Jermaine).
 
 -	The font used is called [Lato](https://www.google.com/fonts/specimen/Lato), available at Google Fonts.
 
 -	The country flags have been taken from [FamFamFam.com](http://www.famfamfam.com/lab/icons/flags/).
 
--	My cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes run lairs with crazy amounts of people, which in turn made the fragment holder take ages to work out assignments.
+-	My former cabal [*In Vino Veritas*](http://invinoveritas.corplaunch.com) originally inspired me to create this webapp as we sometimes ran lairs with crazy amounts of people, which in turn made the fragment holder take ages to work out assignments.
 
 -	Joakim Bjørnstad ([@joakibj](http://github.com/joakibj)) has inspired me with his [tswcalc](http://github.com/joakibj/tswcalc) webapp in the technical design of this one.
 
@@ -246,9 +246,9 @@ Donations
 
 First and foremost: This is a private hobby project on which I've been working in my spare time.
 
-I wrote this tool because I saw something with huge room for optimization, had ideas how to do it, and the technical knowledge to actually implement those ideas. Originally targeted at my cabal, I sure also have an use for it myself, too. This software will always stay open source and with that, available free of charge.
+I wrote this tool because I saw something with huge room for optimization, had ideas how to do it, and the technical knowledge to actually implement those ideas. Originally it was targeted at my former cabal, and I sure also had an use for it myself. It would have been kind of a dick move to even *try* artificially withholding it from other people. This software will always stay open source and with that, available free of charge.
 
-That being said, if you like TSW Lair Manager so much that you want to support me financially, I've now set up [PayPal donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VSNL78C29M9QN). This is entirely voluntary and will not get you anything special; there'll be no mentions of any donators' names, extra features or anything like that. I certainly do appreciate your donations though :)
+That being said, if you like TSW Lair Manager so much that you want to support me financially, I've now set up [PayPal donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=VSNL78C29M9QN). This is entirely voluntary and will not get you anything special; there'll be no mentions of any donators' names, extra features or anything like that. I certainly do appreciate your donations though, rest assured :)
 
 
 License
