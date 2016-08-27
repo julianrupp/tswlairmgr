@@ -1,9 +1,8 @@
 var tswlairmgr = tswlairmgr || {};
-tswlairmgr.modules = tswlairmgr.modules || {};
-tswlairmgr.modules.organizer = tswlairmgr.modules.organizer || {};
-tswlairmgr.modules.organizer.classes = tswlairmgr.modules.organizer.classes || {};
+tswlairmgr.core = tswlairmgr.core || {};
+tswlairmgr.core.classes = tswlairmgr.core.classes || {};
 
-tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry = function LairFragmentCountsRegistry() {
+tswlairmgr.core.classes.LairFragmentCountsRegistry = function LairFragmentCountsRegistry() {
 	this._persistentStateVersion = 1;
 	this._registry = {};
 	

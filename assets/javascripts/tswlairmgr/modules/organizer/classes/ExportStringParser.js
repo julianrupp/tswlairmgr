@@ -29,21 +29,24 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 		SFCN{tra/sf/sf:sf01},,,,1,,,,
 		SFCN{tra/sf/sf:sf02},,,,,,,1,1
 		SFCN{tra/sf/sf:sf03},,,,,,1,1,
+		SRFC{sol:sol}1,1,1,,,1,1,1,,1,1,1,,1,,1
 		#ENDC#
 		
 		Directives can also be separated by ; instead of newlines.
 	*/
 	
-	this._maxSupportedFormatVersion = 1;
+	this._maxSupportedFormatVersion = 2;
 	
 	this._patterns = {
 		wrapper: /#TSWLMExport#([\s\S]*)#ENDC#/,
 		directive: /^([A-Z]{4})\{([^\}]+)\}(.+)$/,
 		sfcnKey: /^([a-z]{3})\/([a-z]{2})\/([a-z]{2}):([a-z]{2}[0-9]{2})$/,
-		sfcnCountsNumber: /^([0-9]+)?$/
+		sfcnCountsNumber: /^([0-9]+)?$/,
+		srfcKey: /^([a-z]{3}):([a-z]{3})$/,
+		srfcCountsNumber: /^([0-9]+)?$/
 	};
 	
-	this.updateFragmentRegistryFromExportString = function(fragmentRegistry, exportString)
+	this.updateFragmentRegistryFromExportString = function(fragmentRegistry, regionalFragmentRegistry, exportString)
 	{
 		var stats = {
 			totalFragments: 0,
@@ -51,7 +54,9 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 			distinctRegions: 0,
 			distinctZones: 0,
 			distinctLairs: 0,
-			distinctBosses: 0
+			distinctBosses: 0,
+			distinctRegionalFragments: 0,
+			distinctRegionals: 0
 		};
 		
 		var internalStats = {
@@ -59,10 +64,14 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 			encounteredRegions: {},
 			encounteredZones: {},
 			encounteredLairs: {},
-			encounteredBosses: {}
+			encounteredBosses: {},
+			encounteredRegionalFragments: {},
+			encounteredRegionalRegions: {},
+			encounteredRegionalBosses: {}
 		};
 		
 		var updates = [];
+		var updatesRegional = [];
 		
 		var match = this._patterns.wrapper.exec(exportString)
 		if(match)
@@ -218,6 +227,94 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 								}
 							}
 						break;
+						case "SRFC": // Set Regional Fragment Counts
+							// Keys have the form:
+							// <regionCode>:<bossCode>
+							// Data is a list of integers separated with ","; if an integer is zero, no digit will be present.
+							var srfcKeyMatch = this._patterns.srfcKey.exec(key);
+							if(srfcKeyMatch)
+							{
+								var regionCode = srfcKeyMatch[1];
+								var bossCode = srfcKeyMatch[2];
+								
+								var regions = tswlairmgr.core.data.getSortedRegions();
+								var regionMatched = false;
+								for(var rIdx=0; rIdx<regions.length; rIdx++)
+								{
+									var region = regions[rIdx];
+									if(regionCode == region.getId())
+									{
+										regionMatched = true;
+										internalStats.encounteredRegionalRegions[region.getId()] = true;
+										
+										var bosses = [ region.getRegional() ];
+										var bossMatched = false;
+										for(var bIdx=0; bIdx<bosses.length; bIdx++)
+										{
+											var boss = bosses[bIdx];
+											if(bossCode == boss.getId())
+											{
+												bossMatched = true;
+												internalStats.encounteredRegionalBosses[boss.getId()] = true;
+												
+												var counts = data.split(/,/);
+												if(counts.length == 16)
+												{
+													var orientations = [
+														"nnww", "nnw", "nne", "nnee",
+														"nww", "nw", "ne", "nee",
+														"sww", "sw", "se", "see",
+														"ssww", "ssw", "sse", "ssee"
+													];
+													for(var ci=0; ci<counts.length; ci++)
+													{
+														var count = counts[ci];
+														var fragment = boss.getFragmentSet().getFragmentAtOrientation(orientations[ci]);
+														
+														var countMatch = this._patterns.srfcCountsNumber.exec(count);
+														if(countMatch)
+														{
+															count = (count == "") ? 0 : parseInt(count);
+															
+															updatesRegional.push({
+																fragment: fragment,
+																count: count	
+															});
+															
+															if(count > 0)
+															{
+																internalStats.encounteredRegionalFragments[fragment.getCode()] = true;
+															}
+															
+															stats.totalRegionalFragmentCount += count;
+															
+															continue;
+														}
+														if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.classes.ExportStringParser>: Error: Malformed count <"+count+"> in counts data in directive "+i);
+														return false; // Malformed counts data
+													}
+													continue;
+												}
+												if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.classes.ExportStringParser>: Error: Malformed counts data <"+data+"> in directive "+i);
+												return false; // Malformed counts data
+											}
+											continue;
+										}
+										if(!bossMatched)
+										{
+											if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.classes.ExportStringParser>: Error: Invalid boss code <"+bossCode+"> in directive "+i);
+											return false; // Invalid boss code
+										}
+									}
+									continue;
+								}
+								if(!regionMatched)
+								{
+									if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.classes.ExportStringParser>: Error: Invalid region code <"+regionCode+"> in directive "+i);
+									return false; // Invalid region code
+								}
+							}
+						break;
 					}
 				}
 				else if(directive.trim().length == 0)
@@ -243,12 +340,20 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 			var update = updates[uIdx];
 			fragmentRegistry.setCountForFragment(update.fragment, update.count);
 		}
+		for(var uIdx=0; uIdx<updatesRegional.length; uIdx++)
+		{
+			var update = updatesRegional[uIdx];
+			regionalFragmentRegistry.setCountForFragment(update.fragment, update.count);
+		}
 		
 		// Finalize statistics
 		$.each(internalStats.encounteredFragments, function(key, value) { stats.distinctFragments++; });
 		$.each(internalStats.encounteredRegions, function(key, value) { stats.distinctRegions++; });
 		$.each(internalStats.encounteredZones, function(key, value) { stats.distinctZones++; });
 		$.each(internalStats.encounteredBosses, function(key, value) { stats.distinctBosses++; });
+		$.each(internalStats.encounteredRegionalFragments, function(key, value) { stats.distinctRegionalFragments++; });
+		$.each(internalStats.encounteredRegionalRegions, function(key, value) { stats.distinctRegionalRegions++; });
+		$.each(internalStats.encounteredRegionalBosses, function(key, value) { stats.distinctRegionalBosses++; });
 		
 		return stats;
 	};
