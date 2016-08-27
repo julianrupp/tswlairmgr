@@ -86,7 +86,7 @@ tswlairmgr.modules.organizer.controller = new function() {
 		this._view.observables.fragmentcountsImportButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.controller>: got notified that the fragment counts import button was clicked.");
 			
-			tswlairmgr.modules.inventory.controller.openImportBoxAndFocus();
+			tswlairmgr.modules.inventory.controller.externalInvokeFragmentImport();
 		});
 		
 		this._view.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {

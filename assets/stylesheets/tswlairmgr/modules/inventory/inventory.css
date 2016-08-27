@@ -1,0 +1,73 @@
+#module-inventory #topmenu {
+	display: block;
+	text-align: right;
+}
+
+#module-inventory #topmenu #fragmentcountsImportButtonBox {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportButtonBox #fragmentcountsImportButton {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox {
+	clear: both;
+	margin-top: 10px;
+	display: inline-block;
+	text-align: left;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importTitle {
+	font-size: 16px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText a {
+	color: rgba(255, 255, 255, 0.66);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText a:hover {
+	color: rgba(255, 255, 255, 0.33);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox textarea.importTextField {
+	margin: 0 auto;
+	width: 798px;
+	height: 14px;
+	font-size: 11px;
+}
+
+/* -------------------- */
+
+input[type="button"].import {
+	color: #faf5a4;
+}
+
+input[type="button"].icon.import {
+	background-image: url(../../../../images/symbol/import-white.svg);
+}
+
+input[type="button"].import.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
