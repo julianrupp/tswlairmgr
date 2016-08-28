@@ -88,6 +88,7 @@ Changelog
 -	*Inventory* module
 	-	View and change all regional and lair fragment counts on one page
 	-	Add notes (useful when sharing)
+	-	Fragment import functionality was expanded to support importing regional fragment counts. This requires an update of your exporter game mod.
 
 -	*Organizer* module
 	-	Clicking the fragment import button will now lead you to the *Inventory* module as the import functionality was moved there.
