@@ -81,6 +81,17 @@ By contributing source code, you agree to transfer all rights to your code contr
 Changelog
 ---------
 
+#### Version 2.2
+
+##### 2.2.0
+
+-	*Inventory* module
+	-	View and change all regional and lair fragment counts on one page
+	-	Add notes (useful when sharing)
+
+-	*Organizer* module
+	-	Clicking the fragment import button will now lead you to the *Inventory* module as the import functionality was moved there.
+
 #### Version 2.1
 
 ##### 2.1.8
