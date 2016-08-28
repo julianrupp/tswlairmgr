@@ -1,0 +1,488 @@
+#module-inventory #topmenu {
+	display: block;
+	text-align: right;
+}
+
+#module-inventory #topmenu #fragmentcountsImportButtonBox {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportButtonBox #fragmentcountsImportButton {
+	display: inline-block;
+	text-align: left;
+	float: left;
+	height: 32px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox {
+	clear: both;
+	margin-top: 10px;
+	display: inline-block;
+	text-align: left;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importTitle {
+	font-size: 16px;
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText {
+	font-size: 12px;
+	margin-top: 3px;
+	margin-bottom: 3px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText a {
+	color: rgba(255, 255, 255, 0.66);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox .importInfoText a:hover {
+	color: rgba(255, 255, 255, 0.33);
+}
+
+#module-inventory #topmenu #fragmentcountsImportBox .importBox textarea.importTextField {
+	margin: 0 auto;
+	width: 798px;
+	height: 14px;
+	font-size: 11px;
+}
+
+/* -------------------- */
+
+input[type="button"].import {
+	color: #faf5a4;
+}
+
+input[type="button"].icon.import {
+	background-image: url(../../../../images/symbol/import-white.svg);
+}
+
+input[type="button"].import.active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* -------------------- */
+
+#module-inventory #notes {
+	display: block;
+}
+
+#module-inventory #notesBox .componentBox {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	border-radius: 16px;
+	font-size: 14px;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-inventory #notesBox .componentBox .componentBoxInner {
+	padding: 10px;
+}
+
+#module-inventory #notesBox .componentTitle {
+	display: inline-block;
+	font-size: 18px;
+	margin-right: 10px;
+}
+
+#module-inventory #notesBox .infoText {
+	font-size: 12px;
+	margin-top: 6px;
+	margin-bottom: 6px;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+#module-inventory #notesBox .textBoxContainer {
+	width: 100%;
+}
+
+#module-inventory #notesBox .textBox {
+	width: 810px;
+}
+
+/* -------------------- */
+
+#module-inventory .regionBlock {
+	margin-bottom: 64px;
+}
+#module-inventory .regionBlock:last-child {
+	margin-bottom: 0px;
+}
+
+#module-inventory .regionBlock .regionHead {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 28px;
+	margin-top: 8px;
+}
+
+#module-inventory .regionBlock .regionHead .regionName {
+	color: rgba(255, 255, 255, 1);
+}
+
+/* Names block */
+#module-inventory .regionBlock .regionalbossBlock .names {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+}
+
+#module-inventory .regionBlock .regionalbossBlock {
+	width: 358px;
+	margin: 8px auto 8px;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .names .bossName {
+	color: rgba(255, 255, 255, 1);
+	font-size: 20px;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .names .lairName {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+/* Fragment controls block */
+#module-inventory .regionBlock .regionalbossBlock .fragments {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	border: 0px;
+	margin-top: 2px;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable {
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer {
+	padding: 2px;
+	
+	text-align: center;
+	font-size: 11px;
+	text-shadow: 1px 1px 1px #000000;
+	
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
+	border-radius: 11px;
+	background-color: rgba(255, 204, 0, 0.30);
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer.missing {
+	opacity: 0.5;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .button {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #464646;
+	text-shadow: none;
+	background-color: #c0c0c0;
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 1px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 0.7;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
+	background-image: url(../../../../images/symbol/plus-black.svg);
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
+	background-image: url(../../../../images/symbol/minus-black.svg);
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .counts {
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+	height: 14px;
+	overflow: hidden;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
+	
+}
+
+#module-inventory .regionBlock .regionalbossBlock .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
+	color: #ffcc00;
+}
+
+/* Calculated counts block */
+#module-inventory .regionBlock .regionalbossBlock .calculated {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .calculated .count-format {
+	font-size: 20px;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .calculated .count-format .count {
+	color: rgba(255, 255, 255, 1);
+	font-weight: bold;
+}
+
+#module-inventory .regionBlock .regionalbossBlock .calculated .missing-format {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-inventory .regionBlock .regionalbossBlock .calculated .missing-format .count {
+	
+}
+
+/* -------------------- */
+
+#module-inventory .lairBlock {
+	margin-bottom: 32px;
+}
+#module-inventory .lairBlock:last-child {
+	margin-bottom: 0px;
+}
+
+#module-inventory .lairBlock .lairHead {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 22px;
+	margin-top: 8px;
+}
+
+#module-inventory .lairBlock .lairHead .bossName {
+	color: rgba(255, 255, 255, 1);
+}
+
+#module-inventory .lairBlock .lairHead .lairName {
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-inventory .lairBlock .lairBosses table.one,
+ 	#module-inventory .lairBlock .lairBosses table.two, 
+	#module-inventory .lairBlock .lairBosses table.three {
+	width: 838px;
+	margin: 0px;
+	padding: 0px;
+	border-collapse: collapse;
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+#module-inventory .lairBlock .lairBosses td.pad {
+	width: 8px;
+}
+
+#module-inventory .lairBlock .lairBosses table.two td.pad:first-child,
+#module-inventory .lairBlock .lairBosses table.two td.pad:last-child {
+	width: 141px;
+}
+
+#module-inventory .lairBlock .lairBosses table.one td.pad:first-child,
+#module-inventory .lairBlock .lairBosses table.one td.pad:last-child {
+	width: 282px;
+}
+
+#module-inventory .lairBlock .lairBosses td.inner {
+	width: 274px !important;
+	margin: 0px !important;
+	padding: 0px !important;
+	text-align: center;
+}
+
+#module-inventory .lairBlock .lairBosses td.inner .innerContent {
+	
+}
+
+/* Names block */
+#module-inventory .lairBlock .lairBosses .names {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+}
+
+#module-inventory .lairBlock .lairBosses .names .bossName {
+	color: rgba(255, 255, 255, 1);
+	font-size: 20px;
+}
+
+#module-inventory .lairBlock .lairBosses .names .missionName {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+/* Fragment controls block */
+#module-inventory .lairBlock .lairBosses .fragments {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	border: 0px;
+	margin-top: 2px;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable {
+	margin: 0px;
+	border: 0px;
+	
+	border-spacing: 2px;
+	border-collapse: separate;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer {
+	padding: 2px;
+	
+	text-align: center;
+	font-size: 11px;
+	text-shadow: 1px 1px 1px #000000;
+	
+	cursor: default;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer.lowMark {
+	border-radius: 11px;
+	background-color: rgba(255, 204, 0, 0.30);
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer.missing {
+	opacity: 0.5;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .button {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	color: #464646;
+	text-shadow: none;
+	background-color: #c0c0c0;
+	border-radius: 2px;
+	width: 12px;
+	height: 12px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .button .symbol {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin: 1px;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	opacity: 0.7;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .button.plus .symbol {
+	background-image: url(../../../../images/symbol/plus-black.svg);
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .button.minus .symbol {
+	background-image: url(../../../../images/symbol/minus-black.svg);
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .counts {
+	display: inline-block;
+	vertical-align: middle;
+	width: 38px;
+	height: 14px;
+	overflow: hidden;
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer .counts .countHave {
+	
+}
+
+#module-inventory .lairBlock .lairBosses .fragments .fragmentsTable .fragmentControlsContainer.lowMark .counts .countHave {
+	color: #ffcc00;
+}
+
+/* Calculated counts block */
+#module-inventory .lairBlock .lairBosses .calculated {
+	color: #ffffff;
+	background-color: rgba(0, 0, 0, 0.65);
+	padding: 10px;
+	border-radius: 16px;
+	font-size: 14px;
+	text-align: center;
+	margin-top: 2px;
+}
+
+#module-inventory .lairBlock .lairBosses .calculated .count-format {
+	font-size: 20px;
+}
+
+#module-inventory .lairBlock .lairBosses .calculated .count-format .count {
+	color: rgba(255, 255, 255, 1);
+	font-weight: bold;
+}
+
+#module-inventory .lairBlock .lairBosses .calculated .missing-format {
+	font-size: 12px;
+	color: rgba(255, 255, 255, 0.75);
+}
+
+#module-inventory .lairBlock .lairBosses .calculated .missing-format .count {
+	
+}

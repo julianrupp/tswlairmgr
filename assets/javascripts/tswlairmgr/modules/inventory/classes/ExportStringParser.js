@@ -1,9 +1,9 @@
 var tswlairmgr = tswlairmgr || {};
 tswlairmgr.modules = tswlairmgr.modules || {};
-tswlairmgr.modules.organizer = tswlairmgr.modules.organizer || {};
-tswlairmgr.modules.organizer.classes = tswlairmgr.modules.organizer.classes || {};
+tswlairmgr.modules.inventory = tswlairmgr.modules.inventory || {};
+tswlairmgr.modules.inventory.classes = tswlairmgr.modules.inventory.classes || {};
 
-tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {	
+tswlairmgr.modules.inventory.classes.ExportStringParser = new function() {	
 	/*
 		Sample export string:
 		
@@ -46,7 +46,7 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 		srfcCountsNumber: /^([0-9]+)?$/
 	};
 	
-	this.updateFragmentRegistryFromExportString = function(fragmentRegistry, regionalFragmentRegistry, exportString)
+	this.updateFragmentRegistriesFromExportString = function(fragmentRegistry, regionalFragmentRegistry, exportString)
 	{
 		var stats = {
 			totalFragments: 0,
@@ -56,7 +56,8 @@ tswlairmgr.modules.organizer.classes.ExportStringParser = new function() {
 			distinctLairs: 0,
 			distinctBosses: 0,
 			distinctRegionalFragments: 0,
-			distinctRegionals: 0
+			distinctRegionalRegions: 0,
+			distinctRegionalBosses: 0
 		};
 		
 		var internalStats = {

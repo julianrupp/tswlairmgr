@@ -9,43 +9,6 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 			fragmentcountsImport: {
 				importButton: {
 					label: "Importer fragments...",
-				},
-				importBox: {
-					title: "Importer les fragments du jeu",
-					infoText: {
-						text: "Collez ({{{context.pasteShortcut}}}) le texte vous avez copié du mod {{{context.modLink}}} du jeu dans le champ de texte ci-dessous pour importer tous les fragments de votre inventaire et banque personnelle (si ouverte). Ceci remplacera les nombres de tous les fragments associés avec un ensemble duquel vous avez un ou plusieurs fragments.",
-						pasteShortcut: "Ctrl+V"
-					},
-					importedMessage: {
-						message: "Les nombres de {{context.distinctFragments}} de {{context.distinctRegions}}, {{context.distinctZones}}, {{context.distinctBosses}} ont été importés.",
-						totalFragments: {
-							singular: "{{context.number}} fragment",
-							plural: "{{context.number}} fragments"
-						},
-						distinctFragments: {
-							singular: "{{context.number}} fragment",
-							plural: "{{context.number}} fragments distincts"
-						},
-						distinctRegions: {
-							singular: "{{context.number}} région",
-							plural: "{{context.number}} régions"
-						},
-						distinctZones: {
-							singular: "{{context.number}} zone",
-							plural: "{{context.number}} zones"
-						},
-						distinctLairs: {
-							singular: "{{context.number}} antre",
-							plural: "{{context.number}} antres"
-						},
-						distinctBosses: {
-							singular: "{{context.number}} boss",
-							plural: "{{context.number}} boss"
-						}
-					},
-					importErrorMessage: {
-						message: "N'a pas pu trouver un code de TSWLM Exporter dans le texte collé, ou le code a un mauvais format."
-					}
 				}
 			},
 			lairselector: {
@@ -55,8 +18,8 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 		bosstable: {
 			calculated: {
 				numberOfFullSets: {
-					singular: "{{{context.count}}} Rituel d'évocation",
-					plural: "{{{context.count}}} Rituels d'évocation"
+					singular: "{{{context.count}}} rituel d'évocation",
+					plural: "{{{context.count}}} rituels d'évocation"
 				},
 				numberOfMissingForNext: {
 					singular: "({{{context.count}}} fragment manquant pour un autre)",
