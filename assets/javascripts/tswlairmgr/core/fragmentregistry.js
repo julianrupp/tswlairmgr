@@ -33,7 +33,8 @@ tswlairmgr.core.fragmentregistry = new function() {
 				{
 					internalState = {
 						v: 1,
-						l: organizerState.fcr
+						l: organizerState.fcr,
+						r: {}
 					};
 				}
 			}
@@ -46,7 +47,7 @@ tswlairmgr.core.fragmentregistry = new function() {
 	};
 	
 	this.getRegionalFragmentCountsRegistry = function() {
-		return this._fragmentCounts;
+		return this._regionalFragmentCounts;
 	};
 	
 	this.getCountForFragment = function(fragmentInstance) {

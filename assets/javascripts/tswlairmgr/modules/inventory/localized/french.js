@@ -73,16 +73,16 @@ tswlairmgr.modules.inventory.controller._localization.addLocalizationData("Fran�
 		fragmenttable: {
 			calculated: {
 				numberOfFullSets: {
-					singular: "{{{context.count}}} Rituel d'évocation",
-					plural: "{{{context.count}}} Rituels d'évocation"
+					singular: "{{{context.count}}} rituel d'évocation",
+					plural: "{{{context.count}}} rituels d'évocation"
 				},
 				numberOfMissingForNext: {
 					singular: "({{{context.count}}} fragment manquant pour un autre)",
 					plural: "({{{context.count}}} fragments manquants pour un autre)"
 				},
 				regionalNumberOfFullSets: {
-					singular: "{{{context.count}}} Rituel purificateur",
-					plural: "{{{context.count}}} Rituels purificateur"
+					singular: "{{{context.count}}} rituel purificateur",
+					plural: "{{{context.count}}} rituels purificateur"
 				},
 				regionalNumberOfMissingForNext: {
 					singular: "({{{context.count}}} fragment manquant pour un autre)",

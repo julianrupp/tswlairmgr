@@ -43,6 +43,7 @@ tswlairmgr.modules.inventory.viewTopmenu = function inventoryViewTopmenu(content
 		
 		this._build_topmenu_fragmentcounts_import_button();
 		this._build_topmenu_fragmentcounts_import_box();
+		$(this._el.self).append($("<div />").css("clear", "both").css("margin-bottom", "10px"));
 	};
 	
 	this._build_topmenu_fragmentcounts_import_button = function() {

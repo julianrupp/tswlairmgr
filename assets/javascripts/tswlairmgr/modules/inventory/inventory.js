@@ -31,10 +31,8 @@ tswlairmgr.modules.inventory.controller = new function() {
 		this._init();
 		
 		var self = this;
-		$.each(this._model.observables, function(observableName, observable) {
-			observable.registerCallback(function() {
-				self._updatePersistentState();
-			});
+		this._model.observables.notesChanged.registerCallback(function() {
+			self._updatePersistentState();
 		});
 		
 		var self = this;
@@ -207,9 +205,13 @@ tswlairmgr.modules.inventory.controller = new function() {
 		
 		// ----------
 		// Notes
-		this._view.observables.notesChanged.registerCallback(function(origin, context) {
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that the notes were modified.");
+		this._view.observables.notesModified.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that the notes were modified in the view.");
 			self._model.setNotes(context.notes);
+		});
+		this._model.observables.notesChanged.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that the notes were changed in the model.");
+			self._updatePersistentState();
 		});
 		
 		// ----------
@@ -222,6 +224,15 @@ tswlairmgr.modules.inventory.controller = new function() {
 		this._view.observables.fragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
 			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that a fragment count minus button was clicked.");
 			self._model.decrementCountForFragment(context.fragment);
+		});
+		this._view.observables.regionalFragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that a regional fragment count plus button was clicked.");
+			self._model.incrementCountForRegionalFragment(context.fragment);
+		});
+		
+		this._view.observables.regionalFragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.controller>: got notified that a regional fragment count minus button was clicked.");
+			self._model.decrementCountForRegionalFragment(context.fragment);
 		});
 	};
 	

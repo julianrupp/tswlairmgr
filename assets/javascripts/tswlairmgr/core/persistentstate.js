@@ -4,6 +4,7 @@ tswlairmgr.core = tswlairmgr.core || {};
 tswlairmgr.core.persistentstate = new function() {
 	this._lastHash = null;
 	this._currentlyChangingHash = false;
+	this._currentlyLoadingHash = true;
 	
 	this._coreStateData = {
 		activeLocalization: null,
@@ -25,6 +26,8 @@ tswlairmgr.core.persistentstate = new function() {
 	
 	this._loadStateFromHash = function(hash) {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadStateFromHash called");
+		
+		this._currentlyLoadingHash = true;
 		
 		var data = this._hashData(hash);
 		
@@ -55,6 +58,8 @@ tswlairmgr.core.persistentstate = new function() {
 		this._loadModuleStateFromHash(blocks[2]);
 		
 		this._stateChanged();
+		
+		this._currentlyLoadingHash = false;
 		
 		this.observables.hashLoaded.notify({});
 	};
@@ -90,7 +95,7 @@ tswlairmgr.core.persistentstate = new function() {
 			{
 				var jsonData = lzw_decode(compressedStringifiedData);
 				
-				if(tswlairmgr.core.config.debug) console.log(jsonData);
+				//if(tswlairmgr.core.config.debug) console.log(jsonData);
 				
 				parsed = JSON.parse(jsonData);
 				
@@ -131,7 +136,7 @@ tswlairmgr.core.persistentstate = new function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: updateModuleState called from <"+moduleId+">");
 		
 		this._moduleStateStruct.m[moduleId] = newState;
-		this._stateChanged();
+		if(!this._currentlyLoadingHash) this._stateChanged();
 	};
 	
 	this.getInternalState = function(internalClass) {
@@ -146,7 +151,7 @@ tswlairmgr.core.persistentstate = new function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: updateInternalState called from <"+internalClassId+">");
 		
 		this._moduleStateStruct.i[internalClassId] = newState;
-		this._stateChanged();
+		if(!this._currentlyLoadingHash) this._stateChanged();
 	};
 	
 	this._stateChanged = function() {
@@ -201,7 +206,7 @@ tswlairmgr.core.persistentstate = new function() {
 	
 	this.hashifyModuleState = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: hashifyModuleState");
-		if(tswlairmgr.core.config.debug) console.log(JSON.stringify(this._moduleStateStruct));
+		//if(tswlairmgr.core.config.debug) console.log(JSON.stringify(this._moduleStateStruct));
 		
 		var compressedStringifiedData = lzw_encode(JSON.stringify(this._moduleStateStruct));
 		var textChecksum = tswlairmgr.core.helpers.CRC32.textChecksum(compressedStringifiedData);

@@ -15,7 +15,7 @@ tswlairmgr.modules.inventory.view = function inventoryView(contentNode, modelIns
 		fragmentCountMinusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		regionalFragmentCountPlusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		regionalFragmentCountMinusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
-		notesChanged: new tswlairmgr.core.helpers.Observable(this)
+		notesModified: new tswlairmgr.core.helpers.Observable(this)
 	};
 	
 	this._el = {
@@ -55,8 +55,8 @@ tswlairmgr.modules.inventory.view = function inventoryView(contentNode, modelIns
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.inventory.view>: build called");
 		
 		this._build_topmenu();
-		//this._build_notes();
-		//this._build_fragmenttable();
+		this._build_notes();
+		this._build_fragmenttable();
 	};
 	
 	this._build_topmenu = function() {
@@ -111,12 +111,12 @@ tswlairmgr.modules.inventory.view = function inventoryView(contentNode, modelIns
 		});
 		
 		// Notes
-		/*this._subViews.notes.observables.notesChanged.registerCallback(function(origin, context) {
-			self.observables.notesChanged.notify(context);
-		});*/
+		this._subViews.notes.observables.notesModified.registerCallback(function(origin, context) {
+			self.observables.notesModified.notify(context);
+		});
 		
 		// Fragment table
-		/*this._subViews.fragmenttable.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
+		this._subViews.fragmenttable.observables.fragmentCountPlusButtonClicked.registerCallback(function(origin, context) {
 			self.observables.fragmentCountPlusButtonClicked.notify(context);
 		});
 		
@@ -130,6 +130,6 @@ tswlairmgr.modules.inventory.view = function inventoryView(contentNode, modelIns
 		
 		this._subViews.fragmenttable.observables.regionalFragmentCountMinusButtonClicked.registerCallback(function(origin, context) {
 			self.observables.regionalFragmentCountMinusButtonClicked.notify(context);
-		});*/
+		});
 	};
 };

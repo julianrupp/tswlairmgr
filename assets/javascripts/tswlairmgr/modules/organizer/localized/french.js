@@ -18,8 +18,8 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Fran�
 		bosstable: {
 			calculated: {
 				numberOfFullSets: {
-					singular: "{{{context.count}}} Rituel d'évocation",
-					plural: "{{{context.count}}} Rituels d'évocation"
+					singular: "{{{context.count}}} rituel d'évocation",
+					plural: "{{{context.count}}} rituels d'évocation"
 				},
 				numberOfMissingForNext: {
 					singular: "({{{context.count}}} fragment manquant pour un autre)",

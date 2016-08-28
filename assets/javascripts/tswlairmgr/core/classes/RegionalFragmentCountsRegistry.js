@@ -98,7 +98,20 @@ tswlairmgr.core.classes.RegionalFragmentCountsRegistry = function RegionalFragme
 				});
 			});
 			if(!valid) { return false; }
-			this._registry = state.r;
+			
+			var self = this;
+			$.each(state.r, function(regionKey, regionHash){
+				$.each(regionHash, function(bossKey, bossHash){
+					$.each(bossHash, function(fragmentOrientationKey, count){
+						var fragment = tswlairmgr.core.data.getRegionalFragmentByIdsAndOrientation(regionKey, bossKey, fragmentOrientationKey);
+						if(fragment != null)
+						{
+							self.setCountForFragment(fragment, count);
+						}
+					});
+				});
+			});
+			
 			return true;
 		}
 		return false;

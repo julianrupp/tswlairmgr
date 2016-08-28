@@ -126,7 +126,24 @@ tswlairmgr.core.classes.LairFragmentCountsRegistry = function LairFragmentCounts
 				});
 			});
 			if(!valid) { return false; }
-			this._registry = state.r;
+			
+			var self = this;
+			$.each(state.r, function(regionKey, regionHash){
+				$.each(regionHash, function(zoneKey, zoneHash){
+					$.each(zoneHash, function(lairKey, lairHash){
+						$.each(lairHash, function(bossKey, bossHash){
+							$.each(bossHash, function(fragmentOrientationKey, count){
+								var fragment = tswlairmgr.core.data.getLairFragmentByIdsAndOrientation(regionKey, zoneKey, lairKey, bossKey, fragmentOrientationKey)
+								if(fragment != null)
+								{
+									self.setCountForFragment(fragment, count);
+								}
+							});
+						});
+					});
+				});
+			});
+			
 			return true;
 		}
 		return false;
