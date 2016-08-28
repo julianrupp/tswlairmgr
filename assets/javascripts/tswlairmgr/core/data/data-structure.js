@@ -1099,4 +1099,45 @@ tswlairmgr.core.data.getLairById = function(id)
 	return res;
 };
 
+tswlairmgr.core.data.getLairFragmentByIdsAndOrientation = function(regionId, zoneId, lairId, bossId, orientation)
+{
+	var res = null;
+	$.each(this.getRegions(), function(regionKey, regionInstance) {
+		if(regionId !== regionKey) return;
+		$.each(regionInstance.getZones(), function(zoneKey, zoneInstance) {
+			if(zoneId !== zoneKey) return;
+			$.each(zoneInstance.getLairs(), function(lairKey, lairInstance) {
+				if(lairId !== lairKey) return;
+				$.each(lairInstance.getBosses(), function(bossKey, bossInstance) {
+					if(bossId !== bossKey) return;
+					
+					res = bossInstance.getFragmentSet().getFragmentAtOrientation(orientation);
+					return;
+				});
+				if(res) { return; }
+			});
+			if(res) { return; }
+		});
+		if(res) { return; }
+	});
+	return res;
+};
+
+tswlairmgr.core.data.getRegionalFragmentByIdsAndOrientation = function(regionId, bossId, orientation)
+{
+	var res = null;
+	$.each(this.getRegions(), function(regionKey, regionInstance) {
+		if(regionId !== regionKey) return;
+		var bossInstance = regionInstance.getRegional();
+		var bossKey = bossInstance.getId();
+		
+		if(bossId !== bossKey) return;
+			
+		res = bossInstance.getFragmentSet().getFragmentAtOrientation(orientation);
+		
+		return;
+	});
+	return res;
+};
+
 tswlairmgr.core.data._bootstrap();

@@ -9,43 +9,6 @@ tswlairmgr.modules.organizer.controller._localization.addLocalizationData("Engli
 			fragmentcountsImport: {
 				importButton: {
 					label: "Import fragment counts...",
-				},
-				importBox: {
-					title: "Import fragment counts from game",
-					infoText: {
-						text: "Paste ({{{context.pasteShortcut}}}) the string you copied out of the {{{context.modLink}}} mod into the text field below to import all fragment counts from your ingame inventory and personal bank (if open). This will replace the counts of all fragments associated with a set you have one or more fragments of.",
-						pasteShortcut: "Ctrl+V"
-					},
-					importedMessage: {
-						message: "The counts of {{context.distinctFragments}} from {{context.distinctRegions}}, {{context.distinctZones}}, {{context.distinctBosses}} were imported.",
-						totalFragments: {
-							singular: "{{context.number}} fragment",
-							plural: "{{context.number}} fragments"
-						},
-						distinctFragments: {
-							singular: "{{context.number}} fragment",
-							plural: "{{context.number}} distinct fragments"
-						},
-						distinctRegions: {
-							singular: "{{context.number}} region",
-							plural: "{{context.number}} regions"
-						},
-						distinctZones: {
-							singular: "{{context.number}} zone",
-							plural: "{{context.number}} zones"
-						},
-						distinctLairs: {
-							singular: "{{context.number}} lair",
-							plural: "{{context.number}} lairs"
-						},
-						distinctBosses: {
-							singular: "{{context.number}} boss",
-							plural: "{{context.number}} bosses"
-						}
-					},
-					importErrorMessage: {
-						message: "Could not find a TSWLM Exporter code in the pasted text, or the code is malformed."
-					}
 				}
 			},
 			lairselector: {

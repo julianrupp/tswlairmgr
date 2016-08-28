@@ -159,6 +159,7 @@
 	padding-bottom: 7px;
 	margin: 10px auto;
 	width: 210px;
+	clear: both;
 }
 
 #bottombar .info {

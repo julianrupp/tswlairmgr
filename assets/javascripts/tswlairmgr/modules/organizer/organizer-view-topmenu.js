@@ -21,12 +21,6 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 			importButton: {
 				rootNode: null,
 				button: null
-			},
-			importBox: {
-				rootNode: null,
-				title: null,
-				info: null,
-				textField: null
 			}
 		},
 		lairselector: {
@@ -56,7 +50,6 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		
 		this._build_topmenu_fragmentcounts_import_button();
 		this._build_topmenu_lairselector();
-		this._build_topmenu_fragmentcounts_import_box();
 	};
 	
 	this._build_topmenu_fragmentcounts_import_button = function() {
@@ -128,47 +121,11 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 		$(this._el.self).append(this._el.lairselector.rootNode);
 	};
 	
-	this._build_topmenu_fragmentcounts_import_box = function() {
-		this._el.fragmentcounts.importBox.rootNode = $("<div />")
-			.attr("id", "fragmentcountsImportBox")
-			.addClass("uibox");
-		
-		var box = $(
-			'<div class="importBox">' +
-			'	<div class="importTitle"></div>' +
-			'	<div class="importInfoText"></div>' +
-			'	<textarea class="importTextField"></textarea>' +
-			'</div>'
-		);
-		
-		$(this._el.fragmentcounts.importBox.rootNode).append(box);
-		
-		this._el.fragmentcounts.importBox.title = $(".importTitle", this._el.fragmentcounts.importBox.rootNode);
-		this._el.fragmentcounts.importBox.info = $(".importInfoText", this._el.fragmentcounts.importBox.rootNode);
-		this._el.fragmentcounts.importBox.textField = $(".importTextField", this._el.fragmentcounts.importBox.rootNode);
-		
-		var self = this;
-		$(this._el.fragmentcounts.importBox.textField).on("paste", function() {
-			setTimeout(function() {
-				var pasted = $(self._el.fragmentcounts.importBox.textField).val();
-				self.closeAndClearImportBox();
-				self.observables.fragmentcountsImportStringPasted.notify({
-					data: pasted
-				});
-			},0);
-		});
-		
-		$(this._el.self).append(this._el.fragmentcounts.importBox.rootNode);
-		
-		$(this._el.fragmentcounts.importBox.rootNode).hide();
-	};
-	
 	this._redraw = function() {
 		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.modules.organizer.viewTopmenu>: redraw called");
 		
 		this._redraw_topmenu_fragmentcounts_import_button();
 		this._redraw_lairselector();
-		this._redraw_topmenu_fragmentcounts_import_box();
 	};
 	
 	this._redraw_topmenu_fragmentcounts_import_button = function() {
@@ -207,27 +164,6 @@ tswlairmgr.modules.organizer.viewTopmenu = function organizerViewTopmenu(content
 				})
 			);
 		});
-	};
-	
-	this._redraw_topmenu_fragmentcounts_import_box = function() {
-		$(this._el.fragmentcounts.importBox.title).html(
-			this._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.title
-		);
-		var formattedPasteShortcut = Mustache.render(this._templates.technicalFormat, {
-			localization: this._localization.getLocalizationData(),
-			context: {
-				text: this._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.infoText.pasteShortcut
-			}
-		});
-		$(this._el.fragmentcounts.importBox.info).html(
-			Mustache.render(this._localization.getLocalizationData().strings.topmenu.fragmentcountsImport.importBox.infoText.text, {
-				localization: this._localization.getLocalizationData(),
-				context: {
-					pasteShortcut: formattedPasteShortcut,
-					modLink: '<a href="'+tswlairmgr.core.info.exportmod.url_download+'" target="_blank">'+tswlairmgr.core.info.exportmod.name+'</a>'
-				}
-			})
-		);
 	};
 	
 	this.importBoxIsOpen = function() {

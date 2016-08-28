@@ -12,7 +12,6 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		appBackgroundShouldChange: new tswlairmgr.core.helpers.Observable(this),
 		fragmentcountsImportButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		lairselectorDropdownChanged: new tswlairmgr.core.helpers.Observable(this),
-		fragmentcountsImportStringPasted: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountPlusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		fragmentCountMinusButtonClicked: new tswlairmgr.core.helpers.Observable(this),
 		participantAddButtonClicked: new tswlairmgr.core.helpers.Observable(this),
@@ -131,10 +130,6 @@ tswlairmgr.modules.organizer.view = function organizerView(contentNode, modelIns
 		
 		this._subViews.topmenu.observables.lairselectorDropdownChanged.registerCallback(function(origin, context) {
 			self.observables.lairselectorDropdownChanged.notify(context);
-		});
-		
-		this._subViews.topmenu.observables.fragmentcountsImportStringPasted.registerCallback(function(origin, context) {
-			self.observables.fragmentcountsImportStringPasted.notify(context);
 		});
 		
 		// Boss table

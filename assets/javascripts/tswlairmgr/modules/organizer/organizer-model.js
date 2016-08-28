@@ -3,11 +3,11 @@ tswlairmgr.modules = tswlairmgr.modules || {};
 tswlairmgr.modules.organizer = tswlairmgr.modules.organizer || {};
 
 tswlairmgr.modules.organizer.model = function organizerModel() {
-	this._persistentStateVersion = 1;
+	this._persistentStateVersion = 2;
 	this._selectedLair = tswlairmgr.core.data.getSortedRegions()[0].getSortedZones()[0].getSortedLairs()[0];
-	this._fragmentCounts = new tswlairmgr.modules.organizer.classes.LairFragmentCountsRegistry();
+	this._fragmentRegistry = tswlairmgr.core.fragmentregistry;
 	this._participants = new tswlairmgr.modules.organizer.classes.ParticipantRegistry();
-	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentCounts, this._participants, this._selectedLair);
+	this._assigningStrategy = new tswlairmgr.modules.organizer.classes.LairFragmentAssigningStrategy(this._fragmentRegistry.getLairFragmentCountsRegistry(), this._participants, this._selectedLair);
 	this._selectedChatScriptLocalizationId = tswlairmgr.core.data.getDefaultLocalizationId();
 	this._selectedChatScriptOrderStyle = tswlairmgr.modules.organizer.classes.ChatScriptOrderEnum.o.BY_PARTICIPANT;
 	
@@ -22,7 +22,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	};
 	
 	var self = this;
-	this._fragmentCounts.observables.countChanged.registerCallback(function(origin, context) {
+	this._fragmentRegistry.getLairFragmentCountsRegistry().observables.countChanged.registerCallback(function(origin, context) {
 		self.observables.fragmentCountsChanged.notify(context);
 	});
 	$.each(["participantAdded", "participantRemoved", "participantMissionAvailabilityChanged"], function(index, observableName) {
@@ -47,19 +47,19 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	};
 	
 	this.getCountForFragment = function(fragmentInstance) {
-		return this._fragmentCounts.getCountForFragment(fragmentInstance);
+		return this._fragmentRegistry.getLairFragmentCountsRegistry().getCountForFragment(fragmentInstance);
 	};
 	
 	this.setCountForFragment = function(fragmentInstance, newCount) {
-		this._fragmentCounts.setCountForFragment(fragmentInstance, newCount);
+		this._fragmentRegistry.getLairFragmentCountsRegistry().setCountForFragment(fragmentInstance, newCount);
 	};
 	
 	this.incrementCountForFragment = function(fragmentInstance) {
-		this._fragmentCounts.incrementCountForFragment(fragmentInstance);
+		this._fragmentRegistry.getLairFragmentCountsRegistry().incrementCountForFragment(fragmentInstance);
 	};
 	
 	this.decrementCountForFragment = function(fragmentInstance) {
-		this._fragmentCounts.decrementCountForFragment(fragmentInstance);
+		this._fragmentRegistry.getLairFragmentCountsRegistry().decrementCountForFragment(fragmentInstance);
 	};
 	
 	this.getWillHaveCountForFragment = function(fragmentInstance) {
@@ -72,7 +72,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		
 		var self = this;
 		$.each(fragments, function(orientationCode, fragment) {
-			var count = self._fragmentCounts.getCountForFragment(fragment);
+			var count = self._fragmentRegistry.getLairFragmentCountsRegistry().getCountForFragment(fragment);
 			
 			if(lowestCount === null || count < lowestCount)
 			{
@@ -80,7 +80,7 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 			}
 		});
 		
-		if(this._fragmentCounts.getCountForFragment(fragmentInstance) <= lowestCount)
+		if(this._fragmentRegistry.getLairFragmentCountsRegistry().getCountForFragment(fragmentInstance) <= lowestCount)
 		{
 			return true;
 		}
@@ -109,7 +109,6 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 		return {
 			v: this._persistentStateVersion,
 			l: this.getSelectedLair().getId(),
-			fcr: this._fragmentCounts.getPersistentState(),
 			pr: this._participants.getPersistentState(),
 			csl: this._selectedChatScriptLocalizationId,
 			csos: this._selectedChatScriptOrderStyle
@@ -118,17 +117,16 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 	
 	this.setPersistentState = function(state)
 	{
-		if(!(state.v) || !(state.l) || !(state.fcr) || !(state.pr) || !(state.csl) || !(state.csos)) { return false; }
-		if(state.v === this._persistentStateVersion)
+		if(!(state.v) || !(state.l) || !(state.pr) || !(state.csl) || !(state.csos)) { return false; }
+		var processed = false;
+		
+		if(state.v <= this._persistentStateVersion && state.v >= 1)
 		{
 			var lair = tswlairmgr.core.data.getLairById(state.l);
 			if(lair)
 			{
 				this.setSelectedLair(lair);
 			}
-			
-			this._fragmentCounts.setPersistentState(state.fcr);
-			this.observables.fragmentCountsChanged.notify({});
 			
 			this._participants.setPersistentState(state.pr);
 			
@@ -144,8 +142,17 @@ tswlairmgr.modules.organizer.model = function organizerModel() {
 				this.setSelectedChatScriptOrderStyle(state.csos);
 			}
 			
-			return true;
+			processed = true;
 		}
+		if(state.v === 1)
+		{
+			if(tswlairmgr.modules.inventory)
+			{
+				tswlairmgr.core.fragmentregistry.getLairFragmentCountsRegistry().setPersistentState(state.fcr);
+			}
+		}
+		
+		if(processed) return true;
 		return false;
 	};
 };
