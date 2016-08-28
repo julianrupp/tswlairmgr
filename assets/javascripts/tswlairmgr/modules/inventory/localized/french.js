@@ -68,7 +68,7 @@ tswlairmgr.modules.inventory.controller._localization.addLocalizationData("Fran√
 		notes: {
 			title: "Notes",
 			infoText:
-				"Vous pouvez entrer notes ici, par exemple pour partager avec autres."
+				"Vous pouvez √©crire des notes ici, par exemple pour partager avec les autres joueurs."
 		},
 		fragmenttable: {
 			calculated: {

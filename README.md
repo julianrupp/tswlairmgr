@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.2
 
+##### 2.2.1
+
+-	Fixed french localization of *Inventory* module. Thanks again Rexxars!
+
 ##### 2.2.0
 
 -	*Inventory* module
