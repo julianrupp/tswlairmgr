@@ -30,6 +30,7 @@
 	<script src="assets/javascripts/libraries/LZW/lzw_encoder.min.js"></script>
 	<script src="assets/javascripts/libraries/Blob/Blob.min.js"></script>
 	<script src="assets/javascripts/libraries/FileSaver/FileSaver.min.js"></script>
+	<script src="assets/javascripts/libraries/cookies/cookies.js"></script>
 	
 	<script src="assets/javascripts/tswlairmgr/core/info.js"></script>
 	<script src="assets/javascripts/tswlairmgr/core/config.js"></script>
@@ -139,7 +140,8 @@
 		<div id="ingameBrowserNotice">
 			<div class="uibox">
 				<div class="inner">
-				<h1>Warning: Using ingame web browser</h1>
+					<h1>Warning: Using ingame web browser</h1>
+					
 					<p>It appears like you are using the ingame web browser.</p>
 					
 					<ul>
@@ -148,6 +150,11 @@
 					</ul>
 				
 					<p>Please open this site in a modern, external web browser to safely make proper use of TSW Lair Manager.</p>
+					
+					<div class="buttons">
+						<input type="button" class="button dismiss" value="Dismiss" />
+						<input type="button" class="button dismissPermanent" value="Don't show me again">
+					</div>
 				</div>
 			</div>
 		</div>

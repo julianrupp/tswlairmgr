@@ -10,6 +10,7 @@ tswlairmgr.core.persistentstate = new function() {
 		activeLocalization: null,
 		activeModule: null
 	};
+	this._cookieData = {};
 	this._moduleStateStruct = {
 		v: tswlairmgr.core.info.version,
 		i: {},
@@ -73,44 +74,12 @@ tswlairmgr.core.persistentstate = new function() {
 			return;
 		}
 		
-		var parts = packedModuleState.split(".");
-		var encodedCompressedStringifiedData = parts[0];
-		var claimedChecksum = parts[1];
-		
-		var compressedStringifiedData = tswlairmgr.core.helpers.Base64URL.decode(encodedCompressedStringifiedData);
-		
-		var actualChecksum = tswlairmgr.core.helpers.CRC32.textChecksum(compressedStringifiedData);
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: data checksum is <"+actualChecksum+">");
-		
-		var parsed;
-		
-		if(actualChecksum !== claimedChecksum)
-		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: warning: invalid checksum <"+claimedChecksum+">!");
-		}
-		else
-		{
-			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: trying to decompress and parse JSON...");
-			try
-			{
-				var jsonData = lzw_decode(compressedStringifiedData);
-				
-				//if(tswlairmgr.core.config.debug) console.log(jsonData);
-				
-				parsed = JSON.parse(jsonData);
-				
-				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: data loaded.");
-				
-				if("m" in parsed) this._moduleStateStruct.m = parsed.m;
-				if("i" in parsed) this._moduleStateStruct.i = parsed.i;
-			}
-			catch(e)
-			{
-				
-				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: loadModuleStateFromHash: warning: invalid data!");
-				console.log(e);
-			}
-		}
+		var self = this;
+		this._unpack(packedModuleState, function(data) {
+			if(!data) return;
+			if("m" in data) self._moduleStateStruct.m = data.m;
+			if("i" in data) self._moduleStateStruct.i = data.i;
+		});
 	};
 	
 	this.getModuleState = function(module) {
@@ -205,16 +174,7 @@ tswlairmgr.core.persistentstate = new function() {
 	};
 	
 	this.hashifyModuleState = function() {
-		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: hashifyModuleState");
-		//if(tswlairmgr.core.config.debug) console.log(JSON.stringify(this._moduleStateStruct));
-		
-		var compressedStringifiedData = lzw_encode(JSON.stringify(this._moduleStateStruct));
-		var textChecksum = tswlairmgr.core.helpers.CRC32.textChecksum(compressedStringifiedData);
-		
-		var encodedCompressedStringifiedData = tswlairmgr.core.helpers.Base64URL.encode(compressedStringifiedData);
-		var packedDataWithChecksum = encodedCompressedStringifiedData + "." + textChecksum;
-		
-		return packedDataWithChecksum;
+		return this._pack(this._moduleStateStruct);
 	};
 	
 	this._initWithHash = function(hash) {
@@ -233,5 +193,97 @@ tswlairmgr.core.persistentstate = new function() {
 				self.pollHashChange();
 			});
 		}
+	};
+	
+	this._pack = function(data) {
+		var compressedStringifiedData = lzw_encode(JSON.stringify(data));
+		var textChecksum = tswlairmgr.core.helpers.CRC32.textChecksum(compressedStringifiedData);
+		
+		var encodedCompressedStringifiedData = tswlairmgr.core.helpers.Base64URL.encode(compressedStringifiedData);
+		var packedDataWithChecksum = encodedCompressedStringifiedData + "." + textChecksum;
+		
+		return packedDataWithChecksum;
+	};
+	
+	this._unpack = function(string, callback) {
+		var parts = string.split(".");
+		var encodedCompressedStringifiedData = parts[0];
+		var claimedChecksum = parts[1];
+		
+		var compressedStringifiedData = tswlairmgr.core.helpers.Base64URL.decode(encodedCompressedStringifiedData);
+		
+		var actualChecksum = tswlairmgr.core.helpers.CRC32.textChecksum(compressedStringifiedData);
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: unpack: data checksum is <"+actualChecksum+">");
+		
+		var parsed = null;
+		
+		if(actualChecksum !== claimedChecksum)
+		{
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: unpack: warning: invalid checksum <"+claimedChecksum+">!");
+		}
+		else
+		{
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: unpack: trying to decompress and parse JSON...");
+			try
+			{
+				var jsonData = lzw_decode(compressedStringifiedData);
+				
+				//if(tswlairmgr.core.config.debug) console.log(jsonData);
+				
+				parsed = JSON.parse(jsonData);
+				
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: unpack: data loaded.");
+			}
+			catch(e)
+			{
+				
+				if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: unpack: warning: invalid data!");
+				console.log(e);
+			}
+		}
+		
+		callback(parsed);
+	};
+	
+	var self = this;
+	this.setCookie = function(id, data) {
+		self._cookieData[id] = data;
+		self._updateCookie();
+	};
+	
+	this.getCookie = function(id, data) {
+		if(!(id in self._cookieData)) return null;
+		return self._cookieData[id];
+	};
+	
+	this._updateCookie = function() {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: updateCookie: data =");
+		if(tswlairmgr.core.config.debug) console.log(self._cookieData);
+		
+		var struct = {
+			"c": self._pack(self._cookieData)
+		};
+		docCookies.setItem("tswlairmgr", struct, Infinity);
+	};
+	
+	this._initWithCookie = function() {
+		if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: initWithCookie called");
+		
+		var packedCookieData = docCookies.getItem("tswlairmgr");
+		if(tswlairmgr.core.config.debug) console.log(packedCookieData);
+		if(!packedCookieData || packedCookieData.length === 0 || packedCookieData.indexOf(".") === -1)
+		{
+			if(tswlairmgr.core.config.debug) console.log("<tswlairmgr.core.persistentstate>: initWithCookie: warning: empty or invalid cookie!");
+			return;
+		}
+		
+		var self = this;
+		this._unpack(packedCookieData, function(data) {
+			if(tswlairmgr.core.config.debug) console.log(data);
+			if(data)
+			{
+				self._cookieData = data["c"] || {};
+			}
+		});
 	};
 };

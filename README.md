@@ -83,6 +83,10 @@ Changelog
 
 #### Version 2.2
 
+##### 2.2.2
+
+-	Added buttons to dismiss the "using ingame browser" infobox. One will attempt to save a cookie to remember your decision; however the ingame browser is known to clear cookies upon starting/ending the game. At least you will not be bugged multiple times during the same game session with this.
+
 ##### 2.2.1
 
 -	Fixed french localization of *Inventory* module. Thanks again Rexxars!
@@ -286,3 +290,5 @@ MIT License for the source code and fully self-created assets. Please see the `L
 - This software makes use of Douglas Crockford's [JSON implementation](https://github.com/douglascrockford/JSON-js) and redistributes it. Please see the first block comment in the `assets/javascripts/libraries/JSON/json2.js` file for its license.
 
 - This software makes use of Julien Bouquillon's ([@revolunet](https://github.com/revolunet)) [`lzw_encoder.js`](https://gist.github.com/revolunet/843889). There appears to be no formal license attached to it, so it could be assumed it is meant to be public domain.
+
+- This software makes use of Mozilla's [Simple cookie framework](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie/Simple_document.cookie_framework), which is licenses under GNU GPL 3.0.

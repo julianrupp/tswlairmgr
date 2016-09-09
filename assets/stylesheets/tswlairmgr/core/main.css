@@ -142,6 +142,11 @@
 	margin-bottom: 6px;
 }
 
+#ingameBrowserNotice .buttons {
+	margin-top: 10px;
+	text-align: center;
+}
+
 /* -------------------- */
 
 #moduleContainer {

@@ -4,11 +4,6 @@ $(document).ready(function() {
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] starting...");
 	$("#javascriptDisabledNotice").hide();
 	
-	if(!tswlairmgr.core.helpers.IngameBrowserDetector.isIngameBrowser())
-	{
-		$("#ingameBrowserNotice").hide();
-	}
-	
 	var hash = window.location.hash;
 	
 	// Set initial data localization
@@ -30,9 +25,31 @@ $(document).ready(function() {
 	// Initialize persistent state controller
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] initializing persistent state manager...");
 	tswlairmgr.core.persistentstate._initWithHash(hash);
+	tswlairmgr.core.persistentstate._initWithCookie();
 	
+	// Version string in footer
 	$(".versionString", $("#bottombar")).text(tswlairmgr.core.info.version);
 	
+	// Ingame browser notice
+	$("#ingameBrowserNotice .button.dismiss").click(function() {
+		$("#ingameBrowserNotice").hide();
+	});
+	$("#ingameBrowserNotice .button.dismissPermanent").click(function() {
+		$("#ingameBrowserNotice").hide();
+		tswlairmgr.core.persistentstate.setCookie("ingameBrowserNotice", { "hide": true } );
+	});
+	var cookieIBNSettings = tswlairmgr.core.persistentstate.getCookie("ingameBrowserNotice") || {};
+	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] ingameBrowserNotice: cookie settings = ");
+	if(tswlairmgr.core.config.debug) console.log(cookieIBNSettings);
+	if(
+		!tswlairmgr.core.helpers.IngameBrowserDetector.isIngameBrowser()
+		|| ("hide" in cookieIBNSettings && cookieIBNSettings["hide"] == true)
+	)
+	{
+		$("#ingameBrowserNotice").hide();
+	}
+	
+	// Finalize
 	if(tswlairmgr.core.config.debug) console.log("<tswlairmgr>: [startup] complete.");
 	$("#webapp").show();
 	
